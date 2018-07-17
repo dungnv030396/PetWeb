@@ -8,16 +8,18 @@ use App\Catalog;
 use function foo\func;
 use Session;
 use Illuminate\Http\Request;
+use App\Support\Collection;
 
 class PageController extends Controller
 {
     public function getIndex(){
-        $products = Catalog::find(1)->products;
     	$slide= Slide::all();
+        $pet_items = Catalog::find(1)->products;
+        $pet_products = (new Collection($pet_items))->sortByDesc('id')->paginate(8);
     	//$new_product=Product::where('delete_flag',0)->paginate(8);
     	//$sanpham_khuyenmai=Product::where('promotion_price','<>',0)->paginate(4);
     	// return view('page.trangchu',['slide'=>$slide]);
-    	return view('clientViews.trangchu',compact('slide','products'));
+    	return view('clientViews.trangchu',compact('slide','pet_products'));
     }
 
     public function getLoaiSp($type){

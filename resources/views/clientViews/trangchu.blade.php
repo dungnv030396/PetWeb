@@ -42,12 +42,12 @@
                         <div class="beta-products-list">
                             <h4>Danh sách thú nuôi</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Tìm thấy {{$products->count()}} sản phẩm</p>
+                                <p class="pull-left">Tìm thấy {{$pet_products->total()}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
                                 <!-- hien thi list sam pham moi -->
-                                @foreach($products as $product)
+                                @foreach($pet_products as $product)
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             @if($product->discount != 0)
@@ -65,12 +65,12 @@
                                                 <p class="single-item-price">
                                                     @if($product->discount != 0)
                                                     <span class="flash-del">{{$product->price}}
-                                                        VNĐ</span>
+                                                        VNĐ</span><br>
                                                     <span class="flash-sale">{{($product->price * $product->discount) / 100}}
                                                         VNĐ</span>
                                                     @else
                                                         <span class="flash-sale">{{$product->price}}
-                                                            VNĐ</span>
+                                                            VNĐ</span><br><br>
                                                     @endif
                                                 </p>
                                             </div>
@@ -88,7 +88,7 @@
                             @endforeach
                             <!-- end -->
                             </div>
-                            <div class="row"></div>
+                            <div class="row">{{ $pet_products->links() }}</div>
                         </div> <!-- .beta-products-list -->
 
                         <div class="space50">&nbsp;</div>
@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                 @endfor
-                                <div class="row"><!-- link() --></div>
+                                <div class="row"><!-- links --></div>
                             </div>
 
                         </div> <!-- .beta-products-list -->
