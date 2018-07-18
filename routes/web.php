@@ -37,3 +37,15 @@ Route::get('register', function () {
     return view('registration.register');
 });
 Route::post('register', 'UsersController@store')->name('register');
+
+//userProfile
+Route::get('userProfile', function () {
+    return view('profile.userProfile');
+});
+
+//login
+Route::get('login', function () {
+    return view('registration.login');
+});
+Route::post('login', 'LoginController@login')->name('login');
+Route::get('/logout','LoginController@destroy');
