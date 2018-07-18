@@ -37,7 +37,7 @@ class UsersController extends Controller
         $user->name = request('mem_name');
         $user->userName = request('username');
         $user->email = request('emailid');
-        $user->pwd = request('password');
+        $user->pwd = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
         $user->save();

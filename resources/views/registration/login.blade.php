@@ -29,7 +29,7 @@
                                     <input type="text" class="form-control" name="username" id="username" placeholder="Tên Tài Khoản" required autofocus />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Mật Khẩu" required />
+                                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Mật Khẩu" required />
                                 </div>
                                 @include('layouts.errors')
                                 <button class="btn btn-lg btn-block purple-bg" type="submit">

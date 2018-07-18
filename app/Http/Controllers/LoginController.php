@@ -18,7 +18,7 @@ class LoginController extends Controller
        // $username = \request('username');
       //  $password = \request('password');
 
-        if(! \auth()->attempt(\request(['username','password']))){
+        if(! \auth()->attempt(\request(['username','pwd']))){
 
             return back()->withErrors([
 
