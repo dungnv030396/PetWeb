@@ -32,3 +32,8 @@ Route::get('gioi-thieu',[
     'as'=>'gioithieu',
     'uses'=>'PageController@getGioiThieu'
 ]);
+//Register
+Route::get('register', function () {
+    return view('registration.register');
+});
+Route::post('register', 'UsersController@store')->name('register');
