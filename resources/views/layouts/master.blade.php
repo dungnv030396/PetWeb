@@ -19,8 +19,8 @@
 <body>
 
 		@include('layouts.header');
-
-	<div class="rev-slider">
+		@include('registration.login')
+		<div class="rev-slider">
 
 		@yield('content');
 

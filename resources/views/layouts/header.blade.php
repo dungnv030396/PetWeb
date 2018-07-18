@@ -9,17 +9,17 @@
 			<div class="pull-right auto-width-right">
 				<ul class="top-details menu-beta l-inline">
 					@if(\Illuminate\Support\Facades\Auth::check())
-						<li><a href="userProfile">{{ \Illuminate\Support\Facades\Auth::user()->userName }}</a></li>
-					@endif
-
+						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->username }}</a></li>
+						<li><a href="auth/logout">Đăng Xuất</a></li>
+					@else
 					<li><a href="quanly">Quản lý gian hàng</a></li>
 					<li><a href="register">Đăng kí</a></li>
 					<li><a data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
+					@endif
 				</ul>
 			</div>
 			<div class="clearfix"></div>
 		</div> <!-- .container -->
-		@include('registration.login')
 
 	</div> <!-- .header-top -->
 

@@ -132,6 +132,17 @@
                         </div>
                     </div>
                 </form>
+                <div class="form-group">
+
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            <ul>
+                                {{ session('status') }}
+                            </ul>
+                        </div>
+                    @endif
+
+                </div>
 
                 <div class="form-group">
 

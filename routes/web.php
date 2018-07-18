@@ -39,13 +39,9 @@ Route::get('register', function () {
 Route::post('register', 'UsersController@store')->name('register');
 
 //userProfile
-Route::get('userProfile', function () {
-    return view('profile.userProfile');
-});
+Route::get('userProfile/{id}','UsersController@show');
 
-//login
-Route::get('login', function () {
-    return view('registration.login');
-});
+//login && logout
+
 Route::post('login', 'LoginController@login')->name('login');
-Route::get('/logout','LoginController@destroy');
+Route::get('auth/logout','LoginController@destroy');

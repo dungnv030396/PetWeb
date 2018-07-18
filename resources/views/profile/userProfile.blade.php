@@ -10,6 +10,7 @@
     <h1 class="page-header">Thay Đổi Hồ Sơ Của Bạn</h1>
     <div class="row">
         <!-- left column -->
+        @foreach($user as $item)
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
                 <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -29,7 +30,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Họ và Tên:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" value="....." type="text">
+                        <input class="form-control" value="{{ $item->name }}" type="text">
                     </div>
                 </div>
 
@@ -108,6 +109,8 @@
                 </div>
             </form>
         </div>
+
+            @endforeach
     </div>
 </div>
     @endsection

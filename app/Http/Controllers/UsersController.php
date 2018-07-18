@@ -9,13 +9,13 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $username = User::all()->where('userName', \request('username'));
+        $username = User::all()->where('username', \request('username'));
         $email = User::all()->where('email', \request('emailid'));
         if (count($username) > 0) {
-            return view('registration.register')->withErrors('Tên tài khoản đã tồn tại!xin mời nhập lại');
+            return view('registration.register')->withErrors('Đăng ký không thành công! Tên tài khoản đã tồn tại!xin mời nhập lại');
         }
         if (count($email) > 0) {
-            return view('registration.register')->withErrors('Email đã tồn tại!xin mời nhập lại');
+            return view('registration.register')->withErrors('Đăng ký không thành công! Email đã tồn tại!xin mời nhập lại');
         }
 
         $this->validate(\request(), [
@@ -35,15 +35,21 @@ class UsersController extends Controller
 
 
         $user->name = request('mem_name');
-        $user->userName = request('username');
+        $user->username = request('username');
         $user->email = request('emailid');
-        $user->pwd = bcrypt(request('password'));
+        $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
         $user->save();
 
 
-        return view('registration.register')->withErrors('Chúc mừng bạn đã đăng ký Thành Công!');
+        return redirect('/register')->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
 
+    }
+
+    public function show($id){
+
+        $user = User::find($id)->get();
+        return view('profile.userProfile',compact('user'));
     }
 }

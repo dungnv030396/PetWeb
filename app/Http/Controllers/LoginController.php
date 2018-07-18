@@ -3,36 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('guest',['except' =>'destroy']);
     }
 
-    public function login(){
+    public function login(Request $request){
 
 
-       // $username = \request('username');
-      //  $password = \request('password');
-
-        if(! \auth()->attempt(\request(['username','pwd']))){
+//        if(! \auth()->attempt(\request(['username','password']))){
+//
+//            return back()->withErrors([
+//
+//                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
+//            ]);
+//        }
+        if(!Auth::attempt(['username' => $request->username,'password'=> $request->password,'roleId' => 2,'roleId' => 3])){
 
             return back()->withErrors([
 
-                'message' => 'Plz check your account'
+                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
             ]);
         }
-        return back()->withErrors([
-
-            'message' => 'Tài khoản chính xác'
-        ]);
-        return redirect()->trangchu();
+        return Redirect::to('/index');
     }
 
     public function destroy(){
+
         auth()->logout();
 
         return Redirect::to('/index');
