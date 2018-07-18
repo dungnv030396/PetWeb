@@ -3,21 +3,19 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="/css/css-login.css" rel="stylesheet">
 
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+@endif
 <!------ Include the above in your HEAD tag ---------->
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog" style="width: 100%">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
-            {{--<div class="modal-header">--}}
-                {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
-            {{--</div>--}}
-            {{--<div class="modal-body">--}}
-                {{--<p>Some text in the modal.</p>--}}
-            {{--</div>--}}
-
-            <div class="container">
-                <div class="row">
+        {{--modal-dialog-centered--}}
+            <div class="container" >
                     <div class="col-md-3 col-md-offset-4">
                         <div class="account-box">
                             <div class="logo ">
@@ -40,10 +38,10 @@
                                 <span class="or">Hoặc</span>
                                 <div class="row">
                                     <div class="col-md-6 row-block">
-                                        <a href="http://www.jquery2dotnet.com" class="btn btn-facebook btn-block">Facebook</a>
+                                        <a href="#" class="btn btn-facebook btn-block">Facebook</a>
                                     </div>
                                     <div class="col-md-6 row-block">
-                                        <a href="http://www.jquery2dotnet.com" class="btn btn-google btn-block">Google</a>
+                                        <a href="#" class="btn btn-google btn-block">Google</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +52,6 @@
                                 </div>
                         </div>
                     </div>
-                </div>
             </div>
     </div>
 </div>

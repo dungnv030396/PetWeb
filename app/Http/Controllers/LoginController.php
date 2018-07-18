@@ -24,11 +24,21 @@ class LoginController extends Controller
 //                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
 //            ]);
 //        }
+
+//        if(!Auth::attempt(['username' => $request->username,'password'=> $request->password,'roleId' => 2,'roleId' => 3])){
+//
+//            return back()->withErrors([
+//
+//                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
+//            ]);
+//        }
         if(!Auth::attempt(['username' => $request->username,'password'=> $request->password,'roleId' => 2,'roleId' => 3])){
 
-            return back()->withErrors([
-
-                'message' => 'Tài khoản hoặc mật khẩu không chính xác'
+            return Redirect::back()->with(
+                'error_code',5
+                //'error_code' => 'Tài khoản hoặc mật khẩu không chính xác',
+            )->withErrors([
+                'message' => 'Tài khoản hoặc mật khẩu không chính xác',
             ]);
         }
         return Redirect::to('/index');
