@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -12,10 +13,10 @@ class UsersController extends Controller
         $username = User::all()->where('username', \request('username'));
         $email = User::all()->where('email', \request('emailid'));
         if (count($username) > 0) {
-            return view('registration.register')->withErrors('Đăng ký không thành công! Tên tài khoản đã tồn tại!xin mời nhập lại');
+            return back()->withErrors('Đăng ký không thành công! Tên tài khoản đã tồn tại!xin mời nhập lại');
         }
         if (count($email) > 0) {
-            return view('registration.register')->withErrors('Đăng ký không thành công! Email đã tồn tại!xin mời nhập lại');
+            return back()->withErrors('Đăng ký không thành công! Email đã tồn tại!xin mời nhập lại');
         }
 
         $this->validate(\request(), [
@@ -40,6 +41,7 @@ class UsersController extends Controller
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
+        $user->avatar = 'user-default.png' ;
         $user->save();
 
 
@@ -47,9 +49,11 @@ class UsersController extends Controller
 
     }
 
-    public function show($id){
+    public function show(){
 
-        $user = User::find($id)->get();
+        $id =  \request('id');
+        $user = User::all()->find($id);
+
         return view('profile.userProfile',compact('user'));
     }
 }

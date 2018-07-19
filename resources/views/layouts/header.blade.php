@@ -9,7 +9,9 @@
 			<div class="pull-right auto-width-right">
 				<ul class="top-details menu-beta l-inline">
 					@if(\Illuminate\Support\Facades\Auth::check())
-						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->username }}</a></li>
+						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
+								<img src="source/image/users/{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
+								Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->username }}</a></li>
 						<li><a href="auth/logout">Đăng Xuất</a></li>
 					@else
 					<li><a href="quanly">Quản lý gian hàng</a></li>
