@@ -19,7 +19,10 @@
 <body>
 
 		@include('layouts.header');
-	<div class="rev-slider">
+
+		@include('registration.login')
+
+		<div class="rev-slider" style="max-width: 100%">
 
 		@yield('content');
 

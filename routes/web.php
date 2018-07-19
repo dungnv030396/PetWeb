@@ -36,3 +36,20 @@ Route::get('gioi-thieu',[
     'as'=>'gioithieu',
     'uses'=>'PageController@getGioiThieu'
 ]);
+//Register
+Route::get('register', function () {
+    return view('registration.register');
+});
+Route::post('register', 'UsersController@store')->name('register');
+
+//userProfile
+Route::get('userProfile/{id}','UsersController@show');
+Route::post('updateInfo', 'UserProfileController@updateProfile');
+Route::post('updatePass', 'UserProfileController@updatePassword');
+
+//login && logout
+
+Route::post('login', 'LoginController@login')->name('login');
+Route::get('auth/logout','LoginController@destroy');
+
+
