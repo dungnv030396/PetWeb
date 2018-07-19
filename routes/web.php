@@ -40,13 +40,12 @@ Route::post('register', 'UsersController@store')->name('register');
 
 //userProfile
 Route::get('userProfile/{id}','UsersController@show');
+Route::post('updateInfo', 'UserProfileController@updateProfile');
+Route::post('updatePass', 'UserProfileController@updatePassword');
 
 //login && logout
 
 Route::post('login', 'LoginController@login')->name('login');
 Route::get('auth/logout','LoginController@destroy');
 
-//userProfile
 
-Route::post('updateInfo', 'UserProfileController@updateProfile');
-Route::post('updatePass', 'UserProfileController@updatePassword');
