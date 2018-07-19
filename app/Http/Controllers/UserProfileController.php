@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -8,8 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
-    public function updateProfile(){
-        $this->validate(\request(),[
+    public function updateProfile()
+    {
+        $this->validate(\request(), [
             'mem_name' => 'required',
             'emailid' => 'required|email',
             'phonenumber' => 'required|digits_between:10,15|numeric',
@@ -18,7 +20,7 @@ class UserProfileController extends Controller
             [
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
-        ]);
+            ]);
 
         $id = Auth::user()->id;
         $user = User::find($id);
@@ -29,10 +31,11 @@ class UserProfileController extends Controller
         $user->address = request('address');
         $user->save();
 
-        return back()->with('statusUpdateProfile','Chúc mừng bạn đã thay đổi thông tin cá nhân Thành Công!');
+        return back()->with('statusUpdateProfile', 'Chúc mừng bạn đã thay đổi thông tin cá nhân Thành Công!');
     }
 
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
 
 //        $id = Auth::user()->id;
 //        $user = User::find($id);
@@ -48,20 +51,24 @@ class UserProfileController extends Controller
 //
 //        return back()->with('statusUpdatePass','Chúc mừng bạn đã thay đổi mật khẩu Thành Công!');
 
-
-        if(!Auth::user()->fill([
-            'password' => Hash::make($request->newpass)
-        ])->save()){
-            return back()->withErrors('Mật khẩu hiện tại không chính xác!');
-        };
-
-        $this->validate(\request(),[
-            'newpass' => 'required|confirmed|digits_between:6,15',
-        ],[
-            'newpass.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
-            'newpass.confirmed' => 'Mật khẩu hiện tại không chính xác! Xin mời nhập lại'
+        $this->validate(\request(), [
+            'password' => 'required|confirmed|digits_between:6,15',
+        ], [
+            'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+            'password.confirmed' => 'Xác nhận mật khẩu không chính xác! Xin mời nhập lại'
         ]);
 
-        return back()->with('statusUpdatePass','Chúc mừng bạn đã thay đổi mật khẩu Thành Công!');
+        if (Hash::check(\request('oldpwd'), Auth::user()->password)) {
+
+            Auth::user()->fill([
+                'password' => Hash::make($request->password) //'password'--trong talble, $request->password-- trong view
+            ])->save();
+
+            return back()->with('statusUpdatePass', 'Chúc mừng bạn đã thay đổi mật khẩu Thành Công!');
+
+        } else {
+            return back()->withErrors('Mật khẩu hiện tại không chính xác!');
+
+        }
     }
 }

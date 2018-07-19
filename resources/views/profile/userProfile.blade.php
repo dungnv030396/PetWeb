@@ -148,14 +148,14 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Mật Khẩu Mới:</label>
                             <div class="col-md-8">
-                                <input class="form-control" name="newpass" type="password"
+                                <input class="form-control" name="password" type="password"
                                        placeholder="Nhật mật khẩu mới">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Xác Nhận Mật Khẩu Mới:</label>
                             <div class="col-md-8">
-                                <input class="form-control" name="password_confirmation" type="password"
+                                <input class="form-control" name="password_confirmation" id="password_confirmation" type="password"
                                        placeholder="Xác nhận mật khẩu mới">
                             </div>
                         </div>
