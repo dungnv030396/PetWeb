@@ -18,10 +18,14 @@ Route::get('index',[
     'as'=>'trangchu',
     'uses'=>'PageController@getIndex'
 ]);
+Route::get('test',[
+    'uses'=>'PageController@test'
+]);
+
 
 Route::get('chi-tiet-san-pham/{id}',[
-    'as'=>'chitietsanpham',
-    'uses'=>'PageController@getChiTiet'
+    'as'=>'productDetail',
+    'uses'=>'PageController@getProductDetail'
 ]);
 Route::get('lien-he',[
     'as'=>'lienhe',

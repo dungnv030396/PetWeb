@@ -1901,14 +1901,14 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
 }
 
 .single-item-price {
-    font-size: 10px;
-    color: #000
+    font-size: 15px;
+    color:#000
 }
 
 .add-to-cart {
     background-color: #3a5c83;
     height: 35px;
-    width: 40px;
+    width: 145px;
     text-align: center;
     display: inline-block;
     margin-right: 2px
@@ -1916,6 +1916,12 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
 
 .add-to-cart i {
     font-size: 22px;
+    color: #fff;
+    line-height: 35px
+}
+
+.add-to-cart span {
+    font-size: 15px;
     color: #fff;
     line-height: 35px
 }
@@ -3134,6 +3140,7 @@ table.beta-shopping-cart-table input {
     background-position: right
 }
 
+/*
 #payment div.payment_box .wc-credit-card-form-card-number.visa, #payment div.payment_box .wc-credit-card-form-card-expiry.visa, #payment div.payment_box .wc-credit-card-form-card-cvc.visa {
     background-image: url(../images/icons/credit-cards/visa.png)
 }
@@ -3165,7 +3172,7 @@ table.beta-shopping-cart-table input {
 #payment div.payment_box .wc-credit-card-form-card-number.discover, #payment div.payment_box .wc-credit-card-form-card-expiry.discover, #payment div.payment_box .wc-credit-card-form-card-cvc.discover {
     background-image: url(../images/icons/credit-cards/discover.png)
 }
-
+*/
 #payment div.payment_box span.help {
     font-size: 11px;
     line-height: 13px;
@@ -4864,7 +4871,7 @@ tfoot td a i {
         padding: 0px 4px;
     }
 
-    .pull-left.auto-width: {
+    .pull-left.auto-width {
         width: auto !important;
     }
 

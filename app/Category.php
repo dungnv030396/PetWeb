@@ -16,4 +16,13 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function catalog()
+    {
+        return $this->hasOne(Catalog::class,'id','catalog_id');
+    }
+
+    public function getCategoriesInOneCatalog(Catalog $catalog){
+        return Catalog::find($catalog->id)->categories;
+    }
+
 }
