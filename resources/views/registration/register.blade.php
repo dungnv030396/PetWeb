@@ -1,9 +1,8 @@
 @extends('layouts.master')
 @section('content')
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="/css/css-register.css" rel="stylesheet">
+<link href="css/css-register.css" rel="stylesheet">
 
 <!------ Include the above in your HEAD tag ---------->
 
@@ -45,7 +44,7 @@
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Nhập Mật Khẩu (6-15 chars)" value="" required>
+                                <input type="password" class="form-control" name="password" placeholder="Nhập Mật Khẩu (6-15 chars)" value="" required>
                             </div>
                         </div>
                     </div>
@@ -54,7 +53,7 @@
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Nhập Mật Khẩu Xác Nhận" value="" required>
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Nhập Mật Khẩu Xác Nhận" value="" required>
                             </div>
                         </div>
                     </div>

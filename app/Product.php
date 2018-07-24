@@ -45,7 +45,7 @@ class Product extends Model
                 ];
             } else {
                 $category = Category::find($category_id);
-                $link .= " / ".$category->name;
+                $link .= " / " . $category->name;
                 $products = $this->getProductsByCategoryId($category_id, $number_record);
                 return ['products' => $products,
                     'link' => $link
@@ -89,6 +89,7 @@ class Product extends Model
         ])->paginate($number_record);
     }
 
+
     public function getProductById($id)
     {
         return Product::find($id);
@@ -110,7 +111,7 @@ class Product extends Model
 
     public function getProductsByCategoryId($id, $number_record)
     {
-        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['discount', '>', 0]])->latest()->paginate($number_record);
     }
 
 

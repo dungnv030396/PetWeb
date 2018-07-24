@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -61,4 +62,13 @@ Route::post('updatePass', 'UserProfileController@updatePassword');
 Route::post('login', 'LoginController@login')->name('login');
 Route::get('auth/logout','LoginController@destroy');
 
+//login & logout facebook
 
+Route::get('login/facebook', 'Auth\LoginController@redirectToProviderFB');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFB');
+Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
+
+//login & logout google
+
+Route::get('login/google', 'Auth\LoginController@redirectToProviderGM');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGM');

@@ -35,4 +35,16 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id'     => '203872900287582',
+        'client_secret' => '031f8c3474c3c33e9f89ce19a282df2d',
+        'redirect'      => 'http://localhost:8080/thepetfamily/public/login/facebook/callback',
+    ],
+
+
+    'google' => [
+        'client_id'     => '412104356276-gl38jrcppi7a9od1dgc636q1v4vrka4d.apps.googleusercontent.com',
+        'client_secret' => 'g8RHkeozn56diceP0Upfbr8s',
+        'redirect'      => 'http://localhost:8080/thepetfamily/public/login/google/callback',
+    ],
 ];
