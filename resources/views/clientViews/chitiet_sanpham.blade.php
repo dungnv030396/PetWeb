@@ -3,7 +3,7 @@
     <div class="inner-header">
         <div class="container">
             <div class="pull-left">
-                <h6 class="inner-title">Sản phẩm Cho xinh</h6>
+                <h6 class="inner-title">Sản phẩm <b>{{$product['product']->name}}</b></h6>
             </div>
             <div class="pull-right">
                 <div class="beta-breadcrumb font-large">
@@ -44,22 +44,22 @@
                             <div class="space20">&nbsp;</div>
 
                             <div class="single-item-desc">
-                                <p>Chó Mỹ chất lượng cao</p>
+                                <p></p>
                             </div>
-                            <div class="space20">&nbsp;</div>
+                            <div class="space20"></div>
 
                             <p>Số lượng:</p>
                             <div class="single-item-options">
-                                <select class="wc-select" name="color">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                                <div class="qty-changer">
+                                    <input class="qty-input form-group" type="number" value="1"/>
+                                    <p>(Còn lại <b>{{$product['product']->quantity}}</b> sản phẩm)</p>
+                                </div>
                                 <a class="add-to-cart pull-left" href="RoutesAddcart"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                 <div class="clearfix"></div>
+                            </div>
+                            <div class="single-item-supplier">
+                                <p>Người bán: <a href="#">{{$product['supplier']->username}}</a></p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         <div class="beta-sales beta-lists">
                             @foreach($new_products as $product)
                                 <div class="media beta-sales-item">
-                                    <a class="pull-left" href="{{route('productDetail',1)}}"><img
+                                    <a class="pull-left" href="{{route('productDetail',$product->id)}}"><img
                                                 src="source/image/products/{{$product->image_link}}" alt="" height="50"></a>
                                     <div class="media-body">
                                         {{$product->name}}

@@ -16,4 +16,12 @@ class Catalog extends Model
         return $this->hasManyThrough(Product::class, Category::class);
     }
 
+    public function getCatalog($catalogIds){
+        return Catalog::whereIn('id',$catalogIds)->get();
+    }
+
+    public  function getAllCatalog(){
+        return Catalog::all();
+    }
+
 }

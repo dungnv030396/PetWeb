@@ -1520,6 +1520,14 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
     6.2 WOOCOMMERCE SINGEL ITEM
 ============================================================================= */
 
+
+
+.qty-input{
+    height: 35px;
+    width: 80px;
+    text-align: center;
+}
+
 .single-item-options {
     overflow: hidden
 }
@@ -1530,6 +1538,15 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
 
 .single-item-options .add-to-cart {
     margin-left: 20px
+}
+
+.single-item-supplier{
+    margin-top: 20px;
+}
+.single-item-supplier a{
+    font-style: oblique;
+    color: #7abcde;
+
 }
 
 .wc-select {
@@ -4557,7 +4574,17 @@ tfoot td a i {
     .main-menu ul.sub-menu ul.sub-menu {
         display: block;
         position: relative;
-        left: 0
+        left: 100%;
+    }
+
+    .main-menu ul.l-inline ul.sub-menu ul.sub-menu-in{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 200px;
+        background-color: #eee;
+        padding: 5px 20px;
     }
 
     .main-menu li.current-menu-item {
@@ -4568,6 +4595,7 @@ tfoot td a i {
     .main-menu li.current-menu-item > a {
         color: #3a5c83;
         font-weight: 700
+
     }
 
     .sub-menu li:hover, .children li:hover {

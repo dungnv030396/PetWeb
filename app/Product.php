@@ -18,22 +18,46 @@ class Product extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class,'id','category_id');
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     /*public function bill_detail(){
     	return $this->hasMany('App\BillDetail','id_product','id');
     }*/
 
-    public function getProductsByCatalogID(int $catalog_id,int $number_record)
+    public function getProductsByType($catalog_id, $category_id, $number_record)
+    {
+        if (is_null($catalog_id)) {
+            return redirect()->back();
+        } else {
+            $link = '';
+            $catalog = Catalog::find($catalog_id);
+            $link .= $catalog->name;
+            if (is_null($category_id)) {
+                $products = $this->getProductsByCatalogID($catalog_id, $number_record);
+                return ['products' => $products,
+                    'link' => $link
+                ];
+            } else {
+                $category = Category::find($category_id);
+                $link .= " / ".$category->name;
+                $products = $this->getProductsByCategoryId($category_id, $number_record);
+                return ['products' => $products,
+                    'link' => $link
+                ];
+            }
+        }
+
+    }
+
+    public function getProductsByCatalogID($catalog_id, $number_record)
     {
         $cate = new Category();
-        $cata = new Catalog();
         $cata = Catalog::find($catalog_id);
         $categories = $cate->getCategoriesInOneCatalog($cata);
         $idCategoryArray = array();
@@ -41,34 +65,37 @@ class Product extends Model
             $idCategoryArray[] = $category->id;
         }
         $listProduct = Product::where([
-                ['delete_flag','=','0'],
-                ['quantity', '>', 0]
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0]
         ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record);
         return $listProduct;
     }
 
-    public function getNewProducts(int $number_record)
+    public function getNewProducts($number_record)
     {
         $listProduct = Product::where([
-            ['delete_flag','=','0'],
+            ['delete_flag', '=', '0'],
             ['quantity', '>', 0]
         ])->limit($number_record)->latest()->get();
         return $listProduct;
     }
 
-    public function getSaleProducts(){
+    public function getSaleProducts($number_record)
+    {
         return Product::where([
-            ['delete_flag','=','0'],
+            ['delete_flag', '=', '0'],
             ['quantity', '>', 0],
             ['discount', '>', 0]
-        ])->paginate(8);
+        ])->paginate($number_record);
     }
 
-    public function getProductById(int $id){
+    public function getProductById($id)
+    {
         return Product::find($id);
     }
 
-    public function getProductDetailById(int $id){
+    public function getProductDetailById($id)
+    {
         $product = Product::find($id);
         $category = $product->category;
         $catalog = Category::find($category->id)->catalog;
@@ -81,8 +108,9 @@ class Product extends Model
         ];
     }
 
-    public function getProductsByCategoryId(int $id, int $number_record){
-        return Product::where([['category_id', '=', $id],['delete_flag','=',0],['discount','>',0]])->latest()->paginate($number_record);
+    public function getProductsByCategoryId($id, $number_record)
+    {
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
     }
 
 
