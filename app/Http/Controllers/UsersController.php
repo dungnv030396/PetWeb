@@ -41,7 +41,7 @@ class UsersController extends Controller
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
-        $user->avatar = 'user-default.png' ;
+        $user->avatar = 'source/image/users/user-default.png' ;
         $user->save();
 
 
