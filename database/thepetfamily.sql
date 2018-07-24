@@ -333,10 +333,6 @@ ALTER TABLE `catalogs`
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
--- Đây là add foreign key làm theo với các bảng khác cứ theo thứ tự alter này là ok
---ALTER TABLE `categories`
-  --ADD FOREIGN KEY (catalog_id) REFERENCES catalogs(id) ON DELETE CASCADE;
-
 --
 -- Indexes for table `comments`
 --
