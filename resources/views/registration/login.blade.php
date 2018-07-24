@@ -1,7 +1,5 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="/css/css-login.css" rel="stylesheet">
+<link href="css/css-login.css" rel="stylesheet">
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
     <script>
@@ -29,7 +27,9 @@
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" class="form-control" placeholder="Mật Khẩu" required />
                                 </div>
+
                                 @include('layouts.errors')
+
                                 <button class="btn btn-lg btn-block purple-bg" type="submit">
                                     Đăng Nhập</button>
                             </form>
@@ -38,7 +38,7 @@
                                 <span class="or">Hoặc</span>
                                 <div class="row">
                                     <div class="col-md-6 row-block">
-                                        <a href="#" class="btn btn-facebook btn-block">Facebook</a>
+                                        <a href="login/facebook" class="btn btn-facebook btn-block">Facebook</a>
                                     </div>
                                     <div class="col-md-6 row-block">
                                         <a href="#" class="btn btn-google btn-block">Google</a>

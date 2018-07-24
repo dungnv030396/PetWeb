@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -52,4 +53,15 @@ Route::post('updatePass', 'UserProfileController@updatePassword');
 Route::post('login', 'LoginController@login')->name('login');
 Route::get('auth/logout','LoginController@destroy');
 
+//login & logout facebook
+
+//Route::group(['middleware' => 'use.ssl'], function () {
+//    Route::get('login/facebook','Auth\LoginController@redirectToProvider' );
+//
+//    Route::get('login/facebook/callback','Auth\LoginController@handleProviderCallback');
+//});
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
 

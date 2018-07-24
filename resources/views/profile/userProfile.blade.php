@@ -15,7 +15,7 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
-                        <img src="source/image/users/{{ \Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail"
+                        <img src="{{ \Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail"
                              alt="avatar">
                         <h6>Thay đổi ảnh đại diện khác</h6>
                         <input type="file" class="text-center center-block well well-sm">

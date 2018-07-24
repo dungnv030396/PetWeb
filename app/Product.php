@@ -30,7 +30,7 @@ class Product extends Model
     	return $this->hasMany('App\BillDetail','id_product','id');
     }*/
 
-    public function getProductsByCatalogID(int $catalog_id,int $number_record)
+    public function getProductsByCatalogID($catalog_id,$number_record)
     {
         $cate = new Category();
         $cata = new Catalog();
@@ -47,7 +47,7 @@ class Product extends Model
         return $listProduct;
     }
 
-    public function getNewProducts(int $number_record)
+    public function getNewProducts($number_record)
     {
         $listProduct = Product::where([
             ['delete_flag','=','0'],
@@ -64,11 +64,11 @@ class Product extends Model
         ])->paginate(8);
     }
 
-    public function getProductById(int $id){
+    public function getProductById($id){
         return Product::find($id);
     }
 
-    public function getProductDetailById(int $id){
+    public function getProductDetailById($id){
         $product = Product::find($id);
         $category = $product->category;
         $catalog = Category::find($category->id)->catalog;
@@ -81,7 +81,7 @@ class Product extends Model
         ];
     }
 
-    public function getProductsByCategoryId(int $id, int $number_record){
+    public function getProductsByCategoryId($id,$number_record){
         return Product::where([['category_id', '=', $id],['delete_flag','=',0],['discount','>',0]])->latest()->paginate($number_record);
     }
 

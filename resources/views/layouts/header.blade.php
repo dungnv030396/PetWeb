@@ -10,13 +10,18 @@
 				<ul class="top-details menu-beta l-inline">
 					@if(\Illuminate\Support\Facades\Auth::check())
 						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
-								<img src="source/image/users/{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
+								<img src="{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
 								Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->username }}</a></li>
+						@if (session('facebook'))
+							<li><a href="logout/facebook">Đăng Xuất</a></li>
+						@else
 						<li><a href="auth/logout">Đăng Xuất</a></li>
+						<li><a href="#">Quản lý gian hàng</a></li>
+						<li><a href="#">Đăng ký bán hàng</a></li>
+						@endif
 					@else
-					<li><a href="quanly">Quản lý gian hàng</a></li>
 					<li><a href="register">Đăng kí</a></li>
-					<li><a data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
+					<li><a href="" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
 					@endif
 				</ul>
 			</div>
