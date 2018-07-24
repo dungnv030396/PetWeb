@@ -93,17 +93,18 @@
 		<nav class="main-menu">
 			<ul class="l-inline ov">
 				<li><a href="{{route('trangchu')}}">Trang chủ</a></li>
-				<li><a>Sản phẩm</a>
+				@foreach($catalogs as $catalog)
+				<li><a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>null])}}">{{$catalog->name}}</a>
 					<ul class="sub-menu">
-						{{--@foreach($loai_sp as $loai)--}}
-						{{--<li><a href="{{route('loaisanpham',$loai->id)}}">{{$loai->name}}</a></li>--}}
-						{{--@endforeach--}}
-						<li><a href="">Thú cưng</a></li>
-						<li><a href="">Đồ dùng cho thú cưng</a></li>
-						<li><a href="">Thức ăn cho thú cưng</a></li>
+						@foreach($catalog->categories as $category)
+						<li>
+							<a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>$category->id])}}">{{$category->name}}</a>
+						</li>
+						@endforeach
 					</ul>
 				</li>
-				<li><a href="">Dịch vụ cho pet</a></li>
+				@endforeach
+				<li><a href="{{route('sanphamtheoloai',['cata_id'=>3,'cate_id'=>null])}}">Dịch vụ cho thú nuôi</a></li>
 				<li><a href="">Nhà cung cấp</a></li>
 				<li><a href="{{route('gioithieu')}}">Giới thiệu</a></li>
 				<li><a href="{{route('lienhe')}}">Liên hệ</a></li>

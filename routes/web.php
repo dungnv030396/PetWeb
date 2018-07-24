@@ -23,6 +23,15 @@ Route::get('test',[
     'uses'=>'PageController@test'
 ]);
 
+Route::get('san-pham-theo-loai/{cata_id}/{cate_id}',[
+    'as'=>'sanphamtheoloai',
+    'uses'=>'PageController@getProductsByType'
+]);
+
+Route::get('san-pham-theo-loai/{cata_id}',[
+    'as'=>'sanphamtheoloai',
+    'uses'=>'PageController@getProductsByType'
+]);
 
 Route::get('chi-tiet-san-pham/{id}',[
     'as'=>'productDetail',

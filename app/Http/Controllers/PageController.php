@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Catalog;
 use App\Category;
 use App\Slide;
 use App\Product;
@@ -11,8 +12,11 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 
-    public  function test(){
+    public  function test(Request $request){
+        $catalog = new Catalog();
+        $catalogs = $catalog->getCatalog([1,2]);
         $product = new Product();
+        var_dump($request->id);die;
         $cate_id = $product->getProductById(1)->category->id;
         $pro = new Product();
         $product = $pro->getProductDetailById($reqest->id);
@@ -24,17 +28,20 @@ class PageController extends Controller
         $product = new Product();
         $slide = Slide::all();
         $pet_products = $product->getProductsByCatalogID(1,8);
-        $sale_products = $product->getSaleProducts();
+        $sale_products = $product->getSaleProducts(8);
         return view('clientViews.trangchu', compact('slide', 'pet_products', 'sale_products'));
     }
 
-    public function getLoaiSp($type)
+    public function getProductsByType(Request $request)
     {
-        $sp_theoloai = Product::where('id_type', $type)->get();
-        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);
-        $loai = ProductType::all();
-        $loai_sp = ProductType::where('id', $type)->first();
-        return view('clientViews.loai_sanpham', compact('sp_theoloai', 'sp_khac', 'loai', 'loai_sp'));
+        $catalog = new Catalog();
+        $catalogs = $catalog->getAllCatalog();
+        $product = new Product();
+        $products = $product->getProductsByType($request->cata_id,$request->cate_id,9);
+        //var_dump($products['products']['0']->name);die;
+        $sale_products = $product->getSaleProducts(3);
+        //var_dump($sale_products);die;
+        return view('clientViews.loai_sanpham', compact('products', 'sale_products', 'catalogs'));
     }
 
     public function getProductDetail(Request $reqest)
