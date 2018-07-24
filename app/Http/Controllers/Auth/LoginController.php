@@ -39,12 +39,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectToProvider()
+    public function redirectToProviderFB()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallbackFB()
     {
         $userSocialite = Socialite::driver('facebook')->user();
 
@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         }else{
             $user = new User();
-            $user->username = $userSocialite->email;
+            $user->username =$userSocialite->email;
             $user->name = $userSocialite->name;
             $user->email = $userSocialite->email;
             $user->avatar = $userSocialite->avatar;
@@ -73,4 +73,35 @@ class LoginController extends Controller
 
         return redirect()->to('/index');
     }
+
+    public function redirectToProviderGM()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallbackGM()
+    {
+        $userSocialite = Socialite::driver('google')->stateless()->user();
+
+
+        $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
+        if($findUserSocialite){
+
+            Auth::login($findUserSocialite);
+            return redirect()->to('/index')->with('google');
+
+        }else{
+            $user = new User();
+            $user->username = $userSocialite->email;
+            $user->name = $userSocialite->name;
+            $user->email = $userSocialite->email;
+            $user->avatar = $userSocialite->avatar;
+            $user->password = bcrypt('123456');
+            $user->save();
+
+            Auth::login($user);
+            return redirect()->to('/index')->with('google');
+        }
+    }
+
 }

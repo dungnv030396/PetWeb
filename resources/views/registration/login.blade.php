@@ -41,7 +41,7 @@
                                         <a href="login/facebook" class="btn btn-facebook btn-block">Facebook</a>
                                     </div>
                                     <div class="col-md-6 row-block">
-                                        <a href="#" class="btn btn-google btn-block">Google</a>
+                                        <a href="login/google" class="btn btn-google btn-block">Google</a>
                                     </div>
                                 </div>
                             </div>

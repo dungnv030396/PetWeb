@@ -11,7 +11,7 @@
 					@if(\Illuminate\Support\Facades\Auth::check())
 						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
 								<img src="{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
-								Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->username }}</a></li>
+								Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->email }}</a></li>
 						@if (session('facebook'))
 							<li><a href="logout/facebook">Đăng Xuất</a></li>
 						@else
