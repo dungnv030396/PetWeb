@@ -46,7 +46,7 @@
 	<!--customjs-->
 	<script src="source/assets/dest/js/custom2.js"></script>
 	<script>
-	$(document).ready(function($) {    
+	$(document).ready(function($) {
 		$(window).scroll(function(){
 			if($(this).scrollTop()>150){
 			$(".header-bottom").addClass('fixNav')
