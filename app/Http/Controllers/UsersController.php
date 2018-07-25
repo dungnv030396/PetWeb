@@ -31,6 +31,7 @@ class UsersController extends Controller
             [
                 'username.min' => 'Tên tài khoản phải có 6 kí tự trở lên!',
                 'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+                'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);

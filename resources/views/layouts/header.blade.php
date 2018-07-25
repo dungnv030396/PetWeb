@@ -9,15 +9,22 @@
 			<div class="pull-right auto-width-right">
 				<ul class="top-details menu-beta l-inline">
 					@if(\Illuminate\Support\Facades\Auth::check())
+						@if(\Illuminate\Support\Facades\Auth::user()->roleId ==3)
+						<li><a href="#">Đăng ký bán hàng</a></li>
+						@else
+						<li><a href="#">Quản lý gian hàng</a></li>
+						@endif
 						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
 								<img src="{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
-								Tài Khoản:{{ \Illuminate\Support\Facades\Auth::user()->email }}</a></li>
+								Tài Khoản: @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>9)
+											   {{ substr(\Illuminate\Support\Facades\Auth::user()->email,0,6). "". '...' }}
+								           @else
+								             {{ \Illuminate\Support\Facades\Auth::user()->email }}</a></li>
+					                       @endif
 						@if (session('facebook'))
 							<li><a href="logout/facebook">Đăng Xuất</a></li>
 						@else
-						<li><a href="auth/logout">Đăng Xuất</a></li>
-						<li><a href="#">Quản lý gian hàng</a></li>
-						<li><a href="#">Đăng ký bán hàng</a></li>
+							<li><a href="auth/logout">Đăng Xuất</a></li>
 						@endif
 					@else
 					<li><a href="register">Đăng kí</a></li>
@@ -43,6 +50,8 @@
 						<button class="fa fa-search" type="submit" id="searchsubmit"></button>
 					</form>
 				</div>
+
+
 			<!--
 					<div class="beta-comp">
 						if(Session::has('cart'))
@@ -85,14 +94,14 @@
 		</div>
 		<div class="clearfix"></div>
 	</div> <!-- .container -->
-</div> <!-- .header-body -->
+ </div> <!-- .header-body -->
 <div class="header-bottom" style="background-color: #0277b8;">
 	<div class="container">
 		<a class="visible-xs beta-menu-toggle pull-right" href="#"><span class='beta-menu-toggle-text'>Menu</span> <i class="fa fa-bars"></i></a>
 		<div class="visible-xs clearfix"></div>
 		<nav class="main-menu">
 			<ul class="l-inline ov">
-				<li><a href="{{route('trangchu')}}">Trang chủ</a></li>
+				<li><a href="{{route('trangchu')}}">Trang Chủ</a></li>
 				@foreach($catalogs as $catalog)
 				<li><a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>null])}}">{{$catalog->name}}</a>
 					<ul class="sub-menu">
@@ -105,7 +114,7 @@
 				</li>
 				@endforeach
 				<li><a href="{{route('sanphamtheoloai',['cata_id'=>3,'cate_id'=>null])}}">Dịch vụ cho thú nuôi</a></li>
-				<li><a href="">Nhà cung cấp</a></li>
+				<li><a href="listSupplier">Nhà cung cấp</a></li>
 				<li><a href="{{route('gioithieu')}}">Giới thiệu</a></li>
 				<li><a href="{{route('lienhe')}}">Liên hệ</a></li>
 			</ul>

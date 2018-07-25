@@ -24,6 +24,13 @@ class LoginController extends Controller
                 'message' => 'Tài khoản hoặc mật khẩu không chính xác',
             ]);
         }
+        if (!Auth::attempt(['username' => $request->username, 'password' => $request->password,'delete_flag' => 0])){
+            return Redirect::back()->with(
+                'error_code', 5
+            )->withErrors([
+                'block' => 'Tài khoản đã bị khóa,Vui lòng liên hệ quản lí',
+            ]);
+        }
         return Redirect::to('/index');
     }
 
