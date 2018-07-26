@@ -43,6 +43,7 @@
 <script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="source/assets/dest/js/waypoints.min.js"></script>
 <script src="source/assets/dest/js/wow.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--customjs-->
 <script src="source/assets/dest/js/custom2.js"></script>
 <script>

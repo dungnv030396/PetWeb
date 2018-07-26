@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 class UserProfileController extends Controller
 {
     public function updateProfile()
@@ -21,36 +20,13 @@ class UserProfileController extends Controller
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
-
-        $id = Auth::user()->id;
-        $user = User::find($id);
-
-        $user->name = request('mem_name');
-        $user->email = request('emailid');
-        $user->phoneNumber = request('phonenumber');
-        $user->address = request('address');
-        $user->save();
-
+        $user = new User();
+        $user->updateProfile();
         return back()->with('statusUpdateProfile', 'Chúc mừng bạn đã thay đổi thông tin cá nhân Thành Công!');
     }
 
     public function updatePassword(Request $request)
     {
-
-//        $id = Auth::user()->id;
-//        $user = User::find($id);
-//        $oldpwd = $user->password;
-//        if ($oldpwd == \request('oldpwd')){
-//
-
-//
-//        }else{
-//
-//            return back()->withErrors('Mật khẩu hiện tại không chính xác!');
-//        }
-//
-//        return back()->with('statusUpdatePass','Chúc mừng bạn đã thay đổi mật khẩu Thành Công!');
-
         $this->validate(\request(), [
             'password' => 'required|confirmed|digits_between:6,15',
         ], [
@@ -70,5 +46,35 @@ class UserProfileController extends Controller
             return back()->withErrors('Mật khẩu hiện tại không chính xác!');
 
         }
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        if ($request->hasFile('avatar')) {
+
+            $avatar = $request->file('avatar');
+            $fileExtension = $avatar->GetClientOriginalExtension();
+            $filename = $avatar->getClientOriginalName();
+
+            $followExtensions = ['jpg', 'png', 'JPEG', 'GIF', 'TIFF'];
+            if (in_array($fileExtension, $followExtensions)) {
+
+                $filenameFinal = time().'.'.$filename;
+                $id = Auth::user()->id;
+                $user = User::find($id);
+                $user->avatar = $filenameFinal;
+                $user->save();
+                $avatar->storeAs('public/avatar', $filenameFinal);
+
+                //($avatar)->resize(225, 225)->save(public_path('/storage/app/'.$filenameFinal));
+
+                return back()->with('statusUpdateAvatar', 'Cập nhật ảnh đại diện thành công');
+            } else {
+                return back()->with('errorFile','Chỉ chấp nhận file ảnh, xin mời chọn lại');
+            }
+        }else{
+            return back()->with('errorNull','xin mời chọn ảnh');
+        }
+
     }
 }

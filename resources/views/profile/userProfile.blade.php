@@ -12,15 +12,40 @@
             <!-- left column -->
 
             {{--@foreach($user as $item)--}}
-
+            <form method="POST" action="updateAvatar"  enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
-                        <img src="{{ \Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail"
+                        <img src="{{ 'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail"
                              alt="avatar">
                         <h6>Thay đổi ảnh đại diện khác</h6>
-                        <input type="file" class="text-center center-block well well-sm">
+                        <input type="file" class="text-center center-block well well-sm" name="avatar" id="avatar">
+                        <input name="Submit" type="submit" value="Lưu Thay Đổi" class="btn btn-primary">
+                        @if (session('statusUpdateAvatar'))
+                            <div class="alert alert-success">
+                                <ul>
+                                    {{ session('statusUpdateAvatar') }}
+                                </ul>
+                            </div>
+                        @endif
+                        @if (session('errorFile'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ session('errorFile') }}
+                                </ul>
+                            </div>
+                        @endif
+                        @if (session('errorNull'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ session('errorNull') }}
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
+            </form>
+
                 <!-- edit form column -->
                 <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
                     <div class="alert alert-info alert-dismissable">
@@ -141,7 +166,7 @@
                             <label class="col-md-3 control-label">Mật Khẩu Hiện Tại:</label>
                             <div class="col-md-8">
                                 <input class="form-control" name="oldpwd" type="password"
-                                       placeholder="Nhập mật khẩu hiện tại của bạn">
+                                       placeholder="Nhập mật khẩu hiện tại của bạn" required>
                             </div>
                         </div>
 
@@ -149,14 +174,14 @@
                             <label class="col-md-3 control-label">Mật Khẩu Mới:</label>
                             <div class="col-md-8">
                                 <input class="form-control" name="password" type="password"
-                                       placeholder="Nhật mật khẩu mới">
+                                       placeholder="Nhật mật khẩu mới" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Xác Nhận Mật Khẩu Mới:</label>
                             <div class="col-md-8">
                                 <input class="form-control" name="password_confirmation" id="password_confirmation" type="password"
-                                       placeholder="Xác nhận mật khẩu mới">
+                                       placeholder="Xác nhận mật khẩu mới" required>
                             </div>
                         </div>
 

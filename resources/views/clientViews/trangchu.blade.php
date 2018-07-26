@@ -8,9 +8,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="beta-products-list" id="tag_container">
-                            <h4>Danh sách thú nuôi</h4>
+                            <h2 style="color: #f90">Danh sách thú nuôi</h2>
                             <div class="beta-products-details">
-                                <p class="pull-left">Tìm thấy {{$pet_products->total()}} sản phẩm</p>
+                                <h4 class="pull-left">Tìm thấy <a style="color: #f90"> {{$pet_products->total()}} </a>sản phẩm</h4>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">

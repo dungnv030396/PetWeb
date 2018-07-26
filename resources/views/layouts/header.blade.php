@@ -1,4 +1,3 @@
-
 <div id="header">
 	<div class="header-top">
 		<div class="container">
@@ -15,8 +14,8 @@
 						<li><a href="#">Quản lý gian hàng</a></li>
 						@endif
 						<li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
-								<img src="{{\Illuminate\Support\Facades\Auth::user()->avatar}}" width="30px" height="30px">
-								Tài Khoản: @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>9)
+								<img src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="30px" height="30px">
+								Email: @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>9)
 											   {{ substr(\Illuminate\Support\Facades\Auth::user()->email,0,6). "". '...' }}
 								           @else
 								             {{ \Illuminate\Support\Facades\Auth::user()->email }}</a></li>

@@ -56,6 +56,7 @@ Route::post('register', 'UsersController@store')->name('register');
 Route::get('userProfile/{id}','UsersController@show');
 Route::post('updateInfo', 'UserProfileController@updateProfile');
 Route::post('updatePass', 'UserProfileController@updatePassword');
+Route::post('updateAvatar', 'UserProfileController@updateAvatar');
 
 //login && logout
 Route::post('login', 'LoginController@login')->name('login');
@@ -72,3 +73,5 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 
 //Supplier
 Route::get('listSupplier','SupplierController@listSupplier');
+Route::post('searchSupplier','SupplierController@searchByName');
+Route::get('detailSupplier/{id}','SupplierController@detailSupplier');

@@ -81,5 +81,18 @@
     float: left; width: 79%;
 }
 
-.info { display: inline-block; margin-right: 10px; color: #777; }
+.info { display: inline-block; margin-right: 10px; color: #0000FF;
+}
 .info span { font-weight: bold; }
+
+.search-supplier{
+    float: right;
+    margin-right: 85px;
+    margin-top: -40px;
+    width: 25%;
+    background-color: green;
+}
+.button-search-supplier{
+    float: right;
+    margin-top: -40px;
+}
