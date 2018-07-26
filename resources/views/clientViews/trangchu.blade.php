@@ -31,19 +31,23 @@
                                                 <p class="single-item-title">{{$product->name}}</p>
                                                 <p class="single-item-price">
                                                     @if($product->discount != 0)
-                                                        <span class="flash-del">{{$product->price}}
+                                                        <span class="flash-del">{{number_format($product->price)}}
                                                             VNĐ</span><br>
-                                                        <span class="flash-sale">{{$product->price - (($product->price * $product->discount) / 100)}}
+                                                        <span class="flash-sale">{{number_format($product->price - (($product->price * $product->discount) / 100))}}
                                                             VNĐ</span>
                                                     @else
-                                                        <span class="flash-sale">{{$product->price}}
+                                                        <span class="flash-sale">{{number_format($product->price)}}
                                                             VNĐ</span><br><br>
                                                     @endif
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left"
-                                                   href="RoutesAddcart"><i
+                                                <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" value="{{$product->id}}" name="id" id="id" />
+                                                    <input type="hidden" value="1" name="quantity" id="quantity" />
+                                                </form>
+                                                <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
                                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                                 <a class="beta-btn primary"
                                                    href="{{route('productDetail',$product->id)}}">Chi
@@ -81,19 +85,23 @@
                                                 <p class="single-item-title">{{$product->name}}</p>
                                                 <p class="single-item-price">
                                                     @if($product->discount != 0)
-                                                        <span class="flash-del">{{$product->price}}
+                                                        <span class="flash-del">{{number_format($product->price)}}
                                                             VNĐ</span><br>
-                                                        <span class="flash-sale">{{$product->price - (($product->price * $product->discount) / 100)}}
+                                                        <span class="flash-sale">{{number_format($product->price - (($product->price * $product->discount) / 100))}}
                                                             VNĐ</span>
                                                     @else
-                                                        <span class="flash-sale">{{$product->price}}
+                                                        <span class="flash-sale">{{number_format($product->price)}}
                                                             VNĐ</span><br><br>
                                                     @endif
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
-                                                <a class="add-to-cart pull-left"
-                                                   href="RoutesAddcart"><i
+                                                <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
+                                                        {{ csrf_field() }}
+                                                    <input type="hidden" value="{{$product->id}}" name="id" id="id" />
+                                                    <input type="hidden" value="1" name="quantity" id="quantity" />
+                                                </form>
+                                                <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
                                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                                 <a class="beta-btn primary"
                                                    href="{{route('productDetail',$product->id)}}">Chi tiết <i

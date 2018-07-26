@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Catalog;
+use App\Cart;
+use Session;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,21 +16,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.header',function($view){
+        view()->composer('layouts.header', function ($view) {
             $catalog = new Catalog();
-            $catalogs = $catalog->getCatalog([1,2]);
-            $view->with('catalogs',$catalogs);
+            $catalogs = $catalog->getAllCatalog();
+            $view->with('catalogs', $catalogs);
         });
-        /*
-        view()->composer('header',function($view){
-            if(Session('cart')){
-                $oldCart= Session::get('cart');
-                $cart=new Cart($oldCart);
-                $view->with(['cart'=>Session::get('cart'),'product_cart'=>$cart->items,
-                    'totalPrice'=>$cart->totalPrice,'totalQty'=>$cart->totalQty]);
+        view()->composer('layouts.header', function ($view) {
+            if (Session('cart')) {
+                $oldCart = Session::get('cart');
+                $cart = new Cart($oldCart);
+                $view->with(['cart' => Session::get('cart'), 'cart_products' => $cart->items,
+                    'amount' => $cart->totalPrice, 'totalQuantity' => $cart->totalQuantity]);
             }
         });
-        */
     }
 
     /**

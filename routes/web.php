@@ -72,3 +72,12 @@ Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
 
 Route::get('login/google', 'Auth\LoginController@redirectToProviderGM');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGM');
+
+//add to cart and delete cart
+
+Route::post('them-vao-gio-hang', 'CartsController@addToCart')->name('themgiohang');
+
+Route::get('del-cart/{id}',[
+    'as'=>'xoagiohang',
+    'uses'=>'CartsController@removeCart'
+]);

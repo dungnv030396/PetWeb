@@ -38,7 +38,7 @@ class PageController extends Controller
         $catalogs = $catalog->getAllCatalog();
         $product = new Product();
         $products = $product->getProductsByType($request->cata_id,$request->cate_id,9);
-        //var_dump($products['products']['0']->name);die;
+        //var_dump($products->toArray());die;
         $sale_products = $product->getSaleProducts(3);
         //var_dump($sale_products);die;
         return view('clientViews.loai_sanpham', compact('products', 'sale_products', 'catalogs'));

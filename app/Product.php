@@ -111,7 +111,7 @@ class Product extends Model
 
     public function getProductsByCategoryId($id, $number_record)
     {
-        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['discount', '>', 0]])->latest()->paginate($number_record);
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
     }
 
 

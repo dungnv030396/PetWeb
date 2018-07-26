@@ -47,14 +47,18 @@
                                 <p></p>
                             </div>
                             <div class="space20"></div>
+                            <p>Số lượng: @if(!empty(\Illuminate\Support\Facades\Session::get('message'))) {{\Illuminate\Support\Facades\Session::get('message')}} @endif</p>
 
-                            <p>Số lượng:</p>
                             <div class="single-item-options">
-                                <div class="qty-changer">
-                                    <input class="qty-input form-group" type="number" value="1"/>
-                                    <p>(Còn lại <b>{{$product['product']->quantity}}</b> sản phẩm)</p>
-                                </div>
-                                <a class="add-to-cart pull-left" href="RoutesAddcart"><i
+                                <form method="POST" name="addToCart" id="addToCart" action="{{route('themgiohang')}}" >
+                                    {{ csrf_field() }}
+                                    <div class="qty-changer">
+                                        <input type="hidden" value="{{$product['product']->id}}" name="id" id="id" />
+                                        <input class="qty-input form-group" id="quantity" name="quantity" type="number" value="1" max="{{$product['product']->quantity}}" min="1"/>
+                                        <p>(Còn lại <b>{{$product['product']->quantity}}</b> sản phẩm)</p>
+                                    </div>
+                                </form>
+                                <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                 <div class="clearfix"></div>
                             </div>
@@ -62,6 +66,7 @@
                                 <p>Người bán: <a href="#">{{$product['supplier']->username}}</a></p>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="space40">&nbsp;</div>
@@ -99,19 +104,19 @@
                                             <p class="single-item-title">{{$product->name}}</p>
                                             <p class="single-item-price">
                                                 @if($product->discount != 0)
-                                                    <span class="flash-del">{{$product->price}}
+                                                    <span class="flash-del">{{number_format($product->price)}}
                                                         VNĐ</span><br>
-                                                    <span class="flash-sale">{{$product->price - (($product->price * $product->discount) / 100)}}
+                                                    <span class="flash-sale">{{number_format($product->price - (($product->price * $product->discount) / 100))}}
                                                         VNĐ</span>
                                                 @else
-                                                    <span class="flash-sale">{{$product->price}}
+                                                    <span class="flash-sale">{{number_format($product->price)}}
                                                         VNĐ</span><br><br>
                                                 @endif
                                             </p>
                                         </div>
                                         <div class="single-item-caption">
                                             <a class="add-to-cart pull-left"
-                                               href="RoutesAddcart"><i
+                                               href="{{route('themgiohang',[1,1])}}"><i
                                                         class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                             <a class="beta-btn primary"
                                                href="{{route('productDetail',$product->id)}}">Chi
@@ -137,7 +142,7 @@
                                         {{$product->name}}
                                     </div>
                                     <div>
-                                        <span class="beta-sales-price">{{ $product->price - (($product->price * $product->discount) / 100)}}
+                                        <span class="beta-sales-price">{{number_format($product->price - (($product->price * $product->discount) / 100))}}
                                             VNĐ</span>
                                     </div>
                                 </div>
