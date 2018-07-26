@@ -1949,7 +1949,7 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
 }
 
 .flash-sale {
-    color: #f90
+    color: #FE642E;
 }
 
 /* ==========================================================================
@@ -3340,7 +3340,7 @@ ul.payment_methods, .woocommerce-page #payment ul.payment_methods {
 }
 
 .beta-btn.primary:hover {
-    color: #fff;
+    color: #f90;
     background: #3a5c83
 }
 
@@ -5510,6 +5510,7 @@ li.box-port-filter {
 }
 
 .single-item-header {
+    margin-top: 10px;
     position: relative;
     overflow: hidden;
 }

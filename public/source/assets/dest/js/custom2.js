@@ -13,7 +13,7 @@
 				 $(this).parents('li').addClass('parent-active');
             }
         });
-    }); 
+    });
 	 
 				
 			// NUMBERS COUNTER START

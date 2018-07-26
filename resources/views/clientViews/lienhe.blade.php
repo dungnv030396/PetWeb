@@ -3,11 +3,11 @@
 <div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title">Contacts</h6>
+				<h6 class="inner-title">Liên Hệ</h6>
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb font-large">
-					<a href="index.html">Home</a> / <span>Contacts</span>
+					<a href="index">Trang Chủ</a> / <span>Liên Hệ</span>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -15,7 +15,7 @@
 </div>
 <div class="beta-map">
 	
-	<div class="abs-fullwidth beta-map wow flipInX"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3678.0141923553406!2d89.551518!3d22.801938!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff8ff8ef7ea2b7%3A0x1f1e9fc1cf4bd626!2sPranon+Pvt.+Limited!5e0!3m2!1sen!2s!4v1407828576904" ></iframe></div>
+	<div class="abs-fullwidth beta-map wow flipInX"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d961.8484715931163!2d105.52570905354273!3d21.012864011671915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b32ca5086d%3A0xa3c62e29d8ab37e4!2sFPT+University!5e0!3m2!1sen!2s!4v1532451125221"></iframe></div>
 </div>
 <div class="container">
 	<div id="content" class="space-top-none">
@@ -23,51 +23,53 @@
 		<div class="space50">&nbsp;</div>
 		<div class="row">
 			<div class="col-sm-8">
-				<h2>Contact Form</h2>
+				<h2>Mẫu Liên Hệ</h2>
 				<div class="space20">&nbsp;</div>
-				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit ani m id est laborum.</p>
+				<p style="color: #f90">Trải qua nhiều năm phát triển,Chúng tôi luôn luôn cung cấp đến người sử dụng những
+					trải nghiệm tốt nhất.Chúng tôi luôn sẵn sàng lắng nghe những suy nghĩ của bạn.Nếu bạn có
+					góp ý gì xin hãy gửi tới chúng tôi theo mẫu dưới đây.Chúng tôi sẽ cố gắng hồi đáp lại một cách nhanh nhất có thể.</p>
 				<div class="space20">&nbsp;</div>
 				<form action="#" method="post" class="contact-form">	
 					<div class="form-block">
-						<input name="your-name" type="text" placeholder="Your Name (required)">
+						<input name="your-name" type="text" placeholder="Tên Của bạn">
 					</div>
 					<div class="form-block">
-						<input name="your-email" type="email" placeholder="Your Email (required)">
+						<input name="your-email" type="email" placeholder="Địa chỉ email của bạn">
 					</div>
 					<div class="form-block">
-						<input name="your-subject" type="text" placeholder="Subject">
+						<input name="your-subject" type="text" placeholder="Tiêu Đề">
 					</div>
 					<div class="form-block">
-						<textarea name="your-message" placeholder="Your Message"></textarea>
+						<textarea name="your-message" placeholder="Nội dung tin nhắn của bạn"></textarea>
 					</div>
 					<div class="form-block">
-						<button type="submit" class="beta-btn primary">Send Message <i class="fa fa-chevron-right"></i></button>
+						<button type="submit" class="beta-btn primary">Gửi Thư <i class="fa fa-chevron-right"></i></button>
 					</div>
 				</form>
 			</div>
 			<div class="col-sm-4">
-				<h2>Contact Information</h2>
+				<h2>Thông Tin Liên Hệ</h2>
 				<div class="space20">&nbsp;</div>
 
-				<h6 class="contact-title">Address</h6>
+				<h6 class="contact-title">Địa Chỉ</h6>
 				<p>
-					Suite 127 / 267 – 277 Brussel St,<br>
-					62 Croydon, NYC <br>
-					Newyork
+					km29 - Đại Lộ Thăng Long<br>
+					xã Thạch Hòa, huyện Thạch Thất<br>
+					Hà Nội
 				</p>
 				<div class="space20">&nbsp;</div>
-				<h6 class="contact-title">Business Enquiries</h6>
+				<h6 class="contact-title">Thắc Mắc Kinh Doanh</h6>
 				<p>
-					Doloremque laudantium, totam rem aperiam, <br>
-					inventore veritatio beatae. <br>
-					<a href="mailto:biz@betadesign.com">biz@betadesign.com</a>
+					Những vấn đề thắc mắc về kinh doanh và quảng cáo<br>
+					xin mời bạn liên hệ qua email. <br>
+					<a href="lien-he">thepetfamily@gmail.com</a>
 				</p>
 				<div class="space20">&nbsp;</div>
-				<h6 class="contact-title">Employment</h6>
+				<h6 class="contact-title">Việc Làm</h6>
 				<p>
-					We’re always looking for talented persons to <br>
-					join our team. <br>
-					<a href="hr@betadesign.com">hr@betadesign.com</a>
+					Chúng tôi luôn luôn tìm kiếm những người có tài năng để <br>
+					gia nhập đội ngũ chúng tôi. <br>
+					<a href="lien-he">thepetfamily@gmail.com</a>
 				</p>
 			</div>
 		</div>

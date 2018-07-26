@@ -1,6 +1,5 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="css/css-login.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
     <script>
@@ -11,7 +10,7 @@
 @endif
 <!------ Include the above in your HEAD tag ---------->
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" style="width: 100%">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
         {{--modal-dialog-centered--}}
         <div class="container">

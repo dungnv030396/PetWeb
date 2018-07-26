@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="css/css-register.css" rel="stylesheet">
 
 <!------ Include the above in your HEAD tag ---------->
@@ -93,7 +92,7 @@
                         {{--</div>--}}
                     {{--</div>--}}
                     <div class="form-group">
-                        <label class="control-label col-sm-3">SDT. <span class="text-danger">*</span></label>
+                        <label class="control-label col-sm-3">Số Điện Thoại <span class="text-danger">*</span></label>
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -106,7 +105,7 @@
                         <label class="control-label col-sm-3">Địa Chỉ <span class="text-danger">*</span></label>
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
                                 <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ của bạn ở đây" value="{{ old('address') }}" required>
                             </div>
                         </div>

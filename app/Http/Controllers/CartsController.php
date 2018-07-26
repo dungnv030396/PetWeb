@@ -16,7 +16,11 @@ class CartsController extends Controller
         $product = new Product();
         $quantity = $product->getProductById($request->id)->quantity;
         $message = '';
-        if($quantity >= ($request->quantity + $cart->items[$request->id]['quantity'])){
+        $oldquantity = 0;
+        if (!empty($cart->items[$request->id]['quantity'])){
+            $oldquantity = $cart->items[$request->id]['quantity'];
+        }
+        if($quantity >= ($request->quantity + $oldquantity)){
             $pro = $product->getProductById($request->id);
             $cart->add($pro, $request->quantity);
             $request->session()->put('cart', $cart);

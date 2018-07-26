@@ -56,22 +56,21 @@ Route::post('register', 'UsersController@store')->name('register');
 Route::get('userProfile/{id}','UsersController@show');
 Route::post('updateInfo', 'UserProfileController@updateProfile');
 Route::post('updatePass', 'UserProfileController@updatePassword');
+Route::post('updateAvatar', 'UserProfileController@updateAvatar');
 
 //login && logout
-
 Route::post('login', 'LoginController@login')->name('login');
 Route::get('auth/logout','LoginController@destroy');
 
 //login & logout facebook
-
 Route::get('login/facebook', 'Auth\LoginController@redirectToProviderFB');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFB');
 Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
 
 //login & logout google
-
 Route::get('login/google', 'Auth\LoginController@redirectToProviderGM');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGM');
+
 
 //add to cart and delete cart
 
@@ -81,3 +80,9 @@ Route::get('del-cart/{id}',[
     'as'=>'xoagiohang',
     'uses'=>'CartsController@removeCart'
 ]);
+
+//Supplier
+Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier');
+Route::post('searchSupplier','SupplierController@searchByName');
+Route::get('detailSupplier/{id}','SupplierController@detailSupplier');
+

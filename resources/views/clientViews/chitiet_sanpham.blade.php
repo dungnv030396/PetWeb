@@ -29,12 +29,12 @@
                                 <h3>{{$product['product']->name}}</h3></p>
                                 <p class="single-item-price">
                                     @if($product['product']->discount != 0)
-                                        <span class="flash-del">{{$product['product']->price}}
+                                        <span class="flash-del">{{number_format($product['product']->price)}}
                                             VNĐ</span>
-                                        <span class="flash-sale">{{$product['product']->price - (($product['product']->price * $product['product']->discount) / 100)}}
+                                        <span class="flash-sale">{{number_format($product['product']->price - (($product['product']->price * $product['product']->discount) / 100))}}
                                             VNĐ</span>
                                     @else
-                                        <span class="flash-sale">{{$product['product']->price}}
+                                        <span class="flash-sale">{{number_format($product['product']->price)}}
                                             VNĐ</span>
                                     @endif
                                 </p>

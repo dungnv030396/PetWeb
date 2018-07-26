@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,10 +31,10 @@ class UsersController extends Controller
             [
                 'username.min' => 'Tên tài khoản phải có 6 kí tự trở lên!',
                 'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+                'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
-
 
         $user->name = request('mem_name');
         $user->username = request('username');
@@ -41,19 +42,18 @@ class UsersController extends Controller
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
-        $user->avatar = 'source/image/users/user-default.png' ;
+        $user->avatar = 'source/image/users/user-default.png';
         $user->save();
 
-
-        return redirect('/register')->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
-
+        return redirect('/register')->with('status', 'Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
     }
 
-    public function show(){
+    public function show()
+    {
 
-        $id =  \request('id');
+        $id = \request('id');
         $user = User::all()->find($id);
 
-        return view('profile.userProfile',compact('user'));
+        return view('profile.userProfile', compact('user'));
     }
 }
