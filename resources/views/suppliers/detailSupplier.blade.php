@@ -1,6 +1,7 @@
+@extends('layouts.master')
+@section('content')
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <link href="css/css-detailSupplier.css" rel="stylesheet">
 
@@ -8,18 +9,25 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <div class="container profile">
     <div class="row">
+        <h2 style="color: #f90; margin-top: 50px;margin-bottom: 50px"> Thông Tin Chi Tiết Nhà Cung Cấp</h2>
         <div class="span12">
             <div class="well well-small clearfix">
                 <div class="row-fluid">
+                    @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'https://lh3.googleusercontent.com'))
                     <div class="span2">
-                        <img src="http://www.gravatar.com/avatar/f6112e781842d6a2b4636b35451401ff?s=125" class="img-polaroid"/>
+                        <img src="{{$user->avatar}}" class="img-polaroid"/>
                     </div>
+                    @else
+                        <div class="span2">
+                            <img src="{{'storage/avatar/'.$user->avatar}}" class="img-polaroid"/>
+                        </div>
+                    @endif
                     <div class="span4">
-                        <h2>Jonnie Spratley</h2>
+                        <h2>{{ $user->name }}</h2>
                         <ul class="unstyled">
-                            <li><i class="icon-phone"></i> 916-241-3613</li>
-                            <li><i class="icon-envelope"></i> jonniespratley@me.com</li>
-                            <li><i class="icon-globe"></i> http://jonniespratley.me</li>
+                            <li><i class="icon-phone"></i> {{ $user->phoneNumber }}</li>
+                            <li><i class="icon-envelope"></i> {{ $user->email }}</li>
+                            <li><i class="icon-globe"></i> {{ $user->address }}</li>
                         </ul>
                     </div>
                     <div class="span6">
@@ -43,7 +51,7 @@
                     <!--Body content-->
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+@endsection

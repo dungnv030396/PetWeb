@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 class LoginController extends Controller
@@ -59,6 +60,8 @@ class LoginController extends Controller
             $user->username =$userSocialite->email;
             $user->name = $userSocialite->name;
             $user->email = $userSocialite->email;
+            //$fileContents = file_get_contents($findUserSocialite->getAvatar());
+            //File::put('storage/app/public/avatar'.time().$findUserSocialite->getId().'jpg',$fileContents);
             $user->avatar = $userSocialite->avatar;
             $user->password = bcrypt('123456');
             $user->save();

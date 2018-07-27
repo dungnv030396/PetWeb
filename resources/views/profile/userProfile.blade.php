@@ -16,8 +16,11 @@
                 {{ csrf_field() }}
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
-                        <img src="{{ 'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail"
-                             alt="avatar">
+                        @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://lh3.googleusercontent.com'))
+                            <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                        @else
+                        <img src="{{ 'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                        @endif
                         <h6>Thay đổi ảnh đại diện khác</h6>
                         <input type="file" class="text-center center-block well well-sm" name="avatar" id="avatar">
                         <input name="Submit" type="submit" value="Lưu Thay Đổi" class="btn btn-primary">

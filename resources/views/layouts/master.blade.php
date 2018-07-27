@@ -37,12 +37,14 @@
 <script src="source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
 <script src="source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
 <script src="source/assets/dest/vendors/animo/Animo.js"></script>
-{{--<script src="source/assets/dest/vendors/dug/dug.js"></script> --- lỗi ở đây--}}
+<script src="source/assets/dest/vendors/dug/dug.js"></script>
 <script src="source/assets/dest/js/scripts.min.js"></script>
 <script src="source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="source/assets/dest/js/waypoints.min.js"></script>
 <script src="source/assets/dest/js/wow.min.js"></script>
+<!--script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+>>>>>>> 46a172b4779bddd6a25c54e00b63f3ee9141878e
 <!--customjs-->
 <script src="source/assets/dest/js/custom2.js"></script>
 <script>

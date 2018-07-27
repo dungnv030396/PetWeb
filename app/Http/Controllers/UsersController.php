@@ -42,7 +42,7 @@ class UsersController extends Controller
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
-        $user->avatar = 'source/image/users/user-default.png';
+        $user->avatar = 'user-default.png';
         $user->save();
 
         return redirect('/register')->with('status', 'Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
@@ -50,10 +50,8 @@ class UsersController extends Controller
 
     public function show()
     {
-
         $id = \request('id');
         $user = User::all()->find($id);
-
         return view('profile.userProfile', compact('user'));
     }
 }
