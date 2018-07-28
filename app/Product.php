@@ -67,7 +67,7 @@ class Product extends Model
         $listProduct = Product::where([
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0]
-        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record);
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record,['*'], 'p1');
         return $listProduct;
     }
 
@@ -86,7 +86,7 @@ class Product extends Model
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0],
             ['discount', '>', 0]
-        ])->paginate($number_record);
+        ])->paginate($number_record, ['*'], 'p2');
     }
 
 

@@ -59,7 +59,7 @@
                             @endforeach
                             <!-- end -->
                             </div>
-                            <div class="row">{{ $pet_products->links() }}</div>
+                            <div class="row">{{ $pet_products->appends(['p1' => $pet_products->currentPage()])->links() }}</div>
                         </div> <!-- .beta-products-list -->
                         <div class="space50">&nbsp;</div>
                         <div class="beta-products-list">
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                <div class="row">{{$sale_products->links()}}</div>
+                                <div class="row">{{$sale_products->appends(['p2' => $sale_products->currentPage()])->links()}}</div>
                             </div>
 
                         </div> <!-- .beta-products-list -->
