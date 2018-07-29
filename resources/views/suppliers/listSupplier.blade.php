@@ -20,7 +20,7 @@
                 <div class="list-group">
                     <div class="list-group-item clearfix">
                         <div class="profile-teaser-left">
-                            @if(str_contains($item->avatar,'https://graph.facebook.com') OR str_contains($item->avatar,'https://lh3.googleusercontent.com'))
+                            @if(str_contains($item->avatar,'https://graph.facebook.com') OR str_contains($item->avatar,'.googleusercontent.com'))
                                 <div class="profile-img"><img src="{{ $item->avatar }}" class="profile-img"/></div>
                             @else
                                 <div class="profile-img"><img src="{{ 'storage/avatar/'.$item->avatar }}"/></div>

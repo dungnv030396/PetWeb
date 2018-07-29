@@ -22,20 +22,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-3">Tên Tài Khoản <span class="text-danger">*</span></label>
-                        <div class="col-md-8 col-sm-9">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Nhập tên tài khoản của bạn ở đây" value="{{ old('username') }}" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="control-label col-sm-3">Email<span class="text-danger">*</span></label>
                         <div class="col-md-8 col-sm-9">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Nhập vào email của bạn" value="{{ old('emailid') }}" required>
                             </div>
-                            <small> Email của bạn được sử dụng để đảm bảo tính bảo mật cho tài khoản của bạn, ủy quyền và khôi phục quyền truy cập.. </small> </div>
+                            <small> Email của bạn được sử dụng để <a style="color: #f90"> đăng nhập vào hệ thống </a>đảm bảo tính bảo mật cho tài khoản của bạn, ủy quyền và khôi phục quyền truy cập.. </small> </div>
                     </div>
 
                     <div class="form-group">
@@ -79,18 +72,18 @@
                             {{--</div>--}}
                         {{--</div>--}}
                     {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label class="control-label col-sm-3">Giới Tính <span class="text-danger">*</span></label>--}}
-                        {{--<div class="col-md-8 col-sm-9">--}}
-                            {{--<label>--}}
-                                {{--<input name="gender" type="radio" value="nam" checked>--}}
-                                {{--Nam </label>--}}
-                            {{--   --}}
-                            {{--<label>--}}
-                                {{--<input name="gender" type="radio" value="nu" >--}}
-                                {{--Nữ </label>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Giới Tính <span class="text-danger">*</span></label>
+                        <div class="col-md-8 col-sm-9">
+                            <label>
+                                <input name="gender" type="radio" value="1" checked>
+                                Nam </label>
+                               
+                            <label>
+                                <input name="gender" type="radio" value="0" >
+                                Nữ </label>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Số Điện Thoại <span class="text-danger">*</span></label>
                         <div class="col-md-5 col-sm-8">
