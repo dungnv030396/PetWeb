@@ -56,6 +56,10 @@ class User extends Authenticatable
       $user->email = request('emailid');
       $user->phoneNumber = request('phonenumber');
       $user->address = request('address');
+      $user->bank_name = request('bank_name');
+      $user->bank_username = request('bank_username');
+      $user->card_number = request('card_number');
+      $user->bank_branch = request('bank_branch');
       $user->save();
   }
 

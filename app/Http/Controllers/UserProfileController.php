@@ -14,11 +14,13 @@ class UserProfileController extends Controller
             'mem_name' => 'required',
             'emailid' => 'required|email',
             'phonenumber' => 'required|digits_between:10,15|numeric',
-            'address' => 'required'
+            'address' => 'required',
+            'card_number' => 'required|numeric'
         ],
             [
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
-                'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
+                'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
+                'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!'
             ]);
         $user = new User();
         $user->updateProfile();

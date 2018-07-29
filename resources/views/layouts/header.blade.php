@@ -14,7 +14,7 @@
                             <li><a href="#">Quản lý gian hàng</a></li>
                         @endif
                         <li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
-                                @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://lh3.googleusercontent.com'))
+                                @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
 
                                     <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" width="30px" height="30px">
 

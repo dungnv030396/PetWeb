@@ -57,11 +57,8 @@ class LoginController extends Controller
 
         }else{
             $user = new User();
-            $user->username =$userSocialite->email;
             $user->name = $userSocialite->name;
             $user->email = $userSocialite->email;
-            //$fileContents = file_get_contents($findUserSocialite->getAvatar());
-            //File::put('storage/app/public/avatar'.time().$findUserSocialite->getId().'jpg',$fileContents);
             $user->avatar = $userSocialite->avatar;
             $user->password = bcrypt('123456');
             $user->save();
@@ -95,7 +92,6 @@ class LoginController extends Controller
 
         }else{
             $user = new User();
-            $user->username = $userSocialite->email;
             $user->name = $userSocialite->name;
             $user->email = $userSocialite->email;
             $user->avatar = $userSocialite->avatar;

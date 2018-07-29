@@ -1,7 +1,10 @@
 @extends('layouts.master')
 @section('content')
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+{{--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--}}
 <!------ Include the above in your HEAD tag ---------->
 <link href="css/css-detailSupplier.css" rel="stylesheet">
 
@@ -13,7 +16,7 @@
         <div class="span12">
             <div class="well well-small clearfix">
                 <div class="row-fluid">
-                    @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'https://lh3.googleusercontent.com'))
+                    @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'.googleusercontent.com'))
                     <div class="span2">
                         <img src="{{$user->avatar}}" class="img-polaroid"/>
                     </div>
