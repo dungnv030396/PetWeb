@@ -4,7 +4,6 @@
 				<div class="col-sm-3">
 					<div class="widget">
 						<h4 class="widget-title">Instagram Feed</h4>
-						<div>thienphong_1011</div>
 					</div>
 				</div>
 				<div class="col-sm-2">
