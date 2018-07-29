@@ -1528,6 +1528,12 @@ ul.sub-menu ul.sub-menu li:hover > a, ul.children ul.children li:hover > a {
     text-align: center;
 }
 
+.qty-input1 {
+    height: 17px;
+    width: 40px;
+    text-align: center;
+}
+
 .single-item-options {
     overflow: hidden
 }

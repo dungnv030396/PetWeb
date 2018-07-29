@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <div class="inner-header">
         <div class="container">
             <div class="pull-left">
@@ -47,7 +49,7 @@
                                 <p></p>
                             </div>
                             <div class="space20"></div>
-                            <p>Số lượng: @if(!empty(\Illuminate\Support\Facades\Session::get('message'))) {{\Illuminate\Support\Facades\Session::get('message')}} @endif</p>
+                            <p>Số lượng: </p>
 
                             <div class="single-item-options">
                                 <form method="POST" name="addToCart" id="addToCart" action="{{route('themgiohang')}}" >
@@ -58,6 +60,9 @@
                                         <p>(Còn lại <b>{{$product['product']->quantity}}</b> sản phẩm)</p>
                                     </div>
                                 </form>
+                                @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
+                                    @include('sweet::alert')
+                                @endif
                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                 <div class="clearfix"></div>
@@ -115,8 +120,12 @@
                                             </p>
                                         </div>
                                         <div class="single-item-caption">
-                                            <a class="add-to-cart pull-left"
-                                               href="{{route('themgiohang',[1,1])}}"><i
+                                            <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
+                                                {{ csrf_field() }}
+                                                <input type="hidden" value="{{$product->id}}" name="id" id="id" />
+                                                <input type="hidden" value="1" name="quantity" id="quantity" />
+                                            </form>
+                                            <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
                                                         class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                             <a class="beta-btn primary"
                                                href="{{route('productDetail',$product->id)}}">Chi

@@ -58,4 +58,16 @@ class User extends Authenticatable
       $user->address = request('address');
       $user->save();
   }
+
+  public function getCurrentUser(){
+      return Auth::user();
+  }
+
+  public function isLogin(){
+      $isLogin = false;
+      if(!empty($this->getCurrentUser())){
+          $isLogin = true;
+      }
+      return $isLogin;
+  }
 }

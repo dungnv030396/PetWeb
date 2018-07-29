@@ -86,11 +86,6 @@ class PageController extends Controller
         return redirect()->back();
     }
 
-    public function getCheckout()
-    {
-        return view('clientViews.dat_hang');
-    }
-
     public function postCheckout(Request $req)
     {
         $cart = Session::get('cart');

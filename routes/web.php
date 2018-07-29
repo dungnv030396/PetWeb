@@ -81,6 +81,11 @@ Route::get('del-cart/{id}',[
     'uses'=>'CartsController@removeCart'
 ]);
 
+//dat hang
+
+Route::get('dat-hang','CartsController@getCheckout')->name('viewCheckout');
+Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
+
 //Supplier
 Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier');
 Route::post('searchSupplier','SupplierController@searchByName');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Session;
+use Alert;
+use App\User;
 
 class CartsController extends Controller
 {
@@ -25,8 +27,10 @@ class CartsController extends Controller
             $cart->add($pro, $request->quantity);
             $request->session()->put('cart', $cart);
             $message = "Thêm sản phẩm thành công";
+            alert()->success($message);
         }else{
-            $message = "Thêm sản phẩm thất bại";
+            $message = "Sản phẩm vượt quá số lượng trong kho";
+            alert()->error($message);
         }
         //var_dump($cart->items);die;
         return redirect()->back()->with('message',$message);
@@ -43,5 +47,18 @@ class CartsController extends Controller
             Session::forget('cart');
         }
         return redirect()->back();
+    }
+
+    public function getCheckout()
+    {
+        $user = new User();
+        $oldcart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldcart);
+        if($user->isLogin()){
+            $currentUser = $user->getCurrentUser();
+            return view('clientViews.dat_hang', compact('currentUser','cart'));
+        }
+        alert()->error("Xin quý khách đăng nhập trước khi thanh toán!!");
+        return redirect()->back()->with('message','checkout');
     }
 }

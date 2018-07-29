@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('content')
 @include('clientViews.slide')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+@if(!empty(\Illuminate\Support\Facades\Session::get('message')))
+    @include('sweet::alert')
+@endif
     <div class="container">
         <div id="content" class="space-top-none">
             <div class="main-content">
