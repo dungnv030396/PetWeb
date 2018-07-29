@@ -50,7 +50,7 @@ class Payment extends Model
             if (!empty($request->payment_cardnumber)) {
                 $payment->payment = 'Visa';
                 $arrInfo = ['username' => $request->payment_name, 'card_number' => $request->payment_cardnumber, 'Expiration_month' => $request->month, 'Expiration_year' => $request->year];
-                $payment->payment_info = $arrInfo;
+                $payment->payment_info = serialize($arrInfo);
                 $payment->security = $request->cvv;
             }
             $payment->user_message = $request->notes;
@@ -78,7 +78,7 @@ class Payment extends Model
             }
             Session::forget('cart');
         }catch (\Exception $e){
-            throw $e->message();
+            throw $e;
         }
     }
 

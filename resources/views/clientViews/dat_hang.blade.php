@@ -8,7 +8,7 @@
 	<div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title">Đặt hàng</h6>
+				<h6 class="inner-title" style="font-size: small">Đặt hàng</h6>
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb">
@@ -26,43 +26,43 @@
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Đặt hàng</h4>
+						<h3>Đặt hàng</h3>
 						<div class="space20">&nbsp;</div>
 
 						<div class="form-block">
-							<label for="name">Họ tên*</label>
+							<label for="name"><b>Họ tên*</b></label>
 							<input type="text" id="name" name="name" placeholder="Họ tên" value="{{$currentUser->name}}" required>
 						</div>
 						<div class="form-block">
-							<label>Giới tính </label>
+							<label><b>Giới tính</b></label>
 							<input id="gender" type="radio" class="input-radio" name="gender" value="nam" {{ ($currentUser->gender == 1) ? 'checked' : '' }} style="width: 10%"><span style="margin-right: 10%">Nam</span>
 							<input id="gender" type="radio" class="input-radio" name="gender" value="nữ"  {{ ($currentUser->gender == 1) ? '' : 'checked' }} style="width: 10%"><span>Nữ</span>
 										
 						</div>
 
 						<div class="form-block">
-							<label for="email">Email*</label>
+							<label for="email"><b>Email*</b></label>
 							<input type="email" id="email" name="email" value="{{$currentUser->email}}" required placeholder="Điền địa chỉ email của bạn">
 						</div>
 
 						<div class="form-block">
-							<label for="adress">Địa chỉ*</label>
+							<label for="adress"><b>Địa chỉ*</b></label>
 							<input type="text" id="address" name="address" {{$currentUser->address}} placeholder="Điền địa chỉ của bạn" required>
 						</div>
 
 						<div class="form-block">
-							<label for="adress">Địa chỉ nhận hàng(Nếu có)</label>
+							<label for="adress"><b>Địa chỉ nhận hàng(Nếu có)</b></label>
 							<input type="text" id="address" name="order_address" {{$currentUser->address}} placeholder="Chúng tôi sẽ giao hàng đến địa chỉ trên nếu trống" >
 						</div>
-						
+
 
 						<div class="form-block">
-							<label for="phone">Điện thoại*</label>
+							<label for="phone"><b>Điện thoại*</b></label>
 							<input type="text" id="phone" name="phone" value="{{$currentUser->phoneNumber}}" required placeholder="Điền số điện thoại của bạn">
 						</div>
 						
 						<div class="form-block">
-							<label for="notes">Ghi chú</label>
+							<label for="notes"><b>Ghi chú</b></label>
 							<textarea id="notes" name="notes"></textarea>
 						</div>
 						<div class="form-group">
