@@ -82,7 +82,6 @@ Route::get('del-cart/{id}',[
 ]);
 
 //dat hang
-
 Route::get('dat-hang','CartsController@getCheckout')->name('viewCheckout');
 Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
 
@@ -90,4 +89,21 @@ Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
 Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier');
 Route::post('searchSupplier','SupplierController@searchByName');
 Route::get('detailSupplier/{id}','SupplierController@detailSupplier');
+
+//test
+Route::get('mail',function (){
+   return view('emails.mailForgotPass');
+});
+
+//Reset Paswork
+Route::post('resetPassword','MailController@resetPassword')->name('resetPassword');
+Route::get('resetPassword',function (){
+    return view('clientViews.profile.resetPassword');
+});
+Route::post('changePassByMail','MailController@changePassword');
+
+Route::get('changePassByMail/{id}',function (){
+
+    return view('clientViews.profile.changePassByEmail');
+});
 

@@ -81,5 +81,4 @@ class Payment extends Model
             throw $e;
         }
     }
-
 }

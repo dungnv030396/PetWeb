@@ -8,11 +8,7 @@
 	<div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-<<<<<<< HEAD
 				<h2 class="inner-title main-color">Đặt hàng</h2>
-=======
-				<h6 class="inner-title" style="font-size: small">Đặt hàng</h6>
->>>>>>> a24533b595376faccf8bc77cf7d1b86940b7d556
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb">
@@ -30,17 +26,10 @@
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="col-sm-6">
-<<<<<<< HEAD
-
-						<div class="form-block">
-							<label for="name ">Họ tên*</label>
-=======
-						<h3>Đặt hàng</h3>
 						<div class="space20">&nbsp;</div>
 
 						<div class="form-block">
 							<label for="name"><b>Họ tên*</b></label>
->>>>>>> a24533b595376faccf8bc77cf7d1b86940b7d556
 							<input type="text" id="name" name="name" placeholder="Họ tên" value="{{$currentUser->name}}" required>
 						</div>
 						<div class="form-block">
