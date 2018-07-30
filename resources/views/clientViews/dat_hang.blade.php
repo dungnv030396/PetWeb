@@ -8,11 +8,11 @@
 	<div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title" style="font-size: small">Đặt hàng</h6>
+				<h2 class="inner-title main-color">Đặt hàng</h2>
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb">
-					<a href="index.html">Trang chủ</a> / <span>Đặt hàng</span>
+					<h4 class="main-color"><a href="index" class="main-color" >Trang chủ</a> / <span>Đặt hàng</span></h4>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -26,7 +26,6 @@
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="col-sm-6">
-						<h3>Đặt hàng</h3>
 						<div class="space20">&nbsp;</div>
 
 						<div class="form-block">

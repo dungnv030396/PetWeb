@@ -77,7 +77,7 @@
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-8">
                             <input class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"
-                                   type="text" name="emailid"
+                                   type="text" name="emailid" readonly
                                    required>
                         </div>
                     </div>

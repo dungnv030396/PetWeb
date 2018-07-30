@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -73,5 +74,60 @@ class User extends Authenticatable
           $isLogin = true;
       }
       return $isLogin;
+  }
+  public function register($th){
+      $user = new User();
+      $email = User::all()->where('email', \request('emailid'));
+      if (count($email) > 0) {
+          return back()->withErrors('Đăng ký không thành công! Email đã tồn tại!xin mời nhập lại');
+      }
+      $th->validate(\request(), [
+          'mem_name' => 'required',
+          'emailid' => 'required|email',
+          'password' => 'required|confirmed|digits_between:6,15',
+          'phonenumber' => 'required|digits_between:10,15|numeric',
+          'address' => 'required'
+      ],
+          [
+              'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+              'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
+              'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+              'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
+          ]);
+      $user->name = request('mem_name');
+      $user->email = request('emailid');
+      $user->password = bcrypt(request('password'));
+      $user->phoneNumber = request('phonenumber');
+      $user->gender = \request('gender');
+      $user->address = request('address');
+      $user->avatar = 'user-default.png';
+      $user->save();
+  }
+  public function resetPass(){
+      $user = User::where('email',\request('email'))->get();
+      if (count($user)>0){
+          $data = array('name' => $user[0]->name,'link' => 'http://localhost:8000/changePassByMail/'.$user[0]->id);
+      }else{
+          return back()->with('emailNotFound','Địa Chỉ Email không tồn tại!');
+      }
+      Mail::send('clientViews.emails.mailForgotPass', $data, function ($message) {
+          $message->to(\request('email'))
+              ->subject('The Pet Family - Khôi Phục Mật Khẩu');
+          $message->from('thepetfamilyteam@gmail.com');
+      });
+  }
+  public function changePassByMail($th){
+      $id = \request('id');
+      $user = User::find($id);
+      $th->validate(\request(),[
+          'password' => 'required|confirmed|digits_between:6,15',
+      ],[
+          'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+          'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
+      ]);
+
+      $user->password = bcrypt(\request('password'));
+      $user->save();
+
   }
 }
