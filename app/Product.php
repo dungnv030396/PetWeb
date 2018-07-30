@@ -114,5 +114,9 @@ class Product extends Model
         return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
     }
 
+    public function getProductsBySupplierId($id,$number_record){
+        return Product::where([['user_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
+    }
+
 
 }

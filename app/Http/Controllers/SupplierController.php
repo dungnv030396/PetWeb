@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\User;
 class SupplierController extends Controller
@@ -20,7 +21,8 @@ class SupplierController extends Controller
     public function detailSupplier(){
         $id = \request('id');
         $user = User::all()->find($id);
-        //dd($user);
-        return view('suppliers.detailSupplier',compact('user'));
+        $pro = new Product();
+        $products = $pro->getProductsBySupplierId($id,12);
+        return view('suppliers.detailSupplier',compact('user','products'));
     }
 }
