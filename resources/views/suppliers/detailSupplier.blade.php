@@ -39,4 +39,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+    @include('layouts.main_products');
 @endsection
