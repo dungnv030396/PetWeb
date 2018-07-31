@@ -16,7 +16,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if (!Auth::attempt(['email' => $request->emailid, 'password' => $request->password, 'roleId' => 2, 'roleId' => 3])) {
+        if (!Auth::attempt(['email' => $request->emailid, 'password' => $request->password, 'roleId' => [2,3]])) {
             return Redirect::back()->with(
                 'error_code', 5
             )->withErrors([
@@ -30,7 +30,7 @@ class LoginController extends Controller
                 'block' => 'Email đã bị khóa,Vui lòng liên hệ quản lí',
             ]);
         }
-        return Redirect::to('/index');
+        return back();
     }
 
     public function destroy()
@@ -38,6 +38,6 @@ class LoginController extends Controller
 
         auth()->logout();
 
-        return Redirect::to('/index');
+        return back();
     }
 }

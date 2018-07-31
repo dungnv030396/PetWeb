@@ -1,60 +1,42 @@
 @extends('layouts.master')
 @section('content')
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
-{{--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--}}
-<!------ Include the above in your HEAD tag ---------->
-<link href="css/css-detailSupplier.css" rel="stylesheet">
+    <!------ Include the above in your HEAD tag ---------->
 
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<div class="container profile">
-    <div class="row">
-        <h2 style="color: #f90; margin-top: 50px;margin-bottom: 50px"> Thông Tin Chi Tiết Nhà Cung Cấp</h2>
-        <div class="span12">
-            <div class="well well-small clearfix">
-                <div class="row-fluid">
-                    @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'.googleusercontent.com'))
-                    <div class="span2">
-                        <img src="{{$user->avatar}}" class="img-polaroid"/>
+    <div class="container">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title" id="myModalLabel" style="color: #f90">Thông Tin Chi Tiết Nhà Cung Cấp</h4>
                     </div>
-                    @else
-                        <div class="span2">
-                            <img src="{{'storage/avatar/'.$user->avatar}}" class="img-polaroid"/>
-                        </div>
-                    @endif
-                    <div class="span4">
-                        <h2>{{ $user->name }}</h2>
-                        <ul class="unstyled">
-                            <li><i class="icon-phone"></i> {{ $user->phoneNumber }}</li>
-                            <li><i class="icon-envelope"></i> {{ $user->email }}</li>
-                            <li><i class="icon-globe"></i> {{ $user->address }}</li>
-                        </ul>
+                    <div class="modal-body">
+                        <center>
+                            @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'.googleusercontent.com'))
+                                <div class="span2">
+                                    <img src="{{$user->avatar}}" name="aboutme" width="140" height="140" border="0" class="img-circle"/>
+                                </div>
+                            @else
+                                <div class="span2">
+                                    <img src="{{'storage/avatar/'.$user->avatar}}" name="aboutme" width="140" height="140" border="0" class="img-circle"/>
+                                </div>
+                            @endif
+                            {{--<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>--}}
+                            <h1 class="media-heading">{{$user->name}}</h1>
+                            <span><strong>Skills: </strong></span>
+                            <span class="label label-warning">HTML5/CSS</span>
+                            <span class="label label-info">Adobe CS 5.5</span>
+                            <span class="label label-info">Microsoft Office</span>
+                            <span class="label label-success">Windows XP, Vista, 7</span>
+                        </center>
+                        <hr>
+                        <center>
+                            <p class="text-left"><strong>Bio: </strong><br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
+                            <br>
+                        </center>
                     </div>
-                    <div class="span6">
-                        <ul class="inline stats">
-                            <li>
-                                <span>275</span>
-                                Friends
-                            </li>
-                            <li>
-                                <span>354</span>
-                                Followers
-                            </li>
-                            <li>
-                                <span>186</span>
-                                Photos
-                            </li>
-                        </ul>
-                        <div><!--/span6-->
-                        </div><!--/row-->
-                    </div>
-                    <!--Body content-->
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 @endsection

@@ -16,6 +16,5 @@ class MailController extends Controller
         $user = new User();
         $user->changePassByMail($this);
         return back()->with('ChangePassSuccess','Thay Đổi Mật Khẩu Thành Công');
-
     }
 }
