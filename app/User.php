@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -106,7 +110,7 @@ class User extends Authenticatable
   public function resetPass(){
       $user = User::where('email',\request('email'))->get();
       if (count($user)>0){
-          $data = array('name' => $user[0]->name,'link' => 'http://localhost:8000/changePassByMail/'.$user[0]->id);
+          $data = array('name' => $user[0]->name,'link' => 'http://localhost:8080/thepetfamily/public/changePassByMail/'.$user[0]->id);
       }else{
           return back()->with('emailNotFound','Địa Chỉ Email không tồn tại!');
       }

@@ -26,6 +26,11 @@ class Product extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'product_id', 'id');
+    }
+
     /*public function bill_detail(){
     	return $this->hasMany('App\BillDetail','id_product','id');
     }*/
@@ -111,7 +116,7 @@ class Product extends Model
 
     public function getProductsByCategoryId($id, $number_record)
     {
-        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record);
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record,['*'],'p3');
     }
 
     public function getProductsBySupplierId($id,$number_record){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2018 at 07:46 PM
+-- Generation Time: Aug 01, 2018 at 03:45 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -84,12 +84,29 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `reply_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `media_link` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
+  `delete_flag` int(2) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `media_link`, `description`, `delete_flag`, `created_at`, `updated_at`) VALUES
+(1, 5, 13, NULL, 'good', 0, '2018-08-01 11:21:17', '2018-08-01 11:21:17'),
+(2, 5, 2, NULL, 'good product :v', 0, '2018-08-01 11:22:27', '2018-08-01 11:22:27'),
+(3, 5, 2, 'https://www.youtube.com/embed/owWLZq3y2-4', 'nice', 0, '2018-08-01 11:23:41', '2018-08-01 11:23:41'),
+(4, 5, 2, NULL, '1', 0, '2018-08-01 12:19:21', '2018-08-01 12:19:21'),
+(5, 5, 2, NULL, '2', 0, '2018-08-01 12:19:29', '2018-08-01 12:19:29'),
+(6, 5, 2, NULL, '3', 0, '2018-08-01 12:19:37', '2018-08-01 12:19:37'),
+(7, 5, 2, NULL, '5', 0, '2018-08-01 12:19:48', '2018-08-01 12:19:48'),
+(8, 5, 2, NULL, 'sd', 0, '2018-08-01 13:14:27', '2018-08-01 13:14:27'),
+(9, 5, 2, 'https://www.youtube.com/embed/owWLZq3y2-4', 'like that', 0, '2018-08-01 13:34:46', '2018-08-01 13:34:46'),
+(10, 5, 2, 'sdsa', 'dsa', 0, '2018-08-01 13:42:32', '2018-08-01 13:42:32');
 
 -- --------------------------------------------------------
 
@@ -115,7 +132,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `status`, `moderator_id`, `user_id`, `payment_id`, `created_at`, `updated_at`, `completed_at`) VALUES
 (5, 1, NULL, 5, 11, '2018-07-29 17:29:46', '2018-07-29 17:29:46', NULL),
-(6, 1, NULL, 5, 12, '2018-07-29 17:44:14', '2018-07-29 17:44:14', NULL);
+(6, 1, NULL, 5, 12, '2018-07-29 17:44:14', '2018-07-29 17:44:14', NULL),
+(7, 1, NULL, 5, 13, '2018-07-29 18:09:16', '2018-07-29 18:09:16', NULL),
+(8, 1, NULL, 5, 14, '2018-07-29 18:24:24', '2018-07-29 18:24:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,7 +161,9 @@ INSERT INTO `order_lines` (`id`, `order_id`, `product_id`, `quantity`, `amount`,
 (8, 5, 2, 1, 6800000, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
 (9, 5, 3, 1, 10000000, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
 (10, 6, 10, 1, 11347500, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
-(11, 6, 6, 1, 3815000, '2018-07-29 17:44:14', '2018-07-29 17:44:14');
+(11, 6, 6, 1, 3815000, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
+(12, 7, 2, 1, 6800000, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
+(13, 8, 2, 1, 6800000, '2018-07-29 18:24:24', '2018-07-29 18:24:24');
 
 -- --------------------------------------------------------
 
@@ -183,7 +204,9 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `status`, `amount`, `payment`, `payment_info`, `security`, `user_message`, `created_at`, `updated_at`) VALUES
 (11, 1, 16800000, NULL, NULL, NULL, NULL, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
-(12, 1, 15162500, NULL, NULL, NULL, NULL, '2018-07-29 17:44:14', '2018-07-29 17:44:14');
+(12, 1, 15162500, NULL, NULL, NULL, NULL, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
+(13, 1, 6800000, NULL, NULL, NULL, NULL, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
+(14, 1, 6800000, 'Visa', 'a:4:{s:8:\"username\";s:4:\"Hiep\";s:11:\"card_number\";s:16:\"1234123412331234\";s:16:\"Expiration_month\";s:1:\"2\";s:15:\"Expiration_year\";s:4:\"2020\";}', '3', NULL, '2018-07-29 18:24:24', '2018-07-29 18:24:24');
 
 -- --------------------------------------------------------
 
@@ -213,7 +236,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quantity`, `discount`, `image_link`, `description`, `delete_flag`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Chó Husky', 11500000, 5, 10, 'husky.jpg', 'Chó Husky(chó tuyết kéo xe) có xuất xứ từ Siberia – Nga, rất giống cho sói. Được con người lai tạo lần đầu tiên để kéo xe tuyết chở hàng hóa khắp Siberia. Thân hình những chú chó Husky cân đối, dáng vẻ dũng mãnh và đặc biệt cực kỳ dẻo dai. Bộ lông của chúng rất dày có 2 lớp giúp giữ ấm cơ thể rất tốt, nhưng cũng chính lớp lông này khiến chúng khó thích nghi khi được nuôi trong thời tiết nắng nóng.', 0, '2018-07-17 17:11:28', '2018-07-17 17:11:28'),
-(2, 1, 1, 'Chó Samoyed – Chó tuyết kéo xe', 8000000, 5, 15, 'Samoyed.jpg', 'Chó Samoyed có xuất xứ từ vùng núi Taiga, Tây Bắc Siberia – Nga. Cũng giống như Husky chúng cũng có cơ thể mạnh mẽ, dẻo dai, lớp lông dày có thể kéo xe tuyết trong thời gian dài. Chó Samoyed có địa vị rất cao trong xã hội người Samoyede giúp họ vận chuyển lương thực, săn bắt thú rừng và bảo vệ khỏi kẻ thù.', 0, '2018-07-17 17:24:52', '2018-07-29 17:29:46'),
+(2, 1, 1, 'Chó Samoyed – Chó tuyết kéo xe', 8000000, 3, 15, 'Samoyed.jpg', 'Chó Samoyed có xuất xứ từ vùng núi Taiga, Tây Bắc Siberia – Nga. Cũng giống như Husky chúng cũng có cơ thể mạnh mẽ, dẻo dai, lớp lông dày có thể kéo xe tuyết trong thời gian dài. Chó Samoyed có địa vị rất cao trong xã hội người Samoyede giúp họ vận chuyển lương thực, săn bắt thú rừng và bảo vệ khỏi kẻ thù.', 0, '2018-07-17 17:24:52', '2018-07-29 18:24:24'),
 (3, 1, 1, 'Chó Alaska (Alaska Malamute)', 10000000, 0, 0, 'Alaska.jpg', 'Chó Alaska cũng là một giống chó xứ lạnh giống Husky và Samoyed được thuần hóa bởi bộ tộc Mahlemute. Khi mới bắt đầu thuần hóa, chó Alaska cũng chỉ có kích thước ngang với Husky nhưng được người Eskimo lai tao để có được những chú chó Alaska to khỏe, dẻo dai và chịu được thời tiết khắc nghiệt hơn.', 0, '2018-07-17 17:24:52', '2018-07-29 17:29:46'),
 (4, 1, 1, 'Chó Becgie – Chó chăn cừu', 4000000, 1, 0, 'Becgie.jpg', 'Chó Becgie được người Đức lai tạo lần đầu năm 1899, chủ yếu dùng để chăn cừu. Nhưng với sự thông minh vượt bậc, trung thành, nhanh nhẹn chúng nhanh chóng được huấn luyện để phục vụ trong ngành cảnh sát và quân đội. Theo thống kê, chó Becgie là giống chó phục vụ nhiều nhất trong lực lượng cảnh sát các nước trên thế giới.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
 (5, 1, 1, 'Chó Golden(Golden Retriever)', 6000000, 0, 0, 'Golden.jpg', 'Đây là giống cho có nguồn gốc từ nước Anh, được lai tạo qua nhiều giống chó khác nhau. Nhưng chúng vẫn có bản năng săn mồi rất mạnh, khả năng đánh hơi tìm dấu vết hoàn hảo nên chúng cũng được cảnh sát các nước huấn luyện để dò tìm ma túy và các chất nổ.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
@@ -241,7 +264,8 @@ CREATE TABLE `reports` (
   `reportTo_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `description` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -278,6 +302,22 @@ CREATE TABLE `store_benefits` (
   `id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_comments`
+--
+
+DROP TABLE IF EXISTS `sub_comments`;
+CREATE TABLE `sub_comments` (
+  `id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `media_link` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -331,9 +371,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$lwwQEuE0/h2lWc9mAbXnUetESbuA24OQ8nfrCPMH5jQgxkF7phzfe', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 21:26:11', '2018-07-19 21:26:11'),
+(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
 (2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', NULL, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', '8m8b9IB5ZMXkQ8PIAlJWw7Kyx1rFRK0MOPZL3cagr9N6V4V21EOqKQHZgjbC', NULL, NULL, NULL, NULL, NULL, NULL, 3, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-07-26 17:52:01'),
+(5, 'Nguyễn Hữu Hiệp', NULL, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', 'h5aDHLDlWl0BXxhyhTnbqVP5TdjbH4uVlJxCvFvsJLqhdkCv3QawVc64yy6W', NULL, NULL, NULL, NULL, NULL, NULL, 1, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-07-26 17:52:01'),
 (6, 'Nguyen Hiep', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-07-24 10:40:29');
 
 -- --------------------------------------------------------
@@ -419,6 +459,12 @@ ALTER TABLE `store_benefits`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sub_comments`
+--
+ALTER TABLE `sub_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supplier_outfits`
 --
 ALTER TABLE `supplier_outfits`
@@ -456,19 +502,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order_lines`
 --
 ALTER TABLE `order_lines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `order_logs`
@@ -480,7 +526,7 @@ ALTER TABLE `order_logs`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -504,6 +550,12 @@ ALTER TABLE `slides`
 -- AUTO_INCREMENT for table `store_benefits`
 --
 ALTER TABLE `store_benefits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sub_comments`
+--
+ALTER TABLE `sub_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

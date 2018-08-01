@@ -107,3 +107,12 @@ Route::get('changePassByMail/{id}',function (){
     return view('clientViews.profile.changePassByEmail');
 });
 
+//Quan? Ly cua supplier
+
+Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
+
+//Add comment single
+Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');
+
+
+

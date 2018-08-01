@@ -78,14 +78,18 @@
                     <div class="woocommerce-tabs">
                         <ul class="tabs">
                             <li><a href="#tab-description">Mô tả sản phẩm</a></li>
-                            <li><a href="#tab-reviews">Bình Luận</a></li>
+                            <li><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
+                            <li><a href="#tab-addComment">Thêm Bình Luận</a></li>
                         </ul>
 
                         <div class="panel" id="tab-description">
                             <p>{{$product['product']->description}}</p>
                         </div>
                         <div class="panel" id="tab-reviews">
-                            <p>No Reviews</p>
+                            @include('clientViews.comment.comment')
+                        </div>
+                        <div class="panel" id="tab-addComment">
+                            @include('clientViews.comment.addComment')
                         </div>
                     </div>
                     <div class="space50">&nbsp;</div>
@@ -136,7 +140,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="row">{{$same_products->links()}}</div>
+                        <div class="row">{{$same_products->appends(['p3' => $same_products->currentPage()])->links()}}</div>
                     </div> <!-- .beta-products-list -->
                 </div>
                 <div class="widget">

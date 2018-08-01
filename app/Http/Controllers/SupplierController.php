@@ -25,4 +25,8 @@ class SupplierController extends Controller
         $products = $pro->getProductsBySupplierId($id,12);
         return view('suppliers.detailSupplier',compact('user','products'));
     }
+
+    public function home(){
+        return view('ProductManagementViews.productManagement');
+    }
 }

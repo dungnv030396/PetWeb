@@ -11,7 +11,7 @@
                         @if(\Illuminate\Support\Facades\Auth::user()->roleId ==3)
                             <li><a href="#">Đăng ký bán hàng</a></li>
                         @else
-                            <li><a href="#">Quản lý gian hàng</a></li>
+                            <li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>
                         @endif
                         <li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
                                 @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
@@ -105,7 +105,7 @@
                             </div>
                         @else
                             <div class="beta-select"><i class="fa fa-shopping-cart"></i>
-                                Giỏ hàng (0)
+                                Giỏ hàng(0)
                                 <i class="fa fa-chevron-down"></i>
                             </div>
                         @endif

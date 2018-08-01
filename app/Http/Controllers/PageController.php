@@ -8,11 +8,14 @@ use App\Slide;
 use App\Product;
 use Session;
 use Illuminate\Http\Request;
+use App\Comment;
 
 class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $coment = new Comment();
+        $coment->getCommentsByProductId(2,4);
         $catalog = new Catalog();
         $catalogs = $catalog->getCatalog([1,2]);
         $product = new Product();
@@ -50,7 +53,9 @@ class PageController extends Controller
         $product = $pro->getProductDetailById($reqest->id);
         $same_products = $pro->getProductsByCategoryId($product['category']->id,3);
         $new_products = $pro->getNewProducts(7);
-        return view('clientViews.chitiet_sanpham', compact('product', 'same_products', 'new_products'));
+        $comments = new Comment();
+        $comments = $comments->getCommentsByProductId($reqest->id,5);
+        return view('clientViews.chitiet_sanpham', compact('product', 'same_products', 'new_products','comments'));
     }
 
     public function getLienHe()
