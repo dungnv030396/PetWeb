@@ -33,7 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
   public function listSupplier(){
       $user = User::where('delete_flag',0)
           ->where('roleId',2)->latest()->paginate(10);

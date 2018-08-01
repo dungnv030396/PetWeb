@@ -1,59 +1,61 @@
 @extends('layouts.master')
 @section('content')
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        {{--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
-    {{--<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--}}
+    <link href="css/css-detailSupplier.css" rel="stylesheet">
+
     <!------ Include the above in your HEAD tag ---------->
 
-        <link href="css/css-detailSupplier.css" rel="stylesheet">
-    {{--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">--}}
-        <link rel="stylesheet" title="style" href="source/assets/dest/css/bootstrap-combined.no-icons.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <div class="container" style="margin-top: 30px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h2 class="modal-title" id="myModalLabel" style="color: #f90">Thông Tin Chi Tiết Nhà Cung Cấp</h2>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'.googleusercontent.com'))
+                                <div class="span2">
+                                    <img src="{{$user->avatar}}" name="aboutme" width="140" height="140" border="0" class="img-circle"/>
+                                </div>
+                            @else
+                                <div class="span2">
+                                    <img src="{{'storage/avatar/'.$user->avatar}}" name="aboutme" width="140" height="140" border="0" class="img-circle"/>
+                                </div>
+                            @endif
+                            <h1 class="media-heading">{{$user->name}}</h1>
 
-<div class="container profile">
-    <div class="row">
-        <h2 style="color: #f90; margin-top: 50px;margin-bottom: 50px"> Thông Tin Chi Tiết Nhà Cung Cấp</h2>
-        <div class="span12">
-            <div class="well well-small clearfix">
-                <div class="row-fluid">
-                    @if(str_contains($user->avatar,'https://graph.facebook.com') OR str_contains($user->avatar,'.googleusercontent.com'))
-                    <div class="span2">
-                        <img src="{{$user->avatar}}" class="img-polaroid"/>
-                    </div>
-                    @else
-                        <div class="span2">
-                            <img src="{{'storage/avatar/'.$user->avatar}}" class="img-polaroid"/>
+                        </center>
+
+                        {{--report--}}
+                        <div style="margin-right: 50vw">
+                           @include('layouts.reportSupplier')
                         </div>
-                    @endif
-                    <div class="span4">
-                        <h2>{{ $user->name }}</h2>
-                        <ul class="unstyled">
-                            <li><i class="icon-phone"></i> {{ $user->phoneNumber }}</li>
-                            <li><i class="icon-envelope"></i> {{ $user->email }}</li>
-                            <li><i class="icon-globe"></i> {{ $user->address }}</li>
-                        </ul>
+                            <div class="well well-small clearfix">
+
+                                <div class="row">
+                                    <div class="col-sm-6" style="margin-left: 50px">
+                                        <ul class="unstyled">
+                                            <h4><li><i class="icon-phone"></i> {{ $user->phoneNumber }}</li></h4>
+                                            <h4><li><i class="icon-envelope"></i> {{ $user->email }}</li></h4>
+                                            <h4><li><i class="icon-globe"></i> {{ $user->address }}</li></h4>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <ul class="unstyled">
+                                            <h4><li class="main-color">Số Lần Bị Báo Cáo: xxxx</li></h4>
+                                            <h4><a><li>Số Đơn Hàng Đã Bán: xxxxx</li></a></h4>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {{--<hr>--}}
+                        {{--<center>--}}
+                            {{--<p class="text-left"><strong>Bio: </strong><br>--}}
+                                {{--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>--}}
+                            {{--<br>--}}
+                        {{--</center>--}}
                     </div>
-                    <div class="span6">
-                        <ul class="inline stats">
-                            <li>
-                                <span>275</span>
-                                Friends
-                            </li>
-                            <li>
-                                <span>354</span>
-                                Followers
-                            </li>
-                            <li>
-                                <span>186</span>
-                                Photos
-                            </li>
-                        </ul>
-                        <div><!--/span6-->
-                        </div><!--/row-->
-                    </div>
-                    <!--Body content-->
                 </div>
             </div>
         </div>

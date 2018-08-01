@@ -88,7 +88,7 @@ Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
 //Supplier
 Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier');
 Route::post('searchSupplier','SupplierController@searchByName');
-Route::get('detailSupplier/{id}','SupplierController@detailSupplier');
+Route::get('detailSupplier/{id}','SupplierController@detailSupplier')->name('detailSupplier');
 
 //test
 Route::get('mail',function (){
@@ -114,5 +114,9 @@ Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplie
 //Add comment single
 Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');
 
+//Report
+
+Route::post('reportSupplier/{id}','ReportController@reportSupplier')->name('reportSupplier');
+Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportProduct')->name('reportProduct');
 
 

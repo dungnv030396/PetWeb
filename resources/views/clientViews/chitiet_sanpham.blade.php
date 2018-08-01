@@ -20,7 +20,6 @@
         <div id="content">
             <div class="row">
                 <div class="col-sm-9">
-
                     <div class="row">
                         <div class="col-sm-4">
                             <img src="source/image/products/{{$product['product']->image_link}}" alt="">
@@ -65,10 +64,15 @@
                                 @endif
                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
+                                {{--report--}}
+                                {{--<div style="border: solid; width: 10vw;height: 3vw;margin-top: 3vw">--}}
+
+                                {{--</div>--}}
+                                {{--endreport--}}
                                 <div class="clearfix"></div>
                             </div>
                             <div class="single-item-supplier">
-                                <p>Người bán: <a href="#">{{$product['supplier']->username}}</a></p>
+                                <p>Người bán: <a href="{{Route('detailSupplier',$product['supplier']->id)}}">{{$product['supplier']->name}}</a></p>
                             </div>
                         </div>
 
@@ -80,6 +84,7 @@
                             <li><a href="#tab-description">Mô tả sản phẩm</a></li>
                             <li><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
                             <li><a href="#tab-addComment">Thêm Bình Luận</a></li>
+                            <li><a href="#tab-report">Báo cáo sản phẩm</a></li>
                         </ul>
 
                         <div class="panel" id="tab-description">
@@ -90,6 +95,9 @@
                         </div>
                         <div class="panel" id="tab-addComment">
                             @include('clientViews.comment.addComment')
+                        </div>
+                        <div class="panel" id="tab-report">
+                            @include('layouts.reportProduct')
                         </div>
                     </div>
                     <div class="space50">&nbsp;</div>
@@ -165,6 +173,7 @@
                 </div> <!-- best sellers widget -->
             </div>
         </div>
+
     </div> <!-- #content -->
     </div> <!-- .container -->
 @endsection

@@ -64,14 +64,14 @@ class LoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            return redirect()->to('/index')->with('facebook');
+            return back()->with('facebook');
         }
     }
     public function logoutFacebook()
     {
         Auth::logout();
 
-        return redirect()->to('/index');
+        return back();
     }
 
     public function redirectToProviderGM()
@@ -88,7 +88,7 @@ class LoginController extends Controller
         if($findUserSocialite){
 
             Auth::login($findUserSocialite);
-            return redirect()->to('/index')->with('google');
+            return back()->with('google');
 
         }else{
             $user = new User();
@@ -99,7 +99,7 @@ class LoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            return redirect()->to('/index')->with('google');
+            return back()->with('google');
         }
     }
 

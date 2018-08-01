@@ -1,0 +1,19 @@
+chạy command:
+composer require laravel/socialite //install socialite
+ở config/app.php
+'providers' => [
+    // Other service providers...
+
+    Laravel\Socialite\SocialiteServiceProvider::class,
+],
+'aliases' => [
+    // Other aliases...
+
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+],
+
+
+php artisan storage:link //link storage to public folder
+
+composer require uxweb/sweet-alert // install alert
+

@@ -30,7 +30,7 @@ class LoginController extends Controller
                 'block' => 'Email đã bị khóa,Vui lòng liên hệ quản lí',
             ]);
         }
-        return Redirect::to('/index');
+        return back();
     }
 
     public function destroy()
@@ -38,6 +38,6 @@ class LoginController extends Controller
 
         auth()->logout();
 
-        return Redirect::to('/index');
+        return back();
     }
 }
