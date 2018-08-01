@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="beta-products-list" id="tag_container">
-                        <h2 style="color: #f90">Danh sách sản phẩm</h2>
+                        <h2 style="color: #f90">Danh sách sản phẩm của <a>{{ $user->name }}</a></h2>
                         <div class="beta-products-details">
                             <h4 class="pull-left">Tìm thấy <a style="color: #f90"> {{$products->total()}} </a>sản phẩm</h4>
                             <div class="clearfix"></div>

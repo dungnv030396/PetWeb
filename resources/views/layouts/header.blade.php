@@ -74,12 +74,12 @@
                                             <i class="fa fa-times"></i>
                                         </a>
                                         <div class="media">
-                                            <a class="pull-left" href="#">
+                                            <a class="pull-left" href="{{Route('productDetail',$product['item']->id)}}">
                                                 <img src="source/image/products/{{$product['item']->image_link}}"
                                                      alt="">
                                             </a>
                                             <div class="media-body">
-                                                <span class="cart-item-title">{{$product['item']->name}}</span>
+                                                <span class="cart-item-title"><a style="color: red" href="{{Route('productDetail',$product['item']->id)}}"> {{$product['item']->name}}</a></span>
                                                 <span class="cart-item-amount">{{$product['quantity']}}*<span>
 											@if($product['item']['discount'] != 0)
                                                             {{ number_format($product['item']->price - (($product['item']->price * $product['item']->discount) / 100))}}

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+    <link href="css/css-detailSupplier.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <div class="inner-header">
@@ -65,10 +66,15 @@
                                 @endif
                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
+                                {{--report--}}
+                                {{--<div style="border: solid; width: 10vw;height: 3vw;margin-top: 3vw">--}}
+                                    {{--@include('layouts.reportProduct')--}}
+                                {{--</div>--}}
+                                {{--endreport--}}
                                 <div class="clearfix"></div>
                             </div>
                             <div class="single-item-supplier">
-                                <p>Người bán: <a href="#">{{$product['supplier']->username}}</a></p>
+                                <p>Người bán: <a href="{{Route('detailSupplier',$product['supplier']->id)}}">{{$product['supplier']->name}}</a></p>
                             </div>
                         </div>
 
