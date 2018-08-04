@@ -25,7 +25,10 @@ class Product extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
-
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function comments()
     {
         return $this->hasMany(Comment::class, 'product_id', 'id');
