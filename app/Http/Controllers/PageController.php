@@ -60,12 +60,12 @@ class PageController extends Controller
 
     public function getLienHe()
     {
-        return view('clientViews.lienhe');
+        return view('clientViews.supports.lienhe');
     }
 
     public function getGioiThieu()
     {
-        return view('clientViews.gioi_thieu');
+        return view('clientViews.supports.gioi_thieu');
     }
 
     public function getAddtocart(Request $req, $id)
