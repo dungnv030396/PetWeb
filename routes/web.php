@@ -37,6 +37,7 @@ Route::get('chi-tiet-san-pham/{id}',[
     'as'=>'productDetail',
     'uses'=>'PageController@getProductDetail'
 ]);
+//Supports
 Route::get('lien-he',[
     'as'=>'lienhe',
     'uses'=>'PageController@getLienHe'
@@ -46,6 +47,25 @@ Route::get('gioi-thieu',[
     'as'=>'gioithieu',
     'uses'=>'PageController@getGioiThieu'
 ]);
+Route::get('privacyPolicy',function (){
+ return view('clientViews.supports.privacyPolicy');
+})->name('privacyPolicy');
+
+Route::get('returnPolicy',function (){
+    return view('clientViews.supports.returnPolicy');
+})->name('returnPolicy');
+
+Route::get('shoppingGuide',function (){
+    return view('clientViews.supports.shoppingGuide');
+})->name('shoppingGuide');
+
+Route::get('guarantee',function (){
+    return view('clientViews.supports.guarantee');
+})->name('guarantee');
+
+Route::get('recruitment',function (){
+    return view('clientViews.supports.recruitment');
+})->name('recruitment');
 //Register
 Route::get('register', function () {
     return view('registration.register');

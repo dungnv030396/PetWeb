@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 class LoginController extends Controller
@@ -88,7 +89,7 @@ class LoginController extends Controller
         if($findUserSocialite){
 
             Auth::login($findUserSocialite);
-            return back()->with('google');
+            return Redirect::to('/index')->with('google');
 
         }else{
             $user = new User();
@@ -99,7 +100,7 @@ class LoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            return back()->with('google');
+            return Redirect::to('/index')->with('google');
         }
     }
 

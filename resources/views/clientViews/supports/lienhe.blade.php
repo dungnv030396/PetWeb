@@ -3,7 +3,7 @@
 <div class="inner-header">
 		<div class="container">
 			<div class="pull-left">
-				<h6 class="inner-title">Liên Hệ</h6>
+				<h2 class="inner-title main-color">Liên Hệ</h2>
 			</div>
 			<div class="pull-right">
 				<div class="beta-breadcrumb font-large">

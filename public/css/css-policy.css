@@ -1,0 +1,23 @@
+.first-div{
+    width: 90%;
+    margin: 0 5% 0 5%;
+}
+.text-size{
+    font-size: 15px;
+    font-family:verdana;
+    box-sizing: border-box;
+    text-align: justify;
+}
+ul.square {
+    list-style-type: square;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.image-addtocart{
+    margin-left: 20%;
+}
+.image-form{
+    width: 30%;
+    height: 30%;
+    margin-left: 20%;
+}

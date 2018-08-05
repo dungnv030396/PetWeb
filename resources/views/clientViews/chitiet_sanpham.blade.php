@@ -1,5 +1,32 @@
 @extends('layouts.master')
 @section('content')
+    @if(count($errors))
+        <script>
+//            $(function () {
+//                console.log('run test')
+//                $("#unactive").removeClass("active");
+//                $("#active").toggleClass("active");
+//                $("#tab-description").css("display", "none")
+//                $("#tab-report").css("display", "block")
+//            })
+
+            $( document ).ready(function() {
+                console.log( "ready!" );
+                console.log('run test')
+                $("#unactive").removeClass("active");
+                $("#active").toggleClass("active");
+                $("#tab-description").css("display", "none")
+                $("#tab-report").css("display", "block")
+            });
+        </script>
+    @endif
+    @if(!empty(Session::get('reportSuccess')))
+        <script>
+            $(function () {
+                $("#active").addClass("active");
+            })
+        </script>
+    @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <div class="inner-header">
@@ -81,10 +108,10 @@
                     <div class="space40">&nbsp;</div>
                     <div class="woocommerce-tabs">
                         <ul class="tabs">
-                            <li><a href="#tab-description">Mô tả sản phẩm</a></li>
-                            <li class="active"><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
+                            <li id="unactive"><a href="#tab-description">Mô tả sản phẩm</a></li>
+                            <li><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
                             <li><a href="#tab-addComment">Thêm Bình Luận</a></li>
-                            <li><a href="#tab-report">Báo cáo sản phẩm</a></li>
+                            <li id="active"><a href="#tab-report">Báo cáo sản phẩm</a></li>
                         </ul>
 
                         <div class="panel" id="tab-description">

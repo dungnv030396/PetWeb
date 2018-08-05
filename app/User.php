@@ -41,6 +41,9 @@ class User extends Authenticatable
     public function reports(){
         return $this->hasMany(Report::class);
     }
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
   public function listSupplier(){
       $user = User::where('delete_flag',0)
           ->where('roleId',2)->latest()->paginate(10);
@@ -61,7 +64,19 @@ class User extends Authenticatable
           'number' =>$number
       ];
   }
-  public function updateProfile(){
+  public function updateProfile($th){
+      $th->validate(\request(), [
+          'mem_name' => 'required',
+          'emailid' => 'required|email',
+          'phonenumber' => 'required|digits_between:10,15|numeric',
+          'address' => 'required',
+          'card_number' => 'required|numeric'
+      ],
+          [
+              'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+              'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
+              'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!'
+          ]);
       $id = Auth::user()->id;
       $user = User::find($id);
       $user->name = request('mem_name');
@@ -95,12 +110,12 @@ class User extends Authenticatable
       $th->validate(\request(), [
           'mem_name' => 'required',
           'emailid' => 'required|email',
-          'password' => 'required|confirmed|digits_between:6,15',
+          'password' => 'required|confirmed|between:6,15',
           'phonenumber' => 'required|digits_between:10,15|numeric',
           'address' => 'required'
       ],
           [
-              'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+              'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
               'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
               'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
               'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
@@ -131,9 +146,9 @@ class User extends Authenticatable
       $id = \request('id');
       $user = User::find($id);
       $th->validate(\request(),[
-          'password' => 'required|confirmed|digits_between:6,15',
+          'password' => 'required|confirmed|between:6,15',
       ],[
-          'password.digits_between' => 'Mật khẩu phải từ 6-15 kí tự!',
+          'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
           'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
       ]);
 

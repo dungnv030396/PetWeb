@@ -1,13 +1,16 @@
 <?php
 
 namespace App;
+
 use Session;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class Payment extends Model
 {
     //checkout
-    public function checkout($request,$th){
+    public function checkout($request, $th)
+    {
         $pro = new Product();
         $cUser = new User();
         $cUser = $cUser->getCurrentUser();
@@ -24,22 +27,22 @@ class Payment extends Model
                 'name.required' => 'Vui lòng nhập tên tài khoản!',
                 'gender.required' => 'Vui lòng chọn giới tính!',
                 'address.required' => 'Vui lòng điền địa chỉ'
-        ]);
+            ]);
         $amount = 0;
         $cart = Session::get('cart');
-        foreach ($cart->items as $cartLine){
+        foreach ($cart->items as $cartLine) {
             $product = $pro->getProductById($cartLine['item']->id);
-            $para = 'quantity'.$cartLine['item']->id;
-            $th->validate($request,[
-                $para => 'required|numeric|max:'.$product->quantity
-            ],[
-                $para.'.required' => 'Vui lòng nhập số lượng',
-                $para.'.numeric' => 'Vui kiểm tra lại số lượng',
-                $para.'.max' => 'Vui kiểm tra lại số lượng'
+            $para = 'quantity' . $cartLine['item']->id;
+            $th->validate($request, [
+                $para => 'required|numeric|max:' . $product->quantity
+            ], [
+                $para . '.required' => 'Vui lòng nhập số lượng',
+                $para . '.numeric' => 'Vui kiểm tra lại số lượng',
+                $para . '.max' => 'Vui kiểm tra lại số lượng'
             ]);
-            if($cartLine['item']->discount != 0){
+            if ($cartLine['item']->discount != 0) {
                 $amount += ($request->$para * ($cartLine['item']->price - (($cartLine['item']->price * $cartLine['item']->discount) / 100)));
-            }else{
+            } else {
                 $amount += ($request->$para * $cartLine['item']->price);
             }
         }
@@ -86,8 +89,32 @@ class Payment extends Model
             $cUser->gender = $request->gender;
             $cUser->save();
             Session::forget('cart');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             throw $e;
         }
     }
+
+//    public function sendMailSuplier()
+//    {
+//        $pro = new Product();
+//        $cart = Session::get('cart');
+//        $arr =[];
+//        foreach ($cart->items as $cartLine) {
+//            $product = $pro->getProductById($cartLine['item']->id);
+//            //$supplier = User::find($cartLine['item']->user->id);
+//            $data = array('supplierName' => $cartLine['item']->user->name,
+//                'supplierEmail' => $cartLine['item']->user->email,
+//                'productName' => $product->name,
+//                'quanlity' => $casrtLine['quanlity']
+//            );
+//             array_push($arr,[$cartLine['item']->user->id,$data]);
+//        }
+//        Mail::send('clientViews.emails.notifiToSupplier', $data, function ($message) {
+//            $message->to(\request('email'))
+//                ->subject('The Pet Family - Thông Báo Sản Phẩm');
+//            $message->from('thepetfamilyteam@gmail.com');
+//        });
+//        die;
+//
+//    }
 }

@@ -12,6 +12,20 @@
         }
     }
 </script>
+@if(count($errors))
+    <script>
+        $(function () {
+            $("#dropdown").addClass("open");
+        })
+    </script>
+@endif
+@if(!empty(Session::get('reportSuccess')))
+    <script>
+        $(function () {
+            $("#dropdown").addClass("open");
+        })
+    </script>
+@endif
 <form class="form-horizontal" role="form" method="POST"
       action="{{Route('reportProduct',[$product['supplier']->id,$product['product']->id])}}">
     {{ csrf_field() }}
@@ -31,7 +45,7 @@
     </div>
     <div id="MyTextBox" runat="server" class="form-group">
         <label for="contain">Xin mời nhập nội dung khác</label>
-        <input class="form-control" type="text-area" name="other" required
+        <input class="form-control" type="text-area" name="other"
                value="{{ old('other') }}"/>
     </div>
     <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>
