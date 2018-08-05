@@ -3,7 +3,7 @@
     <div class="col-sm-auto" id="logout">
         <div class="comment-tabs">
             <div class="tab-pane" id="add-comment">
-                <form action="{{route('addSingleComment')}}" method="post" class="form-horizontal commentForm" id="commentForm" role="form">
+                <form action="#" method="post" class="form-horizontal commentForm" id="commentForm" role="form">
                     {{ csrf_field() }}
                     <input type="hidden" value="{{$product['product']->id}}" name="productId" id="productId">
                     <div class="form-group">
@@ -28,8 +28,42 @@
                             </button>
                         </div>
                     </div>
+                    <div id="output">
+
+                    </div>
                </form>
             </div>
         </div>
     </div>
+<script>
+    $(document).ready(function () {
+        $('.commentForm').on('submit',function (e) {
+            e.preventDefault();
+            let _token = $("input[name='_token']").val();
+            var productId = document.getElementById("productId").getAttribute('value');
+            var addComment = document.getElementById("addComment").getAttribute('value');
+            var uploadMedia = document.getElementById("uploadMedia").getAttribute('value');
+            $.ajax({
+                method: 'POST',
+                url: '{{route('addSingleCommentAjax')}}',
+                headers: {
+                    'X-CSRF-TOKEN': _token
+                },
+                dataType: 'html',
+                async: false,
+                data:{
+                    productId: productId,
+                    addComment: addComment,
+                    uploadMedia: uploadMedia
+                },
+                success: function (data) {
+                    $('.ouput').html(data);
+
+                },
+                error: function (data) {
+                }
+            });
+        })
+    });
+</script>
 

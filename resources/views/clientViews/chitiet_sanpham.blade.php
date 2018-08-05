@@ -82,7 +82,7 @@
                     <div class="woocommerce-tabs">
                         <ul class="tabs">
                             <li><a href="#tab-description">Mô tả sản phẩm</a></li>
-                            <li><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
+                            <li class="active"><a href="#tab-reviews">Bình Luận({{$comments->total()}})</a></li>
                             <li><a href="#tab-addComment">Thêm Bình Luận</a></li>
                             <li><a href="#tab-report">Báo cáo sản phẩm</a></li>
                         </ul>

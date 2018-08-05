@@ -1,11 +1,13 @@
 <link rel="stylesheet" title="style" href="source/assets/dest/css/comment.css">
 <!------ Include the above in your HEAD tag ---------->
+
+
     <div class="col-sm-auto" id="logout">
         <div class="comment-tabs">
             <div class="tab-pane" id="add-comment">
-                <form action="{{route('addSingleComment')}}" method="post" class="form-horizontal commentForm" id="commentForm" role="form">
+                <form action="{{route('addReplyComment')}}" method="post" class="form-horizontal" id="commentForm" role="form">
                     {{ csrf_field() }}
-                    <input type="hidden" value="{{$product['product']->id}}" name="productId" id="productId">
+                    <input type="hidden" value="{{$comment->id}}" name="commentId">
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Bình luận</label>
                         <div class="col-sm-10">
@@ -28,7 +30,7 @@
                             </button>
                         </div>
                     </div>
-               </form>
+                </form>
             </div>
         </div>
     </div>

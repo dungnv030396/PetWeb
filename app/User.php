@@ -16,6 +16,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'user_id', 'id');
     }
+
+    public function subComments()
+    {
+        return $this->hasMany(SubComment::class, 'user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *

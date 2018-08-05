@@ -6,6 +6,7 @@ use App\Catalog;
 use App\Category;
 use App\Slide;
 use App\Product;
+use App\User;
 use Session;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -14,6 +15,18 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+
+        $c = new User();
+        $c = $c->getCurrentUser();
+        var_dump($c->address);die;
+        $pro = new Product();
+        $cart = Session::get('cart');
+        foreach ($cart->items as $cartLine) {
+            var_dump($cartLine['item']->user->name);
+            //$data = array('supplierName' => $listSupplier->name,'email' => $listSupplier->email);
+            // truyền list_supplier &  vào $data để truyền về mail
+        }
+        die;
         $coment = new Comment();
         $coment->getCommentsByProductId(2,4);
         $catalog = new Catalog();
@@ -23,6 +36,8 @@ class PageController extends Controller
         $cate_id = $product->getProductById(1)->category->id;
         $pro = new Product();
         $product = $pro->getProductDetailById($reqest->id);
+
+
 
         var_dump(Category::find($cate_id)->catalog->toArray());die;
     }

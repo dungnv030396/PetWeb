@@ -113,10 +113,14 @@ Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplie
 
 //Add comment single
 Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');
+Route::post('them-binh-luan-ajax','CommentController@addSingleCommentAjax')->name('addSingleCommentAjax');
 
 //Report
 
 Route::post('reportSupplier/{id}','ReportController@reportSupplier')->name('reportSupplier');
 Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportProduct')->name('reportProduct');
+
+//Add Reply comment
+Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addReplyComment');
 
 

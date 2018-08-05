@@ -34,14 +34,14 @@
 						</div>
 						<div class="form-block">
 							<label><b>Giới tính</b></label>
-							<input id="gender" type="radio" class="input-radio" name="gender" value="nam" {{ ($currentUser->gender == 1) ? 'checked' : '' }} style="width: 10%"><span style="margin-right: 10%">Nam</span>
-							<input id="gender" type="radio" class="input-radio" name="gender" value="nữ"  {{ ($currentUser->gender == 1) ? '' : 'checked' }} style="width: 10%"><span>Nữ</span>
+							<input id="gender" type="radio" class="input-radio" name="gender" value="1" {{ ($currentUser->gender == 1) ? 'checked' : '' }} style="width: 10%"><span style="margin-right: 10%">Nam</span>
+							<input id="gender" type="radio" class="input-radio" name="gender" value="0"  {{ ($currentUser->gender == 1) ? '' : 'checked' }} style="width: 10%"><span>Nữ</span>
 										
 						</div>
 
 						<div class="form-block">
 							<label for="email"><b>Email*</b></label>
-							<input type="email" id="email" name="email" value="{{$currentUser->email}}" required placeholder="Điền địa chỉ email của bạn">
+							<input type="email" id="email" name="email" value="{{$currentUser->email}}" required placeholder="Điền địa chỉ email của bạn" readonly>
 						</div>
 
 						<div class="form-block">
@@ -51,12 +51,12 @@
 
 						<div class="form-block">
 							<label for="adress"><b>Địa chỉ nhận hàng(Nếu có)</b></label>
-							<input type="text" id="address" name="order_address" {{$currentUser->address}} placeholder="Chúng tôi sẽ giao hàng đến địa chỉ trên nếu trống" >
+							<input type="text" id="order_address" name="order_address" {{$currentUser->address}} placeholder="Chúng tôi sẽ giao hàng đến địa chỉ trên nếu trống" >
 						</div>
 
 
 						<div class="form-block">
-							<label for="phone"><b>Điện thoại*</b></label>
+							<label for="phone"><b>Số điện thoại nhận hàng*</b></label>
 							<input type="text" id="phone" name="phone" value="{{$currentUser->phoneNumber}}" required placeholder="Điền số điện thoại của bạn">
 						</div>
 						
