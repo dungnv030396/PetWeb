@@ -4,28 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class SubComment extends Model
 {
-    public function product()
+    public function comment()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Comment::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function subComments(){
-        return $this->hasMany(SubComment::class);
-    }
-
-    public function addSingleComment($request){
+    public function addReplyComment($request){
         try{
             $customer = new User();
             $customer = $customer->getCurrentUser();
-            $comment = new Comment();
+            $comment = new SubComment();
             $comment->user_id = $customer->id;
-            $comment->product_id = $request->productId;
+            $comment->comment_id = $request->commentId;
             if(!empty($request->uploadMedia)){
                 $comment->media_link = $request->uploadMedia;
             }
@@ -35,11 +32,6 @@ class Comment extends Model
             return false;
         }
         return true;
-    }
-
-    public function getCommentsByProductId($product_id,$number_record){
-        $comments = Comment::where([['product_id', '=', $product_id], ['delete_flag', '=', 0]])->latest()->paginate($number_record,['*'],'p4');
-        return $comments;
     }
 
 }

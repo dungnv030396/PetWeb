@@ -61,6 +61,12 @@ class Payment extends Model
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
+            if(!empty(trim($request->order_address,' '))){
+                $order->address = trim($request->order_address,' ');
+                $cUser->address = trim($request->address,' ');
+            }else{
+                $order->address = trim($request->address,' ');
+            }
             $order->save();
 
             foreach ($cart->items as $cartLine) {
@@ -79,6 +85,9 @@ class Payment extends Model
                 $product->quantity -= $cLine->quantity;
                 $product->save();
             }
+            $cUser->name = trim($request->name,' ');
+            $cUser->gender = $request->gender;
+            $cUser->save();
             Session::forget('cart');
         } catch (\Exception $e) {
             throw $e;
