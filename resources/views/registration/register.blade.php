@@ -9,7 +9,8 @@
     <div class="row">
         <div class="col-md-8">
             <section>
-                <h1 class="entry-title"><span>Đăng Ký</span> </h1>
+                <br>
+                <h1 class="entry-title main-color"><span>Đăng Ký</span> </h1>
                 <hr>
                 <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="register" >
                     {{ csrf_field() }}
@@ -99,7 +100,7 @@
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ của bạn ở đây" value="{{ old('address') }}" required>
+                                <input style="height: 70px" type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ của bạn ở đây" value="{{ old('address') }}" required>
                             </div>
                         </div>
                     </div>

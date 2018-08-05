@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class SupplierController extends Controller
 {
     public  function listSupplier(){
@@ -28,5 +32,18 @@ class SupplierController extends Controller
 
     public function home(){
         return view('ProductManagementViews.productManagement');
+//        return view('ProductManagementViews.ordersHistory');
     }
+
+    public function load(){
+        return view('ProductManagementViews.ordersHistory');
+    }
+
+    public function demo(){
+        $id = Auth::user()->id;
+        $products = DB::table('products')->select('id','created_at')->where('user_id',$id);
+        return datatables($products)->make(true);
+    }
+
+
 }

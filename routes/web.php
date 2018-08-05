@@ -72,6 +72,14 @@ Route::get('register', function () {
 });
 Route::post('register', 'UsersController@store')->name('register');
 
+//register to Supplier
+
+Route::get('register.supplier',function (){
+    return view('clientViews.customer.registerToSupplier');
+})->name('register.supplier');
+Route::post('registerToSupplier', 'UsersController@registerSupplier')->name('registerToSupplier');
+
+
 //userProfile
 Route::get('userProfile/{id}','UsersController@show');
 Route::post('updateInfo', 'UserProfileController@updateProfile');
@@ -130,6 +138,10 @@ Route::get('changePassByMail/{id}',function (){
 //Quan? Ly cua supplier
 
 Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
+
+Route::get('load','SupplierController@load')->name('load');
+
+Route::get('demo','SupplierController@demo')->name('demo');
 
 //Add comment single
 Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');

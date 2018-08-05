@@ -86,19 +86,19 @@
                         <div class="col-md-8 col-sm-9">
                             @if(\Illuminate\Support\Facades\Auth::user()->gender == '1')
                                 <label>
-                                    <input name="gender" type="radio" value="nam" checked>
+                                    <input name="gender" type="radio" value="1" checked>
                                     Nam </label>
                                    
                                 <label>
-                                    <input name="gender" type="radio" value="nu">
+                                    <input name="gender" type="radio" value="0">
                                     Nữ </label>
                             @else
                                 <label>
-                                    <input name="gender" type="radio" value="nam">
+                                    <input name="gender" type="radio" value="1">
                                     Nam </label>
                                    
                                 <label>
-                                    <input name="gender" type="radio" value="nu" checked>
+                                    <input name="gender" type="radio" value="0" checked>
                                     Nữ </label>
                             @endif
                         </div>
@@ -141,7 +141,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Địa Chỉ:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"
+                            <input style="height: 100px" class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"
                                    type="text" name="address"
                                    required>
                         </div>

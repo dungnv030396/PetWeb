@@ -366,6 +366,25 @@ CREATE TABLE `users` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `supplier_registers`;
+CREATE TABLE `supplier_registers` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `gender` int(2) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `card_number` int(11) DEFAULT NULL,
+  `bank_username` varchar(255) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `bank_branch` varchar(255) DEFAULT NULL,
+   `chandung` varchar(255) NOT NULL,
+    `cmnd` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 --
 -- Dumping data for table `users`
 --
