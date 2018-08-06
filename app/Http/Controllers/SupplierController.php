@@ -41,12 +41,9 @@ class SupplierController extends Controller
         return redirect()->back()->with('message','failed');
     }
 
-    public function demo(){
-        $id = Auth::user()->id;
-        $products = DB::table('products')->select('id','created_at');
-        return datatables($products)->make(true);
     public function listOrder(){
-        return view('ProductManagementViews.order_view');
+        $menu = 'order';
+        return view('ProductManagementViews.order_view',compact('menu'));
     }
 
 }

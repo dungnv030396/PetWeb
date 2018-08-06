@@ -1,5 +1,5 @@
 @extends('ProductManagementViews.productManagement')
-@section('content')
+@section('contentManager')
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
