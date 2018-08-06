@@ -13,7 +13,7 @@ class UsersController extends Controller
     {
         $user = new User();
         $user->register($this);
-        return back()->with('status', 'Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
+        return back();
     }
 
     public function show()

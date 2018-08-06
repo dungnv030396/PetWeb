@@ -18,9 +18,9 @@ class UserProfileController extends Controller
     public function updatePassword(Request $request)
     {
         $this->validate(\request(), [
-            'password' => 'required|confirmed|between:6,15',
+            'password' => 'required|confirmed|between:6,25',
         ], [
-            'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
+            'password.between' => 'Mật khẩu phải từ 6-25 kí tự!',
             'password.confirmed' => 'Xác nhận mật khẩu không chính xác! Xin mời nhập lại'
         ]);
 
