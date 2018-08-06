@@ -41,9 +41,8 @@ class SupplierController extends Controller
 
     public function demo(){
         $id = Auth::user()->id;
-        $products = DB::table('products')->select('id','created_at')->where('user_id',$id);
+        $products = DB::table('products')->select('id','created_at');
         return datatables($products)->make(true);
     }
-
 
 }

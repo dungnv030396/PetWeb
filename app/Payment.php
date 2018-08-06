@@ -18,11 +18,11 @@ class Payment extends Model
             'name' => 'required',
             'gender' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|digits_between:10,15|numeric',
+            'phone' => 'required|digits_between:10,11|numeric',
             'address' => 'required'
         ],
             [
-                'phone.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+                'phone.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
                 'phone.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
                 'name.required' => 'Vui lòng nhập tên tài khoản!',
                 'gender.required' => 'Vui lòng chọn giới tính!',

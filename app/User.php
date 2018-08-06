@@ -68,12 +68,12 @@ class User extends Authenticatable
       $th->validate(\request(), [
           'mem_name' => 'required',
           'emailid' => 'required|email',
-          'phonenumber' => 'required|digits_between:10,15|numeric',
+          'phonenumber' => 'required|digits_between:10,11|numeric',
           'address' => 'required',
           'card_number' => 'required|numeric'
       ],
           [
-              'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+              'phonenumber.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
               'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
               'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!'
           ]);
@@ -111,14 +111,14 @@ class User extends Authenticatable
       $th->validate(\request(), [
           'mem_name' => 'required',
           'emailid' => 'required|email',
-          'password' => 'required|confirmed|between:6,15',
-          'phonenumber' => 'required|digits_between:10,15|numeric',
+          'password' => 'required|confirmed|between:6,25',
+          'phonenumber' => 'required|digits_between:10,11|numeric',
           'address' => 'required'
       ],
           [
-              'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
+              'password.between' => 'Mật khẩu phải từ 6-25 kí tự!',
               'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
-              'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+              'phonenumber.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
               'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
           ]);
       $user->name = request('mem_name');
@@ -129,6 +129,7 @@ class User extends Authenticatable
       $user->address = request('address');
       $user->avatar = 'user-default.png';
       $user->save();
+      return back()->with('status', 'Chúc mừng bạn đã đăng ký tài khoản Thành Công!');
   }
   public function resetPass(){
       $user = User::where('email',\request('email'))->get();
@@ -147,9 +148,9 @@ class User extends Authenticatable
       $id = \request('id');
       $user = User::find($id);
       $th->validate(\request(),[
-          'password' => 'required|confirmed|between:6,15',
+          'password' => 'required|confirmed|between:6,25',
       ],[
-          'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
+          'password.between' => 'Mật khẩu phải từ 6-25 kí tự!',
           'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
       ]);
 
