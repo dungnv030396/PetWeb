@@ -55,7 +55,21 @@ class User extends Authenticatable
     public function products(){
         return $this->hasMany(Product::class);
     }
-  public function listSupplier(){
+    public function isSupplier($user)
+    {
+        return ($user->roleId == 2);
+    }
+
+    public function isModerator($user)
+    {
+        return ($user->roleId == 4);
+    }
+
+    public function isAdmin($user)
+    {
+        return ($user->roleId == 1);
+    }
+    public function listSupplier(){
       $user = User::where('delete_flag',0)
           ->where('roleId',2)->latest()->paginate(10);
       $allUser = User::all()->where('delete_flag',0)
