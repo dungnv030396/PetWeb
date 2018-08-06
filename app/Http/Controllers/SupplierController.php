@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Datatables;
+use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use App\User;
@@ -27,6 +28,19 @@ class SupplierController extends Controller
     }
 
     public function home(){
-        return view('ProductManagementViews.productManagement');
+        $menu = 'home';
+        $userObj = new User();
+        $user = $userObj->getCurrentUser();
+        if($userObj->isSupplier($user)){
+            return view('ProductManagementViews.home',compact('user','menu'));
+        }
+        alert()->error('Quý khách k có quyền truy cập!');
+        return redirect()->back()->with('message','failed');
     }
+
+    public function listOrder(){
+        return view('ProductManagementViews.order_view');
+    }
+
 }
+

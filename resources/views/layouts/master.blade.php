@@ -16,6 +16,7 @@
     <link rel="stylesheet" title="style" href="source/assets/dest/css/style.css">
     <link rel="stylesheet" href="source/assets/dest/css/animate.css">
     <link rel="stylesheet" title="style" href="source/assets/dest/css/huong-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
 
@@ -30,6 +31,9 @@
 </div> <!-- .container -->
 @include('layouts.footer2')
 
+@if(!empty(\Illuminate\Support\Facades\Session::get('message')))
+    @include('sweet::alert')
+@endif
 
 <!-- include js files -->
 <script src="source/assets/dest/js/jquery.js"></script>
@@ -44,6 +48,7 @@
 <script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="source/assets/dest/js/waypoints.min.js"></script>
 <script src="source/assets/dest/js/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!--script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 >>>>>>> 46a172b4779bddd6a25c54e00b63f3ee9141878e
 <!--customjs-->

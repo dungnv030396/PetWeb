@@ -162,6 +162,7 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        yajra\Datatables\DatatablesServiceProvider::class,
 
 
     ],
@@ -215,6 +216,7 @@ return [
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Datatables' => yajra\Datatables\Datatables::class,
     ],
 
 ];
