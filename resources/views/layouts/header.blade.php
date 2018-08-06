@@ -9,19 +9,24 @@
                 <ul class="top-details menu-beta l-inline">
                     @if(\Illuminate\Support\Facades\Auth::check())
                         {{--@if(\Illuminate\Support\Facades\Auth::user()->roleId ==3)--}}
-                            {{--<li><a href="#">Đăng ký bán hàng</a></li>--}}
+                        {{--<li><a href="#">Đăng ký bán hàng</a></li>--}}
                         {{--@else--}}
-                            {{--<li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>--}}
+                        {{--<li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>--}}
                         {{--@endif--}}
+                        @if(\Illuminate\Support\Facades\Auth::user()->roleId==3)
+                            <li><a href="{{route('register.supplier')}}">Trở Thành Nhà Cung Cấp</a></li>
+                        @endif
                         <li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>
                         <li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
                                 @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
 
-                                    <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" width="30px" height="30px">
+                                    <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" width="30px"
+                                         height="30px">
 
                                 @else
-                                <img src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="30px"
-                                     height="30px">
+                                    <img src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}"
+                                         width="30px"
+                                         height="30px">
                                 @endif
                                 Email: @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>9)
                                     {{ substr(\Illuminate\Support\Facades\Auth::user()->email,0,6). "". '...' }}
@@ -80,7 +85,8 @@
                                                      alt="">
                                             </a>
                                             <div class="media-body">
-                                                <span class="cart-item-title"><a style="color: red" href="{{Route('productDetail',$product['item']->id)}}"> {{$product['item']->name}}</a></span>
+                                                <span class="cart-item-title"><a style="color: red"
+                                                                                 href="{{Route('productDetail',$product['item']->id)}}"> {{$product['item']->name}}</a></span>
                                                 <span class="cart-item-amount">{{$product['quantity']}}*<span>
 											@if($product['item']['discount'] != 0)
                                                             {{ number_format($product['item']->price - (($product['item']->price * $product['item']->discount) / 100))}}
@@ -99,7 +105,8 @@
                                     <div class="clearfix"></div>
                                     <div class="center">
                                         <div class="space10">&nbsp;</div>
-                                        <a href="{{route('viewCheckout')}}" class="beta-btn primary text-center">Đặt hàng <i
+                                        <a href="{{route('viewCheckout')}}" class="beta-btn primary text-center">Đặt
+                                            hàng <i
                                                     class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>

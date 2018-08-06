@@ -6,6 +6,9 @@ use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class SupplierController extends Controller
 {
     public  function listSupplier(){
@@ -41,6 +44,5 @@ class SupplierController extends Controller
     public function listOrder(){
         return view('ProductManagementViews.order_view');
     }
-
 }
 

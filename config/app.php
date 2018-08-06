@@ -164,7 +164,6 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
 
-
     ],
 
     /*

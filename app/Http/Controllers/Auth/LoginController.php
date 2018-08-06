@@ -49,13 +49,13 @@ class LoginController extends Controller
     public function handleProviderCallbackFB()
     {
         $userSocialite = Socialite::driver('facebook')->user();
-
+        if($userSocialite->email ==null){
+            return back()->with('emailNull','Tài Khoản Facebook chưa liên kết email!');
+        }
         $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
         if($findUserSocialite){
-
             Auth::login($findUserSocialite);
-            return redirect()->to('/index')->with('facebook');
-
+            return redirect(route('trangchu'))->with('facebook');
         }else{
             $user = new User();
             $user->name = $userSocialite->name;
@@ -72,7 +72,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return back();
+        return redirect(route('trangchu'));
     }
 
     public function redirectToProviderGM()
@@ -89,7 +89,7 @@ class LoginController extends Controller
         if($findUserSocialite){
 
             Auth::login($findUserSocialite);
-            return Redirect::to('/index')->with('google');
+            return redirect(route('trangchu'))->with('google');
 
         }else{
             $user = new User();
@@ -100,7 +100,7 @@ class LoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            return Redirect::to('/index')->with('google');
+            return redirect(route('trangchu'))->with('google');
         }
     }
 

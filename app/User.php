@@ -22,13 +22,16 @@ class User extends Authenticatable
         return $this->hasMany(SubComment::class, 'user_id', 'id');
     }
 
-    public function role(){
-        return $this->hasOne(UserRole::class,'id','roleId');
+    public function role()
+    {
+        return $this->hasOne(UserRole::class, 'id', 'roleId');
     }
 
-    public function order(){
-        return $this->belongsTo(Order::class,'user_id','id');
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'user_id', 'id');
     }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -55,6 +58,21 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function isSupplier($user)
+    {
+        return ($user->roleId == 2);
+    }
+
+    public function isModerator($user)
+    {
+        return ($user->roleId == 4);
+    }
+
+    public function isAdmin($user)
+    {
+        return ($user->roleId == 1);
     }
 
     public function listSupplier()
@@ -101,6 +119,7 @@ class User extends Authenticatable
         $user->email = request('emailid');
         $user->phoneNumber = request('phonenumber');
         $user->address = request('address');
+        $user->gender = request('gender');
         $user->bank_name = request('bank_name');
         $user->bank_username = request('bank_username');
         $user->card_number = request('card_number');
@@ -111,21 +130,6 @@ class User extends Authenticatable
     public function getCurrentUser()
     {
         return Auth::user();
-    }
-
-    public function isSupplier($user)
-    {
-        return ($user->roleId == 2);
-    }
-
-    public function isModerator($user)
-    {
-        return ($user->roleId == 4);
-    }
-
-    public function isAdmin($user)
-    {
-        return ($user->roleId == 1);
     }
 
     public function isLogin()
@@ -197,4 +201,5 @@ class User extends Authenticatable
         $user->save();
 
     }
+
 }

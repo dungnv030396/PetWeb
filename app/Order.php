@@ -13,6 +13,9 @@ class Order extends Model
     public function status(){
         return $this->hasOne(Status::class,'id','status_id');
     }
+    public function orderLine(){
+        return $this->hasMany(OrderLine::class);
+    }
 
     public function getOrdersAjax($start,$length,$search,$oderColunm,$oderSortType,$draw)
     {

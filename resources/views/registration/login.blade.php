@@ -29,7 +29,13 @@
                             <input type="password" name="password" id="password" class="form-control"
                                    placeholder="Mật Khẩu" required/>
                         </div>
-
+                        @if (session('emailNull'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ session('emailNull') }}
+                                </ul>
+                            </div>
+                        @endif
                         @include('layouts.errors')
 
                         <button class="btn btn-lg btn-block purple-bg" type="submit">
