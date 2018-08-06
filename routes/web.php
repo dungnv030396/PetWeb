@@ -140,9 +140,6 @@ Route::get('changePassByMail/{id}',function (){
 Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
 Route::get('nha-cung-cap/quan-ly/danh-sach-order','SupplierController@listOrder')->name('listOrder');
 
-Route::get('load','SupplierController@load')->name('load');
-
-Route::get('demo','SupplierController@demo')->name('demo');
 
 //Add comment single
 Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');
