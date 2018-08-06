@@ -138,6 +138,7 @@ Route::get('changePassByMail/{id}',function (){
 //Quan? Ly cua supplier
 
 Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
+Route::get('nha-cung-cap/quan-ly/danh-sach-order','SupplierController@listOrder')->name('listOrder');
 
 Route::get('load','SupplierController@load')->name('load');
 
@@ -154,5 +155,11 @@ Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportP
 
 //Add Reply comment
 Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addReplyComment');
+
+
+Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
+Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
+
+
 
 

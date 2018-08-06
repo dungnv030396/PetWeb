@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Catalog;
 use App\Category;
+use App\Order;
 use App\Slide;
 use App\Product;
+use App\Status;
 use App\User;
 use Session;
 use Illuminate\Http\Request;
@@ -16,9 +18,36 @@ class PageController extends Controller
 
     public  function test(Request $request){
 
+        $user = new User();
+        $oObj = new Order();
+        $search = '18:24:24';
+        $orders = Order::whereHas('user',function ($query) {
+            $query->where('address', '=', 'HASASHA');
+        })->where('delete_flag',0)->first();
+        $orders = Order::find(5);
+        $orders = Order::where('delete_flag',0)
+            ->get();
+
+        $orders = Order::with(['user' => function ($query) use ($search){
+            $query->where('name','like',"%$search%");
+        }])
+            ->where('delete_flag',0)
+            ->orWhere('created_at','like',"%$search%")
+            ->get();
+        foreach ($orders as $order){
+            var_dump($order->status_id);die;
+        }
+        die;
+        $user = User::where('id',6)->first();
+        $user->address = "HASASHA";
+        $user->save();
+        die;
+
+        return redirect(route('trangchu'));
+
         $c = new User();
         $c = $c->getCurrentUser();
-        var_dump($c->address);die;
+        var_dump($c->role->role);die;
         $pro = new Product();
         $cart = Session::get('cart');
         foreach ($cart->items as $cartLine) {

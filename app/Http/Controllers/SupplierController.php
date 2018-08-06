@@ -31,18 +31,23 @@ class SupplierController extends Controller
     }
 
     public function home(){
-        return view('ProductManagementViews.productManagement');
-//        return view('ProductManagementViews.ordersHistory');
-    }
-
-    public function load(){
-        return view('ProductManagementViews.ordersHistory');
+        $menu = 'home';
+        $userObj = new User();
+        $user = $userObj->getCurrentUser();
+        if($userObj->isSupplier($user)){
+            return view('ProductManagementViews.home',compact('user','menu'));
+        }
+        alert()->error('Quý khách k có quyền truy cập!');
+        return redirect()->back()->with('message','failed');
     }
 
     public function demo(){
         $id = Auth::user()->id;
         $products = DB::table('products')->select('id','created_at');
         return datatables($products)->make(true);
+    public function listOrder(){
+        return view('ProductManagementViews.order_view');
     }
 
 }
+

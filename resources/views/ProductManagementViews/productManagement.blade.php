@@ -127,13 +127,14 @@
         </div>
 
 </div>
+
         {{--@yield('contentManager')--}}
 </div>
 
 <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
 <script src="source/assets/manage/js/bootstrap.min.js"></script>
 <script src="source/assets/manage/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="source/assets/manage/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+{{--<script src="source/assets/manage/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>--}}
 <script src="source/assets/manage/js/inspinia.js"></script>
 <script src="source/assets/manage/js/plugins/toastr/toastr.min.js"></script>
 {{--<script src="source/assets/manage/js/plugins/flot/jquery.flot.js"></script>--}}
