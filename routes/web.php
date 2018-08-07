@@ -159,27 +159,14 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 
 Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
 
-
-//Redirect sang trang dang nhap vao quan ly cua Moderator
-
-
-//Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
-Route::get('dang-nhap/moderator',function (){
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        \Illuminate\Support\Facades\Auth::logout();
-        return view('ModeratorView.login');
-    }
-        return view('ModeratorView.login');
-})->name('loginView');
-Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
+// supplier management
 Route::get('supplier/management',function (){
-    if (\Illuminate\Support\Facades\Auth::check()){
-        return view('ModeratorView.login');
-    }
-    $menu ='menu';
-    return view('ProductManagementViews.home',compact('menu'));
+    return view('SupplierView.home',compact('menu'));
+
 })->name('supplierManagement');
 
+//Redirect sang trang dang nhap vao quan ly cua Moderator
+// Moderator management
 
 Route::post('moderator/manage/order-list','ModeratorController@loginModerator')->name('loginModerator');
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
@@ -195,7 +182,7 @@ Route::get('moderator/manage/order-list',function (){
     if (!\Illuminate\Support\Facades\Auth::check()){
         return view('ModeratorView.login');
     }
-    $menu = 'order';
+    $menu = 'menu';
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
 
