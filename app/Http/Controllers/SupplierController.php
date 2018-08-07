@@ -55,6 +55,17 @@ class SupplierController extends Controller
         $menu = 'order';
         return view('ProductManagementViews.order_view',compact('menu'));
     }
-
+    public function loginToManagement(Request $request){
+        if ($request->emailid == Auth::user()->email || $request->password == Auth::user()->password) {
+            $menu = 'home';
+            return redirect(route('supplier_manage_place'));
+        }else{
+            return Redirect::back()->with(
+                'error_loginToManager', 4
+            )->withErrors([
+                'block' => 'Email không đúng hoặc đã bị khóa,Vui lòng liên hệ quản lí',
+            ]);
+        }
+    }
 }
 

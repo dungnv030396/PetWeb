@@ -16,7 +16,8 @@
                         @if(\Illuminate\Support\Facades\Auth::user()->roleId==3)
                             <li><a href="{{route('register.supplier')}}">Trở Thành Nhà Cung Cấp</a></li>
                         @endif
-                        <li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#myModal2">Quản lý gian hàng</a></li>
+                        {{--<li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>--}}
                         <li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
                                 @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
 

@@ -443,6 +443,7 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `phoneNumber` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `card_number` int(11) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
   `bank_username` varchar(255) DEFAULT NULL,
   `bank_name` varchar(255) DEFAULT NULL,
   `bank_branch` varchar(255) DEFAULT NULL,

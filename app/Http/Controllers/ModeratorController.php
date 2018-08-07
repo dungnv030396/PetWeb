@@ -14,29 +14,28 @@ class ModeratorController extends Controller
     {
         $this->middleware('guest', ['except' => 'destroy']);
     }
-    public function loginView(){
+
+    public function loginView()
+    {
         return view('ModeratorView.login');
     }
-    public function login(Request $request){
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => [0,1]])) {
+
+    public function loginModerator(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => [4, 1],'delete_flag' => 0])) {
+            $menu = 'home';
+            return view('ProductManagementViews.home', compact('menu'));
+        } else {
             return Redirect::back()->withErrors([
-                'message' => 'Email hoặc mật khẩu không chính xác',
+                'message' => 'Email hoặc mật khẩu không chính xác hoặc đã bị khóa',
             ]);
         }
-        if (!Auth::attempt(['email' => $request->emailid, 'password' => $request->password,'delete_flag' => 0])){
-            return Redirect::back()->withErrors([
-                'block' => 'Email đã bị khóa,Vui lòng liên hệ quản lí',
-            ]);
-        }
-        $menu = 'home';
-        return view('ProductManagementViews.home',compact('menu'));
+
     }
 
     public function destroy()
     {
-
         auth()->logout();
-
-        return redirect(route('trangchu'));
+        return redirect(route('loginView'));
     }
 }

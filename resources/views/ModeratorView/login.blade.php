@@ -11,7 +11,9 @@
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
 
 </head>
-
+@if(\Illuminate\Support\Facades\Auth::check())
+    {{ \Illuminate\Support\Facades\Auth::logout() }}
+    @endif
 <body class="gray-bg">
 
 <div class="middle-box text-center loginscreen animated fadeInDown">

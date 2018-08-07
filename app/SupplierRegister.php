@@ -11,9 +11,12 @@ class SupplierRegister extends Model
         $th->validate(\request(), [
             'mem_name' => 'required',
             'phonenumber' => 'required|digits_between:10,11|numeric',
+            'password' => 'required|confirmed|between:6,15',
             'address' => 'required'
         ],
             [
+                'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
+                'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
@@ -26,6 +29,7 @@ class SupplierRegister extends Model
             $registerSup->name = request('mem_name');
             $registerSup->phoneNumber = request('phonenumber');
             $registerSup->gender = \request('gender');
+            $registerSup->password = bcrypt(request('password'));
             $registerSup->address = request('address');
             $registerSup->bank_name = request('bank_name');
             $registerSup->bank_username = request('bank_username');
@@ -74,6 +78,7 @@ class SupplierRegister extends Model
             $user->name = request('mem_name');
             $user->phoneNumber = request('phonenumber');
             $user->gender = \request('gender');
+            $user->password = bcrypt(request('password'));
             $user->address = request('address');
             $user->bank_name = request('bank_name');
             $user->bank_username = request('bank_username');

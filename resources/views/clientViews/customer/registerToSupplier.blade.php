@@ -94,6 +94,25 @@
                                 </div>
                             </div>
                         </div>
+                        <small style="color: #f90">Sử dụng mật khẩu này để đăng nhập vào trang quản lí của nhà cung cấp,<b>Khi trở thành nhà cung cấp đây sẽ là mật khẩu của bạn.Nếu sử dụng tài khoản của TPF tốt nhất bạn nên điền mật khẩu cũ</b> .</small>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Mật Khẩu <span class="text-danger">*</span></label>
+                            <div class="col-md-5 col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Nhập Mật Khẩu (6-15 chars)" value="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Xác Nhận Mật Khẩu <span class="text-danger">*</span></label>
+                            <div class="col-md-5 col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Nhập Mật Khẩu Xác Nhận" value="" required>
+                                </div>
+                            </div>
+                        </div>
 
                         {{--<div class="form-group">--}}
                         {{--<label class="control-label col-sm-3">Ảnh Đại Diện <br>--}}

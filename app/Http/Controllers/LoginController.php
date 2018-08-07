@@ -16,20 +16,16 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if (!Auth::attempt(['email' => $request->emailid, 'password' => $request->password, 'roleId' => [2,3]])) {
+        if (Auth::attempt(['email' => $request->emailid, 'password' => $request->password, 'roleId' => [2,3],'delete_flag' => 0])) {
+            return back();
+        }else{
             return Redirect::back()->with(
                 'error_code', 5
             )->withErrors([
-                'message' => 'Email hoặc mật khẩu không chính xác',
+                'block' => 'Email không đúng hoặc đã bị khóa,Vui lòng liên hệ quản lí',
             ]);
         }
-        if (!Auth::attempt(['email' => $request->emailid, 'password' => $request->password,'delete_flag' => 0])){
-            return Redirect::back()->with(
-                'error_code', 5
-            )->withErrors([
-                'block' => 'Email đã bị khóa,Vui lòng liên hệ quản lí',
-            ]);
-        }
+
         return back();
     }
 

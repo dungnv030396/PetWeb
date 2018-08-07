@@ -23,6 +23,7 @@
 @include('layouts.header')
 
 @include('registration.login')
+@include('registration.loginToManager')
 
 <div class="rev-slider" style="max-width: 100%">
 

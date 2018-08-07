@@ -139,10 +139,9 @@ Route::get('changePassByMail/{id}',function (){
 
 Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
 Route::get('nha-cung-cap/quan-ly/danh-sach-order','SupplierController@listOrder')->name('listOrder');
+Route::get('logout/moderator','ModeratorController@destroy')->name('logout');
 
-//Route::get('moderator/quan-ly/home',function (){
-//    return view('ProductManagementViews.home');
-//})->name('moderator_manage_place');
+Route::post('loginToManagement','SupplierController@loginToManagement')->name('loginToManagement');
 
 
 //Add comment single
@@ -164,12 +163,7 @@ Route::post('data/orders','DatatableController@getOrders')->name('orderDataProce
 //Redirect sang trang dang nhap vao quan ly cua Moderator
 
 Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
-Route::post('login/moderator','ModeratorController@login')->name('loginModerator');
-
-route::get('demoroute',function (){
-    $menu = 'home';
-    return view('ProductManagementViews.home',compact('menu'));
-});
+Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
 
 
 
