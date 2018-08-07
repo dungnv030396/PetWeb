@@ -26,16 +26,22 @@
             <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
         </p>
         <p>Login in. To see it in action.</p>
-        <form class="m-t" role="form" action="index.html">
+        <form class="m-t" role="form" action="{{route('loginModerator')}}" method="POST">
+
+            {{ csrf_field() }}
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Username" required="">
+                <input type="email" name="email" class="form-control" placeholder="Địa Chỉ Email" required="" value="{{ old('email') }}">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="">
+                <input type="password" name="password" class="form-control" placeholder="Mật Khẩu" required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            <button type="submit" class="btn btn-primary block full-width m-b">Đăng Nhập</button>
             <br><br>
         </form>
+
+        <div class="form-group">
+            <a style="float: left">@include('layouts.errors')</a>
+        </div>
         <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
     </div>
 </div>

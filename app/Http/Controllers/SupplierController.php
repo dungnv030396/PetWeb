@@ -40,6 +40,7 @@ class SupplierController extends Controller
         alert()->error('Quý khách k có quyền truy cập!');
         return redirect()->back()->with('message','failed');
     }
+
     public function load(){
         return view('ProductManagementViews.ordersHistory');
     }
