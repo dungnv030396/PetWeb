@@ -199,7 +199,16 @@ Route::get('moderator/manage/order-list',function (){
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
 
-Route::get('supplier/manage/order-list','SupplierController@home')->name('listOrderSp');
+Route::get('supplier/manage/order-list',function (){
+    $menu = 'order';
+    return view('SupplierView.order_view',compact('menu'));
+})->name('listOrderSp');
+
+//sp add product view
+Route::get('supplier/manage/add-product',function (){
+    $menu = 'product';
+    return view('SupplierView.add_product_view',compact('menu'));
+})->name('addProductView');
 //demo
 
 Route::get('load','SupplierController@load')->name('load');
