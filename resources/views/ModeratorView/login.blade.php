@@ -11,11 +11,11 @@
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
 
 </head>
-@if(\Illuminate\Support\Facades\Auth::check())
-    {{ \Illuminate\Support\Facades\Auth::logout() }}
-    @endif
-<body class="gray-bg">
 
+<body class="gray-bg">
+@if(\Illuminate\Support\Facades\Auth::check())
+    <h1>{{ \Illuminate\Support\Facades\Auth::user()->name }}</h1>
+@endif
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
@@ -32,7 +32,8 @@
 
             {{ csrf_field() }}
             <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="Địa Chỉ Email" required="" value="{{ old('email') }}">
+                <input type="email" name="email" class="form-control" placeholder="Địa Chỉ Email" required=""
+                       value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Mật Khẩu" required="">
@@ -42,9 +43,11 @@
         </form>
 
         <div class="form-group">
-            <a style="float: left">@include('layouts.errors')</a>
+            @include('layouts.errors')
         </div>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        <p class="m-t">
+            <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
+        </p>
     </div>
 </div>
 

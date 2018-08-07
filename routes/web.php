@@ -162,9 +162,23 @@ Route::post('data/orders','DatatableController@getOrders')->name('orderDataProce
 
 //Redirect sang trang dang nhap vao quan ly cua Moderator
 
-Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
+//Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
+Route::get('dang-nhap/moderator',function (){
+    if (\Illuminate\Support\Facades\Auth::check()){
+        \Illuminate\Support\Facades\Auth::logout();
+        return view('ModeratorView.login');
+    }else{
+        return view('ModeratorView.login');
+    }
+})->name('loginView');
 Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
-
+Route::get('supplier/management',function (){
+    if (!\Illuminate\Support\Facades\Auth::check()){
+        return view('ModeratorView.login');
+    }
+    $menu ='menu';
+    return view('ProductManagementViews.home',compact('menu'));
+})->name('supplierManagement');
 
 
 //demo

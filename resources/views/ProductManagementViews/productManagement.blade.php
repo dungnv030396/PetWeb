@@ -22,8 +22,9 @@
                     <div class="dropdown profile-element"> <span>
                             <img alt="image" class="img-circle" src="source/assets/manage/img/profile_small.jpg" />
                              </span>
+                        @if(\Illuminate\Support\Facades\Auth::check())
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
@@ -32,6 +33,7 @@
                             <li class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>
+                          @endif
                     </div>
                     <div class="logo-element">
                         IN+
