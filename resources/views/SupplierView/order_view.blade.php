@@ -1,4 +1,4 @@
-@extends('ProductManagementViews.productManagement')
+@extends('SupplierView.productManagement')
 @section('contentManager')
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <div class="wrapper wrapper-content animated fadeInRight">

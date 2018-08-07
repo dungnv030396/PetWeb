@@ -1,4 +1,4 @@
-@extends('ProductManagementViews.productManagement')
+@extends('ModeratorView.master')
 @section('contentManager')
     <div class="row  border-bottom white-bg dashboard-header">
 

@@ -12,12 +12,21 @@ use App\User;
 use Session;
 use Illuminate\Http\Request;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
 
     public  function test(Request $request){
 
+        if(1==1 && 2==3 ){
+            var_dump('ok');die;
+        }
+        var_dump('not ok');die;
+        auth()->logout();
+        die;
+        $user = Auth::attempt(['email'=>'acquy_tokyo_95@yahoo.com.vn','password'=>'123456','roleId'=>2,'delete_flag'=>0]);
+        var_dump($user);die;
         $user = new User();
         $oObj = new Order();
         $search = '18:24:24';

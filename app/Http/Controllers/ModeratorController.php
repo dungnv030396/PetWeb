@@ -16,16 +16,11 @@ class ModeratorController extends Controller
         $this->middleware('guest', ['except' => 'destroy']);
     }
 
-    public function loginView()
-    {
-        return view('ModeratorView.login');
-    }
-
     public function loginModerator(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => [4,1],'delete_flag' => 0])) {
             $menu = 'home';
-            return redirect(route('supplierManagement'));
+            return view('ModeratorView.home', compact('menu'));
         } else {
             return Redirect::back()->withErrors([
                 'message' => 'Email hoặc mật khẩu không chính xác hoặc đã bị khóa',
@@ -39,4 +34,5 @@ class ModeratorController extends Controller
         auth()->logout();
         return redirect(route('loginView'));
     }
+
 }

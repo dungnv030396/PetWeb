@@ -8,7 +8,7 @@ use App\Order;
 
 class DatatableController extends Controller
 {
-    //
+    //get all order pass to moderator
     public  function getOrders(Request $request){
         $orderObj = new Order();
         $start = $request->input('start') ?: 0;
