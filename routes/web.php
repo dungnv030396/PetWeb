@@ -157,6 +157,11 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
 
+//Redirect sang trang dang nhap vao quan ly cua Moderator
+
+Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
+
+
 
 //demo
 
