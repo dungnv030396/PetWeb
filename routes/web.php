@@ -198,6 +198,8 @@ Route::get('moderator/manage/order-list',function (){
     $menu = 'order';
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
+
+Route::get('supplier/manage/order-list','SupplierController@home')->name('listOrderSp');
 //demo
 
 Route::get('load','SupplierController@load')->name('load');
