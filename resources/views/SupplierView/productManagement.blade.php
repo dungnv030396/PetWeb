@@ -20,10 +20,11 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
+                            @if(\Illuminate\Support\Facades\Auth::check())
                             <img alt="image" class="img-circle" src="source/assets/manage/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{\Illuminate\Support\Facades\Auth::user()->name}}</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
@@ -32,6 +33,7 @@
                             <li class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>
+                        @endif
                     </div>
                     <div class="logo-element">
                         IN+
@@ -66,7 +68,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                        <span class="m-r-sm text-muted welcome-message">Chào Mới Tới Trang Quản Lí Của Nhà Cung Cấp.</span>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -111,8 +113,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}">
-                            <i class="fa fa-sign-out"></i> Log out
+                        <a href="{{ route('trangchu') }}">
+                            <i class="fa fa-sign-out"></i> Trang Chủ
                         </a>
                     </li>
                     <li>

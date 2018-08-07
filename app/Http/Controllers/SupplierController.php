@@ -57,7 +57,7 @@ class SupplierController extends Controller
         $currentUser = new User();
         $currentUser = $currentUser->getCurrentUser();
         if ($request->emailid == $currentUser->email && Hash::check($request->password,$currentUser->password)) {
-            return redirect(route('supplier_manage_place'));
+            return redirect(route('listOrder'));
         }else{
             return Redirect::back()->with(
                 'error_loginToManager', 4

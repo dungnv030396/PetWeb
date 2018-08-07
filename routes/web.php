@@ -165,16 +165,15 @@ Route::post('data/users','DatatableController@getUsers')->name('dataProcessing')
 
 //Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
 Route::get('dang-nhap/moderator',function (){
-    if (\Illuminate\Support\Facades\Auth::check()){
+    if (\Illuminate\Support\Facades\Auth::check()) {
         \Illuminate\Support\Facades\Auth::logout();
         return view('ModeratorView.login');
-    }else{
-        return view('ModeratorView.login');
     }
+        return view('ModeratorView.login');
 })->name('loginView');
 Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
 Route::get('supplier/management',function (){
-    if (!\Illuminate\Support\Facades\Auth::check()){
+    if (\Illuminate\Support\Facades\Auth::check()){
         return view('ModeratorView.login');
     }
     $menu ='menu';
@@ -182,17 +181,24 @@ Route::get('supplier/management',function (){
 })->name('supplierManagement');
 
 
-Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
+Route::post('moderator/manage/order-list','ModeratorController@loginModerator')->name('loginModerator');
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
+
 Route::get('dang-nhap/moderator', function (){
+    if (\Illuminate\Support\Facades\Auth::check()){
+        \Illuminate\Support\Facades\Auth::logout();
+        return view('ModeratorView.login');
+    }
     return view('ModeratorView.login');
 })->name('loginView');
 Route::get('moderator/manage/order-list',function (){
+    if (!\Illuminate\Support\Facades\Auth::check()){
+        return view('ModeratorView.login');
+    }
     $menu = 'order';
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
 //demo
 
-Route::get('
-}load','SupplierController@load')->name('load');
+Route::get('load','SupplierController@load')->name('load');
 Route::get('demo','SupplierController@demo')->name('demo');
