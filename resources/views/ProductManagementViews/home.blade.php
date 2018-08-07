@@ -1,5 +1,5 @@
 @extends('ProductManagementViews.productManagement')
-@section('content')
+@section('contentManager')
     <div class="row  border-bottom white-bg dashboard-header">
 
         <div class="col-md-3">

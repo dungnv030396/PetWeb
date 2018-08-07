@@ -40,15 +40,19 @@ class SupplierController extends Controller
         alert()->error('Quý khách k có quyền truy cập!');
         return redirect()->back()->with('message','failed');
     }
-
+    public function load(){
+        return view('ProductManagementViews.ordersHistory');
+    }
     public function demo()
     {
         $id = Auth::user()->id;
-        $products = DB::table('products')->select('id', 'created_at');
+//        $products = DB::table('products')->select('id', 'created_at')->where('user_id',$id)->get();
+        $products = Order::where('user_id',$id);
         return datatables($products)->make(true);
     }
     public function listOrder(){
-        return view('ProductManagementViews.order_view');
+        $menu = 'order';
+        return view('ProductManagementViews.order_view',compact('menu'));
     }
 
 }
