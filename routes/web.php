@@ -138,7 +138,7 @@ Route::get('changePassByMail/{id}',function (){
 //Quan? Ly cua supplier
 
 Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplier_manage_place');
-Route::get('nha-cung-cap/quan-ly/danh-sach-order','SupplierController@listOrder')->name('listOrder');
+
 Route::get('logout/moderator','ModeratorController@destroy')->name('logout');
 
 Route::post('loginToManagement','SupplierController@loginToManagement')->name('loginToManagement');
@@ -158,16 +158,21 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 
 
 Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
-Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
+
 
 //Redirect sang trang dang nhap vao quan ly cua Moderator
 
-Route::get('dang-nhap/moderator','ModeratorController@loginView')->name('loginView');
 Route::post('login/moderator','ModeratorController@loginModerator')->name('loginModerator');
-
-
-
+Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
+Route::get('dang-nhap/moderator', function (){
+    return view('ModeratorView.login');
+})->name('loginView');
+Route::get('moderator/manage/order-list',function (){
+    $menu = 'order';
+    return view('ModeratorView.order_view',compact('menu'));
+})->name('listOrder');
 //demo
 
-Route::get('load','SupplierController@load')->name('load');
+Route::get('
+}load','SupplierController@load')->name('load');
 Route::get('demo','SupplierController@demo')->name('demo');
