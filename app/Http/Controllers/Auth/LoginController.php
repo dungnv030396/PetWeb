@@ -68,12 +68,12 @@ class LoginController extends Controller
             return back()->with('facebook');
         }
     }
-    public function logoutFacebook()
-    {
-        Auth::logout();
-
-        return redirect(route('trangchu'));
-    }
+//    public function logoutFacebook()
+//    {
+//        Auth::logout();
+//
+//        return redirect(route('trangchu'));
+//    }
 
     public function redirectToProviderGM()
     {

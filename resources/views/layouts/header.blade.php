@@ -8,18 +8,12 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        {{--@if(\Illuminate\Support\Facades\Auth::user()->roleId ==3)--}}
-                        {{--<li><a href="#">Đăng ký bán hàng</a></li>--}}
-                        {{--@else--}}
-                        {{--<li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>--}}
-                        {{--@endif--}}
                         @if(\Illuminate\Support\Facades\Auth::user()->roleId==3)
                             <li><a href="{{route('register.supplier')}}">Trở Thành Nhà Cung Cấp</a></li>
                         @endif
                         @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
                             <li><a href="" data-toggle="modal" data-target="#myModal2">Quản lý gian hàng</a></li>
                         @endif
-                        <li><a href="{{route('supplier_manage_place')}}">Quản lý gian hàng</a></li>
                         <li><a style="color: red" href="userProfile/{{\Illuminate\Support\Facades\Auth::user()->id}}">
                                 @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
 
@@ -49,7 +43,7 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="{{route('trangchu')}}" id="logo"><img src="source/assets/dest/images/pet_shop_logo.jpg"
+                <a href="{{route('trangchu')}}" id="logo"><img src="source/image/logo/logo.png"
                                                                width="157px" height="100px" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">

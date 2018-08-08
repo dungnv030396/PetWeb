@@ -49,7 +49,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img src="source/image/products/{{$product['product']->image_link}}" alt="">
+                            <img src="storage/products/{{$product['product']->image_link}}" alt="">
                         </div>
                         <div class="col-sm-8">
                             <div class="single-item-body">
