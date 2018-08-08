@@ -18,7 +18,10 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
-
+        //return redirect(route('logout'));
+        //auth()->logout();
+        var_dump(Session::all());
+        die;
         if(1==1 && 2==3 ){
             var_dump('ok');die;
         }

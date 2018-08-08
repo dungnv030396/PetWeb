@@ -10,6 +10,9 @@
     <link href="source/assets/manage/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="source/assets/manage/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
     <link href="source/assets/manage/css/animate.css" rel="stylesheet">
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
 </head>
@@ -41,13 +44,19 @@
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('supplier_manage_place')}}"><i class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
                 <li class="{{($menu=='order')?'active':''}}">
-                    <a href="{{route('listOrder')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý order</span> <span class="fa arrow"></span></a>
+                    <a href="{{route('listOrderSp')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý order</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{route('listOrder')}}">Danh sách order</a></li>
+                        <li><a href="{{route('listOrderSp')}}">Danh sách order</a></li>
                         <li><a href="dashboard_2.html">Trong tháng này</a></li>
                         <li><a href="dashboard_3.html">Chưa hoàn thành</a></li>
                         <li><a href="dashboard_4_1.html">Đã Hoàn thành</a></li>
                         <li><a href="dashboard_5.html">Đã hủy</a></li>
+                    </ul>
+                </li>
+                <li class="{{($menu=='product')?'active':''}}">
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Sản phẩm</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>
