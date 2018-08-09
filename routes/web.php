@@ -143,10 +143,7 @@ Route::get('logout/moderator','ModeratorController@destroy')->name('logout');
 
 Route::post('loginToManagement','SupplierController@loginToManagement')->name('loginToManagement');
 //sp add product view
-Route::get('supplier/manage/add-product',function (){
-    $menu = 'product';
-    return view('SupplierView.add_product_view',compact('menu'));
-})->name('addProductView');
+Route::get('supplier/manage/add-product','SupplierController@addProductView')->name('addProductView');
 //add product
 Route::post('supplier/manage/add-product','ProductController@postProduct')->name('addProduct');
 //detail add product
@@ -209,3 +206,5 @@ Route::get('load','SupplierController@load')->name('load');
 Route::get('demo','SupplierController@demo')->name('demo');
 
 Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
+
+Route::post('data-load','ProductController@loadCategoriesAjax')->name('loadCategories');
