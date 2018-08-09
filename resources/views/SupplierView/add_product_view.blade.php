@@ -28,9 +28,6 @@
                 <div class="tabs-container">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#tab-1">Thông Tin Sản Phẩm</a></li>
-                        {{--<li class=""><a data-toggle="tab" href="#tab-2"> Data</a></li>--}}
-                        {{--<li class=""><a data-toggle="tab" href="#tab-3"> Discount</a></li>--}}
-                        {{--<li class=""><a data-toggle="tab" href="#tab-4"> Images</a></li>--}}
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">
@@ -91,7 +88,7 @@
 
                                     @if (session('errorNull'))
                                         <div class="alert alert-danger">
-                                            <ul>
+                                            <ul style="width: 50%;float: left">
                                                 {{ session('errorNull') }}
                                             </ul>
                                         </div>
@@ -101,7 +98,7 @@
                                 <div class="form-group">
 
                                     @if (session('errorFile'))
-                                        <div class="alert alert-danger">
+                                        <div style="width: 50%;float: left" class="alert alert-danger">
                                             <ul>
                                                 {{ session('errorFile') }}
                                             </ul>
@@ -111,12 +108,15 @@
                                 </div>
                                 <div class="form-group">
                                     @if (session('postProductSuccess'))
-                                        <div class="alert alert-success">
+                                        <div style="width: 50%;float: left" class="alert alert-success">
                                             <ul>
                                                 {{ session('postProductSuccess') }}
                                             </ul>
                                         </div>
                                     @endif
+                                </div>
+                                <div style="width: 50%;float: left" class="form-group">
+                                    @include('layouts.errors')
                                 </div>
 
                             </div>

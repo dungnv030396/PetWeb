@@ -189,7 +189,8 @@ class Product extends Model
                 $avatar->storeAs('public/products', $filenameFinal);
                 $product->save();
                 return [
-                    'error' => false
+                    'error' => false,
+                    'product_id' => Product::where('user_id',Auth::user()->id)->latest()->first()
                 ];
             } else {
                 return [

@@ -149,6 +149,11 @@ Route::get('supplier/manage/add-product',function (){
 })->name('addProductView');
 //add product
 Route::post('supplier/manage/add-product','ProductController@postProduct')->name('addProduct');
+//detail add product
+//Route::get('supplier/manage/add-product/detail/{id}',function (){
+//    $menu = 'detailproduct';
+//    return view('SupplierView.detail_add_product',compact('menu'));
+//});
 
 
 //Add comment single
