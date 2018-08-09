@@ -16,6 +16,9 @@ class Order extends Model
     public function orderLine(){
         return $this->hasMany(OrderLine::class);
     }
+    public function payment(){
+        return $this->hasOne(Payment::class,'id','payment_id');
+    }
 
     public function getOrdersAjax($start,$length,$search,$oderColunm,$oderSortType,$draw)
     {
@@ -35,7 +38,7 @@ class Order extends Model
                 ->get();
             $totalFiltered = $totalData;
         }else{
-            $orders = Order::whereHas('user',function ($query) use ($search){
+            $orders = Order::whereHas('user',function ($query) use ($search,$oderColunm,$oderSortType){
                     $query->where('name','like',"%$search%");
                 })
                 ->where('delete_flag','=',0)

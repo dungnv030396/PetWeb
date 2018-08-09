@@ -210,3 +210,5 @@ Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('d
 
 Route::get('load','SupplierController@load')->name('load');
 Route::get('demo','SupplierController@demo')->name('demo');
+
+Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');

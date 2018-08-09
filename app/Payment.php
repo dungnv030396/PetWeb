@@ -58,17 +58,16 @@ class Payment extends Model
             }
             $payment->user_message = $request->notes;
             $payment->save();
+
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
             if(!empty(trim($request->order_address,' '))){
                 $order->address = trim($request->order_address,' ');
-                $cUser->address = trim($request->address,' ');
             }else{
                 $order->address = trim($request->address,' ');
             }
             $order->save();
-
             foreach ($cart->items as $cartLine) {
                 $cLine = new OrderLine();
                 $cLine->order_id = $order->id;
@@ -87,8 +86,11 @@ class Payment extends Model
             }
             $cUser->name = trim($request->name,' ');
             $cUser->gender = $request->gender;
+            $cUser->phoneNumber = trim($request->phone,' ');
+            $cUser->address = trim($request->address,' ');
             $cUser->save();
             Session::forget('cart');
+            return $order;
         } catch (\Exception $e) {
             throw $e;
         }
