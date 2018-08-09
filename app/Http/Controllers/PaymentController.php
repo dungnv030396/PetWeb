@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderLine;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
@@ -34,7 +35,9 @@ class PaymentController extends Controller
         return view('clientViews.customer.orders_history',compact('listOrders'));
     }
     public function detailOrder(){
-        $order = new Order();
-        $detailOrder = $order->detailOrder();
+        $orderLine = new OrderLine();
+        $orderDetail = $orderLine->detailOrder();
+        return view('clientViews.customer.detail_order',compact('orderDetail'));
+
     }
 }
