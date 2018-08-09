@@ -200,3 +200,5 @@ Route::get('supplier/manage/add-product',function (){
 
 Route::get('load','SupplierController@load')->name('load');
 Route::get('demo','SupplierController@demo')->name('demo');
+
+Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
