@@ -21,7 +21,7 @@
                                         @endif
                                         <div class="single-item-header">
                                             <a href="{{route('productDetail',$product->id)}}"><img
-                                                        src="source/image/products/{{$product->image_link}}" alt=""
+                                                        src="storage/products/{{$product->image_link}}" alt=""
                                                         height="250"></a>
                                         </div>
                                         <div class="single-item-body">

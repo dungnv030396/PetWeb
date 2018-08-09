@@ -77,7 +77,7 @@ Route::post('register', 'UsersController@store')->name('register');
 Route::get('register.supplier',function (){
     return view('clientViews.customer.registerToSupplier');
 })->name('register.supplier');
-Route::post('registerToSupplier', 'UsersController@registerSupplier')->name('registerToSupplier');
+Route::post('register.supplier', 'UsersController@registerSupplier')->name('registerToSupplier');
 
 
 //userProfile
@@ -90,12 +90,12 @@ Route::post('updateAvatar', 'UserProfileController@updateAvatar');
 Route::post('login', 'LoginController@login')->name('login');
 Route::get('auth/logout','LoginController@destroy');
 
-//login & logout facebook
+//login facebook
 Route::get('login/facebook', 'Auth\LoginController@redirectToProviderFB');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFB');
-Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
+//Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
 
-//login & logout google
+//login google
 Route::get('login/google', 'Auth\LoginController@redirectToProviderGM');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGM');
 
@@ -142,6 +142,18 @@ Route::get('nha-cung-cap/quan-ly/home','SupplierController@home')->name('supplie
 Route::get('logout/moderator','ModeratorController@destroy')->name('logout');
 
 Route::post('loginToManagement','SupplierController@loginToManagement')->name('loginToManagement');
+//sp add product view
+Route::get('supplier/manage/add-product',function (){
+    $menu = 'product';
+    return view('SupplierView.add_product_view',compact('menu'));
+})->name('addProductView');
+//add product
+Route::post('supplier/manage/add-product','ProductController@postProduct')->name('addProduct');
+//detail add product
+//Route::get('supplier/manage/add-product/detail/{id}',function (){
+//    $menu = 'detailproduct';
+//    return view('SupplierView.detail_add_product',compact('menu'));
+//});
 
 
 //Add comment single
@@ -191,11 +203,6 @@ Route::get('supplier/manage/order-list',function (){
     return view('SupplierView.order_view',compact('menu'));
 })->name('listOrderSp');
 
-//sp add product view
-Route::get('supplier/manage/add-product',function (){
-    $menu = 'product';
-    return view('SupplierView.add_product_view',compact('menu'));
-})->name('addProductView');
 //demo
 
 Route::get('load','SupplierController@load')->name('load');

@@ -12,7 +12,7 @@
                     <br>
                     <h1 class="entry-title main-color"><span>Đăng Ký Trở Thành Nhà Cung Cấp</span> </h1>
                     <hr>
-                    <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="registerToSupplier" >
+                    <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="{{route('registerToSupplier')}}" >
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="control-label col-sm-3">Họ và Tên <span class="text-danger">*</span></label>
@@ -162,13 +162,13 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Ảnh Chứng Mình Thư:</label>
                             <div class="col-lg-8">
-                                <input style="float: left" type="file" class="text-center center-block well well-sm" name="cmnd"  required>
+                                <input style="float: left" type="file" class="text-center center-block well well-sm" name="cmnd" id="cmnd"  required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Ảnh Chân Dung:</label>
                             <div class="col-lg-8">
-                                <input style="float: left" type="file" class="text-center center-block well well-sm" name="avatar"required>
+                                <input style="float: left" type="file" class="text-center center-block well well-sm" name="avatar" id="avatar" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -185,6 +185,24 @@
                             <div class="alert alert-success">
                                 <ul>
                                     {{ session('registerToSupSuccess') }}
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        @if (session('errorFile'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ session('errorFile') }}
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        @if (session('errorNull'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {{ session('errorNull') }}
                                 </ul>
                             </div>
                         @endif

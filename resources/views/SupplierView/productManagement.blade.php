@@ -56,7 +56,7 @@
                 <li class="{{($menu=='product')?'active':''}}">
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Sản phẩm</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
+                        <li class="{{($menu=='detailproduct')?'active':''}}"><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>

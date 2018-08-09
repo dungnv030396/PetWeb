@@ -40,17 +40,25 @@ class SupplierRegister extends Model
                 $avatar = $request->file('avatar');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
-
-                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
-                if (in_array($fileExtension, $followExtensions)) {
+                $allowedfileExtension=['pdf','jpg','png'];
+//                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
+                if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time().'.'.$filename;
                     $registerSup->chandung = $filenameFinal;
                     $avatar->storeAs('public/chandung', $filenameFinal);
                 } else {
-                    return back()->with('errorFile','Chỉ chấp nhận file ảnh, xin mời chọn lại');
+                    return [
+                        'error' => true,
+                        'code' => 'errorFile',
+                        'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    ];
                 }
             }else{
-                return back()->with('errorNull','xin mời chọn ảnh');
+                return [
+                    'error' => true,
+                    'code' => 'errorNull',
+                    'message' => 'xin mời chọn ảnh'
+                ];
             }
 
             if ($request->hasFile('cmnd')) {
@@ -58,19 +66,31 @@ class SupplierRegister extends Model
                 $avatar = $request->file('cmnd');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
+                $allowedfileExtension=['pdf','jpg','png'];
 
-                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
-                if (in_array($fileExtension, $followExtensions)) {
+//                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
+                if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time().'.'.$filename;
                     $registerSup->cmnd = $filenameFinal;
                     $avatar->storeAs('public/cmnd', $filenameFinal);
+                    $registerSup->save();
+                    return [
+                        'error' => false
+                    ];
                 } else {
-                    return back()->with('errorFile','Chỉ chấp nhận file ảnh, xin mời chọn lại');
+                    return [
+                        'error' => true,
+                        'code' => 'errorFile',
+                        'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    ];
                 }
             }else{
-                return back()->with('errorNull','xin mời chọn ảnh');
+                return [
+                    'error' => true,
+                    'code' => 'errorNull',
+                    'message' => 'xin mời chọn ảnh'
+                ];
             }
-            $registerSup->save();
         }else {
             $user = new SupplierRegister();
             $user->user_id = Auth::user()->id;
@@ -89,17 +109,26 @@ class SupplierRegister extends Model
                 $avatar = $request->file('avatar');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
+                $allowedfileExtension=['pdf','jpg','png'];
 
-                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
-                if (in_array($fileExtension, $followExtensions)) {
+//                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
+                if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time() . '.' . $filename;
                     $user->chandung = $filenameFinal;
                     $avatar->storeAs('public/chandung', $filenameFinal);
                 } else {
-                    return back()->with('errorFile', 'Chỉ chấp nhận file ảnh, xin mời chọn lại');
+                    return [
+                        'error' => true,
+                        'code' => 'errorFile',
+                        'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    ];
                 }
             } else {
-                return back()->with('errorNull', 'xin mời chọn ảnh');
+                return [
+                    'error' => true,
+                    'code' => 'errorNull',
+                    'message' => 'xin mời chọn ảnh'
+                ];
             }
 
             if ($request->hasFile('cmnd')) {
@@ -107,19 +136,31 @@ class SupplierRegister extends Model
                 $avatar = $request->file('cmnd');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
+                $allowedfileExtension=['pdf','jpg','png'];
 
-                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
-                if (in_array($fileExtension, $followExtensions)) {
+//                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
+                if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time() . '.' . $filename;
                     $user->cmnd = $filenameFinal;
                     $avatar->storeAs('public/cmnd', $filenameFinal);
+                    $user->save();
+                    return [
+                        'error' => false
+                    ];
                 } else {
-                    return back()->with('errorFile', 'Chỉ chấp nhận file ảnh, xin mời chọn lại');
+                    return [
+                        'error' => true,
+                        'code' => 'errorFile',
+                        'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    ];
                 }
             } else {
-                return back()->with('errorNull', 'xin mời chọn ảnh');
+                return [
+                    'error' => true,
+                    'code' => 'errorNull',
+                    'message' => 'xin mời chọn ảnh'
+                ];
             }
-            $user->save();
         }
     }
 }

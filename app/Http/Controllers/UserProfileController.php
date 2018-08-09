@@ -45,9 +45,9 @@ class UserProfileController extends Controller
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-
-            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
-            if (in_array($fileExtension, $followExtensions)) {
+            $allowedfileExtension=['pdf','jpg','png'];
+//            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
+            if (in_array($fileExtension, $allowedfileExtension)) {
                 $filenameFinal = time().'.'.$filename;
                 $id = Auth::user()->id;
                 $user = User::find($id);

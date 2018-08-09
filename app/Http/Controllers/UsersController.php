@@ -22,9 +22,15 @@ class UsersController extends Controller
         $user = User::all()->find($id);
         return view('clientViews.profile.userProfile', compact('user'));
     }
-    public function registerSupplier(Request $request){
-            $user = new SupplierRegister();
-            $user->registerToSupplier($this,$request);
-            return back()->with('registerToSupSuccess','Gửi đơn đăng ký thành công');
+
+    public function registerSupplier(Request $request)
+    {
+        $user = new SupplierRegister();
+        $res = $user->registerToSupplier($this, $request);
+        if ($res['error']) {
+            return back()->with($res['code'], $res['message']);
+        } else {
+            return back()->with('postProductSuccess', 'Gửi đơn đăng ký thành công');
+        }
     }
 }

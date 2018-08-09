@@ -22,7 +22,7 @@ class ModeratorController extends Controller
             $menu = 'home';
             return view('ModeratorView.home', compact('menu'));
         } else {
-            return Redirect::back()->withErrors([
+            return Redirect::back()->with([
                 'message' => 'Email hoặc mật khẩu không chính xác hoặc đã bị khóa',
             ]);
         }
