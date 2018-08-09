@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Catalog;
+use App\Category;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
@@ -65,6 +67,14 @@ class SupplierController extends Controller
                 'block' => 'Email không đúng hoặc đã bị khóa,Vui lòng liên hệ quản lí',
             ]);
         }
+    }
+
+    public function addProductView(){
+        $cataObj = new Category();
+        $menu = 'product';
+        $catalogs = Catalog::all();
+        $categories =  $cataObj->getCategoriesByCatalogId($catalogs[0]->id);
+        return view('SupplierView.add_product_view',compact('catalogs','menu','categories'));
     }
 }
 

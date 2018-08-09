@@ -165,7 +165,7 @@ class Product extends Model
         $product = new Product();
         $sup_id = Auth::user()->id;
         $product->user_id = $sup_id;
-        $product->category_id = \request('category');
+        $product->category_id = $request->category;
         $product->name = \request('productname');
         $product->price = \request('price');
         $product->quantity = \request('soluong');
@@ -187,6 +187,14 @@ class Product extends Model
                 $filenameFinal = time() . '.' . $filename;
                 $product->image_link = $filenameFinal;
                 $avatar->storeAs('public/products', $filenameFinal);
+                $category = trim($request->category_new,' ');
+                if(!empty($category)){
+                    $cate = new Category();
+                    $cate->catalog_id = $request->catalog;
+                    $cate->name = $category;
+                    $cate->save();
+                    $product->category_id = $cate->id;
+                }
                 $product->save();
                 return [
                     'error' => false,

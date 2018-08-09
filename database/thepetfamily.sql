@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2018 at 07:33 PM
+-- Generation Time: Aug 09, 2018 at 07:05 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -57,24 +57,27 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `catalog_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `catalog_id`) VALUES
-(1, 'chó', 1),
-(2, 'mèo', 1),
-(3, 'chim', 1),
-(4, 'thức ăn', 2),
-(5, 'đồ chơi', 2),
-(6, 'quần áo', 2),
-(7, 'làm đẹp', 3),
-(8, 'trông giữ', 3),
-(9, 'chữa trị', 3),
-(10, 'đồ dùng', 2);
+INSERT INTO `categories` (`id`, `name`, `catalog_id`, `created_at`, `updated_at`) VALUES
+(1, 'chó', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(2, 'mèo', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(3, 'chim', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(4, 'thức ăn', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(5, 'đồ chơi', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(6, 'quần áo', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(7, 'làm đẹp', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(8, 'trông giữ', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(9, 'chữa trị', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(10, 'đồ dùng', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(11, 'Chim', 1, '2018-08-09 17:02:15', '2018-08-09 17:02:15');
 
 -- --------------------------------------------------------
 
@@ -144,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `completed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
@@ -161,7 +164,28 @@ INSERT INTO `orders` (`id`, `status_id`, `address`, `moderator_id`, `user_id`, `
 (12, 1, 'Hà Nội', NULL, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-06 15:44:49', NULL),
 (13, 1, 'dsadsadsad', NULL, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-06 15:45:18', NULL),
 (14, 1, 'dsadsadsad', NULL, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-06 15:45:59', NULL),
-(15, 1, 'HCM', NULL, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-06 15:46:28', NULL);
+(15, 1, 'HCM', NULL, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-06 15:46:28', NULL),
+(16, 0, 'dsadsadsad', NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
+(17, 0, 'sads', NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
+(18, 0, 'dsadsadsad', NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
+(19, 0, 'dsadsadsad', NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
+(20, 0, 'Hà Nội', NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
+(21, 0, 'Hà Nội', NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
+(22, 0, 'dsad', NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
+(23, 0, 'Hà Nội', NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
+(24, 0, 'Hà Nội', NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
+(25, 0, 'Hà Nội', NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
+(26, 0, 'Hà Nội', NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
+(27, 0, 'Hà Nội', NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
+(28, 0, 'Hà Nội', NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
+(29, 0, 'Hà Nội', NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
+(30, 0, 'HCM11111111', NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
+(31, 0, 'Hà Nội', NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
+(32, 0, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
+(33, 0, 'Hà Nội', NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
+(34, 0, 'Hà Nội', NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
+(35, 0, 'Hà Nội', NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
+(36, 0, 'Hà Nội', NULL, 5, 42, 0, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -179,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `order_lines` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order_lines`
@@ -198,7 +222,37 @@ INSERT INTO `order_lines` (`id`, `order_id`, `product_id`, `quantity`, `amount`,
 (17, 12, 7, 1, 2550000, '2018-08-06 15:44:49', '2018-08-06 15:44:49'),
 (18, 13, 7, 1, 2550000, '2018-08-06 15:45:18', '2018-08-06 15:45:18'),
 (19, 14, 7, 1, 2550000, '2018-08-06 15:45:59', '2018-08-06 15:45:59'),
-(20, 15, 7, 4, 10200000, '2018-08-06 15:46:28', '2018-08-06 15:46:28');
+(20, 15, 7, 4, 10200000, '2018-08-06 15:46:28', '2018-08-06 15:46:28'),
+(21, 16, 10, 1, 11347500, '2018-08-09 11:28:56', '2018-08-09 11:28:56'),
+(22, 17, 7, 1, 2550000, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
+(23, 17, 1, 1, 10350000, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
+(24, 18, 1, 1, 10350000, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
+(25, 18, 7, 1, 2550000, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
+(26, 19, 3, 1, 10000000, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
+(27, 19, 7, 1, 2550000, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
+(28, 20, 3, 1, 10000000, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
+(29, 20, 7, 1, 2550000, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
+(30, 21, 3, 1, 10000000, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
+(31, 21, 7, 1, 2550000, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
+(32, 22, 3, 1, 10000000, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
+(33, 22, 7, 1, 2550000, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
+(34, 23, 3, 1, 10000000, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
+(35, 23, 7, 1, 2550000, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
+(36, 24, 3, 2, 20000000, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
+(37, 24, 7, 2, 5100000, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
+(38, 25, 3, 2, 20000000, '2018-08-09 11:49:43', '2018-08-09 11:49:43'),
+(39, 26, 3, 1, 10000000, '2018-08-09 11:51:30', '2018-08-09 11:51:30'),
+(40, 27, 4, 1, 4000000, '2018-08-09 11:52:57', '2018-08-09 11:52:57'),
+(41, 28, 7, 2, 5100000, '2018-08-09 11:53:41', '2018-08-09 11:53:41'),
+(42, 29, 7, 1, 2550000, '2018-08-09 11:54:41', '2018-08-09 11:54:41'),
+(43, 30, 7, 2, 5100000, '2018-08-09 11:55:37', '2018-08-09 11:55:37'),
+(44, 31, 7, 2, 5100000, '2018-08-09 11:57:54', '2018-08-09 11:57:54'),
+(45, 32, 7, 1, 2550000, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
+(46, 32, 8, 1, 13350000, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
+(47, 33, 1, 1, 10350000, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
+(48, 34, 7, 1, 2550000, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
+(49, 35, 7, 1, 2550000, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
+(50, 36, 7, 1, 2550000, '2018-08-09 13:12:06', '2018-08-09 13:12:06');
 
 -- --------------------------------------------------------
 
@@ -233,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `payments`
@@ -243,14 +297,35 @@ INSERT INTO `payments` (`id`, `status`, `amount`, `payment`, `payment_info`, `se
 (11, 1, 16800000, NULL, NULL, NULL, NULL, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
 (12, 1, 15162500, NULL, NULL, NULL, NULL, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
 (13, 1, 6800000, NULL, NULL, NULL, NULL, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
-(14, 1, 6800000, 'Visa', 'a:4:{s:8:\"username\";s:4:\"Hiep\";s:11:\"card_number\";s:16:\"1234123412331234\";s:16:\"Expiration_month\";s:1:\"2\";s:15:\"Expiration_year\";s:4:\"2020\";}', '3', NULL, '2018-07-29 18:24:24', '2018-07-29 18:24:24'),
+(14, 1, 6800000, NULL, NULL, NULL, NULL, '2018-07-29 18:24:24', '2018-07-29 18:24:24'),
 (15, 1, 6800000, NULL, NULL, NULL, NULL, '2018-08-04 13:28:56', '2018-08-04 13:28:56'),
 (16, 1, 6800000, NULL, NULL, NULL, NULL, '2018-08-04 13:30:12', '2018-08-04 13:30:12'),
 (17, 1, 10000000, NULL, NULL, NULL, NULL, '2018-08-04 13:42:37', '2018-08-04 13:42:37'),
 (18, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:44:49', '2018-08-06 15:44:49'),
 (19, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:45:18', '2018-08-06 15:45:18'),
 (20, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:45:59', '2018-08-06 15:45:59'),
-(21, 1, 10200000, NULL, NULL, NULL, NULL, '2018-08-06 15:46:28', '2018-08-06 15:46:28');
+(21, 1, 10200000, NULL, NULL, NULL, NULL, '2018-08-06 15:46:28', '2018-08-06 15:46:28'),
+(22, 1, 11347500, NULL, NULL, NULL, NULL, '2018-08-09 11:28:56', '2018-08-09 11:28:56'),
+(23, 1, 12900000, NULL, NULL, NULL, NULL, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
+(24, 1, 12900000, NULL, NULL, NULL, NULL, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
+(25, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
+(26, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
+(27, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
+(28, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
+(29, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
+(30, 1, 15100000, NULL, NULL, NULL, NULL, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
+(31, 1, 20000000, NULL, NULL, NULL, NULL, '2018-08-09 11:49:43', '2018-08-09 11:49:43'),
+(32, 1, 10000000, NULL, NULL, NULL, NULL, '2018-08-09 11:51:30', '2018-08-09 11:51:30'),
+(33, 1, 4000000, NULL, NULL, NULL, NULL, '2018-08-09 11:52:57', '2018-08-09 11:52:57'),
+(34, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:53:41', '2018-08-09 11:53:41'),
+(35, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 11:54:41', '2018-08-09 11:54:41'),
+(36, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:55:37', '2018-08-09 11:55:37'),
+(37, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:57:54', '2018-08-09 11:57:54'),
+(38, 1, 28650000, NULL, NULL, NULL, 'Ship cho 4-5 ngày', '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
+(39, 1, 10350000, NULL, NULL, NULL, NULL, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
+(40, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
+(41, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
+(42, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:12:06', '2018-08-09 13:12:06');
 
 -- --------------------------------------------------------
 
@@ -273,26 +348,29 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quantity`, `discount`, `image_link`, `description`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Chó Husky', 11500000, 5, 10, 'husky.jpg', 'Chó Husky(chó tuyết kéo xe) có xuất xứ từ Siberia – Nga, rất giống cho sói. Được con người lai tạo lần đầu tiên để kéo xe tuyết chở hàng hóa khắp Siberia. Thân hình những chú chó Husky cân đối, dáng vẻ dũng mãnh và đặc biệt cực kỳ dẻo dai. Bộ lông của chúng rất dày có 2 lớp giúp giữ ấm cơ thể rất tốt, nhưng cũng chính lớp lông này khiến chúng khó thích nghi khi được nuôi trong thời tiết nắng nóng.', 0, '2018-07-17 17:11:28', '2018-07-17 17:11:28'),
+(1, 1, 1, 'Chó Husky', 11500000, 2, 10, 'husky.jpg', 'Chó Husky(chó tuyết kéo xe) có xuất xứ từ Siberia – Nga, rất giống cho sói. Được con người lai tạo lần đầu tiên để kéo xe tuyết chở hàng hóa khắp Siberia. Thân hình những chú chó Husky cân đối, dáng vẻ dũng mãnh và đặc biệt cực kỳ dẻo dai. Bộ lông của chúng rất dày có 2 lớp giúp giữ ấm cơ thể rất tốt, nhưng cũng chính lớp lông này khiến chúng khó thích nghi khi được nuôi trong thời tiết nắng nóng.', 0, '2018-07-17 17:11:28', '2018-08-09 13:05:57'),
 (2, 1, 1, 'Chó Samoyed – Chó tuyết kéo xe', 8000000, 1, 15, 'Samoyed.jpg', 'Chó Samoyed có xuất xứ từ vùng núi Taiga, Tây Bắc Siberia – Nga. Cũng giống như Husky chúng cũng có cơ thể mạnh mẽ, dẻo dai, lớp lông dày có thể kéo xe tuyết trong thời gian dài. Chó Samoyed có địa vị rất cao trong xã hội người Samoyede giúp họ vận chuyển lương thực, săn bắt thú rừng và bảo vệ khỏi kẻ thù.', 0, '2018-07-17 17:24:52', '2018-08-04 13:30:12'),
-(3, 2, 1, 'Chó Alaska (Alaska Malamute)', 10000000, 10, 0, 'Alaska.jpg', 'Chó Alaska cũng là một giống chó xứ lạnh giống Husky và Samoyed được thuần hóa bởi bộ tộc Mahlemute. Khi mới bắt đầu thuần hóa, chó Alaska cũng chỉ có kích thước ngang với Husky nhưng được người Eskimo lai tao để có được những chú chó Alaska to khỏe, dẻo dai và chịu được thời tiết khắc nghiệt hơn.', 0, '2018-07-17 17:24:52', '2018-08-04 13:42:37'),
-(4, 1, 1, 'Chó Becgie – Chó chăn cừu', 4000000, 1, 0, 'Becgie.jpg', 'Chó Becgie được người Đức lai tạo lần đầu năm 1899, chủ yếu dùng để chăn cừu. Nhưng với sự thông minh vượt bậc, trung thành, nhanh nhẹn chúng nhanh chóng được huấn luyện để phục vụ trong ngành cảnh sát và quân đội. Theo thống kê, chó Becgie là giống chó phục vụ nhiều nhất trong lực lượng cảnh sát các nước trên thế giới.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
+(3, 2, 1, 'Chó Alaska (Alaska Malamute)', 10000000, 0, 0, 'Alaska.jpg', 'Chó Alaska cũng là một giống chó xứ lạnh giống Husky và Samoyed được thuần hóa bởi bộ tộc Mahlemute. Khi mới bắt đầu thuần hóa, chó Alaska cũng chỉ có kích thước ngang với Husky nhưng được người Eskimo lai tao để có được những chú chó Alaska to khỏe, dẻo dai và chịu được thời tiết khắc nghiệt hơn.', 0, '2018-07-17 17:24:52', '2018-08-09 11:51:30'),
+(4, 1, 1, 'Chó Becgie – Chó chăn cừu', 4000000, 0, 0, 'Becgie.jpg', 'Chó Becgie được người Đức lai tạo lần đầu năm 1899, chủ yếu dùng để chăn cừu. Nhưng với sự thông minh vượt bậc, trung thành, nhanh nhẹn chúng nhanh chóng được huấn luyện để phục vụ trong ngành cảnh sát và quân đội. Theo thống kê, chó Becgie là giống chó phục vụ nhiều nhất trong lực lượng cảnh sát các nước trên thế giới.', 0, '2018-07-17 17:24:52', '2018-08-09 11:52:57'),
 (5, 1, 1, 'Chó Golden(Golden Retriever)', 6000000, 0, 0, 'Golden.jpg', 'Đây là giống cho có nguồn gốc từ nước Anh, được lai tạo qua nhiều giống chó khác nhau. Nhưng chúng vẫn có bản năng săn mồi rất mạnh, khả năng đánh hơi tìm dấu vết hoàn hảo nên chúng cũng được cảnh sát các nước huấn luyện để dò tìm ma túy và các chất nổ.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
 (6, 1, 1, 'Chó săn Poodle', 5450000, 0, 30, 'Poodle.jpg', 'Poodle là giống chó có xuất xứ từ Pháp, có khả năng bơi lội rất giỏi nên từ xưa chúng thường được người dân bản xứ dùng để săn vịt trời. Đặc điểm của chúng là có bộ lông xoăn tít, giữ ấm rất tốt.', 0, '2018-07-17 17:24:52', '2018-07-29 17:44:14'),
-(7, 1, 1, 'Chó Labrador', 3000000, 6399993, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-06 15:46:28'),
-(8, 1, 1, 'Chó Dorberman', 13350000, 1, 0, 'Dorberman.jpg', 'Chó Dorberman được nhà lai tạo người Đức Louis Dorberman nhân giống thành công năm 1890 bởi ít nhất 4 giống chó. Tỉ lệ kết hợp giữa 4 giống chó với nhau gần như đã bị thất lạc.\r\nChó Dorberman rất dũng mãnh, cơ bắt, cổ cao, ta dụng chân dài và nhanh nhẹn. Một chú Dorberman trưởng thành nặng từ 30-45kg tùy theo giới tính đực cái, bản tính Dorberman khá hung giữ, rất cảnh giác với người lạ nhưng trung thành với chủ nên thường được các gia đình nuôi làm chó giữ nhà.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
+(7, 1, 1, 'Chó Labrador', 3000000, 6399973, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-09 13:12:06'),
+(8, 1, 1, 'Chó Dorberman', 13350000, 0, 0, 'Dorberman.jpg', 'Chó Dorberman được nhà lai tạo người Đức Louis Dorberman nhân giống thành công năm 1890 bởi ít nhất 4 giống chó. Tỉ lệ kết hợp giữa 4 giống chó với nhau gần như đã bị thất lạc.\r\nChó Dorberman rất dũng mãnh, cơ bắt, cổ cao, ta dụng chân dài và nhanh nhẹn. Một chú Dorberman trưởng thành nặng từ 30-45kg tùy theo giới tính đực cái, bản tính Dorberman khá hung giữ, rất cảnh giác với người lạ nhưng trung thành với chủ nên thường được các gia đình nuôi làm chó giữ nhà.', 0, '2018-07-17 17:24:52', '2018-08-09 12:48:27'),
 (9, 1, 1, 'Chó Pitbull', 15000000, 1, 10, 'Pitbull.jpg', 'Chó Pitbull có nguồn gốc từ Anh, ban đầu có kích thước khá nhỏ bé, nhưng để phục vụ một thể thao “chọi chó” nhiều người tại Mỹ đã lai tạo chúng trở nên to lớn và hung dữ hơn. Và cái tên Pitbull cũng được bắt nguồn từ môn thể thao này. Vào đầu thế kỷ 20 do luật cấm những trò giải trí như “chọi chó” ra đời nên Pitbull được lai tạo cho trở nên hiền lành và dùng để nuôi trong nhà.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
-(10, 1, 2, 'Mèo A', 13350000, 1, 15, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-07-29 17:44:14'),
+(10, 1, 2, 'Mèo A', 13350000, 0, 15, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-08-09 11:28:56'),
 (11, 1, 4, 'Thức ăn', 100000, 2, 10, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-07-19 16:43:29'),
 (12, 1, 10, 'Bát đôi cấp nước tự động', 30000, 10, 0, 'batdoi.jpg', 'Bát ăn uống nước cấp nước tự động gắn chai nước ngọt (bát không bao gồm chai) \r\n- Sản phẩm được làm từ chất liệu nhựa cao cấp không gây hại, không làm ảnh hưởng đến chất lượng thức ăn, màu sắc bất mắt giúp thú cưng ăn ngon mệng hơn\r\n+ Sản phẩm xứng đáng là sự lựa chọn lý tưởng của bạn dành cho thú cưng.\r\n+ Bề mặt trơn láng, dễ dàng chùi rửa sạch sẽ sau khi sử dụng.\r\n+ Được thiết kế dựa trên tiêu chuẩn chất lượng của Châu Âu.\r\nBát ăn và uống nước cho chó mèo, chất liệu tốt, bền, đẹp, không độc hại, không kích ứng với da\r\n+ Bát sẽ thoải mái khi đi vắng mà không sợ cún bị khát nước.\r\n- Kích thước bát ( Không kèm bình nước) : 27x16x6cm\r\n>>> Bình nước là bình nước khoáng hoặc nước ngọt, bình, chai nào cũng có thể lắp vừa\r\n- Trọng lượng: 100', 0, '2018-07-22 22:48:22', '2018-07-22 22:48:22'),
-(13, 1, 10, 'Bát đôi kèm lõi inox ', 99000, 54, 0, 'batan.jpg', 'Bát đôi kèm lõi inox cao cấp dành cho chó mèo - CutePets\r\n\r\n- Chất liệu: Nhựa PP không ôi nhiễm môi trường, lõi inox không gỉ\r\n\r\n- Màu sắc:hồng, xanh da trời, vàng màu xanh lá cây\r\n\r\n- Kích Thước bên ngoài:chiều dài = 32cm, chiều rộng = 16 cm, chiều cao = 6.5 cm;\r\n\r\n- Bát bên trong Đường Kính Miệng:14 cm.\r\n\r\n- Sử dụng:Pet (Chó & Mèo) trong Thực Phẩm & Bát Nước tính năng:\r\n\r\n1. chất liệu Inox chất lượng cao không gỉ làm cho các bát Độ Bền Cao hơn\r\n\r\n2. Vỏ làm từ nhựa PP Nhựa an toàn và không độc hại\r\n\r\n3. Tháo lắp một cách dễ dàng và dễ làm sạch', 0, '2018-07-22 22:48:22', '2018-07-22 22:48:22');
+(13, 1, 10, 'Bát đôi kèm lõi inox ', 99000, 54, 0, 'batan.jpg', 'Bát đôi kèm lõi inox cao cấp dành cho chó mèo - CutePets\r\n\r\n- Chất liệu: Nhựa PP không ôi nhiễm môi trường, lõi inox không gỉ\r\n\r\n- Màu sắc:hồng, xanh da trời, vàng màu xanh lá cây\r\n\r\n- Kích Thước bên ngoài:chiều dài = 32cm, chiều rộng = 16 cm, chiều cao = 6.5 cm;\r\n\r\n- Bát bên trong Đường Kính Miệng:14 cm.\r\n\r\n- Sử dụng:Pet (Chó & Mèo) trong Thực Phẩm & Bát Nước tính năng:\r\n\r\n1. chất liệu Inox chất lượng cao không gỉ làm cho các bát Độ Bền Cao hơn\r\n\r\n2. Vỏ làm từ nhựa PP Nhựa an toàn và không độc hại\r\n\r\n3. Tháo lắp một cách dễ dàng và dễ làm sạch', 0, '2018-07-22 22:48:22', '2018-07-22 22:48:22'),
+(14, 5, 1, 'Chó ngu', 1000000, 1000, 50, '1533821041.petshop.png', 'không', 0, '2018-08-09 13:24:01', '2018-08-09 13:24:01'),
+(15, 5, 2, 'Chó ngu 1', 1000000, 100, 55, '1533833893.banner.png', 'ok', 0, '2018-08-09 16:58:13', '2018-08-09 16:58:13'),
+(16, 5, 11, 'Chó ngu 2', 1000000, 1000, 50, '1533834135.Screenshot (107).png', 'ok', 0, '2018-08-09 17:02:15', '2018-08-09 17:02:15');
 
 -- --------------------------------------------------------
 
@@ -443,7 +521,6 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `phoneNumber` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `card_number` int(11) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
   `bank_username` varchar(255) DEFAULT NULL,
   `bank_name` varchar(255) DEFAULT NULL,
   `bank_branch` varchar(255) DEFAULT NULL,
@@ -480,7 +557,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -489,8 +566,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
 (1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
 (2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', '9s8XcNhktYD7W4ErllJbHVbWLEAiAfZE78exOCmq8rj3cV57Ji81obb8oome', NULL, 'Ha CM', NULL, NULL, NULL, NULL, 2, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-04 13:42:37'),
-(6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56');
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', 'KVnFxsYxV6AdeNQ4jSJQbRytMxqaJhWyAN6lNIMV1dHPFsL7UrMlnHZyuo7t', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
+(6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
+(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'eBdpOJpEExoCc317PjmV0aD59ZtRHde86EDpBZ7c1f2NvpWhj3KUyvQmkI9y', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-07 15:58:05', '2018-08-07 15:58:05');
 
 -- --------------------------------------------------------
 

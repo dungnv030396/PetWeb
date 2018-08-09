@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use App\Catalog;
 use function Sodium\compare;
 
 class ProductController extends Controller
@@ -21,5 +23,13 @@ class ProductController extends Controller
             return view('SupplierView.detail_add_product',compact('id','menu'));
 //            return redirect(route(''),compact('id'));
         }
+    }
+
+    public function loadCategoriesAjax(Request $request){
+        $cateObj = new Category();
+        $id = $request->id;
+        $categories = $cateObj->getCategoriesByCatalogId($id);
+        $returnHTML = view('SupplierView.categoriesAjaxView',compact('categories'))->render();
+        return response()->json($returnHTML);
     }
 }

@@ -25,4 +25,8 @@ class Category extends Model
         return Catalog::find($catalog->id)->categories;
     }
 
+    public function getCategoriesByCatalogId($id){
+        return Catalog::find($id)->categories;
+    }
+
 }

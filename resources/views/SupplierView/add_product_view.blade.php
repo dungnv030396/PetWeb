@@ -39,19 +39,26 @@
                                         <div class="col-sm-10"><input name="productname" type="text" class="form-control"
                                                                       placeholder="Tên sản phẩm" required value="{{ old('productname') }}"></div>
                                     </div>
-                                    <div class="form-group"><label class="col-sm-2 control-label">Chủng Loại:</label>
-                                        <div class="col-sm-10"><select name="category" class="form-control-range">
-                                                <option value="1">Chó</option>
-                                                <option value="2">Mèo</option>
-                                                <option value="3">Chim</option>
-                                                <option value="4">Thức Ăn</option>
-                                                <option value="5">Đồ Chơi</option>
-                                                <option value="6">Quần Áo</option>
-                                                <option value="7">Làm Đẹp</option>
-                                                <option value="8">Trông Giữ</option>
-                                                <option value="9">Chữa Trị</option>
-                                                <option value="9">Đồ Dùng</option>
-                                            </select></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">Loại sản phẩm:</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" onclick="innerHtmlAjaxData(this)" name="catalog">
+                                            @foreach($catalogs as $catalog)
+                                                <option value="{{$catalog->id}}">{{$catalog->name}}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">Chủng loại:</label>
+                                        <div class="col-sm-10" id="loaddata">
+                                            <select name="category" class="form-control" >
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">Chủng loại khác:</label>
+                                        <div class="col-sm-10"><input name="category_new" type="text" class="form-control" placeholder="Chủng loại khác nếu có"  value=""></div>
                                     </div>
                                     <div class="form-group"><label class="col-sm-2 control-label">Số Lượng:</label>
                                         <div class="col-sm-10"><input name="soluong" type="text" class="form-control"
@@ -128,19 +135,19 @@
 
     </div>
 
-
-
-    <script src="source/assets/manage/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('.input-group.date').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                calendarWeeks: true,
-                autoclose: true
+    <script type="text/javascript" language="javascript" >
+        function innerHtmlAjaxData(catalog){
+            $.ajax({
+                type: "POST",
+                url: "{{route('loadCategories')}}",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    id: catalog.value
+                },
+                success: function(data) {
+                    $("#loaddata").html(data);
+                }
             });
-        });
+        }
     </script>
 @endsection
