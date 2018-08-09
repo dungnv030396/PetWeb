@@ -8,6 +8,8 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if(\Illuminate\Support\Facades\Auth::check())
+                        <li><a href="{{route('ordersHistory',\Illuminate\Support\Facades\Auth::user()->id)}}">Lịch
+                                Sử Mua Hàng</a></li>
                         @if(\Illuminate\Support\Facades\Auth::user()->roleId==3)
                             <li><a href="{{route('register.supplier')}}">Trở Thành Nhà Cung Cấp</a></li>
                         @endif

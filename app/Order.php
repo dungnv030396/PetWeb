@@ -78,4 +78,28 @@ class Order extends Model
         );
         return $json_data;
     }
+    public function ordersHistory(){
+        $id = request('id');
+        $orders = Order::where('user_id',$id)->latest()->paginate(10);
+        if ($orders){
+            foreach ($orders as $order){
+                $nestedData = array();
+                $nestedData['id'] = $order->id;
+                $nestedData['user_id'] = $order->user_id;
+                $nestedData['status'] = $order->status['stt'];
+                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($order->created_at));
+                $nestedData['address'] = $order->address;
+                $data[] = $nestedData;
+            }
+        }
+        $number = count($orders);
+        return [
+            'orderPaginate' => $orders,
+            'allOrders' => $data,
+            'number' => $number
+        ];
+    }
+    public function detailOrder(){
+        return view('clientViews.customer.detail_order');
+    }
 }
