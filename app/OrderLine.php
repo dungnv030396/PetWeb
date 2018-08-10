@@ -51,4 +51,8 @@ class OrderLine extends Model
             'user_info' => $dataUser
         ];
     }
+
+    public function status(){
+        return $this->hasOne(OrderlineStatus::class,'id','orderline_status_id');
+    }
 }

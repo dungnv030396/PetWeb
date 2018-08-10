@@ -1,6 +1,11 @@
 @extends('ModeratorView.master')
 @section('contentManager')
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    @if(!empty($message) && $message == 'true')
+        @include('sweet::alert')
+    @endif
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
@@ -33,7 +38,9 @@
             </div>
         </div>
     </div>
+    <script src="source/assets/dest/js/DateFormat/dateformat.min.js"></script>
     <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
+
     <!-- Custom and plugin javascript -->
     <script type="text/javascript" language="javascript">
         $(document).ready(function() {
@@ -43,6 +50,8 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
+                "orderSequence": [ "desc" ],
+                "targets": [0],
                 "ajax":{
                     "url":"<?= route('orderDataProcessing') ?>",
                     "dataType" :"json",
@@ -55,18 +64,39 @@
                         {
                             data:"user_name",
                             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                                $(nTd).html("<a href='{{}}'>"+oData.user_name+"</a>");
+                                $(nTd).html("<a href='<?php echo 'a'?>'>"+oData.user_name+"</a>");
                             },orderable:false
                         },
-                        {data:"moderator",orderable:false},
-                        {data:"status",orderable:false},
                         {
-                            data: "created_at"
-
+                            data: "moderator",
+                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                                $(nTd).html("<a href='<?php echo 'a'?>'>" + oData.moderator + "</a>");
+                            }, orderable: false
                         },
                         {
-                            data: "created_at",orderable:false
-
+                            data:"status",
+                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                                if(oData.status_id==1){
+                                    $(nTd).html("<a href='{{}}' class='bg-danger'>"+oData.status+"</a>");
+                                }else if(oData.status_id==2){
+                                    $(nTd).html("<a href='<?php echo 'a'?>' class='bg-warning'>"+oData.status+"</a>");
+                                }else if(oData.status_id==3){
+                                    $(nTd).html("<a href='<?php echo 'a'?>' class='bg-primary'>"+oData.status+"</a>");
+                                }else if(oData.status_id==4){
+                                    $(nTd).html("<a href='<?php echo 'a'?>' class='bg-info'>"+oData.status+"</a>");
+                                }else{
+                                    $(nTd).html("<a href='<?php echo 'a'?>' class='bg-success'>"+oData.status+"</a>");
+                                }
+                            },orderable:false
+                        },
+                        {
+                            data: "created_at",
+                            render: function (data, type, full, meta) {
+                                return formatDate(data,'dd/MM/yyyy hh:mm:ss a');
+                            }
+                        },
+                        {
+                            data: "orderDetail",
                         }
                     ]
             });

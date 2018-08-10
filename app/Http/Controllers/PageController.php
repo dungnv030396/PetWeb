@@ -18,14 +18,14 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
-        //return redirect(route('logout'));
-        //auth()->logout();
-        var_dump(Session::all());
-        die;
-        if(1==1 && 2==3 ){
-            var_dump('ok');die;
-        }
-        var_dump('not ok');die;
+        $search = 'macro';
+        $orders = Order::with(['user' => function ($query) use ($search){
+            $query->where('name','like',"%$search%");
+        }])
+            ->where('delete_flag',0)
+            ->orWhere('created_at','like',"%$search%")
+            ->get();
+        var_dump($orders);die;
         auth()->logout();
         die;
         $user = Auth::attempt(['email'=>'acquy_tokyo_95@yahoo.com.vn','password'=>'123456','roleId'=>2,'delete_flag'=>0]);

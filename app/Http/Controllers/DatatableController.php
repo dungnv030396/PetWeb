@@ -16,7 +16,7 @@ class DatatableController extends Controller
         $length = $request->input('length') ?: 10;
         $search = $request->input('search.value') ?: "";
         $oderColunm = $request->input('order.0.column') ?: 0;
-        $oderSortType = $request->input('order.0.dir') ?: 'asc';
+        $oderSortType = $request->input('order.0.dir') ?: 'desc';
         $draw = $request->draw ?: 0;
         try{
             $output = $orderObj->getOrdersAjax($start,$length,$search,$oderColunm,$oderSortType,$draw);
