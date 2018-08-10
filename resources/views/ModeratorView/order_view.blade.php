@@ -96,7 +96,7 @@
                             }
                         },
                         {
-                            data: "orderDetail",
+                            data: "orderDetail",orderable: false
                         }
                     ]
             });
