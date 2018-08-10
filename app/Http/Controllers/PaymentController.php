@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderLine;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
@@ -27,5 +28,16 @@ class PaymentController extends Controller
         $user = Auth::user();
         alert()->success("Bạn đã đặt hàng thành công! Chúng tôi sẽ liên hệ và giao hàng cho bạn trong khoảng thời gian sớm nhât!");
         return view('clientViews.checkout_sucess')->with('user',$user)->with('order',$order)->with('message', 'Đặt hàng thành công');
+    }
+    public function ordersHistory(){
+        $order = new Order();
+        $listOrders = $order->ordersHistory();
+        return view('clientViews.customer.orders_history',compact('listOrders'));
+    }
+    public function detailOrder(){
+        $orderLine = new OrderLine();
+        $orderDetail = $orderLine->detailOrder();
+        return view('clientViews.customer.detail_order',compact('orderDetail'));
+
     }
 }

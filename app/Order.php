@@ -9,7 +9,6 @@ class Order extends Model
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
     }
-
     public function status(){
         return $this->hasOne(Status::class,'id','status_id');
     }
@@ -110,9 +109,29 @@ class Order extends Model
         $order->status_id = 1;
         $order->save();
     }
-    public function orderDelete($request){
+    public function orderDelete($request)
+    {
         $order = $this->getOrderByID($request->id);
         $order->delete_flag = 1;
         $order->save();
+    }
+    public function ordersHistory(){
+        $id = request('id');
+        $orders = Order::where('user_id',$id)->latest()->paginate(10);
+            foreach ($orders as $order){
+                $nestedData = array();
+                $nestedData['id'] = $order->id;
+                $nestedData['user_id'] = $order->user_id;
+                $nestedData['status'] = $order->status['stt'];
+                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($order->created_at));
+                $nestedData['address'] = $order->address;
+                $data[] = $nestedData;
+            }
+        $number = count($orders);
+        return [
+            'orderPaginate' => $orders,
+            'allOrders' => $data,
+            'number' => $number
+        ];
     }
 }

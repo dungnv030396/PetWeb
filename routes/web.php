@@ -118,10 +118,10 @@ Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier
 Route::post('searchSupplier','SupplierController@searchByName');
 Route::get('detailSupplier/{id}','SupplierController@detailSupplier')->name('detailSupplier');
 
-//test
-Route::get('mail',function (){
-   return view('emails.mailForgotPass');
-});
+//Forgot pass by email
+//Route::get('mail',function (){
+//   return view('emails.mailForgotPass');
+//});
 
 //Reset Paswork
 Route::post('resetPassword','MailController@resetPassword')->name('resetPassword');
@@ -200,6 +200,9 @@ Route::get('supplier/manage/order-list',function (){
     return view('SupplierView.order_view',compact('menu'));
 })->name('listOrderSp');
 
+//Orders history
+Route::get('customer/ordershistory/{id}','PaymentController@ordersHistory')->name('ordersHistory');
+Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('detailOrders');
 //demo
 
 Route::get('load','SupplierController@load')->name('load');
