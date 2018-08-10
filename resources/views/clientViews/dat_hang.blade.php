@@ -46,7 +46,7 @@
 
 						<div class="form-block">
 							<label for="adress"><b>Địa chỉ*</b></label>
-							<input type="text" id="address" name="address" {{$currentUser->address}} placeholder="Điền địa chỉ của bạn" required>
+							<input type="text" id="address" name="address" value="{{(!empty($currentUser->address))?$currentUser->address:''}}" placeholder="Điền địa chỉ của bạn" required>
 						</div>
 
 						<div class="form-block">
