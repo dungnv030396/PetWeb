@@ -166,19 +166,24 @@ Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportP
 Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addReplyComment');
 
 
-Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
+//Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
 
 // supplier management
-Route::get('supplier/management',function (){
-    return view('SupplierView.home',compact('menu'));
-
-})->name('supplierManagement');
+//Route::get('supplier/management',function (){
+//    return view('SupplierView.home',compact('menu'));
+//
+//})->name('supplierManagement');
+Route::get('supplier/manage/supplier-product-list',function (){
+    $menu = 'order';
+    return view('SupplierView.posted_product_view',compact('menu'));
+})->name('productManagement');
+Route::post('data/supplier-post-products','DatatableController@getSupplierPosts')->name('dataSupplierPostProducts');
 
 //Redirect sang trang dang nhap vao quan ly cua Moderator
 // Moderator management
 
 Route::post('moderator/manage/order-list','ModeratorController@loginModerator')->name('loginModerator');
-Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
+Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');//example
 
 Route::get('dang-nhap/moderator', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
@@ -195,18 +200,13 @@ Route::get('moderator/manage/order-list',function (){
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
 
-Route::get('supplier/manage/order-list',function (){
-    $menu = 'order';
-    return view('SupplierView.order_view',compact('menu'));
-})->name('listOrderSp');
-
 //Orders history
 Route::get('customer/ordershistory/{id}','PaymentController@ordersHistory')->name('ordersHistory');
 Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('detailOrders');
 //demo
 
-Route::get('load','SupplierController@load')->name('load');
-Route::get('demo','SupplierController@demo')->name('demo');
+//Route::get('load','SupplierController@load')->name('load');
+//Route::get('demo','SupplierController@demo')->name('demo');
 
 Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
 

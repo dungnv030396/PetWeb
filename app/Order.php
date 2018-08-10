@@ -83,6 +83,7 @@ class Order extends Model
     public function ordersHistory(){
         $id = request('id');
         $orders = Order::where('user_id',$id)->latest()->paginate(10);
+        if ($orders){
             foreach ($orders as $order){
                 $nestedData = array();
                 $nestedData['id'] = $order->id;
@@ -92,6 +93,7 @@ class Order extends Model
                 $nestedData['address'] = $order->address;
                 $data[] = $nestedData;
             }
+        }
         $number = count($orders);
         return [
             'orderPaginate' => $orders,

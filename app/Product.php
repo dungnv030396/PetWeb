@@ -244,4 +244,72 @@ class Product extends Model
         }
 
     }
+    public function getProductsAjax($start,$length,$search,$oderColunm,$oderSortType,$draw)
+    {
+        $columns = array(
+            0 => 'id',
+//            1 => 'name',
+            2 => 'category_id',
+            3 => 'price',
+            4 => 'quantity',
+            5 => 'discount',
+            6 => 'image_link',
+            7 => 'description',
+            8 => 'created_at',
+            9 => 'updated_at'
+        );
+        // $page = floor($start / $length) + 1;
+        $productList = Product::where('user_id',Auth::user()->id)->where('delete_flag',0);
+        $totalData = $productList->count();
+        if(empty($search)) {
+            $products = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        }
+//        else{
+//            $products = Product::where(function ($query) use ($search,$oderColunm,$oderSortType){
+//                $query->where('name','like',"%$search%");
+//            })
+//                ->where('delete_flag','=',0)
+//                ->orWhere('created_at','like',"%$search%")
+//                ->offset($start)
+//                ->limit($length)
+//                ->orderBy($columns[$oderColunm],$oderSortType)
+//                ->get();
+//            $totalFiltered = $products->count();
+//        }
+
+        $data = array();
+        if($products){
+            foreach($products as $product){
+                $nestedData = array();
+                $nestedData['id'] = $product->id;
+                $nestedData['user_id'] = $product->user_id;
+                $nestedData['category'] = $product->categories['name'];
+                $nestedData['name'] = $product->name;
+                $nestedData['price'] = $product->price;
+                $nestedData['quantity'] = $product->quantity;
+                $nestedData['discount'] = $product->discount;
+                $nestedData['image_link'] = $product->image_link;
+                $nestedData['description'] = $product->description;
+                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($product->created_at));
+                $nestedData['updated_at'] = $product->updated_at;
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw"            => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal"    => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data"            => $data
+        );
+        return $json_data;
+    }
+
 }
