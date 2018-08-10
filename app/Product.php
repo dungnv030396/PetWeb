@@ -176,11 +176,10 @@ class Product extends Model
         }
         $product->description = \request('description');
         if ($request->hasFile('avatar')) {
-
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-            $allowedfileExtension = ['pdf', 'jpg', 'png'];
+            $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 
 //            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
             if (in_array($fileExtension, $allowedfileExtension)) {

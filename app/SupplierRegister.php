@@ -40,7 +40,7 @@ class SupplierRegister extends Model
                 $avatar = $request->file('avatar');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
-                $allowedfileExtension=['pdf','jpg','png'];
+                $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 //                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
                 if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time().'.'.$filename;
@@ -66,7 +66,7 @@ class SupplierRegister extends Model
                 $avatar = $request->file('cmnd');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
-                $allowedfileExtension=['pdf','jpg','png'];
+                $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 
 //                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
                 if (in_array($fileExtension, $allowedfileExtension)) {
@@ -109,7 +109,7 @@ class SupplierRegister extends Model
                 $avatar = $request->file('avatar');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
-                $allowedfileExtension=['pdf','jpg','png'];
+                $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 
 //                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
                 if (in_array($fileExtension, $allowedfileExtension)) {
@@ -136,7 +136,7 @@ class SupplierRegister extends Model
                 $avatar = $request->file('cmnd');
                 $fileExtension = $avatar->GetClientOriginalExtension();
                 $filename = $avatar->getClientOriginalName();
-                $allowedfileExtension=['pdf','jpg','png'];
+                $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 
 //                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
                 if (in_array($fileExtension, $allowedfileExtension)) {

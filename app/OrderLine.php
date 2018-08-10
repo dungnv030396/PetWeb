@@ -23,6 +23,8 @@ class OrderLine extends Model
         $number = count($detailOrder);
         foreach ($detailOrder as $item) {
             $nestedData = array();
+//            $nestedData['status_id'] = $item->orders['status_id'];
+//            $nestedData['status_name'] = Status::find($item->orders['status_id']);
             $nestedData['product_name'] = $item->product['name'];
             $nestedData['discount'] = $item->product['discount'];
             $nestedData['image_link'] = $item->product['image_link'];

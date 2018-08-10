@@ -76,7 +76,7 @@
                                         </a>
                                         <div class="media">
                                             <a class="pull-left" href="{{Route('productDetail',$product['item']->id)}}">
-                                                <img src="source/image/products/{{$product['item']->image_link}}"
+                                                <img src="storage/products/{{$product['item']->image_link}}"
                                                      alt="">
                                             </a>
                                             <div class="media-body">

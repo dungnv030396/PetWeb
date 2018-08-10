@@ -80,7 +80,7 @@
 										@if(Session::has('cart'))
 											@foreach($cart->items as $product)
 											<div class="media">
-												<img width="25%" src="source/image/products/{{$product['item']->image_link}}" alt="" class="pull-left">
+												<img width="25%" src="storage/products/{{$product['item']->image_link}}" alt="" class="pull-left">
 												<div class="media-body">
 													<p class="font-large">{{$product['item']->name}}</p>
 													<span class="color-gray your-order-info">Giá:

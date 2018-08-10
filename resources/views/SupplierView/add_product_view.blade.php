@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="form-group"><label class="col-sm-2 control-label">Khuyến Mãi:</label>
                                         <div class="col-sm-2"><input name="discount" type="text" class="form-control"
-                                                                      placeholder="%" value="{{ old('discount') }}"></div>
+                                                                      placeholder="%" value="{{ (!empty(old('discount'))?old('discount') : 0)}}"></div>
                                     </div>
                                     <div class="form-group"><label class="col-sm-2 control-label">Mô Tả:</label>
                                         <div class="col-sm-10">

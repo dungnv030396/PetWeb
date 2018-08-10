@@ -10,7 +10,8 @@
             </div>
             <div class="pull-right">
                 <div class="beta-breadcrumb">
-                    <h4 class="main-color"><a href="index" class="main-color">Trang chủ/Lịch sử mua hàng</a> /Chi tiết đơn hàng<span></span></h4>
+                    <h4 class="main-color"><a href="index" class="main-color">Trang chủ/Lịch sử mua hàng</a> /Chi tiết
+                        đơn hàng<span></span></h4>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -27,27 +28,27 @@
                         <div class="space-25"></div>
                         <div class="your-order-body" style="padding: 0px 10px">
                             @foreach($orderDetail['user_info'] as $item)
-                            <label><b>Khách hàng: </b>
-                            </label><span> {{$item['customer_name']}} </span>
-                            <br>
-                            <label><b>Email: </b></label><span> {{$item['email']}}</span>
-                            <br>
+                                <label><b>Khách hàng: </b>
+                                </label><span> {{$item['customer_name']}} </span>
+                                <br>
+                                <label><b>Email: </b></label><span> {{$item['email']}}</span>
+                                <br>
 
-                            <label><b>Địa chỉ nhận hàng: </b></label> <span> {{$item['address']}}</span>
-                            <br>
+                                <label><b>Địa chỉ nhận hàng: </b></label> <span> {{$item['address']}}</span>
+                                <br>
 
-                            <label><b>Số điện thoại nhận hàng: </b></label>
-                            <span> {{$item['phonenumber']}}</span>
-                            <br>
-                            <label><b>Thời gian đặt hàng: </b></label>
-                            <span id="orderTime"><script> document.getElementById("orderTime").innerHTML = formatDate('{{$item['created_at']}}','hh:mm:ss dd/MM/yyyy a');</script></span>
-                            <br>
-                            <label><b>Phí vận chuyển: </b></label><span> 30,000đ</span>
-                            <br>
-                            <label><b>Ghi chú: </b></label><span>{{$item['description']}} </span>
-                            <br>
-                            <br>
-                                @endforeach
+                                <label><b>Số điện thoại nhận hàng: </b></label>
+                                <span> {{$item['phonenumber']}}</span>
+                                <br>
+                                <label><b>Thời gian đặt hàng: </b></label>
+                                <span id="orderTime"><script> document.getElementById("orderTime").innerHTML = formatDate('{{$item['created_at']}}', 'hh:mm:ss dd/MM/yyyy a');</script></span>
+                                <br>
+                                <label><b>Phí vận chuyển: </b></label><span> 30,000đ</span>
+                                <br>
+                                <label><b>Ghi chú: </b></label><span>{{$item['description']}} </span>
+                                <br>
+                                <br>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                                     @foreach($orderDetail['detailOrder'] as $oderLine)
                                         <div class="media">
                                             <img width="20%"
-                                                 src="source/image/products/{{$oderLine['image_link']}}" alt=""
+                                                 src="storage/products/{{$oderLine['image_link']}}" alt=""
                                                  class="pull-left">
                                             <div class="media-body">
                                                 <p class="font-large">{{$oderLine['product_name']}}</p>
