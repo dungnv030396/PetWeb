@@ -101,6 +101,9 @@ class PageController extends Controller
         $sale_products = $product->getSaleProducts2(3,['*'],'p5');
         //var_dump($sale_products);die;
         $cate_id = $request->cate_id;
+        if($request->cata_id==3){
+            return view('clientViews.dichvu', compact('products', 'sale_products', 'catalogs','cate_id'));
+        }
         return view('clientViews.loai_sanpham', compact('products', 'sale_products', 'catalogs','cate_id'));
     }
 
@@ -112,6 +115,9 @@ class PageController extends Controller
         $new_products = $pro->getNewProducts(7);
         $comments = new Comment();
         $comments = $comments->getCommentsByProductId($reqest->id,5);
+        if($product['product']->category->catalog->id==3){
+            return view('clientViews.chitiet_dichvu', compact('product', 'same_products', 'new_products','comments'));
+        }
         return view('clientViews.chitiet_sanpham', compact('product', 'same_products', 'new_products','comments'));
     }
 
