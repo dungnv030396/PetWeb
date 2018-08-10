@@ -115,7 +115,7 @@ class PageController extends Controller
         $new_products = $pro->getNewProducts(7);
         $comments = new Comment();
         $comments = $comments->getCommentsByProductId($reqest->id,5);
-        if($product['category']->category->id==3){
+        if($product['category']->catalog->id==3){
             return view('clientViews.chitiet_dichvu', compact('product', 'same_products', 'new_products','comments'));
         }
         return view('clientViews.chitiet_sanpham', compact('product', 'same_products', 'new_products','comments'));
