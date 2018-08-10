@@ -20,11 +20,10 @@ class OrderLine extends Model
     {
         $order_id = request('id');
         $detailOrder = OrderLine::where('order_id', $order_id)->latest()->paginate(5);
-        $number = count($detailOrder);
         foreach ($detailOrder as $item) {
             $nestedData = array();
-//            $nestedData['status_id'] = $item->orders['status_id'];
-//            $nestedData['status_name'] = Status::find($item->orders['status_id']);
+            $nestedData['status_id'] = $item->orderline_status_id;
+            $nestedData['status_name'] = Status::find($item->orderline_status_id)->stt;
             $nestedData['product_name'] = $item->product['name'];
             $nestedData['discount'] = $item->product['discount'];
             $nestedData['image_link'] = $item->product['image_link'];
@@ -47,6 +46,7 @@ class OrderLine extends Model
         $user['total'] = $order->payment['amount'];
         $dataUser[] = $user;
         return [
+            'detailOrderPaginate' =>$detailOrder,
             'detailOrder' => $dataProduct,
             'user_info' => $dataUser
         ];

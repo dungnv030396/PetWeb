@@ -45,7 +45,7 @@
                                 <br>
                                 <label><b>Phí vận chuyển: </b></label><span> 30,000đ</span>
                                 <br>
-                                <label><b>Ghi chú: </b></label><span>{{$item['description']}} </span>
+                                <label><b>Ghi chú: </b></label><span> {{$item['description']}} </span>
                                 <br>
                                 <br>
                             @endforeach
@@ -78,6 +78,8 @@
 													</span>
                                                 <span class="color-gray your-order-info">Tổng: {{number_format($oderLine['amount'])}}
                                                     đ</span>
+                                                <span class="color-gray your-order-info"><h4 style="color:#0080ff;">Tình Trạng: {{$oderLine['status_name']}}</h4>
+                                                    </span>
                                             </div>
                                         </div>
                                 @endforeach
