@@ -191,7 +191,7 @@ Route::get('moderator/manage/order-list',function (){
     if (!\Illuminate\Support\Facades\Auth::check()){
         return view('ModeratorView.login');
     }
-    $menu = 'menu';
+    $menu = 'order';
     return view('ModeratorView.order_view',compact('menu'));
 })->name('listOrder');
 
@@ -208,3 +208,17 @@ Route::get('demo','SupplierController@demo')->name('demo');
 Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
 
 Route::post('data-load','ProductController@loadCategoriesAjax')->name('loadCategories');
+
+Route::get('quan-ly/homepage',function (){
+    $menu = 'home';
+    return view('ModeratorView.home',compact('menu'));
+})->name('moderator_manage_place');
+
+Route::get('quan-ly/don-hang/{id}','ModeratorController@orderDetail')->name('orderDetail');
+
+//print order
+Route::get('print/don-hang/{id}','ModeratorController@printOrder')->name('printOrder');
+
+Route::get('tiep-nhan/don-hang/{id}','ModeratorController@orderAssign')->name('orderAssign');
+Route::get('bo-tiep-nhan/don-hang/{id}','ModeratorController@orderAssignDelete')->name('orderAssignDelete');
+Route::get('huy/don-hang/{id}','ModeratorController@orderDelete')->name('orderDelete');

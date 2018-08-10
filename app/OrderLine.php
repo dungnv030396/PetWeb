@@ -13,4 +13,8 @@ class OrderLine extends Model
     public function product(){
         return $this->hasOne(Product::class,'id','product_id');
     }
+
+    public function status(){
+        return $this->hasOne(OrderlineStatus::class,'id','orderline_status_id');
+    }
 }

@@ -20,6 +20,9 @@ class Order extends Model
         return $this->hasOne(Payment::class,'id','payment_id');
     }
 
+    public function moderator(){
+        return $this->hasOne(User::class,'id','moderator_id');
+    }
     public function getOrdersAjax($start,$length,$search,$oderColunm,$oderSortType,$draw)
     {
         $columns = array(
@@ -38,8 +41,11 @@ class Order extends Model
                 ->get();
             $totalFiltered = $totalData;
         }else{
-            $orders = Order::whereHas('user',function ($query) use ($search,$oderColunm,$oderSortType){
+            $orders = Order::whereHas('user',function ($query) use ($search){
                     $query->where('name','like',"%$search%");
+                })
+                ->orwhereHas('status',function ($query) use ($search){
+                    $query->where('stt','like',"%$search%");
                 })
                 ->where('delete_flag','=',0)
                 ->orWhere('created_at','like',"%$search%")
@@ -65,7 +71,10 @@ class Order extends Model
                     $nestedData['moderator'] = $order->moderator->name;
                 }
                 $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($order->created_at));
-                $nestedData['updated_at'] = $order->updated_at;
+                $nestedData['updated_at'] = date('d-m-Y H:i:s',strtotime($order->updated_at));
+                $nestedData['orderDetail'] = '
+					<a href="'.route('orderDetail',$order->id).'">'.'Chi tiết sản phẩm'.'</a>
+				';
                 $data[] = $nestedData;
             }
         }
@@ -80,5 +89,30 @@ class Order extends Model
             "data"            => $data
         );
         return $json_data;
+    }
+
+    public function getOrderByID($id){
+        return $this->find($id);
+    }
+
+    public function orderAssign($request){
+        $uObj = new User();
+        $order = $this->getOrderByID($request->id);
+        $moderator = $uObj->getCurrentUser();
+        $order->moderator_id = $moderator->id;
+        $order->status_id = 2;
+        $order->save();
+    }
+
+    public function orderAssignDelete($request){
+        $order = $this->getOrderByID($request->id);
+        $order->moderator_id = null;
+        $order->status_id = 1;
+        $order->save();
+    }
+    public function orderDelete($request){
+        $order = $this->getOrderByID($request->id);
+        $order->delete_flag = 1;
+        $order->save();
     }
 }

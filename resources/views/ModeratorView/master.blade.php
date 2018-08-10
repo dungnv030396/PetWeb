@@ -39,7 +39,7 @@
                         IN+
                     </div>
                 </li>
-                <li class="{{($menu=='home')?'active':''}}"><a href="{{route('supplier_manage_place')}}"><i class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
+                <li class="{{($menu=='home')?'active':''}}"><a href="{{route('moderator_manage_place')}}"><i class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
                 <li class="{{($menu=='order')?'active':''}}">
                     <a href="{{route('listOrder')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý order</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
