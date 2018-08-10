@@ -18,16 +18,16 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                 <tr>
-                                    <th>Mã Sản Phẩm</th>
-                                    <th>Tên Sản Phẩm</th>
-                                    <th>Chủng Loại</th>
-                                    <th>Giá</th>
-                                    <th>Số Lượng</th>
-                                    <th>Giảm Giá (%)</th>
-                                    <th>Ảnh</th>
-                                    <th>Mô Tả</th>
-                                    <th>Ngày Đăng Bán</th>
-                                    <th>Ngày Cập Nhật</th>
+                                    <th style="width: 5%">Mã Sản Phẩm</th>
+                                    <th style="width: 10%">Tên Sản Phẩm</th>
+                                    {{--<th style="width: 5%">Chủng Loại</th>--}}
+                                    <th style="width: 10%">Giá</th>
+                                    <th style="width: 5%">Số Lượng</th>
+                                    <th style="width: 5%">Giảm Giá (%)</th>
+                                    {{--<th style="width: 20%">Ảnh</th>--}}
+                                    <th style="width: 5%">Ngày Đăng Bán</th>
+                                    <th style="width: 5%">Ngày Cập Nhật</th>
+                                    <th style="width: 10%">Hành Động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -60,20 +60,26 @@
                             data:"name",
                             orderable:false
                         },
-                        {data:"category",orderable:false},
-                        {data:"price",orderable:false},
+//                        {data:"category",orderable:false},
+                        {data:"price"
+                            ,orderable:false},
                         {data:"quantity",orderable:false},
                         {data:"discount",orderable:false},
-                        {data:"image_link"
-                            ,orderable:false
-                        },
-                        {data:"description",orderable:false},
+//                        {data:"image_link",
+//                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+//                                $(nTd).html("<img style='width: 100%;height: 15%' src = storage/products/" + oData.image_link + ">");
+//                            }
+//                        ,orderable:false
+//                        },
                         {
                             data: "created_at"
                         },
                         {
                             data: "updated_at",orderable:false
-                        }
+                        },
+                    {
+                        data: "productDetail",orderable:false
+                    }
                     ]
             });
         });

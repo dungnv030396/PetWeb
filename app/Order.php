@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -116,24 +117,35 @@ class Order extends Model
         $order->save();
     }
     public function ordersHistory(){
-        $id = request('id');
-        $orders = Order::where('user_id',$id)->latest()->paginate(10);
+        $user_id = request('id');
+        $orders = Order::where('user_id',$user_id)->latest()->paginate(10);
         $number = count($orders);
-        if ($orders){
+        if ($number!=0){
             foreach ($orders as $order){
                 $nestedData = array();
                 $nestedData['id'] = $order->id;
                 $nestedData['user_id'] = $order->user_id;
                 $nestedData['status'] = $order->status['stt'];
-                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($order->created_at));
+                $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['address'] = $order->address;
                 $data[] = $nestedData;
             }
+            return [
+                'orderPaginate' => $orders,
+                'allOrders' => $data,
+                'number' => $number
+            ];
+        }else{
+            return [
+                'orderPaginate' => $orders,
+                'allOrders' => null,
+                'number' => $number
+            ];
         }
-        return [
-            'orderPaginate' => $orders,
-            'allOrders' => $data,
-            'number' => $number
-        ];
+
+    }
+    public function searchOrdersHistory(){
+        $value = request('name');
+        $orders = Order::where('user_id',Auth::user()->id)->where()->latest()->paginate(10);
     }
 }

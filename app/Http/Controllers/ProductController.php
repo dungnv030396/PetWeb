@@ -32,4 +32,7 @@ class ProductController extends Controller
         $returnHTML = view('SupplierView.categoriesAjaxView',compact('categories'))->render();
         return response()->json($returnHTML);
     }
+    public function viewDetailProduct(){
+        return view('suppliers.detail_product');
+    }
 }

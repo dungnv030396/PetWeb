@@ -178,7 +178,7 @@ Route::get('supplier/manage/supplier-product-list',function (){
     return view('SupplierView.posted_product_view',compact('menu'));
 })->name('productManagement');
 Route::post('data/supplier-post-products','DatatableController@getSupplierPosts')->name('dataSupplierPostProducts');
-
+Route::get('supplier/manage/view-detail-product/{id}','ProductController@viewDetailProduct')->name('productDetailBySupplier');
 //Redirect sang trang dang nhap vao quan ly cua Moderator
 // Moderator management
 
@@ -203,6 +203,8 @@ Route::get('moderator/manage/order-list',function (){
 //Orders history
 Route::get('customer/ordershistory/{id}','PaymentController@ordersHistory')->name('ordersHistory');
 Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('detailOrders');
+Route::post('customer/orders_history/result','PaymentController@searchOrdersHistory')->name('searchOrderHistory');
+
 //demo
 
 //Route::get('load','SupplierController@load')->name('load');
