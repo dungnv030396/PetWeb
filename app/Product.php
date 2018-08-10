@@ -63,20 +63,40 @@ class Product extends Model
             $catalog = Catalog::find($catalog_id);
             $link .= $catalog->name;
             if (is_null($category_id)) {
-                $products = $this->getProductsByCatalogID($catalog_id, $number_record);
+                $products = $this->getProductsByCatalogID2($catalog_id, $number_record,['*'],'p4');
                 return ['products' => $products,
                     'link' => $link
                 ];
             } else {
                 $category = Category::find($category_id);
                 $link .= " / " . $category->name;
-                $products = $this->getProductsByCategoryId($category_id, $number_record);
+                $products = $this->getProductsByCategoryId2($category_id, $number_record,['*'],'p4');
                 return ['products' => $products,
                     'link' => $link
                 ];
             }
         }
+    }
 
+    public function getProductsByCategoryId2($id, $number_record,$s1,$s2)
+    {
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record, $s1, $s2);
+    }
+
+    public function getProductsByCatalogID2($catalog_id, $number_record,$s1,$s2)
+    {
+        $cate = new Category();
+        $cata = Catalog::find($catalog_id);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        $idCategoryArray = array();
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $listProduct = Product::where([
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0]
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record,$s1,$s2);
+        return $listProduct;
     }
 
     public function getProductsByCatalogID($catalog_id, $number_record)
@@ -111,6 +131,15 @@ class Product extends Model
             ['quantity', '>', 0],
             ['discount', '>', 0]
         ])->paginate($number_record, ['*'], 'p2');
+    }
+
+    public function getSaleProducts2($number_record,$s1,$s2)
+    {
+        return Product::where([
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0],
+            ['discount', '>', 0]
+        ])->paginate($number_record,$s1,$s2);
     }
 
 

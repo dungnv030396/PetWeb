@@ -96,11 +96,12 @@ class PageController extends Controller
         $catalog = new Catalog();
         $catalogs = $catalog->getAllCatalog();
         $product = new Product();
-        $products = $product->getProductsByType($request->cata_id,$request->cate_id,9);
+        $products = $product->getProductsByType($request->cata_id,$request->cate_id,9);;
         //var_dump($products->toArray());die;
-        $sale_products = $product->getSaleProducts(3);
+        $sale_products = $product->getSaleProducts2(3,['*'],'p5');
         //var_dump($sale_products);die;
-        return view('clientViews.loai_sanpham', compact('products', 'sale_products', 'catalogs'));
+        $cate_id = $request->cate_id;
+        return view('clientViews.loai_sanpham', compact('products', 'sale_products', 'catalogs','cate_id'));
     }
 
     public function getProductDetail(Request $reqest)
@@ -147,37 +148,4 @@ class PageController extends Controller
         return redirect()->back();
     }
 
-    public function postCheckout(Request $req)
-    {
-        $cart = Session::get('cart');
-        dd($cart);
-        $customer = new Customer;
-        $customer->name = $req->name;
-        $customer->gender = $req->gender;
-        $customer->email = $req->email;
-        $customer->address = $req->address;
-        $customer->phonenumber = $req->phone;
-        $customer->notes = $req->notes;
-        $customer->save();
-
-        $bill = new Bill;
-        $bill->id_customer = $customer->id;
-        $bill->date_order = date('Y-m-d');
-        $bill->total = $cart->totalPrice;
-        $bill->payment = $req->payment;
-        $bill->note = $req->notes;
-        $bill->save();
-
-        foreach ($cart['items'] as $key => $value) {
-            $bill_detail = new BillDetail;
-            $bill_detail->id_bill = $bill->id;
-            $bill_detail->id_product = $key;
-            $bill_detail->quantity = $value['qty'];
-            $bill_detail->unit_price = ($value['price'] / value['qty']);
-            $bill_detail->save();
-        }
-        Session::forget('cart');
-        return redirect()->back() > with('thongbao', 'Đặt hàng thành công');
-
-    }
 }
