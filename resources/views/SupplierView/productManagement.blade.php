@@ -44,9 +44,9 @@
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('supplier_manage_place')}}"><i class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
                 <li class="{{($menu=='order')?'active':''}}">
-                    <a href="{{route('listOrderSp')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý order</span> <span class="fa arrow"></span></a>
+                    <a href="{{route('productManagement')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Sản Phẩm</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{route('listOrderSp')}}">Danh sách order</a></li>
+                        <li><a href="{{route('productManagement')}}">Danh Sản Phẩm </a></li>
                         <li><a href="dashboard_2.html">Trong tháng này</a></li>
                         <li><a href="dashboard_3.html">Chưa hoàn thành</a></li>
                         <li><a href="dashboard_4_1.html">Đã Hoàn thành</a></li>

@@ -63,14 +63,14 @@ class Product extends Model
             $catalog = Catalog::find($catalog_id);
             $link .= $catalog->name;
             if (is_null($category_id)) {
-                $products = $this->getProductsByCatalogID2($catalog_id, $number_record,['*'],'p4');
+                $products = $this->getProductsByCatalogID2($catalog_id, $number_record, ['*'], 'p4');
                 return ['products' => $products,
                     'link' => $link
                 ];
             } else {
                 $category = Category::find($category_id);
                 $link .= " / " . $category->name;
-                $products = $this->getProductsByCategoryId2($category_id, $number_record,['*'],'p4');
+                $products = $this->getProductsByCategoryId2($category_id, $number_record, ['*'], 'p4');
                 return ['products' => $products,
                     'link' => $link
                 ];
@@ -78,12 +78,12 @@ class Product extends Model
         }
     }
 
-    public function getProductsByCategoryId2($id, $number_record,$s1,$s2)
+    public function getProductsByCategoryId2($id, $number_record, $s1, $s2)
     {
         return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record, $s1, $s2);
     }
 
-    public function getProductsByCatalogID2($catalog_id, $number_record,$s1,$s2)
+    public function getProductsByCatalogID2($catalog_id, $number_record, $s1, $s2)
     {
         $cate = new Category();
         $cata = Catalog::find($catalog_id);
@@ -95,7 +95,7 @@ class Product extends Model
         $listProduct = Product::where([
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0]
-        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record,$s1,$s2);
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record, $s1, $s2);
         return $listProduct;
     }
 
@@ -133,13 +133,13 @@ class Product extends Model
         ])->paginate($number_record, ['*'], 'p2');
     }
 
-    public function getSaleProducts2($number_record,$s1,$s2)
+    public function getSaleProducts2($number_record, $s1, $s2)
     {
         return Product::where([
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0],
             ['discount', '>', 0]
-        ])->paginate($number_record,$s1,$s2);
+        ])->paginate($number_record, $s1, $s2);
     }
 
 
@@ -208,15 +208,15 @@ class Product extends Model
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-            $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
+            $allowedfileExtension = ['pdf', 'jpg', 'png', 'PNG', 'JPG', 'PDF'];
 
 //            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
             if (in_array($fileExtension, $allowedfileExtension)) {
                 $filenameFinal = time() . '.' . $filename;
                 $product->image_link = $filenameFinal;
                 $avatar->storeAs('public/products', $filenameFinal);
-                $category = trim($request->category_new,' ');
-                if(!empty($category)){
+                $category = trim($request->category_new, ' ');
+                if (!empty($category)) {
                     $cate = new Category();
                     $cate->catalog_id = $request->catalog;
                     $cate->name = $category;
@@ -226,7 +226,7 @@ class Product extends Model
                 $product->save();
                 return [
                     'error' => false,
-                    'product_id' => Product::where('user_id',Auth::user()->id)->latest()->first()
+                    'product_id' => Product::where('user_id', Auth::user()->id)->latest()->first()
                 ];
             } else {
                 return [
@@ -244,4 +244,74 @@ class Product extends Model
         }
 
     }
+
+    public function getProductsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
+    {
+        $columns = array(
+            0 => 'id',
+//            1 => 'name',
+            2 => 'category_id',
+            3 => 'price',
+            4 => 'quantity',
+            5 => 'discount',
+            6 => 'image_link',
+            7 => 'description',
+            8 => 'created_at',
+            9 => 'updated_at'
+        );
+        // $page = floor($start / $length) + 1;
+        $productList = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0);
+        $totalData = $productList->count();
+        if (empty($search)) {
+            $products = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $products = Product::where(function ($query) use ($search, $oderColunm, $oderSortType) {
+                $query->where('user_id', Auth::user()->id)->where('name', 'like', "%$search%");
+            })
+                ->where('delete_flag', '=', 0)
+                ->where('user_id', Auth::user()->id)
+                ->Where('created_at', 'like', "%$search%")
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $products->count();
+        }
+
+        $data = array();
+        if ($products) {
+            foreach ($products as $product) {
+                $nestedData = array();
+                $nestedData['id'] = $product->id;
+                $nestedData['user_id'] = $product->user_id;
+//                $nestedData['category'] = $product->categories['name'];
+                $nestedData['name'] = $product->name;
+                $nestedData['price'] = $product->price;
+                $nestedData['quantity'] = $product->quantity;
+                $nestedData['discount'] = $product->discount;
+                $nestedData['image_link'] = $product->image_link;
+                $nestedData['description'] = $product->description;
+                $nestedData['created_at'] = $product->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $product->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['productDetail'] = '<a href="' . route('productDetailBySupplier', $product->id) . '">Chi Tiết Sản Phẩm</a>';
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
+    }
+
 }

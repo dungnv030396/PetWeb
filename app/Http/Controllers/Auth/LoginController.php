@@ -48,9 +48,16 @@ class LoginController extends Controller
 
     public function handleProviderCallbackFB()
     {
-        $userSocialite = Socialite::driver('facebook')->user();
+        $userSocialite = Socialite::driver('facebook')->fields([
+            'name',
+            'first_name',
+            'last_name',
+            'email',
+            'gender',
+            'verified'
+        ])->user();
         if($userSocialite->email ==null){
-            return back()->with('emailNull','Tài Khoản Facebook chưa liên kết email!');
+            return back()->withErrors('emailNull','Tài Khoản Facebook chưa liên kết email!');
         }
         $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
         if($findUserSocialite){
@@ -58,7 +65,10 @@ class LoginController extends Controller
             return redirect(route('trangchu'))->with('facebook');
         }else{
             $user = new User();
-            $user->name = $userSocialite->name;
+            $first_name = $userSocialite->user['first_name'];
+            $last_name = $userSocialite->user['last_name'];
+            $user->name = $first_name .' '. $last_name;
+//            $user->gender = $userSocialite->user['gender'];
             $user->email = $userSocialite->email;
             $user->avatar = $userSocialite->avatar;
             $user->password = bcrypt('123456');

@@ -40,4 +40,9 @@ class PaymentController extends Controller
         return view('clientViews.customer.detail_order',compact('orderDetail'));
 
     }
+    public function searchOrdersHistory(){
+        $order = new Order();
+        $orderDetail= $order->searchOrdersHistory();
+        return view('clientViews.customer.detail_order',compact('orderDetail'));
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\User;
 use App\Order;
@@ -90,4 +91,25 @@ class DatatableController extends Controller
 		
 		echo json_encode($json_data);
 	}
+
+	public function getSupplierPosts(Request $request){
+        $productObj = new Product();
+        $start = $request->input('start') ?: 0;
+        $length = $request->input('length') ?: 10;
+        $search = $request->input('search.value') ?: "";
+        $oderColunm = $request->input('order.0.column') ?: 0;
+        $oderSortType = $request->input('order.0.dir') ?: 'asc';
+        $draw = $request->draw ?: 0;
+        try{
+            $output = $productObj->getProductsAjax($start,$length,$search,$oderColunm,$oderSortType,$draw);
+        }catch(\Exception $ex){
+            $output = array(
+                "draw"            => intval(0),
+                "recordsTotal"    => intval(0),
+                "recordsFiltered" => intval(0),
+                "data"            => array($start.",".$length.",".$search.",".$oderColunm.",".$oderSortType.",".$draw),
+            );
+        }
+        echo json_encode($output);
+    }
 }

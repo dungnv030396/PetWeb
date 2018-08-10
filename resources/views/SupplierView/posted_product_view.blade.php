@@ -18,12 +18,16 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" >
                                 <thead>
                                 <tr>
-                                    <th>Mã Order</th>
-                                    <th>Khách hàng</th>
-                                    <th>Người quản lý</th>
-                                    <th>Tình trạng đơn hàng</th>
-                                    <th>Thời gian đặt hàng</th>
-                                    <th>Hành động</th>
+                                    <th style="width: 5%">Mã Sản Phẩm</th>
+                                    <th style="width: 10%">Tên Sản Phẩm</th>
+                                    {{--<th style="width: 5%">Chủng Loại</th>--}}
+                                    <th style="width: 10%">Giá</th>
+                                    <th style="width: 5%">Số Lượng</th>
+                                    <th style="width: 5%">Giảm Giá (%)</th>
+                                    {{--<th style="width: 20%">Ảnh</th>--}}
+                                    <th style="width: 5%">Ngày Đăng Bán</th>
+                                    <th style="width: 5%">Ngày Cập Nhật</th>
+                                    <th style="width: 10%">Hành Động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -44,7 +48,7 @@
                 "stateSave": true,
                 "stateDuration": -1,
                 "ajax":{
-                    "url":"<?= route('orderDataProcessing') ?>",
+                    "url":"<?= route('dataSupplierPostProducts') ?>",
                     "dataType" :"json",
                     "type": "POST",
                     "data":{"_token":"<?= csrf_token() ?>"}
@@ -53,21 +57,29 @@
                     [
                         {data:"id"},
                         {
-                            data:"user_name",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                                $(nTd).html("<a href='{{}}'>"+oData.user_name+"</a>");
-                            },orderable:false
+                            data:"name",
+                            orderable:false
                         },
-                        {data:"moderator",orderable:false},
-                        {data:"status",orderable:false},
+//                        {data:"category",orderable:false},
+                        {data:"price"
+                            ,orderable:false},
+                        {data:"quantity",orderable:false},
+                        {data:"discount",orderable:false},
+//                        {data:"image_link",
+//                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+//                                $(nTd).html("<img style='width: 100%;height: 15%' src = storage/products/" + oData.image_link + ">");
+//                            }
+//                        ,orderable:false
+//                        },
                         {
                             data: "created_at"
-
                         },
                         {
-                            data: "created_at",orderable:false
-
-                        }
+                            data: "updated_at",orderable:false
+                        },
+                    {
+                        data: "productDetail",orderable:false
+                    }
                     ]
             });
         });
