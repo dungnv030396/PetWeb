@@ -74,32 +74,18 @@
                                 <p></p>
                             </div>
                             <div class="space20"></div>
-                            <p>Số lượng: </p>
+                            <strong><p>Địa chỉ: {{$product['supplier']->address}} </p></strong>
 
                             <div class="single-item-options">
-                                <form method="POST" name="addToCart" id="addToCart" action="{{route('themgiohang')}}" >
-                                    {{ csrf_field() }}
-                                    <div class="qty-changer">
-                                        <input type="hidden" value="{{$product['product']->id}}" name="id" id="id" />
-                                        <input class="qty-input form-group" id="quantity" name="quantity" type="number" value="1" max="{{$product['product']->quantity}}" min="1"/>
-                                        <p>(Còn lại <b>{{$product['product']->quantity}}</b> sản phẩm)</p>
-                                    </div>
-                                </form>
                                 @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
                                     @include('sweet::alert')
                                 @endif
-                                <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
-                                            class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
-                                {{--report--}}
-                                {{--<div style="border: solid; width: 10vw;height: 3vw;margin-top: 3vw">--}}
-
-                                {{--</div>--}}
-                                {{--endreport--}}
                                 <div class="clearfix"></div>
                             </div>
                             <div class="single-item-supplier">
-                                <p>Người bán: <a href="{{Route('detailSupplier',$product['supplier']->id)}}">{{$product['supplier']->name}}</a></p>
+                                <p><b>Người bán:</b> <a href="{{Route('detailSupplier',$product['supplier']->id)}}">{{$product['supplier']->name}}</a></p>
                             </div>
+                            <div class="single-item-supplier"><span style="color: #0e0e0e"><b>Để đặt dịch vụ quý khách xin liên lạc qua số điện thoại</b> <b style="color: #0000FF">{{$product['supplier']->phoneNumber}}</b></span></div>
                         </div>
 
                     </div>
@@ -153,18 +139,12 @@
                                                         VNĐ</span>
                                                 @else
                                                     <span class="flash-sale">{{number_format($product->price)}}
-                                                        VNĐ</span><br><br>
+                                                        VNĐ</span>
                                                 @endif
                                             </p>
                                         </div>
                                         <div class="single-item-caption">
-                                            <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
-                                                {{ csrf_field() }}
-                                                <input type="hidden" value="{{$product->id}}" name="id" id="id" />
-                                                <input type="hidden" value="1" name="quantity" id="quantity" />
-                                            </form>
-                                            <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
-                                                        class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
+                                            <strong><p>Địa chỉ: {{$product->user->address}}</p></strong>
                                             <a class="beta-btn primary"
                                                href="{{route('productDetail',$product->id)}}">Chi
                                                 tiết <i class="fa fa-chevron-right"></i></a>

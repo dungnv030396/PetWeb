@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 07:44 AM
+-- Generation Time: Aug 10, 2018 at 04:47 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -178,38 +178,34 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 INSERT INTO `orders` (`id`, `status_id`, `address`, `moderator_id`, `user_id`, `payment_id`, `delete_flag`, `created_at`, `updated_at`, `completed_at`) VALUES
-(5, 1, '', NULL, 5, 11, 0, '2018-07-29 17:29:46', '2018-07-29 17:29:46', NULL),
-(6, 1, '', NULL, 5, 12, 0, '2018-07-29 17:44:14', '2018-07-29 17:44:14', NULL),
-(7, 1, '', NULL, 5, 13, 0, '2018-07-29 18:09:16', '2018-07-29 18:09:16', NULL),
-(8, 2, '', NULL, 6, 14, 0, '2018-07-29 18:24:24', '2018-07-29 18:24:24', NULL),
-(9, 1, 'HCM', NULL, 5, 15, 0, '2018-08-04 13:28:56', '2018-08-04 13:28:56', NULL),
-(10, 1, 'HCM', NULL, 5, 16, 0, '2018-08-04 13:30:12', '2018-08-04 13:30:12', NULL),
-(11, 1, 'HCM11111111', NULL, 5, 17, 0, '2018-08-04 13:42:37', '2018-08-04 13:42:37', NULL),
-(12, 1, 'Hà Nội', NULL, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-06 15:44:49', NULL),
-(13, 1, 'dsadsadsad', NULL, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-06 15:45:18', NULL),
-(14, 1, 'dsadsadsad', NULL, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-06 15:45:59', NULL),
+(9, 2, 'HCM', 5, 5, 15, 0, '2018-08-04 13:28:56', '2018-08-10 13:06:47', NULL),
+(10, 2, 'HCM', 5, 5, 16, 0, '2018-08-04 13:30:12', '2018-08-10 12:53:59', NULL),
+(11, 2, 'HCM11111111', 5, 5, 17, 0, '2018-08-04 13:42:37', '2018-08-10 12:53:17', NULL),
+(12, 2, 'Hà Nội', 5, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-10 12:49:41', NULL),
+(13, 2, 'dsadsadsad', 5, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-10 13:10:08', NULL),
+(14, 2, 'dsadsadsad', 5, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-10 13:51:04', NULL),
 (15, 1, 'HCM', NULL, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-06 15:46:28', NULL),
-(16, 0, 'dsadsadsad', NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
-(17, 0, 'sads', NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
-(18, 0, 'dsadsadsad', NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
-(19, 0, 'dsadsadsad', NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
-(20, 0, 'Hà Nội', NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
-(21, 0, 'Hà Nội', NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
-(22, 0, 'dsad', NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
-(23, 0, 'Hà Nội', NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
-(24, 0, 'Hà Nội', NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
-(25, 0, 'Hà Nội', NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
-(26, 0, 'Hà Nội', NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
-(27, 0, 'Hà Nội', NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
-(28, 0, 'Hà Nội', NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
-(29, 0, 'Hà Nội', NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
-(30, 0, 'HCM11111111', NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
-(31, 0, 'Hà Nội', NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
-(32, 0, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
-(33, 0, 'Hà Nội', NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
-(34, 0, 'Hà Nội', NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
-(35, 0, 'Hà Nội', NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
-(36, 0, 'Hà Nội', NULL, 5, 42, 0, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL);
+(16, 1, 'dsadsadsad', NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
+(17, 1, 'sads', NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
+(18, 1, 'dsadsadsad', NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
+(19, 1, 'dsadsadsad', NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
+(20, 1, 'Hà Nội', NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
+(21, 1, 'Hà Nội', NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
+(22, 1, 'dsad', NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
+(23, 1, 'Hà Nội', NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
+(24, 1, 'Hà Nội', NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
+(25, 1, 'Hà Nội', NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
+(26, 1, 'Hà Nội', NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
+(27, 1, 'Hà Nội', NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
+(28, 1, 'Hà Nội', NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
+(29, 1, 'Hà Nội', NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
+(30, 1, 'HCM11111111', NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
+(31, 1, 'Hà Nội', NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
+(32, 1, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
+(33, 1, 'Hà Nội', NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
+(34, 1, 'Hà Nội', NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
+(35, 1, 'Hà Nội', NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
+(36, 1, 'Hà Nội', NULL, 5, 42, 0, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -462,10 +458,9 @@ CREATE TABLE IF NOT EXISTS `statuses` (
 INSERT INTO `statuses` (`id`, `stt`) VALUES
 (1, 'Chưa xử lý'),
 (2, 'Đang xử lý'),
-(3, 'đã bàn giao'),
-(4, 'đủ hàng'),
-(5, 'đang giao hàng'),
-(6, 'hoàn thành');
+(3, 'đủ hàng'),
+(4, 'đang giao hàng'),
+(5, 'hoàn thành');
 
 -- --------------------------------------------------------
 
@@ -592,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
 (1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
 (2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', 'KVnFxsYxV6AdeNQ4jSJQbRytMxqaJhWyAN6lNIMV1dHPFsL7UrMlnHZyuo7t', '01697161671', NULL, NULL, NULL, NULL, NULL, 2, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', 'fl3cfP6hwPm14DF3jX4Zg4eWrapeExjYk46mGVTxnkinuODQt8ogi7WCgzXY', '01697161671', NULL, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
 (6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
 (7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'eBdpOJpEExoCc317PjmV0aD59ZtRHde86EDpBZ7c1f2NvpWhj3KUyvQmkI9y', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-07 15:58:05', '2018-08-07 15:58:05');
 
