@@ -90,7 +90,16 @@
                             <div class="col-md-5 col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
-                                    <input style="height: 70px" type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ của bạn ở đây" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}" required>
+                                    <input style="height: 70px" type="text" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ của bạn ở đây" value="{{ strrev(str_after(strrev(\Illuminate\Support\Facades\Auth::user()->address),',')) }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Thành Phố <span class="text-danger">*</span></label>
+                            <div class="col-md-5 col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
+                                    @include('layouts.city')
                                 </div>
                             </div>
                         </div>

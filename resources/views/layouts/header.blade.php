@@ -34,7 +34,7 @@
                     @endif
                     <li><a href="auth/logout">Đăng Xuất</a></li>
                     @else
-                        <li><a href="register">Đăng kí</a></li>
+                        <li><a href="{{route('registerPage')}}">Đăng kí</a></li>
                         <li><a href="" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
                     @endif
                 </ul>

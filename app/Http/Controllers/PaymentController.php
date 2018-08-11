@@ -42,7 +42,7 @@ class PaymentController extends Controller
     }
     public function searchOrdersHistory(){
         $order = new Order();
-        $orderDetail= $order->searchOrdersHistory();
-        return view('clientViews.customer.detail_order',compact('orderDetail'));
+        $listOrders= $order->searchOrdersHistory();
+        return view('clientViews.customer.orders_history',compact('listOrders'));
     }
 }

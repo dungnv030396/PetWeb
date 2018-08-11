@@ -13,7 +13,7 @@
 
             <form class="form-horizontal" role="form" method="POST" action="changePassByMail">
                 {{ csrf_field() }}
-                <input type="text" name="id" hidden value="{{ str_before(strrev(Request::url()),'/') }}">
+                <input type="text" name="id" hidden value="{{ strrev(str_before(strrev(Request::url()),'/')) }}">
                 <div class="form-group">
                     <label class="col-md-3 control-label">Mật Khẩu Mới:</label>
                     <div class="col-md-8">

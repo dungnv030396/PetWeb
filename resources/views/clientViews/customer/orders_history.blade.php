@@ -16,10 +16,10 @@
                 <h2 class="main-color">Danh Sách Lịch Sử Mua Hàng</h2>
                 <br>
                 <h4>Tìm thấy <a style="color: #f90">{{ $listOrders['number'] }}</a> Lần Mua Hàng</h4>
-                <form method="POST" action="{{route('searchOrderHistory')}}">
+                <form method="POST" action="{{route('searchOrderHistosry',\Illuminate\Support\Facades\Auth::user()->id)}}">
                     {{ csrf_field() }}
                     <span class="search-supplier"><input class="form-control form-control-lg form-control-borderless"
-                                                         name="name" type="search" placeholder="Tìm kiếm Trạng Thái và Ngày Mua"></span>
+                                             value="{{old('name')}}" name="name" type="search" placeholder="Tìm kiếm Trạng Thái và Ngày Mua"></span>
                     <button class="button-search-supplier btn btn-success " type="submit">Tìm Kiếm</button>
                 </form>
                 <br>

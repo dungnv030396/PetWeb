@@ -69,14 +69,12 @@ Route::get('recruitment',function (){
 //Register
 Route::get('register', function () {
     return view('registration.register');
-});
+})->name('registerPage');
 Route::post('register', 'UsersController@store')->name('register');
 
 //register to Supplier
 
-Route::get('register.supplier',function (){
-    return view('clientViews.customer.registerToSupplier');
-})->name('register.supplier');
+Route::get('register.supplier','UsersController@registerSupplierPage')->name('register.supplier');
 Route::post('register.supplier', 'UsersController@registerSupplier')->name('registerToSupplier');
 
 
@@ -203,7 +201,7 @@ Route::get('moderator/manage/order-list',function (){
 //Orders history
 Route::get('customer/ordershistory/{id}','PaymentController@ordersHistory')->name('ordersHistory');
 Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('detailOrders');
-Route::post('customer/orders_history/result','PaymentController@searchOrdersHistory')->name('searchOrderHistory');
+Route::post('customer/ordershistory/{id}','PaymentController@searchOrdersHistory')->name('searchOrderHistosry');
 
 //demo
 
