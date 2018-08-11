@@ -33,6 +33,8 @@ class ProductController extends Controller
         return response()->json($returnHTML);
     }
     public function viewDetailProduct(){
-        return view('suppliers.detail_product');
+
+        $menu = 'order';
+        return view('SupplierView.detail_product',compact('menu'));
     }
 }

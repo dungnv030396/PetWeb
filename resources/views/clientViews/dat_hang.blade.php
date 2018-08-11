@@ -46,14 +46,17 @@
 
 						<div class="form-block">
 							<label for="adress"><b>Địa chỉ*</b></label>
-							<input type="text" id="address" name="address" value="{{(!empty($currentUser->address))?$currentUser->address:''}}" placeholder="Điền địa chỉ của bạn" required>
+							<input type="text" id="address" name="address" value="{{(!empty($currentUser->address)?$currentUser->address:'')}}" placeholder="Điền địa chỉ của bạn" required readonly>
 						</div>
 
 						<div class="form-block">
 							<label for="adress"><b>Địa chỉ nhận hàng(Nếu có)</b></label>
 							<input type="text" id="order_address" name="order_address" {{$currentUser->address}} placeholder="Chúng tôi sẽ giao hàng đến địa chỉ trên nếu trống" >
 						</div>
-
+						<div class="form-block">
+							<label for="adress"><b>Thành Phố Nhận Hàng*</b></label>
+							@include('layouts.city')
+						</div>
 
 						<div class="form-block">
 							<label for="phone"><b>Số điện thoại nhận hàng*</b></label>

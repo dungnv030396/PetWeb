@@ -1,5 +1,5 @@
 <select name="city" class="form-control" id="citydrop">
-    @if($city!=null)
+    @if(!empty($city))
     <option selected value="{{$city}}">{{$city}}</option>
     @endif
     <option value="An Giang">An Giang</option>

@@ -145,11 +145,6 @@ Route::get('supplier/manage/add-product','SupplierController@addProductView')->n
 //add product
 Route::post('supplier/manage/add-product','ProductController@postProduct')->name('addProduct');
 //detail add product
-//Route::get('supplier/manage/add-product/detail/{id}',function (){
-//    $menu = 'detailproduct';
-//    return view('SupplierView.detail_add_product',compact('menu'));
-//});
-
 
 //Add comment single
 Route::post('them-binh-luan','CommentController@addSingleComment')->name('addSingleComment');
@@ -167,10 +162,6 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 //Route::post('data/users','DatatableController@getUsers')->name('dataProcessing');//example
 
 // supplier management
-//Route::get('supplier/management',function (){
-//    return view('SupplierView.home',compact('menu'));
-//
-//})->name('supplierManagement');
 Route::get('supplier/manage/supplier-product-list',function (){
     $menu = 'order';
     return view('SupplierView.posted_product_view',compact('menu'));
@@ -205,9 +196,6 @@ Route::post('customer/ordershistory/{id}','PaymentController@searchOrdersHistory
 
 //demo
 
-//Route::get('load','SupplierController@load')->name('load');
-//Route::get('demo','SupplierController@demo')->name('demo');
-
 Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
 
 Route::post('data-load','ProductController@loadCategoriesAjax')->name('loadCategories');
@@ -225,3 +213,6 @@ Route::get('print/don-hang/{id}','ModeratorController@printOrder')->name('printO
 Route::get('tiep-nhan/don-hang/{id}','ModeratorController@orderAssign')->name('orderAssign');
 Route::get('bo-tiep-nhan/don-hang/{id}','ModeratorController@orderAssignDelete')->name('orderAssignDelete');
 Route::get('huy/don-hang/{id}','ModeratorController@orderDelete')->name('orderDelete');
+
+//test mail
+Route::get('clientViews.emails.notifi_to_supplier')->name('checkMail');

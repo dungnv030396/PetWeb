@@ -56,7 +56,8 @@ class CartsController extends Controller
         $cart = new Cart($oldcart);
         if($user->isLogin()){
             $currentUser = $user->getCurrentUser();
-            return view('clientViews.dat_hang', compact('currentUser','cart'));
+            $city = strrev(str_before(strrev($currentUser->address),','));
+            return view('clientViews.dat_hang', compact('currentUser','cart','city'));
         }
         alert()->error("Xin quý khách đăng nhập trước khi thanh toán!!");
         return redirect()->back()->with('message','checkout');

@@ -134,7 +134,7 @@ class Order extends Model
     {
         $user_id = request('id');
         $orders = Order::where('user_id', $user_id)->latest()->paginate(10);
-        $number = count($orders);
+        $number = Order::where('user_id', Auth::user()->id)->count();
         if ($number != 0) {
             foreach ($orders as $order) {
                 $nestedData = array();
@@ -169,7 +169,7 @@ class Order extends Model
             ->orwhere('created_at','like',"%$value%")
             ->where('user_id', Auth::user()->id)
             ->latest()->paginate(10);
-        $number = count($orders);
+        $number = Order::where('user_id', Auth::user()->id)->count();
         if ($number != 0) {
             foreach ($orders as $order) {
                 $nestedData = array();

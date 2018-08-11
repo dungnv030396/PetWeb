@@ -62,10 +62,10 @@ class Payment extends Model
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
-            if(!empty(trim($request->order_address,' '))){
-                $order->address = trim($request->order_address,' ');
-            }else{
-                $order->address = trim($request->address,' ');
+            if (!empty(trim($request->order_address, ' '))) {
+                $order->address = trim($request->order_address . ',' . $request->city, ' ');
+            } else {
+                $order->address = trim($request->address . ',' . $request->city, ' ');
             }
             $order->save();
             foreach ($cart->items as $cartLine) {
@@ -83,11 +83,13 @@ class Payment extends Model
                 $product = $pro->getProductById($cartLine['item']->id);
                 $product->quantity -= $cLine->quantity;
                 $product->save();
+
+
             }
-            $cUser->name = trim($request->name,' ');
+            $cUser->name = trim($request->name, ' ');
             $cUser->gender = $request->gender;
-            $cUser->phoneNumber = trim($request->phone,' ');
-            $cUser->address = trim($request->address,' ');
+            $cUser->phoneNumber = trim($request->phone, ' ');
+            $cUser->address = trim($request->address, ' ');
             $cUser->save();
             Session::forget('cart');
             return $order;
@@ -96,27 +98,37 @@ class Payment extends Model
         }
     }
 
-//    public function sendMailSuplier()
-//    {
-//        $pro = new Product();
-//        $cart = Session::get('cart');
-//        $arr =[];
-//        foreach ($cart->items as $cartLine) {
-//            $product = $pro->getProductById($cartLine['item']->id);
-//            //$supplier = User::find($cartLine['item']->user->id);
-//            $data = array('supplierName' => $cartLine['item']->user->name,
-//                'supplierEmail' => $cartLine['item']->user->email,
-//                'productName' => $product->name,
-//                'quanlity' => $casrtLine['quanlity']
-//            );
-//             array_push($arr,[$cartLine['item']->user->id,$data]);
-//        }
-//        Mail::send('clientViews.emails.notifiToSupplier', $data, function ($message) {
-//            $message->to(\request('email'))
-//                ->subject('The Pet Family - Thông Báo Sản Phẩm');
-//            $message->from('thepetfamilyteam@gmail.com');
-//        });
-//        die;
-//
-//    }
+    public function sendMailSuplier($order_id)
+    {
+        $orderLines = OrderLine::where('order_id', $order_id)->get();
+//        var_dump($orderLines);die;
+        if ($orderLines){
+        foreach ($orderLines as $orderLine) {
+//            $nestedData = array();
+//            $nestedData['supplier_name'] = $orderLine->product->user['name'];
+//            $nestedData['product_name'] = $orderLine->product['name'];
+//            $nestedData['price'] = $orderLine->product['price'];
+//            $nestedData['quantity'] = $orderLine->quantity;
+//            $nestedData['amount'] = $orderLine->product['amount'];
+//            $nestedData['created_at'] = $orderLine->created_at;
+//            $nestedData['email'] = $orderLine->product->user['email'];
+//            $data[] = $nestedData;
+            $data = [
+                'orderLine_id' => $orderLine->id,
+                'supplier_name' => $orderLine->product->user['name'],
+                'product_name' => $orderLine->product['name'],
+                'price' => $orderLine->product['price'],
+                'quantity' => $orderLine->quantity,
+                'amount' => $orderLine->product['price'] * $orderLine->quantity,
+                'created_at' => $orderLine->created_at,
+            ];
+            $email = $orderLine->product->user['email'];
+            Mail::send('clientViews.emails.notifi_to_supplier', $data, function ($message) use ($email) {
+                $message->to($email)
+                    ->subject('The Pet Family - Thông Báo Sản Phẩm');
+                $message->from('thepetfamilyteam@gmail.com');
+            });
+        }
+        }
+    }
 }
