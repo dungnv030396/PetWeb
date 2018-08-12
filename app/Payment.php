@@ -1,11 +1,8 @@
 <?php
-
 namespace App;
-
 use Session;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
-
 class Payment extends Model
 {
     //checkout
@@ -46,7 +43,6 @@ class Payment extends Model
                 $amount += ($request->$para * $cartLine['item']->price);
             }
         }
-
         try {
             $payment = new Payment();
             $payment->amount = $amount;
@@ -58,17 +54,17 @@ class Payment extends Model
             }
             $payment->user_message = $request->notes;
             $payment->save();
-
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
             if (!empty(trim($request->order_address, ' '))) {
                 $order->address = trim($request->order_address . ',' . $request->city, ' ');
             } else {
-                $order->address = trim($request->address . ',' . $request->city, ' ');
+                $order->address = trim($request->address, ' ');
             }
             $order->save();
             foreach ($cart->items as $cartLine) {
+                $para = 'quantity' . $cartLine['item']->id;
                 $cLine = new OrderLine();
                 $cLine->order_id = $order->id;
                 $cLine->product_id = $cartLine['item']->id;
@@ -83,8 +79,6 @@ class Payment extends Model
                 $product = $pro->getProductById($cartLine['item']->id);
                 $product->quantity -= $cLine->quantity;
                 $product->save();
-
-
             }
             $cUser->name = trim($request->name, ' ');
             $cUser->gender = $request->gender;
@@ -97,38 +91,35 @@ class Payment extends Model
             throw $e;
         }
     }
-
     public function sendMailSuplier($order_id)
     {
         $orderLines = OrderLine::where('order_id', $order_id)->get();
-//        var_dump($orderLines);die;
         if ($orderLines){
-        foreach ($orderLines as $orderLine) {
-//            $nestedData = array();
-//            $nestedData['supplier_name'] = $orderLine->product->user['name'];
-//            $nestedData['product_name'] = $orderLine->product['name'];
-//            $nestedData['price'] = $orderLine->product['price'];
-//            $nestedData['quantity'] = $orderLine->quantity;
-//            $nestedData['amount'] = $orderLine->product['amount'];
-//            $nestedData['created_at'] = $orderLine->created_at;
-//            $nestedData['email'] = $orderLine->product->user['email'];
-//            $data[] = $nestedData;
-            $data = [
-                'orderLine_id' => $orderLine->id,
-                'supplier_name' => $orderLine->product->user['name'],
-                'product_name' => $orderLine->product['name'],
-                'price' => $orderLine->product['price'],
-                'quantity' => $orderLine->quantity,
-                'amount' => $orderLine->product['price'] * $orderLine->quantity,
-                'created_at' => $orderLine->created_at,
-            ];
-            $email = $orderLine->product->user['email'];
-            Mail::send('clientViews.emails.notifi_to_supplier', $data, function ($message) use ($email) {
-                $message->to($email)
-                    ->subject('The Pet Family - Thông Báo Sản Phẩm');
-                $message->from('thepetfamilyteam@gmail.com');
-            });
-        }
+            foreach ($orderLines as $orderLine) {
+                $uPrice = $orderLine->product['price'];
+                if($orderLine->product['discount'] > 0){
+                    $price = $uPrice - ($uPrice * $orderLine->product['discount'])/100;
+                }else{
+                    $price = $uPrice;
+                }
+                $data = [
+                    'orderLine_id' => $orderLine->id,
+                    'supplier_name' => $orderLine->product->user['name'],
+                    'product_name' => $orderLine->product['name'],
+                    'price' => number_format($price),
+                    'quantity' => $orderLine->quantity,
+                    'amount' => number_format($orderLine->amount),
+                    'created_at' => $orderLine->created_at,
+                    'order_id' => $order_id,
+                    'product_id' => $orderLine->product['id']
+                ];
+                $email = $orderLine->product->user['email'];
+                Mail::send('clientViews.emails.notifi_to_supplier', $data, function ($message) use ($email) {
+                    $message->to($email)
+                        ->subject('The Pet Family - Thông Báo Sản Phẩm');
+                    $message->from('thepetfamilyteam@gmail.com');
+                });
+            }
         }
     }
 }

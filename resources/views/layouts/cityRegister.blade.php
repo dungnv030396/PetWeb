@@ -1,4 +1,4 @@
-<select name="city" class="form-block" id="citydrop">
+<select name="city" class="form-control" id="citydrop">
     @if(!empty($city))
     <option selected value="{{$city}}">{{$city}}</option>
     @endif

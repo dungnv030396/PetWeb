@@ -156,7 +156,7 @@
                         <div class="col-md-5 col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
-                                @include('layouts.city')
+                                @include('layouts.cityRegister')
                             </div>
                         </div>
                     </div>

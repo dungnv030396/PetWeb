@@ -19,7 +19,6 @@ class PaymentController extends Controller
 
         $payment = new Payment();
         $order = $payment->checkout($request, $this)->id; //order_id vừa add
-//        dd($order);
         $payment->sendMailSuplier($order);
         return redirect(route('checkoutSucess', compact('order')));
     }
