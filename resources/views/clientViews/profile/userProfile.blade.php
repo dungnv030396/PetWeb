@@ -4,7 +4,12 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="/css/css-register.css" rel="stylesheet">
-
+<script type="text/javascript">
+    $(function () {
+        var e = document.getElementById("citydrop");
+        {{ strrev(str_after(strrev(\Illuminate\Support\Facades\Auth::user()->address),',')) }}
+    });
+</script>
     <div class="container" style="padding-top: 60px;">
         <h1 class="page-header">Thay Đổi Hồ Sơ Của Bạn</h1>
         <div class="row">
@@ -141,9 +146,18 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Địa Chỉ:</label>
                         <div class="col-lg-8">
-                            <input style="height: 100px" class="form-control" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"
+                            <input style="height: 100px" class="form-control" value="{{ strrev(str_after(strrev(\Illuminate\Support\Facades\Auth::user()->address),',')) }}"
                                    type="text" name="address"
                                    required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Thành Phố <span class="text-danger">*</span></label>
+                        <div class="col-md-5 col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-collapse-down"></i></span>
+                                @include('layouts.city')
+                            </div>
                         </div>
                     </div>
                     <hr>

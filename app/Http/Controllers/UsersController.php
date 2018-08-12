@@ -18,9 +18,8 @@ class UsersController extends Controller
 
     public function show()
     {
-        $id = \request('id');
-        $user = User::all()->find($id);
-        return view('clientViews.profile.userProfile', compact('user'));
+        $city = strrev(str_before(strrev(Auth::user()->address),','));
+        return view('clientViews.profile.userProfile', compact('city'));
     }
 
     public function registerSupplier(Request $request)
@@ -32,5 +31,9 @@ class UsersController extends Controller
         } else {
             return back()->with('postProductSuccess', 'Gửi đơn đăng ký thành công');
         }
+    }
+    public function registerSupplierPage(){
+        $city = strrev(str_before(strrev(Auth::user()->address),','));
+        return view('clientViews.customer.registerToSupplier',compact('city'));
     }
 }

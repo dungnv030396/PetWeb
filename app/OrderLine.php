@@ -22,7 +22,6 @@ class OrderLine extends Model
         $detailOrder = OrderLine::where('order_id', $order_id)->latest()->paginate(5);
         foreach ($detailOrder as $item) {
             $nestedData = array();
-            $nestedData['status_id'] = $item->orderline_status_id;
             $nestedData['status_name'] = Status::find($item->orderline_status_id)->stt;
             $nestedData['product_name'] = $item->product['name'];
             $nestedData['discount'] = $item->product['discount'];

@@ -34,9 +34,9 @@ class ProductController extends Controller
         return response()->json($returnHTML);
     }
 
-    public function viewDetailProduct()
-    {
-        return view('suppliers.detail_product');
+    public function viewDetailProduct(){
+        $menu = 'order';
+        return view('SupplierView.detail_product',compact('menu'));
     }
 
     public function editProductAjax(Request $request)

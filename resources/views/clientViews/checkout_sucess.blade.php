@@ -67,7 +67,7 @@
                                     @foreach($order->orderLine as $oderLine)
                                         <div class="media">
                                             <img width="20%"
-                                                 src="source/image/products/{{$oderLine->product->image_link}}" alt=""
+                                                 src="storage/products/{{$oderLine->product->image_link}}" alt=""
                                                  class="pull-left">
                                             <div class="media-body">
                                                 <p class="font-large">{{$oderLine->product->name}}</p>

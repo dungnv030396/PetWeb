@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 04:47 PM
+-- Generation Time: Aug 11, 2018 at 08:02 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
@@ -126,7 +126,8 @@ INSERT INTO `comments` (`id`, `user_id`, `product_id`, `media_link`, `descriptio
 (21, 5, 2, NULL, 'dsads', 0, '2018-08-04 15:15:09', '2018-08-04 15:15:09'),
 (22, 5, 2, NULL, '1234355', 0, '2018-08-04 15:15:51', '2018-08-04 15:15:51'),
 (23, 5, 2, NULL, 'đasadsdas', 0, '2018-08-05 11:56:14', '2018-08-05 11:56:14'),
-(24, 5, 2, NULL, 'đá', 0, '2018-08-05 12:12:10', '2018-08-05 12:12:10');
+(24, 5, 2, NULL, 'đá', 0, '2018-08-05 12:12:10', '2018-08-05 12:12:10'),
+(25, 5, 18, NULL, 'dsad', 0, '2018-08-10 15:53:01', '2018-08-10 15:53:01');
 
 -- --------------------------------------------------------
 
@@ -369,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
@@ -392,7 +393,8 @@ INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quanti
 (14, 5, 1, 'Chó ngu', 1000000, 1000, 50, '1533821041.petshop.png', 'không', 0, '2018-08-09 13:24:01', '2018-08-09 13:24:01'),
 (15, 5, 2, 'Chó ngu 1', 1000000, 100, 55, '1533833893.banner.png', 'ok', 0, '2018-08-09 16:58:13', '2018-08-09 16:58:13'),
 (16, 5, 11, 'Chó ngu 2', 1000000, 1000, 50, '1533834135.Screenshot (107).png', 'ok', 0, '2018-08-09 17:02:15', '2018-08-09 17:02:15'),
-(17, 5, 1, 'Chó ngu 1', 50000, 1000, 0, '1533834982.banner.png', 'dsds', 0, '2018-08-09 17:16:22', '2018-08-09 17:16:22');
+(17, 5, 1, 'Chó ngu 1', 50000, 1000, 0, '1533834982.banner.png', 'dsds', 0, '2018-08-09 17:16:22', '2018-08-09 17:16:22'),
+(18, 7, 8, 'Chó ngu 1', 1000000, 1, 0, '1533915744.batan.jpg', 'dsd', 0, '2018-08-10 15:42:24', '2018-08-10 15:42:24');
 
 -- --------------------------------------------------------
 
@@ -449,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `stt` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `statuses`
@@ -538,6 +540,7 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `name` varchar(255) NOT NULL,
   `gender` int(2) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
   `phoneNumber` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -587,9 +590,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
 (1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
 (2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', 'fl3cfP6hwPm14DF3jX4Zg4eWrapeExjYk46mGVTxnkinuODQt8ogi7WCgzXY', '01697161671', NULL, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', '46mGWfDOCaKi4lc8NUBcA63Q2uNql9869ggFYQ6fHcT6AdBiAtOYqL2E5TPK', '01697161671', NULL, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
 (6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
-(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'eBdpOJpEExoCc317PjmV0aD59ZtRHde86EDpBZ7c1f2NvpWhj3KUyvQmkI9y', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-07 15:58:05', '2018-08-07 15:58:05');
+(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'eBdpOJpEExoCc317PjmV0aD59ZtRHde86EDpBZ7c1f2NvpWhj3KUyvQmkI9y', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-08-07 15:58:05', '2018-08-07 15:58:05');
 
 -- --------------------------------------------------------
 

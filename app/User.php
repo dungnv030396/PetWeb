@@ -102,7 +102,7 @@ class User extends Authenticatable
         $user->name = request('mem_name');
         $user->email = request('emailid');
         $user->phoneNumber = request('phonenumber');
-        $user->address = request('address');
+        $user->address = request('address').','. request('city');
         $user->gender = request('gender');
         $user->bank_name = request('bank_name');
         $user->bank_username = request('bank_username');
@@ -150,7 +150,7 @@ class User extends Authenticatable
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = request('phonenumber');
         $user->gender = \request('gender');
-        $user->address = request('address');
+        $user->address = request('address').' ,'. request('city');
         $user->avatar = 'user-default.png';
         $user->save();
         return back()->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công');

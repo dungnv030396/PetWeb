@@ -30,7 +30,7 @@ class SupplierRegister extends Model
             $registerSup->phoneNumber = request('phonenumber');
             $registerSup->gender = \request('gender');
             $registerSup->password = bcrypt(request('password'));
-            $registerSup->address = request('address');
+            $registerSup->address = request('address').','. request('city');
             $registerSup->bank_name = request('bank_name');
             $registerSup->bank_username = request('bank_username');
             $registerSup->card_number = request('card_number');
@@ -99,7 +99,7 @@ class SupplierRegister extends Model
             $user->phoneNumber = request('phonenumber');
             $user->gender = \request('gender');
             $user->password = bcrypt(request('password'));
-            $user->address = request('address');
+            $user->address = request('address').','. request('city');
             $user->bank_name = request('bank_name');
             $user->bank_username = request('bank_username');
             $user->card_number = request('card_number');
