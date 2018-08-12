@@ -27,8 +27,6 @@ class Order extends Model
     {
         $columns = array(
             0 => 'id',
-            2 => 'moderator_id',
-            3 => 'status_id',
             4 => 'created_at'
         );
        // $page = floor($start / $length) + 1;
@@ -70,8 +68,8 @@ class Order extends Model
                     $nestedData['moderator_id'] = $order->moderator->id;
                     $nestedData['moderator'] = $order->moderator->name;
                 }
-                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($order->created_at));
-                $nestedData['updated_at'] = date('d-m-Y H:i:s',strtotime($order->updated_at));
+                $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['orderDetail'] = '
 					<a href="'.route('orderDetail',$order->id).'">'.'Chi tiết sản phẩm'.'</a>
 				';

@@ -76,5 +76,6 @@ class SupplierController extends Controller
         $categories =  $cataObj->getCategoriesByCatalogId($catalogs[0]->id);
         return view('SupplierView.add_product_view',compact('catalogs','menu','categories'));
     }
+
 }
 

@@ -90,10 +90,7 @@
                             },orderable:false
                         },
                         {
-                            data: "created_at",
-                            render: function (data, type, full, meta) {
-                                return formatDate(data,'dd/MM/yyyy hh:mm:ss a');
-                            }
+                            data: "created_at"
                         },
                         {
                             data: "orderDetail",orderable: false

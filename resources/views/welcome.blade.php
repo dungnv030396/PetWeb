@@ -9,59 +9,78 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
+        <div class="flex-center position-ref full-height">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 align="center">Laravel 5.5 Datatable Serverside Processing</h2>
-					
-					<table id="example" class="table table-hover table-striped">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Created at</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Created at</th>
-								<th>Action</th>
-							</tr>
-						</tfoot>
-					</table>
+
+            <div class="content">
+                <div class="title m-b-md">
+                    Laravel
+                </div>
+
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>
-		
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-		
-		<script>
-			$('#example').DataTable( {
-				"processing": true,
-				"serverSide": true,
-				"ajax": {
-					"url":"<?= route('dataProcessing') ?>",
-					"dataType":"json",
-					"type":"POST",
-					"data":{"_token":"<?= csrf_token() ?>"}
-				},
-				"columns":[
-					{"data":"name"},
-					{"data":"email"},
-					{"data":"created_at"},
-					{"data":"action","searchable":false,"orderable":false}
-				]
-			} );
-		</script>
     </body>
 </html>

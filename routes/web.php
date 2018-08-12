@@ -227,3 +227,5 @@ Route::get('print/don-hang/{id}','ModeratorController@printOrder')->name('printO
 Route::get('tiep-nhan/don-hang/{id}','ModeratorController@orderAssign')->name('orderAssign');
 Route::get('bo-tiep-nhan/don-hang/{id}','ModeratorController@orderAssignDelete')->name('orderAssignDelete');
 Route::get('huy/don-hang/{id}','ModeratorController@orderDelete')->name('orderDelete');
+Route::post('edit/product','ProductController@editProductAjax')->name('editProductAjax');
+Route::post('remove/product','ProductController@removeProductAjax')->name('removeProductAjax');

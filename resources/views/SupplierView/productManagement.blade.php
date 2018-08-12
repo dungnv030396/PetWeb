@@ -160,6 +160,21 @@
 <script src="source/assets/manage/js/plugins/chartJs/Chart.min.js"></script>
 <script src="source/assets/manage/js/plugins/dataTables/datatables.min.js"></script>
 <script>
+    $('#modal-form').on('show.bs.modal', function(e) {
+        var link = $(e.relatedTarget)
+        var productID = link.data("title")
+        var productName = link.data("html")
+        var quantity = link.data("abide")
+        var price = link.data("content")
+        var discount = link.data("animation")
+        var modal = $(this)
+        modal.find("#id_title").text(productID);
+        modal.find("#productId").val(productID);
+        modal.find("#name").val(productName);
+        modal.find("#quantity").val(quantity);
+        modal.find("#price").val(price);
+        modal.find("#discount").val(discount);
+    });
     $(document).ready(function() {
         setTimeout(function() {
             toastr.options = {

@@ -249,19 +249,12 @@ class Product extends Model
     {
         $columns = array(
             0 => 'id',
-//            1 => 'name',
-            2 => 'category_id',
-            3 => 'price',
+            1 => 'name',
             4 => 'quantity',
-            5 => 'discount',
-            6 => 'image_link',
-            7 => 'description',
-            8 => 'created_at',
-            9 => 'updated_at'
+            5 => 'price',
+            6 => 'discount',
         );
-        // $page = floor($start / $length) + 1;
-        $productList = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0);
-        $totalData = $productList->count();
+        $totalData = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)->count();
         if (empty($search)) {
             $products = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)
                 ->offset($start)
@@ -270,35 +263,36 @@ class Product extends Model
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $products = Product::where(function ($query) use ($search, $oderColunm, $oderSortType) {
-                $query->where('user_id', Auth::user()->id)->where('name', 'like', "%$search%");
+            $products = Product::whereHas('category', function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%");
             })
-                ->where('delete_flag', '=', 0)
-                ->where('user_id', Auth::user()->id)
-                ->Where('created_at', 'like', "%$search%")
+                ->where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id]])
+                ->orWhere('name', 'like', "%$search%")
+                ->orWhere('created_at', 'like', "%$search%")
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
             $totalFiltered = $products->count();
         }
-
         $data = array();
         if ($products) {
             foreach ($products as $product) {
                 $nestedData = array();
                 $nestedData['id'] = $product->id;
                 $nestedData['user_id'] = $product->user_id;
-//                $nestedData['category'] = $product->categories['name'];
+                $nestedData['category'] = $product->category->name;
                 $nestedData['name'] = $product->name;
-                $nestedData['price'] = $product->price;
+                $nestedData['price'] = number_format($product->price);
+                $nestedData['price_modal'] = $product->price;
+                $nestedData['salePrice'] = number_format($product->price - (($product->price * $product->discount) / 100));
                 $nestedData['quantity'] = $product->quantity;
                 $nestedData['discount'] = $product->discount;
                 $nestedData['image_link'] = $product->image_link;
                 $nestedData['description'] = $product->description;
                 $nestedData['created_at'] = $product->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['updated_at'] = $product->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['productDetail'] = '<a href="' . route('productDetailBySupplier', $product->id) . '">Chi Tiết Sản Phẩm</a>';
+                $nestedData['catalog'] = $product->category->catalog->name;
                 $data[] = $nestedData;
             }
         }
@@ -314,4 +308,15 @@ class Product extends Model
         return $json_data;
     }
 
+}
+
+function array_sort_by_column($array, $column, $direction)
+{
+    $reference_array = array();
+
+    foreach ($array as $key => $row) {
+        $reference_array[$key] = $row[$column];
+    }
+
+    array_multisort($reference_array, $direction, $array);
 }
