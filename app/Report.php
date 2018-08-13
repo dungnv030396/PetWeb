@@ -15,14 +15,13 @@ class Report extends Model
 
         if($description =request('report')=='1'){
             $th->validate(request(),[
-                'other' => 'required|min:6|max:200'
+                'other' => 'required|between:1,200'
             ],[
-                'other.max' => 'Nội dung báo cáo không quá 200 kí tự',
-                'other.min' => 'Nội dung báo cáo không ít hơn 6 kí tự'
+                'other.between' => 'Nội dung báo cáo không quá 200 kí tự',
             ]);
-            $description = request('other');
+            $description = trim(request('other'),' ');
         }else{
-            $description = request('report');
+            $description = trim(request('report'),' ');
         }
         $report->user_id = Auth::user()->id;
         $report->reportTo_id = request('id');
@@ -34,14 +33,13 @@ class Report extends Model
 
         if($description =request('report')=='1'){
             $th->validate(request(),[
-                'other' => 'required|max:2'
+                'other' => 'required|between:1,200'
             ],[
-                'other.max' => 'Nội dung báo cáo không quá 200 kí tự',
-                'other.min' => 'Nội dung báo cáo không ít hơn 6 kí tự'
+                'other.between' => 'Nội dung báo cáo không quá 200 kí tự',
             ]);
-            $description = request('other');
+            $description = trim(request('other'),' ');
         }else{
-            $description = request('report');
+            $description = trim(request('report'),' ');
         }
         $report->user_id = Auth::user()->id;
         $report->reportTo_id = request('supplier_id');

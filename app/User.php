@@ -167,7 +167,7 @@ class User extends Authenticatable
         $user->name = request('mem_name');
         $user->email = request('emailid');
         $user->password = bcrypt(request('password'));
-        $user->phoneNumber = request('phonenumber');
+        $user->phoneNumber = trim(request('phonenumber'),' ');
         $user->gender = \request('gender');
         $user->address = request('address').' ,'. $city_name;
         $user->avatar = 'user-default.png';
