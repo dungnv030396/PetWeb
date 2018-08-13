@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Catalog;
 use App\Category;
 use App\Order;
+use App\Payment;
 use App\Slide;
 use App\Product;
 use App\Status;
@@ -18,6 +19,8 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $p = new Payment();
+        var_dump($p->findWerehouse(54));die;
         $search = 'macro';
         $orders = Order::with(['user' => function ($query) use ($search){
             $query->where('name','like',"%$search%");

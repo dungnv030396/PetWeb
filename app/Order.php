@@ -37,6 +37,11 @@ class Order extends Model
 
     }
 
+    public function warehouse(){
+        return $this->hasOne(Warehouse::class,'id','warehouse_id');
+
+    }
+
     public function getOrdersAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
     {
         $columns = array(

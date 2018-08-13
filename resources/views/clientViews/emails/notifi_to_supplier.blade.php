@@ -13,6 +13,8 @@
     <p>Giá: {{ $price }}đ</p>
     <p>Số Lượng: {{$quantity}}</p>
     <p>Tổng Tiền: {{ $amount }}đ</p>
+   <p><strong>Kho cần chuyển hàng: {{$warehouse_name }}</strong></p>
+    <p><strong>Địa chỉ: {{$warehouse_address }}</strong> </p>
     {{--@endforeach--}}
     <h4 style="color: #0d8ddb">Xin mời bạn kiểm tra đơn hàng trên website hoặc liên hệ để vận chuyển tới kho</h4>
 </div>
