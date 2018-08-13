@@ -27,8 +27,8 @@
                                          width="30px"
                                          height="30px">
                                 @endif
-                                Email: @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>9)
-                                    {{ substr(\Illuminate\Support\Facades\Auth::user()->email,0,6). "". '...' }}
+                                @if(strlen(\Illuminate\Support\Facades\Auth::user()->email)>14)
+                                    {{ substr(\Illuminate\Support\Facades\Auth::user()->email,0,11). "". '...' }}
                                 @else
                                     {{ \Illuminate\Support\Facades\Auth::user()->email }}</a></li>
                     @endif

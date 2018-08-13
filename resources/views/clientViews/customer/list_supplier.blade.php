@@ -27,7 +27,7 @@
                             @endif
                         </div>
                         <div class="profile-teaser-main">
-                            <a href="detailSupplier/{{ $item->id }}"><h2 class="profile-name">{{ $item->name }}</h2></a>
+                            <a href="{{route('detailSupplier',$item->id)}}"><h2 class="profile-name">{{ $item->name }}</h2></a>
                             {{--{{route('detailSupplier/')}}{{ $item->id }}--}}
                             <div class="profile-info">
                                 <div class="info"><span class="">Email:</span> {{ $item->email }}</div>
