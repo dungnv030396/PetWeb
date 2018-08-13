@@ -57,11 +57,19 @@ class Payment extends Model
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
+            $city_name = City::where('code',$request->city)->first()->name;
             if (!empty(trim($request->order_address, ' '))) {
-                $order->address = trim($request->order_address . ',' . $request->city, ' ');
+                $order->address = trim($request->order_address . ',' . $city_name, ' ');
             } else {
-                $order->address = trim($request->address, ' ');
+                if($cUser->city_code!=$request->city){
+                    $order->address = trim($request->address . ',' . $city_name, ' ');
+                    $cUser->address = $order->address;
+                }else{
+                    $order->address = trim($request->address, ' ');
+                    $cUser->address = $order->address;
+                }
             }
+            $order->city_code = $request->city;
             $order->save();
             foreach ($cart->items as $cartLine) {
                 $para = 'quantity' . $cartLine['item']->id;
@@ -69,6 +77,7 @@ class Payment extends Model
                 $cLine->order_id = $order->id;
                 $cLine->product_id = $cartLine['item']->id;
                 $cLine->quantity = $request->$para;
+                $cLine->city_code = $request->city;
                 if ($cartLine['item']->discount != 0) {
                     $amountOfLine = ($request->$para * ($cartLine['item']->price - (($cartLine['item']->price * $cartLine['item']->discount) / 100)));
                 } else {
@@ -83,7 +92,6 @@ class Payment extends Model
             $cUser->name = trim($request->name, ' ');
             $cUser->gender = $request->gender;
             $cUser->phoneNumber = trim($request->phone, ' ');
-            $cUser->address = trim($request->address, ' ');
             $cUser->save();
             Session::forget('cart');
             return $order;

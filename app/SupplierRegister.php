@@ -12,16 +12,19 @@ class SupplierRegister extends Model
             'mem_name' => 'required',
             'phonenumber' => 'required|digits_between:10,11|numeric',
             'password' => 'required|confirmed|between:6,15',
-            'address' => 'required'
+            'address' => 'required',
+            'card_number' => 'numeric|digits_between:12,16'
         ],
             [
                 'password.between' => 'Mật khẩu phải từ 6-15 kí tự!',
                 'password.confirmed' => 'Mật Khẩu xác nhận không chính xác',
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
-                'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
+                'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
+                'card_number.digits_between' => 'Số tài khoản phải có 12-16 chữ số!',
+                'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!'
             ]);
-        $registerSup = new SupplierRegister();
         $registerSup = SupplierRegister::where('user_id',Auth::user()->id)->first();
+        $city_name = City::where('code',$request->city)->first()->name;
         //dd($registerSup);
         if ($registerSup){
             $registerSup->user_id = Auth::user()->id;
@@ -30,11 +33,12 @@ class SupplierRegister extends Model
             $registerSup->phoneNumber = request('phonenumber');
             $registerSup->gender = \request('gender');
             $registerSup->password = bcrypt(request('password'));
-            $registerSup->address = request('address').','. request('city');
+            $registerSup->address = request('address').','.$city_name;
             $registerSup->bank_name = request('bank_name');
             $registerSup->bank_username = request('bank_username');
             $registerSup->card_number = request('card_number');
             $registerSup->bank_branch = request('bank_branch');
+            $registerSup->city_code = $request->city;
             if ($request->hasFile('avatar')) {
 
                 $avatar = $request->file('avatar');
@@ -99,11 +103,12 @@ class SupplierRegister extends Model
             $user->phoneNumber = request('phonenumber');
             $user->gender = \request('gender');
             $user->password = bcrypt(request('password'));
-            $user->address = request('address').','. request('city');
+            $user->address = request('address').','.$city_name;
             $user->bank_name = request('bank_name');
             $user->bank_username = request('bank_username');
             $user->card_number = request('card_number');
             $user->bank_branch = request('bank_branch');
+            $user->city_code = $request->city;
             if ($request->hasFile('avatar')) {
 
                 $avatar = $request->file('avatar');

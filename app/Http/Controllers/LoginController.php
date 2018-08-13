@@ -16,6 +16,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         if (Auth::attempt(['email' => $request->emailid, 'password' => $request->password, 'roleId' => [2,3],'delete_flag' => 0])) {
             return back();
         }else{

@@ -254,9 +254,85 @@ class Product extends Model
             5 => 'price',
             6 => 'discount',
         );
+
         $totalData = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)->count();
         if (empty($search)) {
-            $products = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)
+            $products = Product::whereHas('category',function ($query){
+                    $query->whereHas('catalog',function ($query2){
+                        $query2->whereIn('id',[1,2]);
+                    });
+                })
+                ->where('user_id', Auth::user()->id)->where('delete_flag', 0)
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $products = Product::whereHas('category', function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%")->whereHas('catalog',function ($query2) use ($search){
+                        $query2->whereIn('id',[1,2]);
+                    });
+                })
+                ->where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id]])
+                ->orWhere('name', 'like', "%$search%")
+                ->orWhere('created_at', 'like', "%$search%")
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $products->count();
+        }
+        $data = array();
+        if ($products) {
+            foreach ($products as $product) {
+                $nestedData = array();
+                $nestedData['id'] = $product->id;
+                $nestedData['user_id'] = $product->user_id;
+                $nestedData['category'] = $product->category->name;
+                $nestedData['name'] = $product->name;
+                $nestedData['price'] = number_format($product->price);
+                $nestedData['price_modal'] = $product->price;
+                $nestedData['salePrice'] = number_format($product->price - (($product->price * $product->discount) / 100));
+                $nestedData['quantity'] = $product->quantity;
+                $nestedData['discount'] = $product->discount;
+                $nestedData['created_at'] = $product->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $product->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['catalog'] = $product->category->catalog->name;
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
+    }
+
+    ///san pham can giao
+    public function getOrderProductsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw){
+        $columns = array(
+            1 => 'id',
+            2 => 'name',
+            5 => 'quantity',
+            6 => 'price',
+            7 => 'discount',
+        );
+        $totalData = OrderLine::whereHas('product',function ($query){
+            $query->where('user_id',Auth::user()->id);
+        })->count();
+        if (empty($search)) {
+            $products = OrderLine::whereHas('product',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            })
+                ->whereHas('status', function ($query){
+
+                })
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
@@ -288,8 +364,6 @@ class Product extends Model
                 $nestedData['salePrice'] = number_format($product->price - (($product->price * $product->discount) / 100));
                 $nestedData['quantity'] = $product->quantity;
                 $nestedData['discount'] = $product->discount;
-                $nestedData['image_link'] = $product->image_link;
-                $nestedData['description'] = $product->description;
                 $nestedData['created_at'] = $product->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['updated_at'] = $product->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['catalog'] = $product->category->catalog->name;
@@ -310,13 +384,3 @@ class Product extends Model
 
 }
 
-function array_sort_by_column($array, $column, $direction)
-{
-    $reference_array = array();
-
-    foreach ($array as $key => $row) {
-        $reference_array[$key] = $row[$column];
-    }
-
-    array_multisort($reference_array, $direction, $array);
-}

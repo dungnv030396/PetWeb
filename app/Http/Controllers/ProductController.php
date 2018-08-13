@@ -17,11 +17,9 @@ class ProductController extends Controller
         if ($res['error']) {
             return back()->with($res['code'], $res['message']);
         } else {
-//            return back()->with('postProductSuccess', 'Chúc mừng bạn đã đăng bán sản phẩm Thành Công');
-            $menu = 'detailproduct';
+            $menu = 'product';
             $id = $res['product_id'];
             return view('SupplierView.detail_add_product', compact('id', 'menu'));
-//            return redirect(route(''),compact('id'));
         }
     }
 
@@ -80,4 +78,5 @@ class ProductController extends Controller
         );
         echo json_encode($output);
     }
+
 }

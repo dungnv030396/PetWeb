@@ -15,6 +15,12 @@ class UserProfileController extends Controller
         return back()->with('statusUpdateProfile', 'Chúc mừng bạn đã thay đổi thông tin cá nhân Thành Công!');
     }
 
+    public function updateUserBankInfo(){
+        $user = new User();
+        $user->updateUserBankInfo($this);
+        return back()->with('updateUserBankInfo', 'Chúc mừng bạn đã thay đổi thông tin cá nhân Thành Công!');
+    }
+
     public function updatePassword(Request $request)
     {
         $this->validate(\request(), [

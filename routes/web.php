@@ -67,9 +67,10 @@ Route::get('recruitment',function (){
     return view('clientViews.supports.recruitment');
 })->name('recruitment');
 //Register
-Route::get('register', function () {
-    return view('registration.register');
-})->name('registerPage');
+//Route::get('register', function () {
+//    return view('registration.register');
+//})->name('registerPage');
+Route::get('register','UsersController@registerView')->name('registerPage');
 Route::post('register', 'UsersController@store')->name('register');
 
 //register to Supplier
@@ -163,7 +164,7 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 
 // supplier management
 Route::get('supplier/manage/supplier-product-list',function (){
-    $menu = 'order';
+    $menu = 'product';
     return view('SupplierView.posted_product_view',compact('menu'));
 })->name('productManagement');
 Route::post('data/supplier-post-products','DatatableController@getSupplierPosts')->name('dataSupplierPostProducts');
@@ -219,3 +220,10 @@ Route::post('remove/product','ProductController@removeProductAjax')->name('remov
 
 Route::get('clientViews.emails.notifi_to_supplier')->name('checkMail');
 
+Route::get('san-pham-can-giao/danh-sach',function (){
+    $menu = 'product';
+    return view('SupplierView.order_product',compact('menu'));
+})->name('order_product');
+
+Route::post('san-pham-can-giao','DatatableController@orderProductsAjax')->name('dataSupplierPostOrderProducts');
+Route::post('user/update-bank','UserProfileController@updateUserBankInfo')->name('updateUserBankInfo');
