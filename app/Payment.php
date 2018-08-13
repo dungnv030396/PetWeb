@@ -16,14 +16,14 @@ class Payment extends Model
             'gender' => 'required',
             'email' => 'required|email',
             'phone' => 'required|digits_between:10,11|numeric',
-            'address' => 'required'
+//            'address' => 'required'
         ],
             [
                 'phone.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
                 'phone.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
                 'name.required' => 'Vui lòng nhập tên tài khoản!',
                 'gender.required' => 'Vui lòng chọn giới tính!',
-                'address.required' => 'Vui lòng điền địa chỉ'
+//                'address.required' => 'Vui lòng điền địa chỉ'
             ]);
         $amount = 0;
         $cart = Session::get('cart');

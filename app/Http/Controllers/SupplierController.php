@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Catalog;
 use App\Category;
 use App\Order;
+use App\OrderLine;
 use App\Product;
+use App\Report;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +19,7 @@ class SupplierController extends Controller
     public  function listSupplier(){
         $user = new User();
         $listSupplier = $user->listSupplier();
-        return view('suppliers.list_supplier',compact('listSupplier'));
+        return view('clientViews.customer.list_supplier',compact('listSupplier'));
     }
 
     public function searchByName(){
@@ -28,9 +30,22 @@ class SupplierController extends Controller
     public function detailSupplier(){
         $id = \request('id');
         $user = User::all()->find($id);
+        $reportTime = Report::where('reportTo_id',$id)->where('status',2)->get()->count();
+        if($reportTime==null){
+            $reportTime=0;
+        }
+        $listProducts = Product::where('user_id',$id)->get();
+        $number = 0;
+        foreach ($listProducts as $listProduct){
+            $soldTime = OrderLine::where('product_id',$listProduct->id)->where('orderline_status_id',5)->count();
+            if ($soldTime!=null){
+                $number+=$soldTime;
+            }
+        }
+//        dd($soldTime);
         $pro = new Product();
         $products = $pro->getProductsBySupplierId($id,12);
-        return view('suppliers.detail_supplier',compact('user','products'));
+        return view('clientViews.customer.detail_supplier',compact('user','products','reportTime','number'));
     }
 
     public function home(){

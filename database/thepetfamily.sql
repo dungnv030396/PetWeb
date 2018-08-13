@@ -693,6 +693,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
+
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
 (1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', '7DLmrDU3ECvuHJfC2mL5wxd9zpMJHH6XBbreaDxyngp6Eh3IlU3m5JtgRcdF', '01697161671', 'Hà Nội', 1, NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
 (2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
@@ -702,6 +703,7 @@ INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_toke
 (8, 'Kakalot', 1, 'sfkfjkdsj@gmail.com', '$2y$10$VdcQG06XdIi/jnNiGkmBW.Hm4zHAUTvT9uR165sgBHv87/hQhnlvC', NULL, '01697161671', 'dsadsadsaddsad ,19}', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 06:56:34', '2018-08-13 06:56:34'),
 (9, 'Kakalot 12', 1, 'dsadsa@gmail.com', '$2y$10$2nev7GkVlilp/tQZbwkyouzLzaSjts3CaS.6fkkbjaCzVKIXpSuCG', NULL, '01697161671', 'dsadsadsadadsdsaad ,Tỉnh Lạng Sơn', 20, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 07:07:00', '2018-08-13 07:07:00'),
 (10, 'Kazaki Kazua', 1, 'test@gmail.com', '$2y$10$UfSYM85mVUutCcAvckhNreEIjlLjzya55ewEzILcoIL3DeppPuZpy', NULL, '01697161671', 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên,Tỉnh Quảng Ninh', 26, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 08:18:03', '2018-08-13 09:24:43');
+
 
 -- --------------------------------------------------------
 

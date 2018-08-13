@@ -218,7 +218,6 @@ Route::get('huy/don-hang/{id}','ModeratorController@orderDelete')->name('orderDe
 Route::post('edit/product','ProductController@editProductAjax')->name('editProductAjax');
 Route::post('remove/product','ProductController@removeProductAjax')->name('removeProductAjax');
 
-Route::get('clientViews.emails.notifi_to_supplier')->name('checkMail');
 
 Route::get('san-pham-can-giao/danh-sach',function (){
     $menu = 'product';
