@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2018 at 08:02 AM
+-- Generation Time: Aug 13, 2018 at 11:29 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -78,6 +78,89 @@ INSERT INTO `categories` (`id`, `name`, `catalog_id`, `created_at`, `updated_at`
 (9, 'chữa trị', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
 (10, 'đồ dùng', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
 (11, 'Chim', 1, '2018-08-09 17:02:15', '2018-08-09 17:02:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cities`
+--
+
+DROP TABLE IF EXISTS `cities`;
+CREATE TABLE IF NOT EXISTS `cities` (
+  `code` varchar(5) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`code`, `name`, `type`) VALUES
+('01', 'Thành phố Hà Nội', 'Thành phố Trung ương'),
+('02', 'Tỉnh Hà Giang', 'Tỉnh'),
+('04', 'Tỉnh Cao Bằng', 'Tỉnh'),
+('06', 'Tỉnh Bắc Kạn', 'Tỉnh'),
+('08', 'Tỉnh Tuyên Quang', 'Tỉnh'),
+('10', 'Tỉnh Lào Cai', 'Tỉnh'),
+('11', 'Tỉnh Điện Biên', 'Tỉnh'),
+('12', 'Tỉnh Lai Châu', 'Tỉnh'),
+('14', 'Tỉnh Sơn La', 'Tỉnh'),
+('15', 'Tỉnh Yên Bái', 'Tỉnh'),
+('17', 'Tỉnh Hoà Bình', 'Tỉnh'),
+('19', 'Tỉnh Thái Nguyên', 'Tỉnh'),
+('20', 'Tỉnh Lạng Sơn', 'Tỉnh'),
+('22', 'Tỉnh Quảng Ninh', 'Tỉnh'),
+('24', 'Tỉnh Bắc Giang', 'Tỉnh'),
+('25', 'Tỉnh Phú Thọ', 'Tỉnh'),
+('26', 'Tỉnh Vĩnh Phúc', 'Tỉnh'),
+('27', 'Tỉnh Bắc Ninh', 'Tỉnh'),
+('30', 'Tỉnh Hải Dương', 'Tỉnh'),
+('31', 'Thành phố Hải Phòng', 'Thành phố Trung ương'),
+('33', 'Tỉnh Hưng Yên', 'Tỉnh'),
+('34', 'Tỉnh Thái Bình', 'Tỉnh'),
+('35', 'Tỉnh Hà Nam', 'Tỉnh'),
+('36', 'Tỉnh Nam Định', 'Tỉnh'),
+('37', 'Tỉnh Ninh Bình', 'Tỉnh'),
+('38', 'Tỉnh Thanh Hóa', 'Tỉnh'),
+('40', 'Tỉnh Nghệ An', 'Tỉnh'),
+('42', 'Tỉnh Hà Tĩnh', 'Tỉnh'),
+('44', 'Tỉnh Quảng Bình', 'Tỉnh'),
+('45', 'Tỉnh Quảng Trị', 'Tỉnh'),
+('46', 'Tỉnh Thừa Thiên Huế', 'Tỉnh'),
+('48', 'Thành phố Đà Nẵng', 'Thành phố Trung ương'),
+('49', 'Tỉnh Quảng Nam', 'Tỉnh'),
+('51', 'Tỉnh Quảng Ngãi', 'Tỉnh'),
+('52', 'Tỉnh Bình Định', 'Tỉnh'),
+('54', 'Tỉnh Phú Yên', 'Tỉnh'),
+('56', 'Tỉnh Khánh Hòa', 'Tỉnh'),
+('58', 'Tỉnh Ninh Thuận', 'Tỉnh'),
+('60', 'Tỉnh Bình Thuận', 'Tỉnh'),
+('62', 'Tỉnh Kon Tum', 'Tỉnh'),
+('64', 'Tỉnh Gia Lai', 'Tỉnh'),
+('66', 'Tỉnh Đắk Lắk', 'Tỉnh'),
+('67', 'Tỉnh Đắk Nông', 'Tỉnh'),
+('68', 'Tỉnh Lâm Đồng', 'Tỉnh'),
+('70', 'Tỉnh Bình Phước', 'Tỉnh'),
+('72', 'Tỉnh Tây Ninh', 'Tỉnh'),
+('74', 'Tỉnh Bình Dương', 'Tỉnh'),
+('75', 'Tỉnh Đồng Nai', 'Tỉnh'),
+('77', 'Tỉnh Bà Rịa - Vũng Tàu', 'Tỉnh'),
+('79', 'Thành phố Hồ Chí Minh', 'Thành phố Trung ương'),
+('80', 'Tỉnh Long An', 'Tỉnh'),
+('82', 'Tỉnh Tiền Giang', 'Tỉnh'),
+('83', 'Tỉnh Bến Tre', 'Tỉnh'),
+('84', 'Tỉnh Trà Vinh', 'Tỉnh'),
+('86', 'Tỉnh Vĩnh Long', 'Tỉnh'),
+('87', 'Tỉnh Đồng Tháp', 'Tỉnh'),
+('89', 'Tỉnh An Giang', 'Tỉnh'),
+('91', 'Tỉnh Kiên Giang', 'Tỉnh'),
+('92', 'Thành phố Cần Thơ', 'Thành phố Trung ương'),
+('93', 'Tỉnh Hậu Giang', 'Tỉnh'),
+('94', 'Tỉnh Sóc Trăng', 'Tỉnh'),
+('95', 'Tỉnh Bạc Liêu', 'Tỉnh'),
+('96', 'Tỉnh Cà Mau', 'Tỉnh');
 
 -- --------------------------------------------------------
 
@@ -164,6 +247,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status_id` int(4) NOT NULL DEFAULT '1',
   `address` varchar(255) NOT NULL,
+  `city_code` int(11) NOT NULL DEFAULT '1',
   `moderator_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
@@ -172,41 +256,45 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `completed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `status_id`, `address`, `moderator_id`, `user_id`, `payment_id`, `delete_flag`, `created_at`, `updated_at`, `completed_at`) VALUES
-(9, 2, 'HCM', 5, 5, 15, 0, '2018-08-04 13:28:56', '2018-08-10 13:06:47', NULL),
-(10, 2, 'HCM', 5, 5, 16, 0, '2018-08-04 13:30:12', '2018-08-10 12:53:59', NULL),
-(11, 2, 'HCM11111111', 5, 5, 17, 0, '2018-08-04 13:42:37', '2018-08-10 12:53:17', NULL),
-(12, 2, 'Hà Nội', 5, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-10 12:49:41', NULL),
-(13, 2, 'dsadsadsad', 5, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-10 13:10:08', NULL),
-(14, 2, 'dsadsadsad', 5, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-10 13:51:04', NULL),
-(15, 1, 'HCM', NULL, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-06 15:46:28', NULL),
-(16, 1, 'dsadsadsad', NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
-(17, 1, 'sads', NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
-(18, 1, 'dsadsadsad', NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
-(19, 1, 'dsadsadsad', NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
-(20, 1, 'Hà Nội', NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
-(21, 1, 'Hà Nội', NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
-(22, 1, 'dsad', NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
-(23, 1, 'Hà Nội', NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
-(24, 1, 'Hà Nội', NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
-(25, 1, 'Hà Nội', NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
-(26, 1, 'Hà Nội', NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
-(27, 1, 'Hà Nội', NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
-(28, 1, 'Hà Nội', NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
-(29, 1, 'Hà Nội', NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
-(30, 1, 'HCM11111111', NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
-(31, 1, 'Hà Nội', NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
-(32, 1, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
-(33, 1, 'Hà Nội', NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
-(34, 1, 'Hà Nội', NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
-(35, 1, 'Hà Nội', NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
-(36, 1, 'Hà Nội', NULL, 5, 42, 0, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL);
+INSERT INTO `orders` (`id`, `status_id`, `address`, `city_code`, `moderator_id`, `user_id`, `payment_id`, `delete_flag`, `created_at`, `updated_at`, `completed_at`) VALUES
+(9, 2, 'HCM', 0, 5, 5, 15, 0, '2018-08-04 13:28:56', '2018-08-10 13:06:47', NULL),
+(10, 2, 'HCM', 0, 5, 5, 16, 0, '2018-08-04 13:30:12', '2018-08-10 12:53:59', NULL),
+(11, 2, 'HCM11111111', 0, 5, 5, 17, 0, '2018-08-04 13:42:37', '2018-08-10 12:53:17', NULL),
+(12, 2, 'Hà Nội', 0, 5, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-10 12:49:41', NULL),
+(13, 2, 'dsadsadsad', 0, 5, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-10 13:10:08', NULL),
+(14, 2, 'dsadsadsad', 0, 5, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-10 13:51:04', NULL),
+(15, 1, 'HCM', 0, NULL, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-06 15:46:28', NULL),
+(16, 1, 'dsadsadsad', 0, NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
+(17, 1, 'sads', 0, NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
+(18, 1, 'dsadsadsad', 0, NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
+(19, 1, 'dsadsadsad', 0, NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
+(20, 1, 'Hà Nội', 0, NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
+(21, 1, 'Hà Nội', 0, NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
+(22, 1, 'dsad', 0, NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
+(23, 1, 'Hà Nội', 0, NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
+(24, 1, 'Hà Nội', 0, NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
+(25, 1, 'Hà Nội', 0, NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
+(26, 1, 'Hà Nội', 0, NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
+(27, 1, 'Hà Nội', 0, NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
+(28, 1, 'Hà Nội', 0, NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
+(29, 1, 'Hà Nội', 0, NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
+(30, 1, 'HCM11111111', 0, NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
+(31, 1, 'Hà Nội', 0, NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
+(32, 1, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', 0, NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
+(33, 1, 'Hà Nội', 0, NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
+(34, 1, 'Hà Nội', 0, NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
+(35, 1, 'Hà Nội', 0, NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
+(36, 1, 'Hà Nội', 0, NULL, 5, 42, 0, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL),
+(37, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc', 1, NULL, 10, 43, 0, '2018-08-13 09:20:09', '2018-08-13 09:20:09', NULL),
+(38, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên', 1, NULL, 10, 44, 0, '2018-08-13 09:21:11', '2018-08-13 09:21:11', NULL),
+(39, 1, 'cho nay,Thành phố Hà Nội', 1, NULL, 10, 45, 0, '2018-08-13 09:22:18', '2018-08-13 09:22:18', NULL),
+(40, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên,Tỉnh Quảng Ninh', 22, NULL, 10, 46, 0, '2018-08-13 09:24:43', '2018-08-13 09:24:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -218,6 +306,7 @@ DROP TABLE IF EXISTS `order_lines`;
 CREATE TABLE IF NOT EXISTS `order_lines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
+  `city_code` int(11) NOT NULL DEFAULT '1',
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
@@ -225,56 +314,60 @@ CREATE TABLE IF NOT EXISTS `order_lines` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order_lines`
 --
 
-INSERT INTO `order_lines` (`id`, `order_id`, `product_id`, `quantity`, `amount`, `orderline_status_id`, `created_at`, `updated_at`) VALUES
-(8, 5, 2, 1, 6800000, 1, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
-(9, 5, 3, 1, 10000000, 1, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
-(10, 6, 10, 1, 11347500, 1, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
-(11, 6, 6, 1, 3815000, 1, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
-(12, 7, 2, 1, 6800000, 1, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
-(13, 8, 2, 1, 6800000, 1, '2018-07-29 18:24:24', '2018-07-29 18:24:24'),
-(14, 9, 2, 1, 6800000, 1, '2018-08-04 13:28:56', '2018-08-04 13:28:56'),
-(15, 10, 2, 1, 6800000, 1, '2018-08-04 13:30:12', '2018-08-04 13:30:12'),
-(16, 11, 3, 1, 10000000, 1, '2018-08-04 13:42:37', '2018-08-04 13:42:37'),
-(17, 12, 7, 1, 2550000, 1, '2018-08-06 15:44:49', '2018-08-06 15:44:49'),
-(18, 13, 7, 1, 2550000, 1, '2018-08-06 15:45:18', '2018-08-06 15:45:18'),
-(19, 14, 7, 1, 2550000, 1, '2018-08-06 15:45:59', '2018-08-06 15:45:59'),
-(20, 15, 7, 4, 10200000, 1, '2018-08-06 15:46:28', '2018-08-06 15:46:28'),
-(21, 16, 10, 1, 11347500, 1, '2018-08-09 11:28:56', '2018-08-09 11:28:56'),
-(22, 17, 7, 1, 2550000, 1, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
-(23, 17, 1, 1, 10350000, 1, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
-(24, 18, 1, 1, 10350000, 1, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
-(25, 18, 7, 1, 2550000, 1, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
-(26, 19, 3, 1, 10000000, 1, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
-(27, 19, 7, 1, 2550000, 1, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
-(28, 20, 3, 1, 10000000, 1, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
-(29, 20, 7, 1, 2550000, 1, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
-(30, 21, 3, 1, 10000000, 1, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
-(31, 21, 7, 1, 2550000, 1, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
-(32, 22, 3, 1, 10000000, 1, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
-(33, 22, 7, 1, 2550000, 1, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
-(34, 23, 3, 1, 10000000, 1, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
-(35, 23, 7, 1, 2550000, 1, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
-(36, 24, 3, 2, 20000000, 1, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
-(37, 24, 7, 2, 5100000, 1, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
-(38, 25, 3, 2, 20000000, 1, '2018-08-09 11:49:43', '2018-08-09 11:49:43'),
-(39, 26, 3, 1, 10000000, 1, '2018-08-09 11:51:30', '2018-08-09 11:51:30'),
-(40, 27, 4, 1, 4000000, 1, '2018-08-09 11:52:57', '2018-08-09 11:52:57'),
-(41, 28, 7, 2, 5100000, 1, '2018-08-09 11:53:41', '2018-08-09 11:53:41'),
-(42, 29, 7, 1, 2550000, 1, '2018-08-09 11:54:41', '2018-08-09 11:54:41'),
-(43, 30, 7, 2, 5100000, 1, '2018-08-09 11:55:37', '2018-08-09 11:55:37'),
-(44, 31, 7, 2, 5100000, 1, '2018-08-09 11:57:54', '2018-08-09 11:57:54'),
-(45, 32, 7, 1, 2550000, 1, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
-(46, 32, 8, 1, 13350000, 1, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
-(47, 33, 1, 1, 10350000, 1, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
-(48, 34, 7, 1, 2550000, 1, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
-(49, 35, 7, 1, 2550000, 1, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
-(50, 36, 7, 1, 2550000, 1, '2018-08-09 13:12:06', '2018-08-09 13:12:06');
+INSERT INTO `order_lines` (`id`, `order_id`, `city_code`, `product_id`, `quantity`, `amount`, `orderline_status_id`, `created_at`, `updated_at`) VALUES
+(8, 5, 1, 2, 1, 6800000, 1, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
+(9, 5, 1, 3, 1, 10000000, 1, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
+(10, 6, 1, 10, 1, 11347500, 1, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
+(11, 6, 1, 6, 1, 3815000, 1, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
+(12, 7, 1, 2, 1, 6800000, 1, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
+(13, 8, 1, 2, 1, 6800000, 1, '2018-07-29 18:24:24', '2018-07-29 18:24:24'),
+(14, 9, 1, 2, 1, 6800000, 1, '2018-08-04 13:28:56', '2018-08-04 13:28:56'),
+(15, 10, 1, 2, 1, 6800000, 1, '2018-08-04 13:30:12', '2018-08-04 13:30:12'),
+(16, 11, 1, 3, 1, 10000000, 1, '2018-08-04 13:42:37', '2018-08-04 13:42:37'),
+(17, 12, 1, 7, 1, 2550000, 1, '2018-08-06 15:44:49', '2018-08-06 15:44:49'),
+(18, 13, 1, 7, 1, 2550000, 1, '2018-08-06 15:45:18', '2018-08-06 15:45:18'),
+(19, 14, 1, 7, 1, 2550000, 1, '2018-08-06 15:45:59', '2018-08-06 15:45:59'),
+(20, 15, 1, 7, 4, 10200000, 1, '2018-08-06 15:46:28', '2018-08-06 15:46:28'),
+(21, 16, 1, 10, 1, 11347500, 1, '2018-08-09 11:28:56', '2018-08-09 11:28:56'),
+(22, 17, 1, 7, 1, 2550000, 1, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
+(23, 17, 1, 1, 1, 10350000, 1, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
+(24, 18, 1, 1, 1, 10350000, 1, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
+(25, 18, 1, 7, 1, 2550000, 1, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
+(26, 19, 1, 3, 1, 10000000, 1, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
+(27, 19, 1, 7, 1, 2550000, 1, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
+(28, 20, 1, 3, 1, 10000000, 1, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
+(29, 20, 1, 7, 1, 2550000, 1, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
+(30, 21, 1, 3, 1, 10000000, 1, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
+(31, 21, 1, 7, 1, 2550000, 1, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
+(32, 22, 1, 3, 1, 10000000, 1, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
+(33, 22, 1, 7, 1, 2550000, 1, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
+(34, 23, 1, 3, 1, 10000000, 1, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
+(35, 23, 1, 7, 1, 2550000, 1, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
+(36, 24, 1, 3, 2, 20000000, 1, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
+(37, 24, 1, 7, 2, 5100000, 1, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
+(38, 25, 1, 3, 2, 20000000, 1, '2018-08-09 11:49:43', '2018-08-09 11:49:43'),
+(39, 26, 1, 3, 1, 10000000, 1, '2018-08-09 11:51:30', '2018-08-09 11:51:30'),
+(40, 27, 1, 4, 1, 4000000, 1, '2018-08-09 11:52:57', '2018-08-09 11:52:57'),
+(41, 28, 1, 7, 2, 5100000, 1, '2018-08-09 11:53:41', '2018-08-09 11:53:41'),
+(42, 29, 1, 7, 1, 2550000, 1, '2018-08-09 11:54:41', '2018-08-09 11:54:41'),
+(43, 30, 1, 7, 2, 5100000, 1, '2018-08-09 11:55:37', '2018-08-09 11:55:37'),
+(44, 31, 1, 7, 2, 5100000, 1, '2018-08-09 11:57:54', '2018-08-09 11:57:54'),
+(45, 32, 1, 7, 1, 2550000, 1, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
+(46, 32, 1, 8, 1, 13350000, 1, '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
+(47, 33, 1, 1, 1, 10350000, 1, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
+(48, 34, 1, 7, 1, 2550000, 1, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
+(49, 35, 1, 7, 1, 2550000, 1, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
+(50, 36, 1, 7, 1, 2550000, 1, '2018-08-09 13:12:06', '2018-08-09 13:12:06'),
+(51, 37, 26, 7, 2, 5100000, 1, '2018-08-13 09:20:09', '2018-08-13 09:20:09'),
+(52, 38, 19, 7, 3, 7650000, 1, '2018-08-13 09:21:11', '2018-08-13 09:21:11'),
+(53, 39, 1, 7, 1, 2550000, 1, '2018-08-13 09:22:18', '2018-08-13 09:22:18'),
+(54, 40, 22, 7, 1, 2550000, 1, '2018-08-13 09:24:43', '2018-08-13 09:24:43');
 
 -- --------------------------------------------------------
 
@@ -309,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `payments`
@@ -347,7 +440,11 @@ INSERT INTO `payments` (`id`, `status`, `amount`, `payment`, `payment_info`, `se
 (39, 1, 10350000, NULL, NULL, NULL, NULL, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
 (40, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
 (41, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
-(42, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:12:06', '2018-08-09 13:12:06');
+(42, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:12:06', '2018-08-09 13:12:06'),
+(43, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-13 09:20:09', '2018-08-13 09:20:09'),
+(44, 1, 7650000, NULL, NULL, NULL, NULL, '2018-08-13 09:21:11', '2018-08-13 09:21:11'),
+(45, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 09:22:18', '2018-08-13 09:22:18'),
+(46, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 09:24:43', '2018-08-13 09:24:43');
 
 -- --------------------------------------------------------
 
@@ -383,7 +480,7 @@ INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quanti
 (4, 1, 1, 'Chó Becgie – Chó chăn cừu', 4000000, 0, 0, 'Becgie.jpg', 'Chó Becgie được người Đức lai tạo lần đầu năm 1899, chủ yếu dùng để chăn cừu. Nhưng với sự thông minh vượt bậc, trung thành, nhanh nhẹn chúng nhanh chóng được huấn luyện để phục vụ trong ngành cảnh sát và quân đội. Theo thống kê, chó Becgie là giống chó phục vụ nhiều nhất trong lực lượng cảnh sát các nước trên thế giới.', 0, '2018-07-17 17:24:52', '2018-08-09 11:52:57'),
 (5, 1, 1, 'Chó Golden(Golden Retriever)', 6000000, 0, 0, 'Golden.jpg', 'Đây là giống cho có nguồn gốc từ nước Anh, được lai tạo qua nhiều giống chó khác nhau. Nhưng chúng vẫn có bản năng săn mồi rất mạnh, khả năng đánh hơi tìm dấu vết hoàn hảo nên chúng cũng được cảnh sát các nước huấn luyện để dò tìm ma túy và các chất nổ.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
 (6, 1, 1, 'Chó săn Poodle', 5450000, 0, 30, 'Poodle.jpg', 'Poodle là giống chó có xuất xứ từ Pháp, có khả năng bơi lội rất giỏi nên từ xưa chúng thường được người dân bản xứ dùng để săn vịt trời. Đặc điểm của chúng là có bộ lông xoăn tít, giữ ấm rất tốt.', 0, '2018-07-17 17:24:52', '2018-07-29 17:44:14'),
-(7, 1, 1, 'Chó Labrador', 3000000, 6399973, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-09 13:12:06'),
+(7, 1, 1, 'Chó Labrador', 3000000, 6399966, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-13 09:24:43'),
 (8, 1, 1, 'Chó Dorberman', 13350000, 0, 0, 'Dorberman.jpg', 'Chó Dorberman được nhà lai tạo người Đức Louis Dorberman nhân giống thành công năm 1890 bởi ít nhất 4 giống chó. Tỉ lệ kết hợp giữa 4 giống chó với nhau gần như đã bị thất lạc.\r\nChó Dorberman rất dũng mãnh, cơ bắt, cổ cao, ta dụng chân dài và nhanh nhẹn. Một chú Dorberman trưởng thành nặng từ 30-45kg tùy theo giới tính đực cái, bản tính Dorberman khá hung giữ, rất cảnh giác với người lạ nhưng trung thành với chủ nên thường được các gia đình nuôi làm chó giữ nhà.', 0, '2018-07-17 17:24:52', '2018-08-09 12:48:27'),
 (9, 1, 1, 'Chó Pitbull', 15000000, 1, 10, 'Pitbull.jpg', 'Chó Pitbull có nguồn gốc từ Anh, ban đầu có kích thước khá nhỏ bé, nhưng để phục vụ một thể thao “chọi chó” nhiều người tại Mỹ đã lai tạo chúng trở nên to lớn và hung dữ hơn. Và cái tên Pitbull cũng được bắt nguồn từ môn thể thao này. Vào đầu thế kỷ 20 do luật cấm những trò giải trí như “chọi chó” ra đời nên Pitbull được lai tạo cho trở nên hiền lành và dùng để nuôi trong nhà.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
 (10, 1, 2, 'Mèo A', 13350000, 0, 15, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-08-09 11:28:56'),
@@ -538,22 +635,30 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `gender` int(2) DEFAULT NULL,
+  `gender` int(2) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
-  `phoneNumber` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `card_number` int(11) DEFAULT NULL,
-  `bank_username` varchar(255) DEFAULT NULL,
-  `bank_name` varchar(255) DEFAULT NULL,
-  `bank_branch` varchar(255) DEFAULT NULL,
+  `phoneNumber` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `city_code` int(11) NOT NULL DEFAULT '1',
+  `card_number` varchar(255) NOT NULL,
+  `bank_username` varchar(255) NOT NULL,
+  `bank_name` varchar(255) NOT NULL,
+  `bank_branch` varchar(255) NOT NULL,
   `chandung` varchar(255) NOT NULL,
   `cmnd` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `supplier_registers`
+--
+
+INSERT INTO `supplier_registers` (`id`, `user_id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `chandung`, `cmnd`, `created_at`, `updated_at`) VALUES
+(1, 10, 'Kazaki Kazua', 1, 'test@gmail.com', '$2y$10$XSQn8R3a7wak3yncO1O93ORAPQ1c.VaJMDCH2ZCoQmIhGQ7ArgfvS', NULL, '01697161671', 'dsadsadsad,Tỉnh Quảng Ninh', 22, '34324324343234', 'hiep@gmai.com', 'aaaaaa', 'aaaaaaaaa', '1534150431.banner.png', '1534150432.petshop.png', '2018-08-13 08:51:59', '2018-08-13 08:53:52');
 
 -- --------------------------------------------------------
 
@@ -571,7 +676,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(255) DEFAULT NULL,
   `phoneNumber` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `card_number` int(11) DEFAULT NULL,
+  `city_code` int(11) NOT NULL DEFAULT '1',
+  `card_number` varchar(255) DEFAULT NULL,
   `bank_username` varchar(255) DEFAULT NULL,
   `bank_name` varchar(255) DEFAULT NULL,
   `bank_branch` varchar(255) DEFAULT NULL,
@@ -581,18 +687,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', NULL, '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
-(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$Q81NeEgJUtuojvC18COuqe4a9JWq71MorN92120YvYjha0bg.SFF2', '46mGWfDOCaKi4lc8NUBcA63Q2uNql9869ggFYQ6fHcT6AdBiAtOYqL2E5TPK', '01697161671', NULL, NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-07-24 10:19:05', '2018-08-09 13:05:57'),
-(6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
-(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'eBdpOJpEExoCc317PjmV0aD59ZtRHde86EDpBZ7c1f2NvpWhj3KUyvQmkI9y', '01697161671', 'Hà Nội', NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-08-07 15:58:05', '2018-08-07 15:58:05');
+
+INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
+(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', '7DLmrDU3ECvuHJfC2mL5wxd9zpMJHH6XBbreaDxyngp6Eh3IlU3m5JtgRcdF', '01697161671', 'Hà Nội', 1, NULL, NULL, NULL, NULL, 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
+(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$r0ld8F2dm3blCo5AMZqjNuGAkyVga2f5WzzMzPZ2gdM6lDfSv.47e', 'elwTHigwH5J4SSSgAe1BbIRNpYeKXqUyhzi1RrbrPMWLbDSKTgHY3MWTo9EV', '01697161671', NULL, 1, NULL, NULL, NULL, NULL, 3, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-13 08:21:49'),
+(6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', 1, NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
+(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'xlC52XcA9XdzO29LdhZ8tHkr82pkjw8JgGRurKItzxQLVBGqOjbDN730euDe', '01697161671', 'Hà Nội,Tỉnh Hà Giang', 2, '4342342344234', 'dsadsada', 'đasd', 'aaaaaaaaa', 2, '1534145265.banner.png', 0, '2018-08-07 15:58:05', '2018-08-13 08:16:28'),
+(8, 'Kakalot', 1, 'sfkfjkdsj@gmail.com', '$2y$10$VdcQG06XdIi/jnNiGkmBW.Hm4zHAUTvT9uR165sgBHv87/hQhnlvC', NULL, '01697161671', 'dsadsadsaddsad ,19}', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 06:56:34', '2018-08-13 06:56:34'),
+(9, 'Kakalot 12', 1, 'dsadsa@gmail.com', '$2y$10$2nev7GkVlilp/tQZbwkyouzLzaSjts3CaS.6fkkbjaCzVKIXpSuCG', NULL, '01697161671', 'dsadsadsadadsdsaad ,Tỉnh Lạng Sơn', 20, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 07:07:00', '2018-08-13 07:07:00'),
+(10, 'Kazaki Kazua', 1, 'test@gmail.com', '$2y$10$UfSYM85mVUutCcAvckhNreEIjlLjzya55ewEzILcoIL3DeppPuZpy', NULL, '01697161671', 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên,Tỉnh Quảng Ninh', 26, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 08:18:03', '2018-08-13 09:24:43');
+
 
 -- --------------------------------------------------------
 

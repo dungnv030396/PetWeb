@@ -43,20 +43,15 @@
                     </div>
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('supplier_manage_place')}}"><i class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
-                <li class="{{($menu=='order')?'active':''}}">
+                <li class="{{($menu=='product')?'active':''}}">
                     <a href="{{route('productManagement')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Sản Phẩm</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{route('productManagement')}}">Danh Sản Phẩm </a></li>
-                        <li><a href="dashboard_2.html">Trong tháng này</a></li>
+                        <li><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
+                        <li><a href="{{route('productManagement')}}">Danh Sách Sản Phẩm</a></li>
+                        <li><a href="{{route('order_product')}}">Sẩn phẩm cần giao</a></li>
                         <li><a href="dashboard_3.html">Chưa hoàn thành</a></li>
                         <li><a href="dashboard_4_1.html">Đã Hoàn thành</a></li>
                         <li><a href="dashboard_5.html">Đã hủy</a></li>
-                    </ul>
-                </li>
-                <li class="{{($menu=='product')?'active':''}}">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Sản phẩm</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li class="{{($menu=='detailproduct')?'active':''}}"><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
                     </ul>
                 </li>
             </ul>
@@ -160,21 +155,6 @@
 <script src="source/assets/manage/js/plugins/chartJs/Chart.min.js"></script>
 <script src="source/assets/manage/js/plugins/dataTables/datatables.min.js"></script>
 <script>
-    $('#modal-form').on('show.bs.modal', function(e) {
-        var link = $(e.relatedTarget)
-        var productID = link.data("title")
-        var productName = link.data("html")
-        var quantity = link.data("abide")
-        var price = link.data("content")
-        var discount = link.data("animation")
-        var modal = $(this)
-        modal.find("#id_title").text(productID);
-        modal.find("#productId").val(productID);
-        modal.find("#name").val(productName);
-        modal.find("#quantity").val(quantity);
-        modal.find("#price").val(price);
-        modal.find("#discount").val(discount);
-    });
     $(document).ready(function() {
         setTimeout(function() {
             toastr.options = {

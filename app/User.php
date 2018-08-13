@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\City;
 
 class User extends Authenticatable
 {
@@ -32,6 +33,10 @@ class User extends Authenticatable
         return $this->belongsTo(Order::class, 'user_id', 'id');
     }
 
+    public function city(){
+        return $this->hasOne(City::class,'code','city_code');
+
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -90,20 +95,33 @@ class User extends Authenticatable
             'emailid' => 'required|email',
             'phonenumber' => 'required|digits_between:10,15|numeric',
             'address' => 'required',
-            'card_number' => 'required|numeric'
         ],
             [
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
-                'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!'
             ]);
         $id = Auth::user()->id;
         $user = User::find($id);
-        $user->name = trim(request('mem_name'),' ');
-        $user->email = trim(request('emailid'),' ');
-        $user->phoneNumber = trim(request('phonenumber'),' ');
-        $user->address = trim(request('address').','. request('city'),' ');
+        $city_name = City::where('code',request('city'))->first()->name;
+        $user->name = request('mem_name');
+        $user->email = request('emailid');
+        $user->phoneNumber = request('phonenumber');
+        $user->address = request('address').','.$city_name;
         $user->gender = request('gender');
+        $user->city_code = request('city');
+        $user->save();
+    }
+
+    public function updateUserBankInfo($th){
+        $th->validate(\request(), [
+            'card_number' => 'numeric|digits_between:12,16'
+        ],
+            [
+                'card_number.digits_between' => 'Số tài khoản phải có 12-16 chữ số!',
+                'card_number.numeric' => 'Số tài khoản không chưa kí tự khác chữ số!',
+            ]);
+        $id = Auth::user()->id;
+        $user = User::find($id);
         $user->bank_name = trim(request('bank_name'),' ');
         $user->bank_username = trim(request('bank_username'),' ');
         $user->card_number = trim(request('card_number'),' ');
@@ -145,13 +163,15 @@ class User extends Authenticatable
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
-        $user->name = trim(request('mem_name'),' ');
-        $user->email = trim(request('emailid'),' ');
+        $city_name = City::where('code',request('city'))->first()->name;
+        $user->name = request('mem_name');
+        $user->email = request('emailid');
         $user->password = bcrypt(request('password'));
         $user->phoneNumber = trim(request('phonenumber'),' ');
         $user->gender = \request('gender');
-        $user->address = trim(request('address').' ,'. request('city'),' ');
+        $user->address = request('address').' ,'. $city_name;
         $user->avatar = 'user-default.png';
+        $user->city_code = request('city');
         $user->save();
         return back()->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công');
     }

@@ -55,7 +55,17 @@
 						</div>
 						<div class="form-block">
 							<label for="adress"><b>Thành Phố Nhận Hàng*</b></label>
-							@include('layouts.city')
+							<select name="city" class="form-block" id="citydrop">
+								@foreach($cities as $city)
+									{{$check = ''}}
+									@if(!empty($currentUser->city->name))
+										@if($currentUser->city->code == $city->code)
+											{{$check = 'selected'}}
+										@endif
+									@endif
+									<option value="{{$city->code}}" {{$check}}>{{$city->name}}</option>
+								@endforeach
+							</select>
 						</div>
 
 						<div class="form-block">

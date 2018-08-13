@@ -6,6 +6,7 @@ use App\SupplierRegister;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\City;
 
 class UsersController extends Controller
 {
@@ -18,8 +19,9 @@ class UsersController extends Controller
 
     public function show()
     {
-        $city = strrev(str_before(strrev(Auth::user()->address),','));
-        return view('clientViews.profile.userProfile', compact('city'));
+        $userCity = User::find(Auth::user()->id)->city;
+        $cities = City::all();
+        return view('clientViews.profile.userProfile', compact('cities','userCity'));
     }
 
     public function registerSupplier(Request $request)
@@ -33,7 +35,13 @@ class UsersController extends Controller
         }
     }
     public function registerSupplierPage(){
-        $city = strrev(str_before(strrev(Auth::user()->address),','));
-        return view('clientViews.customer.registerToSupplier',compact('city'));
+        $userCity = User::find(Auth::user()->id)->city;
+        $cities = City::all();
+        return view('clientViews.customer.registerToSupplier',compact('cities','userCity'));
+    }
+
+    public function registerView(){
+        $cities = City::all();
+        return view('registration.register',compact('cities'));
     }
 }

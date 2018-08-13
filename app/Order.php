@@ -32,6 +32,11 @@ class Order extends Model
         return $this->hasOne(User::class, 'id', 'moderator_id');
     }
 
+    public function city(){
+        return $this->hasOne(City::class,'code','city_code');
+
+    }
+
     public function getOrdersAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
     {
         $columns = array(

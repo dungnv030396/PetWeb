@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
@@ -51,13 +52,14 @@ class CartsController extends Controller
 
     public function getCheckout()
     {
+
         $user = new User();
         $oldcart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldcart);
         if($user->isLogin()){
             $currentUser = $user->getCurrentUser();
-            $city = strrev(str_before(strrev($currentUser->address),','));
-            return view('clientViews.dat_hang', compact('currentUser','cart','city'));
+            $cities = City::all();
+            return view('clientViews.dat_hang', compact('currentUser','cart','cities'));
         }
         alert()->error("Xin quý khách đăng nhập trước khi thanh toán!!");
         return redirect()->back()->with('message','checkout');
