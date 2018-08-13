@@ -79,7 +79,8 @@ class SupplierRegister extends Model
                     $avatar->storeAs('public/cmnd', $filenameFinal);
                     $registerSup->save();
                     return [
-                        'error' => false
+                        'error' => false,
+                        'user' => $registerSup
                     ];
                 } else {
                     return [
@@ -143,14 +144,14 @@ class SupplierRegister extends Model
                 $filename = $avatar->getClientOriginalName();
                 $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
 
-//                $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
                 if (in_array($fileExtension, $allowedfileExtension)) {
                     $filenameFinal = time() . '.' . $filename;
                     $user->cmnd = $filenameFinal;
                     $avatar->storeAs('public/cmnd', $filenameFinal);
                     $user->save();
                     return [
-                        'error' => false
+                        'error' => false,
+                        'user' => $user
                     ];
                 } else {
                     return [

@@ -77,6 +77,7 @@ Route::post('register', 'UsersController@store')->name('register');
 
 Route::get('register.supplier','UsersController@registerSupplierPage')->name('register.supplier');
 Route::post('register.supplier', 'UsersController@registerSupplier')->name('registerToSupplier');
+Route::get('register.supplier.success/{id}','UsersController@registerSupplierSuccess')->name('registerSupplierSuccess');
 
 
 //userProfile

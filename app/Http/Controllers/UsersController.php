@@ -31,17 +31,26 @@ class UsersController extends Controller
         if ($res['error']) {
             return back()->with($res['code'], $res['message']);
         } else {
-            return back()->with('postProductSuccess', 'Gửi đơn đăng ký thành công');
+//            dd($res['user']->user_id);
+                return redirect(route('registerSupplierSuccess',$res['user']->user_id));
+//            return back()->with('postProductSuccess', 'Gửi đơn đăng ký thành công');
         }
     }
     public function registerSupplierPage(){
         $userCity = User::find(Auth::user()->id)->city;
         $cities = City::all();
-        return view('clientViews.customer.registerToSupplier',compact('cities','userCity'));
+        $count = SupplierRegister::where('user_id',Auth::user()->id)->count();
+        return view('clientViews.customer.registerToSupplier',compact('cities','userCity','count'));
     }
 
     public function registerView(){
         $cities = City::all();
         return view('registration.register',compact('cities'));
+    }
+    public function registerSupplierSuccess(){
+        $user_id = \request('id');
+        $user_info = SupplierRegister::where('user_id',$user_id)->first();
+//        dd($user_info);
+        return view('clientViews.customer.register_to_supplier_success',compact('user_info'));
     }
 }

@@ -11,6 +11,9 @@
                 <section>
                     <br>
                     <h1 class="entry-title main-color"><span>Đăng Ký Trở Thành Nhà Cung Cấp</span> </h1>
+                    @if($count>0)
+                    <h5 class="entry-title" style="color: #00A8FF"><a href="{{route('registerSupplierSuccess',\Illuminate\Support\Facades\Auth::user()->id)}}">Bạn gửi 1 phiếu đăng ký(ấn để xem chi tiết)</a></h5>
+                    @endif
                     <hr>
                     <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="{{route('registerToSupplier')}}" >
                         {{ csrf_field() }}
