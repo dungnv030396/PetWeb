@@ -36,7 +36,23 @@
     </div>
 </div>
 <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
+<script src="source/assets/manage/js/bootstrap.min.js"></script>
 <script>
+    $('#modal-form').on('show.bs.modal', function (event) {
+        var link = $(event.relatedTarget)
+        var id = link.data('title')
+        var name = link.data('html')
+        var quantity = link.data('abide')
+        var price = link.data('content')
+        var discount = link.data('animation')
+        var modal = $(this)
+        modal.find('#productId').val(id);
+        modal.find('#name').val(name);
+        modal.find('#quantity').val(quantity);
+        modal.find('#price').val(price);
+        modal.find('#discount').val(discount);
+    })
+
     $('#edit_product_form').on('submit', function(event){
         var id = document.getElementById('productId').getAttribute('value');
         event.preventDefault();

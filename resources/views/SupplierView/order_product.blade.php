@@ -31,6 +31,8 @@
                                     <th>Giá bán</th>
                                     <th>Tổng</th>
                                     <th>Trạng thái</th>
+                                    <th>Kho</th>
+                                    <th>Địa chỉ</th>
                                     <th>Ngày đặt hàng</th>
                                     <th>Ngày gửi</th>
                                     <th>Hành Động</th>
@@ -55,7 +57,7 @@
                 "stateSave": true,
                 "stateDuration": -1,
                 "orderSequence": ["desc"],
-                "targets": [0],
+                "targets":[13],
                 "ajax": {
                     "url": "<?= route('dataSupplierPostOrderProducts') ?>",
                     "dataType": "json",
@@ -64,13 +66,16 @@
                 },
                 "columns": [
                     {
-                        data: "id"
+                        data: "order_code", orderable: false
                     },
                     {
-                        data: "name",
+                        data: "product_id", orderable: false
+                    },
+                    {
+                        data: "product_name",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href=''>" + oData.name + "</a>");
-                        }
+                            $(nTd).html("<a href=''>" + oData.product_name + "</a>");
+                        }, orderable: false
                     },
                     {
                         data: "catalog", orderable: false
@@ -79,46 +84,95 @@
                         data: "category", orderable: false
                     },
                     {
-                        data: "quantity"
+                        data: "quantity", orderable: false
                     },
                     {
-                        data: "price"
+                        data: "price", orderable: false
                     },
                     {
-                        data: "discount"
+                        data: "discount", orderable: false
                     },
                     {
                         data: "salePrice", orderable: false
                     },
                     {
+                        data: "amount", orderable: false
+                    },
+                    {
+                        data: "status",
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            if(oData.status_id==1){
+                                $(nTd).html("<p class='text-warning'><b>"+oData.status+"</b></p>");
+                            }else if(oData.status_id==2){
+                                $(nTd).html("<p class='text-info'><b>"+oData.status+"</b></p>");
+                            }else if(oData.status_id==3){
+                                $(nTd).html("<p class='text-navy'><b>"+oData.status+"</b></p>");
+                            }else if(oData.status_id==4){
+                                $(nTd).html("<p class='text-danger'><b>"+oData.status+"</b></p>");
+                            }else{
+                                $(nTd).html("<a href='<?php echo 'a'?>' class='bg-success'>"+oData.status+"</a>");
+                            }
+                        },orderable:false
+                    },
+                    {
+                        data: "warehouse", orderable: false
+                    },
+                    {
+                        data: "warehouse_address", orderable: false
+                    },
+                    {
                         data: "created_at"
                     },
                     {
-                        data: "updated_at"
+                        data: "updated_at", orderable: false
                     },
                     {
-                        data: "id",
+                        data: "orderLine_id",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a data-toggle='modal' data-target='#modal-form' data-title='" + oData.id + "' data-html='" + oData.name + "' data-abide='" + oData.quantity + "' data-content='" + oData.price_modal + "' data-animation='" + oData.discount + "' class='btn btn-primary'><i class='fa fa-pencil-square-o'>Edit</i></a>"
-                                + " " + "<a href='' class='btn btn-primary' id='" + oData.id + "' onclick='removeFunction(this.id)'><i class='fa fa-trash-o'>Remove</i></a>"
-                                + "");
+                            if(oData.status_id == 1){
+                                $(nTd).html("<a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sendFunction(this.id,this.name)'>Sent</a>");
+                            }else{
+                                $(nTd).html("<a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sentFunction(this.id,this.name)'>Sent</a>");
+                            }
+
                         }, orderable: false
                     },
 
+
                 ],
-                columnDefs: [{
-                    className: 'control',
-                    orderable: false,
-                    targets: [-2, -3, -8, -9]
-                }]
+                columnDefs: [
+                    {
+                        className: 'control',
+                        orderable: false,
+                        targets: [3,4,6,7,14]
+                    }
+                ],
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                        customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
             });
         });
 
-        function removeFunction(id) {
+        function sendFunction(id,name) {
             event.preventDefault(); // prevent form submit
             swal({
-                    title: "Are you sure?",
-                    text: "Dữ liệu sẽ được khóa trên server!",
+                    title: "Bạn chắc chắn đã chuyển đơn hàng "+name+"?",
+                    text: "Bạn không thể sửa lại trạng thái! Hãy chắc chắn bạn đã chuyển hàng!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
@@ -130,7 +184,7 @@
                 function (isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "{{ route('removeProductAjax') }}",
+                            url: "{{ route('sentProductAjax') }}",
                             method: "POST",
                             dataType: "json",
                             data: {
@@ -144,14 +198,26 @@
                                 }
                                 else
                                 {
-                                    swal("Success","Đã xóa sản phẩm có mã "+id,"success");
-                                    $('.dataTables-productOfSp').DataTable().ajax.reload();
+                                    swal("Success","Bạn đã xác nhận chuyển mã đơn hàng "+name,"success");
+                                    $('.dataTables-orderProduct').DataTable().ajax.reload();
                                 }
                             }
                         })
                     } else {
                         swal("Cancelled", "Your imaginary file is safe :)", "error");
                     }
+                });
+        }
+
+        function sentFunction(id,name) {
+            event.preventDefault(); // prevent form submit
+            swal({
+                    title: "Đơn hàng "+name+" đã được bạn xác nhận trước đó!",
+                    text: "Bấm 'Yes, got it!' để quay lại!",
+                    type: "warning",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, got it!",
+                    closeOnConfirm: true,
                 });
         }
     </script>

@@ -92,5 +92,24 @@ class SupplierController extends Controller
         return view('SupplierView.add_product_view',compact('catalogs','menu','categories'));
     }
 
+    public function sentProductAjax(Request $request)
+    {
+        $error = '';
+        $success_output = '';
+        try {
+            $orderLine = OrderLine::find($request->id);
+            $orderLine->orderline_status_id = 2;
+            $orderLine->save();
+            $success_output = 'success';
+        } catch (\Exception $e) {
+            $error = 'error';
+        }
+        $output = array(
+            'error' => $error,
+            'success' => $success_output
+        );
+        echo json_encode($output);
+    }
+
 }
 

@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\OrderLine;
 use App\Catalog;
-use App\Category;
-use App\Order;
-use App\Payment;
 use App\Slide;
 use App\Product;
-use App\Status;
-use App\User;
 use Session;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -19,71 +15,20 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
-        $p = new Payment();
-        var_dump($p->findWerehouse(54));die;
-        $search = 'macro';
-        $orders = Order::with(['user' => function ($query) use ($search){
-            $query->where('name','like',"%$search%");
-        }])
-            ->where('delete_flag',0)
-            ->orWhere('created_at','like',"%$search%")
+
+        $orderLines = OrderLine::whereHas('product',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            })
+            ->whereHas('status', function ($query){
+                $query->whereIn('id',[1,2,3,4]);
+            })
+            ->whereHas('order', function ($query){
+                $query->where('delete_flag',0);
+            })
+            ->offset(1)
+            ->limit(10)
             ->get();
-        var_dump($orders);die;
-        auth()->logout();
-        die;
-        $user = Auth::attempt(['email'=>'acquy_tokyo_95@yahoo.com.vn','password'=>'123456','roleId'=>2,'delete_flag'=>0]);
-        var_dump($user);die;
-        $user = new User();
-        $oObj = new Order();
-        $search = '18:24:24';
-        $orders = Order::whereHas('user',function ($query) {
-            $query->where('address', '=', 'HASASHA');
-        })->where('delete_flag',0)->first();
-        $orders = Order::find(5);
-        $orders = Order::where('delete_flag',0)
-            ->get();
-
-        $orders = Order::with(['user' => function ($query) use ($search){
-            $query->where('name','like',"%$search%");
-        }])
-            ->where('delete_flag',0)
-            ->orWhere('created_at','like',"%$search%")
-            ->get();
-        foreach ($orders as $order){
-            var_dump($order->status_id);die;
-        }
-        die;
-        $user = User::where('id',6)->first();
-        $user->address = "HASASHA";
-        $user->save();
-        die;
-
-        return redirect(route('trangchu'));
-
-        $c = new User();
-        $c = $c->getCurrentUser();
-        var_dump($c->role->role);die;
-        $pro = new Product();
-        $cart = Session::get('cart');
-        foreach ($cart->items as $cartLine) {
-            var_dump($cartLine['item']->user->name);
-            //$data = array('supplierName' => $listSupplier->name,'email' => $listSupplier->email);
-            // truyền list_supplier &  vào $data để truyền về mail
-        }
-        die;
-        $coment = new Comment();
-        $coment->getCommentsByProductId(2,4);
-        $catalog = new Catalog();
-        $catalogs = $catalog->getCatalog([1,2]);
-        $product = new Product();
-        var_dump($request->id);die;
-        $cate_id = $product->getProductById(1)->category->id;
-        $pro = new Product();
-        $product = $pro->getProductDetailById($reqest->id);
-
-
-
-        var_dump(Category::find($cate_id)->catalog->toArray());die;
+        var_dump($orderLines[0]->order->id);var_dump($orderLines[0]->id);die;
     }
     public function getIndex()
     {
