@@ -99,15 +99,15 @@ class User extends Authenticatable
             ]);
         $id = Auth::user()->id;
         $user = User::find($id);
-        $user->name = request('mem_name');
-        $user->email = request('emailid');
-        $user->phoneNumber = request('phonenumber');
-        $user->address = request('address').','. request('city');
+        $user->name = trim(request('mem_name'),' ');
+        $user->email = trim(request('emailid'),' ');
+        $user->phoneNumber = trim(request('phonenumber'),' ');
+        $user->address = trim(request('address').','. request('city'),' ');
         $user->gender = request('gender');
-        $user->bank_name = request('bank_name');
-        $user->bank_username = request('bank_username');
-        $user->card_number = request('card_number');
-        $user->bank_branch = request('bank_branch');
+        $user->bank_name = trim(request('bank_name'),' ');
+        $user->bank_username = trim(request('bank_username'),' ');
+        $user->card_number = trim(request('card_number'),' ');
+        $user->bank_branch = trim(request('bank_branch'),' ');
         $user->save();
     }
 
@@ -145,12 +145,12 @@ class User extends Authenticatable
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
-        $user->name = request('mem_name');
-        $user->email = request('emailid');
+        $user->name = trim(request('mem_name'),' ');
+        $user->email = trim(request('emailid'),' ');
         $user->password = bcrypt(request('password'));
-        $user->phoneNumber = request('phonenumber');
+        $user->phoneNumber = trim(request('phonenumber'),' ');
         $user->gender = \request('gender');
-        $user->address = request('address').' ,'. request('city');
+        $user->address = trim(request('address').' ,'. request('city'),' ');
         $user->avatar = 'user-default.png';
         $user->save();
         return back()->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công');
