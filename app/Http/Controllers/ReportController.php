@@ -10,12 +10,22 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
     public function reportSupplier(){
+        $user = new User();
+        if(!$user->isLogin()){
+            alert()->error('Quý khách xin vui lòng đăng nhập trước khi báo cáo!');
+            return redirect()->back()->with('message','false');
+        }
             $report = new Report();
             $report->reportSupplier($this);
             return back()->with('reportSuccess','Báo cáo đã được gửi! Chúng tôi sẽ đánh giá và kiểm tra báo cáo của bạn');
         }
 
     public function reportProduct(){
+        $user = new User();
+        if(!$user->isLogin()){
+            alert()->error('Quý khách xin vui lòng đăng nhập trước khi báo cáo!');
+            return redirect()->back()->with('messageReport','false');
+        }
         $report = new Report();
         $report->reportProduct($this);
         return back()->with('reportSuccess','Báo cáo đã được gửi! Chúng tôi sẽ đánh giá và kiểm tra báo cáo của bạn');
@@ -29,9 +39,9 @@ class ReportController extends Controller
     }
     public function reportProcess(){
         $report = Report::find(\request('id'));
-        $button_accept = \request('button');
+        $button_value = \request('button');
 //        $button_cancel = \request('cancel');
-        if($button_accept=='accept'){
+        if($button_value=='accept'){
             $report->admin_id = Auth::user()->id;
             $report->status = 2;
             $report->save();

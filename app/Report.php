@@ -25,6 +25,7 @@ class Report extends Model
                 'other' => 'required|between:1,200'
             ], [
                 'other.between' => 'Nội dung báo cáo không quá 200 kí tự',
+                'other.required' => 'Không được để trống phần nội dung'
             ]);
             $description = trim(request('other'), ' ');
         } else {
@@ -45,6 +46,7 @@ class Report extends Model
                 'other' => 'required|between:1,200'
             ], [
                 'other.between' => 'Nội dung báo cáo không quá 200 kí tự',
+                'other.required' => 'Không được để trống phần nội dung'
             ]);
             $description = trim(request('other'), ' ');
         } else {

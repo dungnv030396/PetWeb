@@ -1,11 +1,15 @@
 @extends('layouts.master')
 @section('content')
     <link href="css/css-detailSupplier.css" rel="stylesheet">
-    @if(!empty($message))
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    {{--@if(!empty($response))--}}
+        {{--@include('sweet::alert')--}}
+    {{--@endif--}}
+    @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
         @include('sweet::alert')
     @endif
-    <!------ Include the above in your HEAD tag ---------->
-
     <div class="container" style="margin-top: 30px">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,4 +82,5 @@
     </div>
     </div>
     @include('layouts.main_products');
+
 @endsection

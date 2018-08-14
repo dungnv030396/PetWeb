@@ -1,9 +1,9 @@
 @extends('ModeratorView.master')
 @section('contentManager')
     <link href="source/assets/manage/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    @if(!empty($message))
+    @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
         @include('sweet::alert')
     @endif
         <div class="row wrapper border-bottom white-bg page-heading">
@@ -48,7 +48,7 @@
                                     <h4>Nội Dung Báo Cáo: <span style="color: #00A8FF;">{{ $data['report']->description }}</span></h4>
                                     <h4>Trạng Thái:
                                         @if($data['report']->status ==1)
-                                            <span>Chưa Xử Lý</span>
+                                            <span style="color: #3dc7ab">Chưa Xử Lý</span>
                                             @endif
                                         @if($data['report']->status ==2)
                                             <span style="color: green;">Đúng</span>
