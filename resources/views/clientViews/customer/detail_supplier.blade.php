@@ -1,7 +1,9 @@
 @extends('layouts.master')
 @section('content')
     <link href="css/css-detailSupplier.css" rel="stylesheet">
-
+    @if(!empty($message))
+        @include('sweet::alert')
+    @endif
     <!------ Include the above in your HEAD tag ---------->
 
     <div class="container" style="margin-top: 30px">
@@ -28,9 +30,11 @@
                 </center>
 
                 {{--report--}}
+                {{--@if(\Illuminate\Support\Facades\Auth::check())--}}
                 <div style="margin-right: 50vw">
                     @include('layouts.reportSupplier')
                 </div>
+                {{--@endif--}}
                 <div class="well well-small clearfix">
 
                     <div class="row">

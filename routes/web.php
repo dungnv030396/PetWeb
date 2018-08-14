@@ -93,7 +93,6 @@ Route::get('auth/logout','LoginController@destroy');
 //login facebook
 Route::get('login/facebook', 'Auth\LoginController@redirectToProviderFB');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFB');
-//Route::get('logout/facebook', 'Auth\LoginController@logoutFacebook');
 
 //login google
 Route::get('login/google', 'Auth\LoginController@redirectToProviderGM');
@@ -123,17 +122,17 @@ Route::get('detailSupplier/{id}','SupplierController@detailSupplier')->name('det
 //   return view('emails.mailForgotPass');
 //});
 
-//Reset Paswork
-Route::post('resetPassword','MailController@resetPassword')->name('resetPassword');
+//Reset Pasword
+Route::post('resetPassword','MailController@resetPassword');
 Route::get('resetPassword',function (){
     return view('clientViews.profile.resetPassword');
-});
-Route::post('changePassByMail','MailController@changePassword');
+})->name('resetPassword');
+Route::post('changePassByEmail/{user_id}','MailController@changePassword')->name('changePassChecked');
 
-Route::get('changePassByMail/{id}',function (){
-
-    return view('clientViews.profile.changePassByEmail');
-});
+Route::get('changePassByMail/{token}','MailController@checkUrl')->name('changePassByMail');
+Route::get('changePassByMail',function (){
+    return view('clientViews.profile.change_pass_by_email');
+})->name('backChangePassByMail');
 
 //Quan? Ly cua supplier
 
@@ -156,7 +155,7 @@ Route::post('them-binh-luan-ajax','CommentController@addSingleCommentAjax')->nam
 
 Route::post('reportSupplier/{id}','ReportController@reportSupplier')->name('reportSupplier');
 Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportProduct')->name('reportProduct');
-
+Route::post('moderator/manage/report-process/{id}','ReportController@reportProcess')->name('reportProcess');
 //Add Reply comment
 Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addReplyComment');
 
@@ -174,7 +173,20 @@ Route::get('supplier/manage/view-detail-product/{id}','ProductController@viewDet
 // Moderator management
 
 Route::post('moderator/manage/order-list','ModeratorController@loginModerator')->name('loginModerator');
+Route::post('moderator/manage/waiting-report-list','DatatableController@getListsReport')->name('reportDataProcessing');
+Route::post('moderator/manage/processed-report-list','DatatableController@getListsProcessedReport')->name('reportDataProcessed');
+
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');//example
+Route::get('moderator/manage/waiting-report-list',function (){
+    $menu = 'report';
+    return view('ModeratorView.waiting_report_view',compact('menu'));
+})->name('getListsReport');
+
+Route::get('moderator/manage/processed-report-list',function (){
+    $menu = 'report';
+    return view('ModeratorView.processed_report_view',compact('menu'));
+})->name('getListsProcessedReport');
+Route::get('moderator/manage/report-list/detail/{id}','ReportController@detailWaitingReport')->name('detailWaitingReport');
 
 Route::get('dang-nhap/moderator', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
@@ -195,8 +207,6 @@ Route::get('moderator/manage/order-list',function (){
 Route::get('customer/ordershistory/{id}','PaymentController@ordersHistory')->name('ordersHistory');
 Route::get('customer/detailorder/{id}','PaymentController@detailOrder')->name('detailOrders');
 Route::post('customer/ordershistory/{id}','PaymentController@searchOrdersHistory')->name('searchOrderHistosry');
-
-//demo
 
 Route::get('thong-tin-don-hang','PaymentController@checkoutSucess')->name('checkoutSucess');
 

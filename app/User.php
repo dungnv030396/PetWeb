@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -180,21 +181,44 @@ class User extends Authenticatable
     {
         $user = User::where('email', \request('email'))->get();
         if (count($user) > 0) {
-            $data = array('name' => $user[0]->name, 'link' => 'http://localhost:8080/thepetfamily/public/changePassByMail/' . $user[0]->id);
+//            $data = array('name' => $user[0]->name, 'link' => route('changePassByMail',$user[0]->id));
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < 20; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $data = array('name' => $user[0]->name, 'link' => route('changePassByMail',$randomString));
+            $password_token = new PasswordToken();
+            $password_token->user_id = $user[0]->id;
+            $password_token->token = bcrypt($randomString.''.'thepetteam');
+            $password_token->save();
+
+//            dd(bcrypt($randomString.''.'thepetteam'));
+//            'link' => 'http://localhost:8000/changePassByMail/' . $user[0]->id)
+            Mail::send('clientViews.emails.mailForgotPass', $data, function ($message) {
+                $message->to(\request('email'))
+                    ->subject('The Pet Family - Khôi Phục Mật Khẩu');
+                $message->from('thepetfamilyteam@gmail.com');
+            });
+            return [
+                'error' => true,
+                'code' => 'resetPassSuccess',
+                'message' => 'Khôi phục mật khẩu thành công! Chúng tôi đã gửi email tới địa chỉ email của bạn.'
+            ];
         } else {
-            return back()->with('emailNotFound', 'Địa Chỉ Email không tồn tại!');
+            return [
+                'error' => false,
+                'code' => 'emailNotFound',
+                'message' => 'Địa Chỉ Email không tồn tại!'
+            ];
         }
-        Mail::send('clientViews.emails.mailForgotPass', $data, function ($message) {
-            $message->to(\request('email'))
-                ->subject('The Pet Family - Khôi Phục Mật Khẩu');
-            $message->from('thepetfamilyteam@gmail.com');
-        });
+
     }
 
-    public function changePassByMail($th)
+    public function changePassByMail($th,$user_id)
     {
-        $id = \request('id');
-        $user = User::find($id);
+        $user = User::find($user_id);
         $th->validate(\request(), [
             'password' => 'required|confirmed|between:6,15',
         ], [
@@ -204,6 +228,12 @@ class User extends Authenticatable
 
         $user->password = bcrypt(\request('password'));
         $user->save();
+//        $a = Order::where('payment_id',51)->delete();
+        $token = PasswordToken::where('user_id',$user_id)->first();
+        if ($token){
+            $token->delete();
+        }
+        return $token;
     }
 
     public function isSupplier($user)

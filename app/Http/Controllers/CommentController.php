@@ -6,7 +6,6 @@ use App\Comment;
 use App\SubComment;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
