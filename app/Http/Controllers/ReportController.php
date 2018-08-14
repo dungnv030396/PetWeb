@@ -28,6 +28,7 @@ class ReportController extends Controller
         }
         $report = new Report();
         $report->reportProduct($this);
+        alert()->success('Báo cáo đã được gửi! Chúng tôi sẽ đánh giá và kiểm tra báo cáo của bạn!');
         return back()->with('reportSuccess','Báo cáo đã được gửi! Chúng tôi sẽ đánh giá và kiểm tra báo cáo của bạn');
     }
     public function detailWaitingReport(){
