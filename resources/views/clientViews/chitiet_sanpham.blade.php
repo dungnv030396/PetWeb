@@ -88,6 +88,10 @@
                                 @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
                                     @include('sweet::alert')
                                 @endif
+                                @if(!empty(\Illuminate\Support\Facades\Session::get('messageReport')))
+                                    @include('sweet::alert')
+                                @endif
+
                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
                                 {{--report--}}
@@ -125,6 +129,9 @@
                         <div class="panel" id="tab-report">
                             @include('layouts.reportProduct')
                         </div>
+                        @if(!empty(\Illuminate\Support\Facades\Session::get('reportSuccess')))
+                            @include('sweet::alert')
+                        @endif
                     </div>
                     <div class="space50">&nbsp;</div>
                     <div class="beta-products-list">

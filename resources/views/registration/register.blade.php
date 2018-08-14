@@ -11,6 +11,15 @@
             <section>
                 <br>
                 <h1 class="entry-title main-color"><span>Đăng Ký</span> </h1>
+                <div class="form-group">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            <ul>
+                                {{ session('status') }}
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 <hr>
                 <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="register" >
                     {{ csrf_field() }}
@@ -118,17 +127,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="form-group">
-
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            <ul>
-                                {{ session('status') }}
-                            </ul>
-                        </div>
-                    @endif
-
-                </div>
 
                 <div class="form-group">
 

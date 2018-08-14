@@ -25,7 +25,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                            <input id="email" name="email" placeholder="địa chỉ email" class="form-control"  type="email">
+                                            <input id="email" name="email" placeholder="địa chỉ email" class="form-control"  type="email" value="{{ old('email') }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -34,12 +34,6 @@
 
                                     <input type="hidden" class="hide" name="token" id="token" value="">
                                 </form>
-
-                                <div class="form-group">
-
-                                    @include('layouts.errors')
-
-                                </div>
                                 @if (session('resetPassSuccess'))
                                     <div class="alert alert-success">
                                         <ul>

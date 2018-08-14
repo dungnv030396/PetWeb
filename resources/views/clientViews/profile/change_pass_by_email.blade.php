@@ -10,9 +10,11 @@
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3 class="main-color">Thay Đổi Mật Khẩu</h3>
             <br>
-
-            <form class="form-horizontal" role="form" method="POST" action="changePassByMail">
+            @if(!empty($user_id))
+            <form class="form-horizontal" role="form" method="POST" action="{{route('changePassChecked',$user_id)}}">
+                @endif
                 {{ csrf_field() }}
+                <form class="form-horizontal" role="form" method="POST" action="welcome">
                 <input type="text" name="id" hidden value="{{ strrev(str_before(strrev(Request::url()),'/')) }}">
                 <div class="form-group">
                     <label class="col-md-3 control-label">Mật Khẩu Mới:</label>
@@ -44,6 +46,14 @@
                     </ul>
                 </div>
             @endif
+            @if (session('ChangePassFails'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{ session('ChangePassFails') }}
+                    </ul>
+                </div>
+            @endif
+
 
             <div class="form-group">
 

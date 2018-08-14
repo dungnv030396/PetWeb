@@ -51,7 +51,6 @@
 <script src="source/assets/dest/js/wow.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!--script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
->>>>>>> 46a172b4779bddd6a25c54e00b63f3ee9141878e
 <!--customjs-->
 <script src="source/assets/dest/js/custom2.js"></script>
 <script>
