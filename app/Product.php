@@ -2,13 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Collection;
+
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use App\Category;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use function Sodium\add;
+use App\OrderLine;
+
 
 class Product extends Model
 {
@@ -257,11 +255,11 @@ class Product extends Model
 
         $totalData = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)->count();
         if (empty($search)) {
-            $products = Product::whereHas('category',function ($query){
-                    $query->whereHas('catalog',function ($query2){
-                        $query2->whereIn('id',[1,2]);
-                    });
-                })
+            $products = Product::whereHas('category', function ($query) {
+                $query->whereHas('catalog', function ($query2) {
+                    $query2->whereIn('id', [1, 2]);
+                });
+            })
                 ->where('user_id', Auth::user()->id)->where('delete_flag', 0)
                 ->offset($start)
                 ->limit($length)
@@ -270,10 +268,10 @@ class Product extends Model
             $totalFiltered = $totalData;
         } else {
             $products = Product::whereHas('category', function ($query) use ($search) {
-                    $query->where('name', 'like', "%$search%")->whereHas('catalog',function ($query2) use ($search){
-                        $query2->whereIn('id',[1,2]);
-                    });
-                })
+                $query->where('name', 'like', "%$search%")->whereHas('catalog', function ($query2) use ($search) {
+                    $query2->whereIn('id', [1, 2]);
+                });
+            })
                 ->where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id]])
                 ->orWhere('name', 'like', "%$search%")
                 ->orWhere('created_at', 'like', "%$search%")
@@ -315,23 +313,25 @@ class Product extends Model
     }
 
     ///san pham can giao
-    public function getOrderProductsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw){
+    public function getOrderProductsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
+    {
         $columns = array(
-            1 => 'id',
-            2 => 'name',
-            5 => 'quantity',
-            6 => 'price',
-            7 => 'discount',
+            13 => 'created_at',
         );
-        $totalData = OrderLine::whereHas('product',function ($query){
-            $query->where('user_id',Auth::user()->id);
+        $totalData = OrderLine::whereHas('product', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->whereHas('status', function ($query) {
+            $query->whereIn('id', [1, 2, 3, 4]);
         })->count();
         if (empty($search)) {
-            $products = OrderLine::whereHas('product',function ($query){
-                $query->where('user_id',Auth::user()->id);
+            $orderLines = OrderLine::whereHas('product', function ($query) {
+                $query->where('user_id', Auth::user()->id);
             })
-                ->whereHas('status', function ($query){
-
+                ->whereHas('status', function ($query) {
+                    $query->whereIn('id', [1, 2, 3, 4]);
+                })
+                ->whereHas('order', function ($query) {
+                    $query->where('delete_flag', 0);
                 })
                 ->offset($start)
                 ->limit($length)
@@ -339,34 +339,44 @@ class Product extends Model
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $products = Product::whereHas('category', function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
+            $orderLines = OrderLine::whereHas('product', function ($query) {
+                $query->where('user_id', Auth::user()->id);
             })
-                ->where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id]])
-                ->orWhere('name', 'like', "%$search%")
+                ->whereHas('status', function ($query) use ($search) {
+                    $query->whereIn('id', [1, 2, 3, 4]);
+                    $query->where('stt', 'like', "%$search%");
+                })
+                ->whereHas('order', function ($query) {
+                    $query->where('delete_flag', 0);
+                })
                 ->orWhere('created_at', 'like', "%$search%")
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
-            $totalFiltered = $products->count();
+            $totalFiltered = $orderLines->count();
         }
         $data = array();
-        if ($products) {
-            foreach ($products as $product) {
+        if ($orderLines) {
+            foreach ($orderLines as $orderLine) {
                 $nestedData = array();
-                $nestedData['id'] = $product->id;
-                $nestedData['user_id'] = $product->user_id;
-                $nestedData['category'] = $product->category->name;
-                $nestedData['name'] = $product->name;
-                $nestedData['price'] = number_format($product->price);
-                $nestedData['price_modal'] = $product->price;
-                $nestedData['salePrice'] = number_format($product->price - (($product->price * $product->discount) / 100));
-                $nestedData['quantity'] = $product->quantity;
-                $nestedData['discount'] = $product->discount;
-                $nestedData['created_at'] = $product->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['updated_at'] = $product->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['catalog'] = $product->category->catalog->name;
+                $nestedData['order_code'] = $orderLine->order->id . '-' . $orderLine->id;
+                $nestedData['orderLine_id'] = $orderLine->id;
+                $nestedData['product_id'] = $orderLine->product->id;
+                $nestedData['product_name'] = $orderLine->product->name;
+                $nestedData['catalog'] = $orderLine->product->category->catalog->name;
+                $nestedData['category'] = $orderLine->product->category->name;
+                $nestedData['price'] = number_format($orderLine->product->price);
+                $nestedData['salePrice'] = number_format($orderLine->product->price - (($orderLine->product->price * $orderLine->product->discount) / 100));
+                $nestedData['quantity'] = $orderLine->quantity;
+                $nestedData['amount'] = number_format($orderLine->amount);
+                $nestedData['discount'] = $orderLine->product->discount;
+                $nestedData['created_at'] = $orderLine->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $orderLine->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['status'] = $orderLine->status->stt;
+                $nestedData['status_id'] = $orderLine->status->id;
+                $nestedData['warehouse'] = $orderLine->warehouse->name;
+                $nestedData['warehouse_address'] = $orderLine->warehouse->address;
                 $data[] = $nestedData;
             }
         }

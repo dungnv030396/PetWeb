@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\OrderLine;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Catalog;

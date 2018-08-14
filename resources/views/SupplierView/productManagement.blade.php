@@ -155,6 +155,7 @@
 <script src="source/assets/manage/js/plugins/chartJs/Chart.min.js"></script>
 <script src="source/assets/manage/js/plugins/dataTables/datatables.min.js"></script>
 <script>
+
     $(document).ready(function() {
         setTimeout(function() {
             toastr.options = {

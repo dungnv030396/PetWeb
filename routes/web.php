@@ -237,3 +237,5 @@ Route::get('san-pham-can-giao/danh-sach',function (){
 
 Route::post('san-pham-can-giao','DatatableController@orderProductsAjax')->name('dataSupplierPostOrderProducts');
 Route::post('user/update-bank','UserProfileController@updateUserBankInfo')->name('updateUserBankInfo');
+
+Route::post('sent/product','SupplierController@sentProductAjax')->name('sentProductAjax');

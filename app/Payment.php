@@ -69,6 +69,11 @@ class Payment extends Model
                     $cUser->address = $order->address;
                 }
             }
+            $warehouse_id = 0;
+            while($warehouse_id==0){
+                $warehouse_id = $this->findWerehouse($request->city);
+            }
+            $order->warehouse_id = $warehouse_id;
             $order->city_code = $request->city;
             $order->save();
             foreach ($cart->items as $cartLine) {
@@ -84,6 +89,7 @@ class Payment extends Model
                     $amountOfLine = ($request->$para * $cartLine['item']->price);
                 }
                 $cLine->amount = $amountOfLine;
+                $cLine->warehouse_id = $warehouse_id;
                 $cLine->save();
                 $product = $pro->getProductById($cartLine['item']->id);
                 $product->quantity -= $cLine->quantity;
@@ -111,6 +117,8 @@ class Payment extends Model
                     $price = $uPrice;
                 }
                 $data = [
+                    'warehouse_name' => $orderLine->warehouse['name'],
+                    'warehouse_address' => $orderLine->warehouse['address'],
                     'orderLine_id' => $orderLine->id,
                     'supplier_name' => $orderLine->product->user['name'],
                     'product_name' => $orderLine->product['name'],
@@ -129,5 +137,24 @@ class Payment extends Model
                 });
             }
         }
+    }
+
+    public function findWerehouse($city_code){
+        $mien_bac = [1,2,4,6,8,10,11,12,14,15,17,19,20,22,24,25,26,27,30,31,33,34,35,36,37,38,40];
+        $mien_trung = [42,44,45,46,48,49,51,52,54,56,62,64,66];
+        $mien_nam = [58,60,67,68,70,72,74,75,77,79,80,82,83,84,86,87,89,91,92,93,94,95,96];
+        $arr = [
+            1 => $mien_bac,
+            2 => $mien_trung,
+            3 => $mien_nam
+        ];
+        foreach ($arr as $key => $value ){
+            foreach ($value as $code){
+                if($code == $city_code){
+                    return $key;
+                }
+            }
+        }
+        return 0;
     }
 }
