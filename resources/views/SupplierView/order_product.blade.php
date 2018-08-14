@@ -45,7 +45,6 @@
             </div>
         </div>
     </div>
-    @include('SupplierView.edit_product')
     <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
     <!-- Custom and plugin javascript -->
     <script type="text/javascript" language="javascript">

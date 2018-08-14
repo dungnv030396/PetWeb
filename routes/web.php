@@ -174,7 +174,7 @@ Route::get('supplier/manage/view-detail-product/{id}','ProductController@viewDet
 // Moderator management
 
 Route::post('moderator/manage/order-list','ModeratorController@loginModerator')->name('loginModerator');
-Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');//example
+Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');
 
 Route::get('dang-nhap/moderator', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
@@ -215,6 +215,7 @@ Route::get('print/don-hang/{id}','ModeratorController@printOrder')->name('printO
 Route::get('tiep-nhan/don-hang/{id}','ModeratorController@orderAssign')->name('orderAssign');
 Route::get('bo-tiep-nhan/don-hang/{id}','ModeratorController@orderAssignDelete')->name('orderAssignDelete');
 Route::get('huy/don-hang/{id}','ModeratorController@orderDelete')->name('orderDelete');
+Route::get('hoan-thanh/don-hang/{id}','ModeratorController@orderSuccess')->name('orderSuccess');
 
 Route::post('edit/product','ProductController@editProductAjax')->name('editProductAjax');
 Route::post('remove/product','ProductController@removeProductAjax')->name('removeProductAjax');
@@ -229,3 +230,10 @@ Route::post('san-pham-can-giao','DatatableController@orderProductsAjax')->name('
 Route::post('user/update-bank','UserProfileController@updateUserBankInfo')->name('updateUserBankInfo');
 
 Route::post('sent/product','SupplierController@sentProductAjax')->name('sentProductAjax');
+
+Route::get('don-hang/kho/{id}','ModeratorController@orderOfWarehouseView')->name('orderOfWarehouse');
+Route::post('data/warehouse-orders','DatatableController@getOrdersWarehouse')->name('orderWarehouseDataProcessing');
+Route::get('ban-giao/don-hang/{id}','ModeratorController@orderShip')->name('orderShip');
+Route::get('kho/san-pham/{id}','ModeratorController@productToWarehouseView')->name('productToWarehouseView');
+Route::post('kho/san-pham','DatatableController@productToWarehouse')->name('productToWarehouse');
+Route::post('confirm/san-pham','ModeratorController@confirmProductToWarehouse')->name('confirmProductToWarehouse');

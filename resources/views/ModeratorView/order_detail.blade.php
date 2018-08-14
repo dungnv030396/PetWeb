@@ -36,9 +36,9 @@
                             <h5>From:</h5>
                             <address>
                                 <strong>The Pet Family, Inc.</strong><br>
-                                Kho 1<br>
-                                Địa chỉ<br>
-                                <abbr title="Phone">P:</abbr> 01697161671
+                                Kho: {{$order->warehouse->name}}<br>
+                                Địa chỉ: {{$order->warehouse->address}}<br>
+                                <abbr title="Phone">P: </abbr> 01697161671
                             </address>
                         </div>
 
@@ -113,17 +113,24 @@
                     </table>
                     <div class="text-right">
                         <div class="space-30"></div>
-                        @if($order->status->id==1)
+                        @if($order->status->id==1 || !$order->moderator)
                             <a class="btn btn-primary" href="{{route('orderAssign',$order->id)}}">Nhận quản lý</a>
                         @elseif($order->status->id > 1 && $order->status->id < 5)
-                            @if($order->moderator->id == \Illuminate\Support\Facades\Auth::user()->id)
-                                <a class="btn btn-primary" href="{{route('orderAssignDelete',$order->id)}}">Bỏ quản
-                                    lý</a>
-                                <a class="btn btn-primary" href="{{route('orderDelete',$order->id)}}">Hủy đơn hàng</a>
+                            @if($order->moderator)
+                                @if($order->moderator->id == \Illuminate\Support\Facades\Auth::user()->id)
+                                    <a class="btn btn-primary" href="{{route('orderAssignDelete',$order->id)}}">Bỏ quản
+                                        lý</a>
+                                    @if($order->status->id == 3)
+                                        <a class="btn btn-primary" href="{{route('orderShip',$order->id)}}">Đã bàn giao</a>
+                                    @endif
+                                    <a class="btn btn-primary" href="{{route('orderDelete',$order->id)}}">Hủy đơn hàng</a>
+                                @endif
                             @endif
                         @endif
-                        @if($order->status->id==4)
-                            <button class="btn btn-primary">Hoàn thành đơn hàng</button>
+                        @if($order->moderator)
+                            @if($order->status->id==4)
+                                <a class="btn btn-primary" href="{{route('orderSuccess',$order->id)}}">Đơn hàng hoàn thành</a>
+                            @endif
                         @endif
 
                     </div>

@@ -93,11 +93,11 @@ class User extends Authenticatable
         $th->validate(\request(), [
             'mem_name' => 'required',
             'emailid' => 'required|email',
-            'phonenumber' => 'required|digits_between:10,15|numeric',
+            'phonenumber' => 'required|digits_between:10,11|numeric',
             'address' => 'required',
         ],
             [
-                'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
+                'phonenumber.digits_between' => 'Số điện thoại phải có 10-11 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!',
             ]);
         $id = Auth::user()->id;

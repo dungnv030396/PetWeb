@@ -90,7 +90,7 @@ class Order extends Model
                 $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['updated_at'] = $order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['orderDetail'] = '
-					<a href="' . route('orderDetail', $order->id) . '">' . 'Chi tiết sản phẩm' . '</a>
+					<a href="' . route('orderDetail', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a>
 				';
                 $data[] = $nestedData;
             }
@@ -119,8 +119,23 @@ class Order extends Model
         $order = $this->getOrderByID($request->id);
         $moderator = $uObj->getCurrentUser();
         $order->moderator_id = $moderator->id;
-        $order->status_id = 2;
+        if($order->status_id == 1){
+            $order->status_id = 2;
+        }
         $order->save();
+    }
+
+    public function orderSuccess($request)
+    {
+        $order = $this->getOrderByID($request->id);
+        if($order->status_id == 4){
+            $order->status_id = 5;
+        }
+        $order->save();
+        foreach ($order->orderLine as $orderLine){
+            $orderLine->orderline_status_id = 5;
+            $orderLine->save();
+        }
     }
 
     public function orderAssignDelete($request)
@@ -136,6 +151,16 @@ class Order extends Model
         $order = $this->getOrderByID($request->id);
         $order->delete_flag = 1;
         $order->save();
+    }
+
+    public function orderShip($request){
+        $order = $this->getOrderByID($request->id);
+        $order->status_id = 4;
+        $order->save();
+        foreach ($order->orderLine as $orderLine){
+            $orderLine->orderline_status_id = 4;
+            $orderLine->save();
+        }
     }
 
     public function ordersHistory()
@@ -200,5 +225,77 @@ class Order extends Model
                 'number' => $number
             ];
         }
+    }
+
+    public function getOrdersWarehouseAjax($start, $length, $search, $oderColunm, $oderSortType, $draw, $warehouse_id){
+        $columns = array(
+            0 => 'id',
+            4 => 'created_at'
+        );
+        // $page = floor($start / $length) + 1;
+        $totalData = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
+            $query->where('id',$warehouse_id);
+        })->count();
+        if (empty($search)) {
+            $orders = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
+                    $query->where('id',$warehouse_id);
+                })
+                ->where('delete_flag', 0)
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $orders = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
+                     $query->where('id',$warehouse_id);
+                })
+                ->whereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%");
+                })
+                ->orwhereHas('status', function ($query) use ($search) {
+                    $query->where('stt', 'like', "%$search%");
+                })
+                ->where('delete_flag', 0)
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $orders->count();
+        }
+
+        $data = array();
+        if ($orders) {
+            foreach ($orders as $order) {
+                $nestedData = array();
+                $nestedData['id'] = $order->id;
+                $nestedData['user_id'] = $order->user->id;
+                $nestedData['user_name'] = $order->user->name;
+                $nestedData['status'] = $order->status['stt'];
+                $nestedData['status_id'] = $order->status_id;
+                $nestedData['moderator'] = '';
+                if ($order->moderator != null) {
+                    $nestedData['moderator_id'] = $order->moderator->id;
+                    $nestedData['moderator'] = $order->moderator->name;
+                }
+                $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['orderDetail'] = '
+					<a href="' . route('orderDetail', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a>
+				';
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
     }
 }

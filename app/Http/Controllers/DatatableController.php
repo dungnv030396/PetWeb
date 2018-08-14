@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\OrderLine;
 use App\Product;
 use Illuminate\Http\Request;
 use App\User;
@@ -134,4 +135,49 @@ class DatatableController extends Controller
         }
         echo json_encode($output);
     }
+
+    public function getOrdersWarehouse(Request $request){
+        $orderObj = new Order();
+        $start = $request->input('start') ?: 0;
+        $length = $request->input('length') ?: 10;
+        $search = $request->input('search.value') ?: "";
+        $oderColunm = $request->input('order.0.column') ?: 0;
+        $oderSortType = $request->input('order.0.dir') ?: 'desc';
+        $draw = $request->draw ?: 0;
+        $warehouse_id = $request->warehouse_id;
+        try{
+            $output = $orderObj->getOrdersWarehouseAjax($start,$length,$search,$oderColunm,$oderSortType,$draw,$warehouse_id);
+        }catch(\Exception $ex){
+            $output = array(
+                "draw"            => intval(0),
+                "recordsTotal"    => intval(0),
+                "recordsFiltered" => intval(0),
+                "data"            => array($start.",".$length.",".$search.",".$oderColunm.",".$oderSortType.",".$draw),
+            );
+        }
+        echo json_encode($output);
+    }
+
+    public function productToWarehouse(Request $request){
+        $orderObj = new OrderLine();
+        $start = $request->input('start') ?: 0;
+        $length = $request->input('length') ?: 10;
+        $search = $request->input('search.value') ?: "";
+        $oderColunm = $request->input('order.0.column') ?: 13;
+        $oderSortType = $request->input('order.0.dir') ?: 'desc';
+        $draw = $request->draw ?: 0;
+        $warehouse_id = $request->warehouse_id;
+        try{
+            $output = $orderObj->productToWarehouseAjax($start,$length,$search,$oderColunm,$oderSortType,$draw,$warehouse_id);
+        }catch(\Exception $ex){
+            $output = array(
+                "draw"            => intval(0),
+                "recordsTotal"    => intval(0),
+                "recordsFiltered" => intval(0),
+                "data"            => array($start.",".$length.",".$search.",".$oderColunm.",".$oderSortType.",".$draw),
+            );
+        }
+        echo json_encode($output);
+    }
+
 }

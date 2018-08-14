@@ -44,10 +44,21 @@
                     <a href="{{route('listOrder')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý order</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{route('listOrder')}}">Danh sách order</a></li>
-                        <li><a href="dashboard_2.html">Trong tháng này</a></li>
-                        <li><a href="dashboard_3.html">Chưa hoàn thành</a></li>
-                        <li><a href="dashboard_4_1.html">Đã Hoàn thành</a></li>
-                        <li><a href="dashboard_5.html">Đã hủy</a></li>
+                        @if($warehouses)
+                            @foreach($warehouses as $warehouse)
+                                <li><a href="{{route('orderOfWarehouse',$warehouse->id)}}">{{$warehouse->name}}</a></li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </li>
+                <li class="{{($menu=='product')?'active':''}}">
+                    <a href="#"><i class="fa fa-"></i> <span class="nav-label">Kho sản phẩm</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        @if($warehouses)
+                            @foreach($warehouses as $warehouse)
+                                <li><a href="{{route('productToWarehouseView',$warehouse->id)}}">{{$warehouse->name}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
             </ul>

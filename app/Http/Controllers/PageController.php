@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\OrderLine;
 use App\Catalog;
 use App\Slide;
@@ -15,6 +16,10 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+
+        $a = Order::where('payment_id',51)->delete();
+        var_dump($a);
+        die;
 
         $orderLines = OrderLine::whereHas('product',function ($query){
                 $query->where('user_id',Auth::user()->id);

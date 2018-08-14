@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\City;
+use App\Warehouse;
 use Illuminate\Support\ServiceProvider;
 use App\Catalog;
 use App\Cart;
@@ -28,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
                 $view->with(['cart' => Session::get('cart'), 'cart_products' => $cart->items,
                     'amount' => $cart->totalPrice, 'totalQuantity' => $cart->totalQuantity]);
             }
+        });
+        view()->composer('ModeratorView.master', function ($view) {
+            $warehouses = Warehouse::all();
+            $view->with('warehouses', $warehouses);
         });
     }
 
