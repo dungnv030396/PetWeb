@@ -1,8 +1,11 @@
 <?php
+
 namespace App;
+
 use Session;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
+
 class Payment extends Model
 {
     //checkout
@@ -25,6 +28,16 @@ class Payment extends Model
                 'gender.required' => 'Vui lòng chọn giới tính!',
 //                'address.required' => 'Vui lòng điền địa chỉ'
             ]);
+        if (empty(request('address')) && empty(request('order_address'))) {
+//            return redirect()->route('viewCheckout')->with('errorMessage','Xin hãy nhập địa chỉ nhận hàng');
+//            return [
+//                'error' => false,
+//                'code' => 'errorMessage',
+//                'message' => 'Xin hãy nhập địa chỉ nhận hàng',
+//                'order' =>null
+//            ];
+            return null;
+        }
         $amount = 0;
         $cart = Session::get('cart');
         foreach ($cart->items as $cartLine) {
@@ -57,20 +70,20 @@ class Payment extends Model
             $order = new Order();
             $order->user_id = $cUser->id;
             $order->payment_id = $payment->id;
-            $city_name = City::where('code',$request->city)->first()->name;
+            $city_name = City::where('code', $request->city)->first()->name;
             if (!empty(trim($request->order_address, ' '))) {
                 $order->address = trim($request->order_address . ',' . $city_name, ' ');
             } else {
-                if($cUser->city_code!=$request->city){
+                if ($cUser->city_code != $request->city) {
                     $order->address = trim($request->address . ',' . $city_name, ' ');
                     $cUser->address = $order->address;
-                }else{
+                } else {
                     $order->address = trim($request->address, ' ');
                     $cUser->address = $order->address;
                 }
             }
             $warehouse_id = 0;
-            while($warehouse_id==0){
+            while ($warehouse_id == 0) {
                 $warehouse_id = $this->findWerehouse($request->city);
             }
             $order->warehouse_id = $warehouse_id;
@@ -101,19 +114,26 @@ class Payment extends Model
             $cUser->save();
             Session::forget('cart');
             return $order;
+//            return [
+//                'error' => true,
+//                'code' => 'successMessage',
+//                'message' => 'đặt hàng thành công',
+//                'order' =>$order
+//            ];
         } catch (\Exception $e) {
             throw $e;
         }
     }
+
     public function sendMailSuplier($order_id)
     {
         $orderLines = OrderLine::where('order_id', $order_id)->get();
-        if ($orderLines){
+        if ($orderLines) {
             foreach ($orderLines as $orderLine) {
                 $uPrice = $orderLine->product['price'];
-                if($orderLine->product['discount'] > 0){
-                    $price = $uPrice - ($uPrice * $orderLine->product['discount'])/100;
-                }else{
+                if ($orderLine->product['discount'] > 0) {
+                    $price = $uPrice - ($uPrice * $orderLine->product['discount']) / 100;
+                } else {
                     $price = $uPrice;
                 }
                 $data = [
@@ -139,18 +159,19 @@ class Payment extends Model
         }
     }
 
-    public function findWerehouse($city_code){
-        $mien_bac = [1,2,4,6,8,10,11,12,14,15,17,19,20,22,24,25,26,27,30,31,33,34,35,36,37,38,40];
-        $mien_trung = [42,44,45,46,48,49,51,52,54,56,62,64,66];
-        $mien_nam = [58,60,67,68,70,72,74,75,77,79,80,82,83,84,86,87,89,91,92,93,94,95,96];
+    public function findWerehouse($city_code)
+    {
+        $mien_bac = [1, 2, 4, 6, 8, 10, 11, 12, 14, 15, 17, 19, 20, 22, 24, 25, 26, 27, 30, 31, 33, 34, 35, 36, 37, 38, 40];
+        $mien_trung = [42, 44, 45, 46, 48, 49, 51, 52, 54, 56, 62, 64, 66];
+        $mien_nam = [58, 60, 67, 68, 70, 72, 74, 75, 77, 79, 80, 82, 83, 84, 86, 87, 89, 91, 92, 93, 94, 95, 96];
         $arr = [
             1 => $mien_bac,
             2 => $mien_trung,
             3 => $mien_nam
         ];
-        foreach ($arr as $key => $value ){
-            foreach ($value as $code){
-                if($code == $city_code){
+        foreach ($arr as $key => $value) {
+            foreach ($value as $code) {
+                if ($code == $city_code) {
                     return $key;
                 }
             }
