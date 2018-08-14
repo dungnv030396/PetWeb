@@ -12,8 +12,7 @@
     <link href="source/assets/manage/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="source/assets/manage/css/animate.css" rel="stylesheet">
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 </head>
 <body>
 <div id="wrapper">
