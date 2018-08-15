@@ -46,7 +46,7 @@
         <div class="container beta-relative">
             <div class="pull-left">
                 <a href="{{route('trangchu')}}" id="logo"><img src="source/image/logo/logo.png"
-                                                               width="157px" height="100px" alt=""></a>
+                                                               width="157px" height="120px" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>

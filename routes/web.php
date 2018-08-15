@@ -248,3 +248,19 @@ Route::get('ban-giao/don-hang/{id}','ModeratorController@orderShip')->name('orde
 Route::get('kho/san-pham/{id}','ModeratorController@productToWarehouseView')->name('productToWarehouseView');
 Route::post('kho/san-pham','DatatableController@productToWarehouse')->name('productToWarehouse');
 Route::post('confirm/san-pham','ModeratorController@confirmProductToWarehouse')->name('confirmProductToWarehouse');
+
+//admin management
+
+Route::get('admin/quan-ly/homepage',function (){
+    $menu = 'home';
+    return view('AdminView.home',compact('menu'));
+})->name('admin_manage_place');
+Route::post('admin/manage/home','AdminController@loginAdmin')->name('loginAdmin');
+Route::get('dang-nhap/admin', function (){
+    if (\Illuminate\Support\Facades\Auth::check()){
+        \Illuminate\Support\Facades\Auth::logout();
+        return view('AdminView.login');
+    }
+    return view('AdminView.login');
+})->name('loginViewAdmin');
+Route::get('logout/admin','AdminController@destroy')->name('logoutAdmin');
