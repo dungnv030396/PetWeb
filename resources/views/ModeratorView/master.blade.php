@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li class="{{($menu=='product')?'active':''}}">
-                    <a href="#"><i class="fa fa-"></i> <span class="nav-label">Kho sản phẩm</span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-cart-plus"></i> <span class="nav-label">Sản phẩm cần nhận</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         @if($warehouses)
                             @foreach($warehouses as $warehouse)

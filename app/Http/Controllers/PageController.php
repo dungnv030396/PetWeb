@@ -7,6 +7,7 @@ use App\OrderLine;
 use App\Catalog;
 use App\Slide;
 use App\Product;
+use Carbon\Carbon;
 use Session;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -17,23 +18,10 @@ class PageController extends Controller
 
     public  function test(Request $request){
 
-        $a = Order::where('payment_id',51)->delete();
-        var_dump($a);
-        die;
 
-        $orderLines = OrderLine::whereHas('product',function ($query){
-                $query->where('user_id',Auth::user()->id);
-            })
-            ->whereHas('status', function ($query){
-                $query->whereIn('id',[1,2,3,4]);
-            })
-            ->whereHas('order', function ($query){
-                $query->where('delete_flag',0);
-            })
-            ->offset(1)
-            ->limit(10)
-            ->get();
-        var_dump($orderLines[0]->order->id);var_dump($orderLines[0]->id);die;
+        $orderLines = OrderLine::find(23);
+        var_dump(Carbon::parse($orderLines->sent_at));die;
+        var_dump($orderLines->id);var_dump($orderLines->sent_at);var_dump($orderLines->created_at);die;
     }
     public function getIndex()
     {

@@ -24,18 +24,12 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                             @if(\Illuminate\Support\Facades\Auth::check())
-                            <img alt="image" class="img-circle" src="source/assets/manage/img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                                 height="80px"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{\Illuminate\Support\Facades\Auth::user()->name}}</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
-                        </ul>
+                             </span> <span class="text-muted text-xs block">Supplier</span> </span> </a>
                         @endif
                     </div>
                     <div class="logo-element">
@@ -49,9 +43,6 @@
                         <li><a href="{{route('addProductView')}}">Thêm sản phẩm</a></li>
                         <li><a href="{{route('productManagement')}}">Danh Sách Sản Phẩm</a></li>
                         <li><a href="{{route('order_product')}}">Sẩn phẩm cần giao</a></li>
-                        <li><a href="dashboard_3.html">Chưa hoàn thành</a></li>
-                        <li><a href="dashboard_4_1.html">Đã Hoàn thành</a></li>
-                        <li><a href="dashboard_5.html">Đã hủy</a></li>
                     </ul>
                 </li>
             </ul>
@@ -164,7 +155,7 @@
                 showMethod: 'slideDown',
                 timeOut: 4000
             };
-            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+            toastr.success('The Pet Family', 'Welcome to The Pet Family');
 
         }, 1300);
 

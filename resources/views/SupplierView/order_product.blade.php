@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>User List Table</h5>
+                        <h5 class="text-info">Danh sách sản phẩm đang thực hiện</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -20,22 +20,17 @@
                             <table class="table table-striped table-bordered table-hover dataTables-orderProduct">
                                 <thead>
                                 <tr>
-                                    <th>Mã đơn</th>
-                                    <th>Mã SP</th>
+                                    <th data-priority="1">Mã đơn</th>
+                                    <th data-priority="3">Mã SP</th>
                                     <th>Tên Sản Phẩm</th>
-                                    <th>Chủng loại</th>
-                                    <th>Loại</th>
-                                    <th>Số Lượng</th>
-                                    <th>Giá gốc</th>
-                                    <th>Giảm Giá (%)</th>
-                                    <th>Giá bán</th>
-                                    <th>Tổng</th>
-                                    <th>Trạng thái</th>
+                                    <th data-priority="4">Số Lượng</th>
+                                    <th data-priority="6">Tổng</th>
+                                    <th data-priority="5">Trạng thái</th>
                                     <th>Kho</th>
                                     <th>Địa chỉ</th>
                                     <th>Ngày đặt hàng</th>
                                     <th>Ngày gửi</th>
-                                    <th>Hành Động</th>
+                                    <th data-priority="2">Hành Động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -45,6 +40,7 @@
             </div>
         </div>
     </div>
+    @include('SupplierView.popup_view_orderLine')
     <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
     <!-- Custom and plugin javascript -->
     <script type="text/javascript" language="javascript">
@@ -55,8 +51,7 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
-                "orderSequence": ["desc"],
-                "targets":[13],
+                "order": [[ 0, 'desc' ]],
                 "ajax": {
                     "url": "<?= route('dataSupplierPostOrderProducts') ?>",
                     "dataType": "json",
@@ -65,34 +60,20 @@
                 },
                 "columns": [
                     {
-                        data: "order_code", orderable: false
+                        data: "order_code",
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html("<a data-toggle='modal' data-target='#modal-form-view' data-title='" + oData.catalog + "' data-html='" + oData.category + "' data-abide='" + oData.price + "' data-content='" + oData.discount + "' data-animation='" + oData.salePrice + "' data-clearing='" + oData.warehouse + "'data-placement='" + oData.warehouse_address + "' class='text-success'><b>" + oData.order_code + "</b></a>");
+                        },
                     },
                     {
                         data: "product_id", orderable: false
                     },
                     {
                         data: "product_name",
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href=''>" + oData.product_name + "</a>");
-                        }, orderable: false
-                    },
-                    {
-                        data: "catalog", orderable: false
-                    },
-                    {
-                        data: "category", orderable: false
+                        orderable: false
                     },
                     {
                         data: "quantity", orderable: false
-                    },
-                    {
-                        data: "price", orderable: false
-                    },
-                    {
-                        data: "discount", orderable: false
-                    },
-                    {
-                        data: "salePrice", orderable: false
                     },
                     {
                         data: "amount", orderable: false
@@ -123,15 +104,15 @@
                         data: "created_at"
                     },
                     {
-                        data: "updated_at", orderable: false
+                        data: "sent_at"
                     },
                     {
                         data: "orderLine_id",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                             if(oData.status_id == 1){
-                                $(nTd).html("<a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sendFunction(this.id,this.name)'>Sent</a>");
+                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sendFunction(this.id,this.name)'>Sent</a></center>");
                             }else{
-                                $(nTd).html("<a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sentFunction(this.id,this.name)'>Sent</a>");
+                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sentFunction(this.id,this.name)'>Sent</a></center>");
                             }
 
                         }, orderable: false
@@ -140,11 +121,14 @@
 
                 ],
                 columnDefs: [
-                    {
-                        className: 'control',
-                        orderable: false,
-                        targets: [3,4,6,7,14]
-                    }
+                    {className: 'control'},
+                    {orderable: false},
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 },
+                    { responsivePriority: 3, targets: 1 },
+                    { responsivePriority: 4, targets: 3 },
+                    { responsivePriority: 5, targets: 5 },
+                    { responsivePriority: 6, targets: 4 },
                 ],
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [

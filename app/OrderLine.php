@@ -67,7 +67,8 @@ class OrderLine extends Model
     public function productToWarehouseAjax($start, $length, $search, $oderColunm, $oderSortType, $draw,$warehouse_id)
     {
         $columns = array(
-            6 => 'created_at',
+            0 => 'id',
+            6 => 'created_at'
         );
         $totalData = OrderLine::whereHas('status', function ($query) {
             $query->whereIn('id', [1, 2, 3, 4]);
@@ -94,7 +95,6 @@ class OrderLine extends Model
         } else {
             $orderLines = OrderLine::whereHas('warehouse', function ($query) use ($warehouse_id){
                     $query->where('id', $warehouse_id);
-
                 })
                 ->whereHas('status', function ($query) {
                     $query->whereIn('id', [1, 2, 3, 4]);
@@ -103,7 +103,6 @@ class OrderLine extends Model
                     $query->where('delete_flag', 0);
                     $query->where('id', 'like', "%$search%");
                 })
-                ->orWhere('created_at', 'like', "%$search%")
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)

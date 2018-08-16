@@ -1,4 +1,4 @@
-<div id="modal-form" class="modal fade" aria-hidden="true">
+<div id="modal-form" class="modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -38,7 +38,13 @@
 <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
 <script src="source/assets/manage/js/bootstrap.min.js"></script>
 <script>
+
+    $('#modal-form').on('hidden.bs.modal', function (event) {
+        $('body').css('padding-right','0px');
+    })
+
     $('#modal-form').on('show.bs.modal', function (event) {
+        $('body').css('padding-right','0px');
         var link = $(event.relatedTarget)
         var id = link.data('title')
         var name = link.data('html')
@@ -51,9 +57,11 @@
         modal.find('#quantity').val(quantity);
         modal.find('#price').val(price);
         modal.find('#discount').val(discount);
+        $('#form_output').html('');
     })
 
     $('#edit_product_form').on('submit', function(event){
+        $('#form_output').html('');
         var id = document.getElementById('productId').getAttribute('value');
         event.preventDefault();
         var form_data = $(this).serialize();

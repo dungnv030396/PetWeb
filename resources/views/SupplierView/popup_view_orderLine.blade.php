@@ -1,4 +1,4 @@
-<div id="modal-form-view" class="modal fade" aria-hidden="true">
+<div id="modal-form-view" class="modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -21,15 +21,12 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h3 class="m-t-none m-b" class="text-navy">Thông tin nhà cung cấp</h3>
+                        <h3 class="m-t-none m-b" class="text-navy">Thông tin kho hàng</h3>
                         <div class="form-group"><label>Tên: </label>
-                            <input class="form-control" id="supplier_name" type="text" readonly/>
-                        </div>
-                        <div class="form-group"><label>Số điện thoại: </label>
-                            <input class="form-control" id="supplier_phoneNumber" type="text" readonly/>
+                            <input class="form-control" id="warehouse" type="text" readonly/>
                         </div>
                         <div class="form-group"><label>Địa chỉ: </label>
-                            <input class="form-control" id="supplier_address"/>
+                            <input class="form-control" id="warehouse_address"/>
                         </div>
                     </div>
                 </div>
@@ -40,10 +37,9 @@
 <script src="source/assets/manage/js/jquery-2.1.1.js"></script>
 <script src="source/assets/manage/js/bootstrap.min.js"></script>
 <script>
-    $('#modal-form-view').on('hidden.bs.modal', function (event) {
+    $('#modal-form').on('hidden.bs.modal', function (event) {
         $('body').css('padding-right','0px');
     })
-
     $('#modal-form-view').on('show.bs.modal', function (event) {
         $('body').css('padding-right','0px');
         var link = $(event.relatedTarget)
@@ -52,18 +48,16 @@
         var price = link.data('abide')
         var discount = link.data('content')
         var salePrice = link.data('animation')
-        var supplier_name = link.data('clearing')
-        var supplier_address = link.data('placement')
-        var supplier_phoneNumber = link.data('page-size')
+        var warehouse = link.data('clearing')
+        var warehouse_address = link.data('placement')
         var modal = $(this)
         modal.find('#catalog').val(catalog);
         modal.find('#category').val(category);
         modal.find('#price').val(price);
         modal.find('#discount').val(discount);
         modal.find('#salePrice').val(salePrice);
-        modal.find('#supplier_name').val(supplier_name);
-        modal.find('#supplier_address').val(supplier_address);
-        modal.find('#supplier_phoneNumber').val(supplier_phoneNumber);
+        modal.find('#warehouse').val(warehouse);
+        modal.find('#warehouse_address').val(warehouse_address);
     });
 
 </script>

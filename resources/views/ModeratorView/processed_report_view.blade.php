@@ -52,8 +52,7 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
-                "orderSequence": [ "desc" ],
-                "targets": [0],
+                "order": [[ 0, 'desc' ]],
                 "ajax":{
                     "url":"<?= route('reportDataProcessed') ?>",
                     "dataType" :"json",

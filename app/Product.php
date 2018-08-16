@@ -5,6 +5,7 @@ namespace App;
 
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\OrderLine;
 
@@ -252,9 +253,15 @@ class Product extends Model
             4 => 'quantity',
             5 => 'price',
             6 => 'discount',
+            8 => 'created_at',
+            9 => 'updated_at'
         );
 
-        $totalData = Product::where('user_id', Auth::user()->id)->where('delete_flag', 0)->count();
+        $totalData = Product::whereHas('category', function ($query) {
+            $query->whereHas('catalog', function ($query2) {
+                $query2->whereIn('id', [1, 2]);
+            });
+        })->where('user_id', Auth::user()->id)->where('delete_flag', 0)->count();
         if (empty($search)) {
             $products = Product::whereHas('category', function ($query) {
                 $query->whereHas('catalog', function ($query2) {
@@ -268,14 +275,13 @@ class Product extends Model
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $products = Product::whereHas('category', function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%")->whereHas('catalog', function ($query2) use ($search) {
-                    $query2->whereIn('id', [1, 2]);
-                });
-            })
-                ->where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id]])
-                ->orWhere('name', 'like', "%$search%")
-                ->orWhere('created_at', 'like', "%$search%")
+            $products = Product::where([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id], ['id', 'like', "%$search%"]])
+                ->orWhere([['delete_flag', '=', 0], ['user_id', '=', Auth::user()->id], ['name', 'like', "%$search%"]])
+                ->whereHas('category', function ($query) use ($search) {
+                    $query->whereHas('catalog', function ($query2) use ($search) {
+                        $query2->whereIn('id', [1, 2]);
+                    });
+                })
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
@@ -317,7 +323,9 @@ class Product extends Model
     public function getOrderProductsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
     {
         $columns = array(
-            13 => 'created_at',
+            0 => 'id',
+            8 => 'created_at',
+            9 => 'sent_at'
         );
         $totalData = OrderLine::whereHas('product', function ($query) {
             $query->where('user_id', Auth::user()->id);
@@ -342,19 +350,34 @@ class Product extends Model
         } else {
             $orderLines = OrderLine::whereHas('product', function ($query) {
                 $query->where('user_id', Auth::user()->id);
-            })
+                })
+                ->whereHas('order', function ($query) use ($search) {
+                    $query->where('delete_flag', 0);
+                    $query->where('id', 'like', "%$search%");
+                })
                 ->whereHas('status', function ($query) use ($search) {
                     $query->whereIn('id', [1, 2, 3, 4]);
-                    $query->where('stt', 'like', "%$search%");
                 })
-                ->whereHas('order', function ($query) {
-                    $query->where('delete_flag', 0);
-                })
-                ->orWhere('created_at', 'like', "%$search%")
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
+            if($orderLines->count() == 0){
+                $orderLines = OrderLine::whereHas('product', function ($query) {
+                    $query->where('user_id', Auth::user()->id);
+                })
+                    ->whereHas('order', function ($query) use ($search) {
+                        $query->where('delete_flag', 0);
+                    })
+                    ->whereHas('status', function ($query) use ($search) {
+                        $query->whereIn('id', [1, 2, 3, 4]);
+                        $query->where('stt', 'like', "%$search%");
+                    })
+                    ->offset($start)
+                    ->limit($length)
+                    ->orderBy($columns[$oderColunm], $oderSortType)
+                    ->get();
+            }
             $totalFiltered = $orderLines->count();
         }
         $data = array();
@@ -373,7 +396,11 @@ class Product extends Model
                 $nestedData['amount'] = number_format($orderLine->amount);
                 $nestedData['discount'] = $orderLine->product->discount;
                 $nestedData['created_at'] = $orderLine->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['updated_at'] = $orderLine->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                if ($orderLine->sent_at) {
+                    $nestedData['sent_at'] = Carbon::parse($orderLine->sent_at)->modify('+7 hours')->format('H:i:s d/m/Y');
+                } else {
+                    $nestedData['sent_at'] = '';
+                }
                 $nestedData['status'] = $orderLine->status->stt;
                 $nestedData['status_id'] = $orderLine->status->id;
                 $nestedData['warehouse'] = $orderLine->warehouse->name;

@@ -53,12 +53,12 @@
                             </address>
                             <p>
                                 <span><strong>Ngày đặt hàng: </strong>{{$order->created_at->modify('+7 hours')->format('H:i:s d/m/Y')}}</span><br/>
-                                <span><strong>Ngày giao hàng: </strong>{{$order->created_at->modify('+7 hours')->format('H:i:s d/m/Y')}}</span>
+                                @if($order->status->id == 4 || $order->status->id == 5 )<span><strong>Ngày giao hàng: </strong>{{$order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y')}}</span>@endif
                             </p>
                             <div class="space-25"></div>
                             <span><h4>Tình trạng đơn hàng</h4> <h4 class="text-navy">{{$order->status['stt']}}</h4></span>
                             @if($order->moderator)
-                                <span><h4>Người quản lý</h4><a><h4 class="text-navy">{{$order->moderator['name']}}</h4></a> </span>
+                                <span><h4>Người quản lý</h4><a href="#" data-toggle='modal' data-target='#modal-form-view' data-title="{{$order->moderator['name']}}" data-content="{{$order->moderator['phoneNumber']}}" data-abide="{{$order->moderator['email']}}"><h4 class="text-navy">{{$order->moderator['name']}}</h4></a> </span>
                             @endif
 
 
@@ -70,6 +70,7 @@
                             <thead>
                             <tr>
                                 <th>Danh sách sản phẩm</th>
+                                <th>Mã sản phẩm</th>
                                 <th>Nhà cung cấp</th>
                                 <th>Trạng thái</th>
                                 <th>Số Lượng</th>
@@ -80,10 +81,10 @@
                             <tbody>
                             @foreach($order->orderLine as $line)
                                 <tr>
-                                    <td>
-                                        <div><strong><a href="#">{{$line->product->name}}</a></strong></div>
-                                    <td><strong><a href="#">{{$line->product->user->name}}</a></strong></td>
-                                    <td class="text-warning">{{$line->status['stt']}}</td>
+                                    <td><strong class="text-info">{{$line->product->name}}</strong></td>
+                                    <td><strong>{{$line->product->id}}</strong></td>
+                                    <td><strong>{{$line->product->user->name}}</strong></td>
+                                    <td class="text-warning"><strong>{{$line->status['stt']}}</strong></td>
                                     <td>{{$line->quantity}}</td>
                                     <td>{{($line->product->discount != 0)?(number_format($line->product->price - (($line->product->price * $line->product->discount) / 100))):number_format($line->product->price)}}
                                         đ
@@ -107,7 +108,7 @@
                         </tr>
                         <tr>
                             <td><strong>TOTAL :</strong></td>
-                            <td><strong>{{number_format($order->payment->amount + 30000)}}đ</strong></td>
+                            <td><strong class="text-success">{{number_format($order->payment->amount + 30000)}}đ</strong></td>
                         </tr>
                         </tbody>
                     </table>
@@ -139,6 +140,7 @@
             </div>
         </div>
     </div>
+    @include('ModeratorView.popup_view_moderator')
     <!-- Mainly scripts -->
     <script src="source/assets/dest/js/DateFormat/dateformat.min.js"></script>
 

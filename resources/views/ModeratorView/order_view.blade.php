@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>User List Table</h5>
+                        <h5 class="text-info">Danh sách đơn hàng</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -24,12 +24,12 @@
                                    id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>Mã Order</th>
+                                    <th data-priority="1">Mã Order</th>
                                     <th>Khách hàng</th>
                                     <th>Người quản lý</th>
-                                    <th>Tình trạng đơn hàng</th>
+                                    <th data-priority="3">Tình trạng đơn hàng</th>
                                     <th>Thời gian đặt hàng</th>
-                                    <th>Hành động</th>
+                                    <th data-priority="2">Hành động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -51,8 +51,7 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
-                "orderSequence": ["desc"],
-                "targets": [0],
+                "order": [[ 0, 'desc' ]],
                 "ajax": {
                     "url": "<?= route('orderDataProcessing') ?>",
                     "dataType": "json",
@@ -102,6 +101,14 @@
                             data: "orderDetail", orderable: false
                         }
                     ],
+                columnDefs: [
+                    {className: 'control'},
+                    {orderable: false},
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 },
+                    { responsivePriority: 3, targets: 3 },
+
+                ],
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     {extend: 'copy'},

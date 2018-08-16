@@ -121,7 +121,7 @@ class DatatableController extends Controller
         $start = $request->input('start') ?: 0;
         $length = $request->input('length') ?: 10;
         $search = $request->input('search.value') ?: "";
-        $oderColunm = $request->input('order.0.column') ?: 13;
+        $oderColunm = $request->input('order.0.column') ?: 0;
         $oderSortType = $request->input('order.0.dir') ?: 'desc';
         $draw = $request->draw ?: 0;
         try{
@@ -206,7 +206,7 @@ class DatatableController extends Controller
         $start = $request->input('start') ?: 0;
         $length = $request->input('length') ?: 10;
         $search = $request->input('search.value') ?: "";
-        $oderColunm = $request->input('order.0.column') ?: 13;
+        $oderColunm = $request->input('order.0.column') ?: 0;
         $oderSortType = $request->input('order.0.dir') ?: 'desc';
         $draw = $request->draw ?: 0;
         $warehouse_id = $request->warehouse_id;

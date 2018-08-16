@@ -100,6 +100,8 @@ class SupplierController extends Controller
             $orderLine = OrderLine::find($request->id);
             $orderLine->orderline_status_id = 2;
             $orderLine->save();
+            $orderLine->sent_at = $orderLine->updated_at;
+            $orderLine->save();
             $success_output = 'success';
         } catch (\Exception $e) {
             $error = 'error';

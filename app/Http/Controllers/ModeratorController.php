@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Warehouse;
 use Illuminate\Http\Request;
 use App\OrderLine;
 use Illuminate\Support\Facades\Session;
@@ -96,8 +97,8 @@ class ModeratorController extends Controller
 
     public function orderOfWarehouseView(Request $request){
         $menu = 'order';
-        $warehouse_id = $request->id;
-        return view('ModeratorView.order_warehouse',compact('menu','warehouse_id'));
+        $warehouse = Warehouse::find($request->id);
+        return view('ModeratorView.order_warehouse',compact('menu','warehouse'));
     }
 
     public function orderShip(Request $request){
@@ -114,8 +115,8 @@ class ModeratorController extends Controller
 
     public function productToWarehouseView(Request $request){
         $menu = 'product';
-        $warehouse_id = $request->id;
-        return view('ModeratorView.product_warehouse',compact('menu','warehouse_id'));
+        $warehouse = Warehouse::find($request->id);
+        return view('ModeratorView.product_warehouse',compact('menu','warehouse'));
     }
 
     public function confirmProductToWarehouse(Request $request)

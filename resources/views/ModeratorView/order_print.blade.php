@@ -18,9 +18,9 @@
                 <h5>From:</h5>
                 <address>
                     <strong>The Pet Family, Inc.</strong><br>
-                    Kho 1<br>
-                    Địa chỉ<br>
-                    <abbr title="Phone">P:</abbr> 01697161671
+                    Kho: {{$order->warehouse->name}}<br>
+                    Địa chỉ: {{$order->warehouse->address}}<br>
+                    <abbr title="Phone">P: </abbr> 01697161671
                 </address>
             </div>
 

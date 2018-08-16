@@ -59,13 +59,15 @@ class Order extends Model
             $totalFiltered = $totalData;
         } else {
             $orders = Order::whereHas('user', function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
-            })
+                    $query->where('name', 'like', "%$search%");
+                })
+                ->orwhereHas('moderator', function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%");
+                })
                 ->orwhereHas('status', function ($query) use ($search) {
                     $query->where('stt', 'like', "%$search%");
                 })
-                ->where('delete_flag', '=', 0)
-                ->orWhere('created_at', 'like', "%$search%")
+                ->where('delete_flag','=', 0)
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
@@ -233,7 +235,7 @@ class Order extends Model
             4 => 'created_at'
         );
         // $page = floor($start / $length) + 1;
-        $totalData = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
+        $totalData = Order::where('delete_flag', 0)->whereHas('warehouse',function ($query) use ($warehouse_id){
             $query->where('id',$warehouse_id);
         })->count();
         if (empty($search)) {
@@ -247,14 +249,18 @@ class Order extends Model
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $orders = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
-                     $query->where('id',$warehouse_id);
+            $orders = Order::whereHas('moderator', function ($query) use ($search) {
+                    $query->where('name', 'like', "%$search%");
                 })
-                ->whereHas('user', function ($query) use ($search) {
+                ->orwhereHas('user', function ($query) use ($search) {
                     $query->where('name', 'like', "%$search%");
                 })
                 ->orwhereHas('status', function ($query) use ($search) {
                     $query->where('stt', 'like', "%$search%");
+                })
+                ->orWhere('id', 'like', "%$search%")
+                ->whereHas('warehouse',function ($query) use ($warehouse_id){
+                    $query->where('id',$warehouse_id);
                 })
                 ->where('delete_flag', 0)
                 ->offset($start)

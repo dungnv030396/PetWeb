@@ -1,14 +1,14 @@
 @extends('SupplierView.productManagement')
 @section('contentManager')
-    <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>User List Table</h5>
+                        <h5 class="text-info">Danh Sách Sản phẩm</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -20,18 +20,17 @@
                             <table class="table table-striped table-bordered table-hover dataTables-productOfSp">
                                 <thead>
                                 <tr>
-                                    <th>Mã</th>
+                                    <th data-priority="1">Mã</th>
                                     <th>Tên Sản Phẩm</th>
-                                    <th>Chủng loại</th>
                                     <th>Loại</th>
-                                    <th>Số Lượng</th>
-                                    <th>Giá gốc</th>
-                                    <th>Giảm Giá (%)</th>
-                                    <th>Giá bán</th>
-                                    {{--<th style="width: 20%">Ảnh</th>--}}
+                                    <th>Chủng loại</th>
+                                    <th data-priority="3">Số Lượng</th>
+                                    <th data-priority="6">Giá gốc</th>
+                                    <th data-priority="5">Giảm Giá (%)</th>
+                                    <th data-priority="4">Giá bán</th>
                                     <th>Ngày Đăng Bán</th>
                                     <th>Ngày Cập Nhật</th>
-                                    <th>Hành Động</th>
+                                    <th data-priority="2">Hành Động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -52,8 +51,7 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
-                "orderSequence": ["desc"],
-                "targets": [0],
+                "order": [[ 0, 'desc' ]],
                 "ajax": {
                     "url": "<?= route('dataSupplierPostProducts') ?>",
                     "dataType": "json",
@@ -62,13 +60,13 @@
                 },
                 "columns": [
                     {
-                        data: "id"
+                        data: "id",
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html("<p class='text-navy'><b>" + oData.id + "</b></p>");
+                        }
                     },
                     {
-                        data: "name",
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href='<?php echo 'a'?>'>" + oData.name + "</a>");
-                        }
+                        data: "name"
                     },
                     {
                         data: "catalog", orderable: false
@@ -88,12 +86,6 @@
                     {
                         data: "salePrice", orderable: false
                     },
-//                        {data:"image_link",
-//                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-//                                $(nTd).html("<img style='width: 100%;height: 15%' src = storage/products/" + oData.image_link + ">");
-//                            }
-//                        ,orderable:false
-//                        },
                     {
                         data: "created_at"
                     },
@@ -103,18 +95,23 @@
                     {
                         data: "id",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a data-toggle='modal' data-target='#modal-form' data-title='" + oData.id + "' data-html='" + oData.name + "' data-abide='" + oData.quantity + "' data-content='" + oData.price_modal + "' data-animation='" + oData.discount + "' class='btn btn-primary'><i class='fa fa-pencil-square-o'>Edit</i></a>"
-                                + " " + "<a href='' class='btn btn-primary' id='" + oData.id + "' onclick='removeFunction(this.id)'><i class='fa fa-trash-o'>Remove</i></a>"
+                            $(nTd).html("<center><a data-toggle='modal' data-target='#modal-form' data-title='" + oData.id + "' data-html='" + oData.name + "' data-abide='" + oData.quantity + "' data-content='" + oData.price_modal + "' data-animation='" + oData.discount + "' class='btn btn-primary'><i class='fa fa-pencil-square-o'>Sửa</i></a></center>"
+                                + " " + "<center><a href='' class='btn btn-primary' id='" + oData.id + "' onclick='removeFunction(this.id)'><i class='fa fa-trash-o'>Xóa</i></a></center>"
                                 + "");
                         }, orderable: false
                     },
 
                 ],
-                columnDefs: [{
-                    className: 'control',
-                    orderable: false,
-                    targets: [-2, -3, -8, -9]
-                }],
+                columnDefs: [
+                    {className: 'control'},
+                    {orderable: false},
+                    { responsivePriority: 1, targets: 0 },
+                    { responsivePriority: 2, targets: -1 },
+                    { responsivePriority: 3, targets: 4 },
+                    { responsivePriority: 4, targets: 7 },
+                    { responsivePriority: 5, targets: 6 },
+                    { responsivePriority: 6, targets: 5 },
+                ],
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     { extend: 'copy'},
