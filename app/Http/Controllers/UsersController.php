@@ -53,4 +53,11 @@ class UsersController extends Controller
 //        dd($user_info);
         return view('clientViews.customer.register_to_supplier_success',compact('user_info'));
     }
+    public function viewDetailRegistration(){
+        $registration_id = request('id');
+        $supplierRegister = new SupplierRegister();
+        $res = $supplierRegister->viewDetailRegistration($registration_id);
+        $menu = 'supplier';
+        return view('AdminView.detail_registration',compact('res','menu'));
+    }
 }

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The Pet Family</title>
     <base href="{{asset('')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <link href="source/assets/manage/css/bootstrap.min.css" rel="stylesheet">
     <link href="source/assets/manage/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -44,6 +45,9 @@
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('admin_manage_place')}}"><i
                                 class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
+                <li class="{{($menu=='supplier')?'active':''}}">
+                    <a href="{{route('listRegistrationForm')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Duyệt Đơn Trở Thành Nhà Cung Cấp</span>
+                        <span class="fa arrow"></span></a>
             </ul>
 
         </div>

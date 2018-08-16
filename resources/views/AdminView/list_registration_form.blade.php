@@ -1,4 +1,4 @@
-@extends('ModeratorView.master')
+@extends('AdminView.master')
 @section('contentManager')
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Danh Sách Báo Cáo Chờ Xử Lý</h5>
+                        <h5>Danh Sách Phiếu Đăng Ký Trở Thành Nhà Cung Cấp</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -23,13 +23,11 @@
                             <table class="table table-striped table-bordered table-hover dataTables-example" id="dataTables-example" >
                                 <thead>
                                 <tr>
-                                    <th>Mã Report</th>
-                                    <th>Tình Trạng</th>
-                                    {{--<th>Người quản lý</th>--}}
-                                    <th>Người báo cáo</th>
-                                    <th>Người bị báo cáo</th>
-                                    <th>ID Sản phẩm</th>
-                                    <th>Thời gian báo cáo</th>
+                                    <th>Mã Phiếu</th>
+                                    <th>Tên</th>
+                                    <th>Địa Chỉ Email</th>
+                                    <th>Số Điện Thoại</th>
+                                    <th>Thời gian gửi phiếu</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
@@ -55,7 +53,7 @@
                 "orderSequence": [ "desc" ],
                 "targets": [0],
                 "ajax":{
-                    "url":"<?= route('reportDataProcessing') ?>",
+                    "url":"<?= route('registrationDataProcessing') ?>",
                     "dataType" :"json",
                     "type": "POST",
                     "data":{"_token":"<?= csrf_token() ?>"}
@@ -64,32 +62,19 @@
                     [
                         {data:"id"},
                         {
-                            data:"status",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                                if(oData.status==1){
-                                    $(nTd).html("<a href='<?php echo 'a'?>'>Chưa Xử Lý</a>");
-                                }
-                            },orderable:false
+                            data:"name",orderable:false
                         },
                         {
-                            data:"user_name", orderable:false
+                            data:"email", orderable:false
                         },
                         {
-                            data:"reportTo_name", orderable:false
-                        },
-                        {
-                            data:"product_id",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            if(oData.product_id==null){
-                                $(nTd).html("<a href='<?php echo 'a'?>'></a>");
-                            }
-                        }, orderable:false
+                            data:"phone", orderable:false
                         },
                         {
                             data: "created_at"
                         },
                         {
-                            data: "detailReport",orderable: false
+                            data: "detailRegistration",orderable: false
                         }
                     ]
             });

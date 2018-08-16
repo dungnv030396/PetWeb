@@ -141,7 +141,7 @@ class Report extends Model
 //            2 => 'user_id',
 //            3 => 'admin_id',
 //            4 => 'reportTo_id',
-            6 => 'created_id'
+            5 => 'created_id'
         ];
         $totalReport = Report::count();
         if (empty($search)) {

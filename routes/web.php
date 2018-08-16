@@ -251,7 +251,7 @@ Route::post('confirm/san-pham','ModeratorController@confirmProductToWarehouse')-
 
 //admin management
 
-Route::get('admin/quan-ly/homepage',function (){
+Route::get('admin/management/homepage',function (){
     $menu = 'home';
     return view('AdminView.home',compact('menu'));
 })->name('admin_manage_place');
@@ -264,3 +264,12 @@ Route::get('dang-nhap/admin', function (){
     return view('AdminView.login');
 })->name('loginViewAdmin');
 Route::get('logout/admin','AdminController@destroy')->name('logoutAdmin');
+Route::get('admin/management/list-registration-form',function (){
+    if (!\Illuminate\Support\Facades\Auth::check()){
+        return view('AdminView.login');
+    }
+    $menu = 'supplier';
+    return view('AdminView.list_registration_form',compact('menu'));
+})->name('listRegistrationForm');
+Route::post('admin/manage/list-registration-form','DatatableController@getListRegistrations')->name('registrationDataProcessing');
+Route::get('admin/management/list-registration-form/detail/{id}','UsersController@viewDetailRegistration')->name('viewDetailRegistration');

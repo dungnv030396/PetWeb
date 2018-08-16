@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\OrderLine;
 use App\Product;
 use App\Report;
+use App\SupplierRegister;
 use Illuminate\Http\Request;
 use App\User;
 use App\Order;
@@ -212,6 +213,26 @@ class DatatableController extends Controller
         $warehouse_id = $request->warehouse_id;
         try{
             $output = $orderObj->productToWarehouseAjax($start,$length,$search,$oderColunm,$oderSortType,$draw,$warehouse_id);
+        }catch(\Exception $ex){
+            $output = array(
+                "draw"            => intval(0),
+                "recordsTotal"    => intval(0),
+                "recordsFiltered" => intval(0),
+                "data"            => array($start.",".$length.",".$search.",".$oderColunm.",".$oderSortType.",".$draw),
+            );
+        }
+        echo json_encode($output);
+    }
+    public function getListRegistrations(Request $request){
+        $supplierObj = new SupplierRegister();
+        $start = $request->input('start') ?: 0;
+        $length = $request->input('length') ?: 10;
+        $search = $request->input('search.value') ?: "";
+        $oderColunm = $request->input('order.0.column') ?: 0;
+        $oderSortType = $request->input('order.0.dir') ?: 'desc';
+        $draw = $request->draw ?: 0;
+        try{
+            $output = $supplierObj->getListRegistrationFormsAjax($start,$length,$search,$oderColunm,$oderSortType,$draw);
         }catch(\Exception $ex){
             $output = array(
                 "draw"            => intval(0),

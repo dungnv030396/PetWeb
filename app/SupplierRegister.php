@@ -169,4 +169,60 @@ class SupplierRegister extends Model
             }
         }
     }
+    public function getListRegistrationFormsAjax($start, $length, $search, $oderColunm, $oderSortType, $draw){
+        $columns = [
+            0 => 'id',
+//            1 => 'status',
+//            2 => 'user_id',
+//            3 => 'admin_id',
+//            4 => 'reportTo_id',
+            4 => 'created_id'
+        ];
+        $totalRegistration = SupplierRegister::count();
+        if (empty($search)) {
+            $supplierRegisters = SupplierRegister::offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalRegistration;
+        } else {
+            $supplierRegisters = SupplierRegister::where('name', 'like', "%$search%")
+                ->orwhere('email', 'like', "%$search%")
+                ->orwhere('user_id', 'like', "%$search%")
+                ->orWhere('created_at', 'like', "%$search%")
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $supplierRegisters->count();
+        }
+        $data = array();
+        if ($supplierRegisters) {
+            foreach ($supplierRegisters as $supplierRegister) {
+                $nestedData = array();
+                $nestedData['id'] = $supplierRegister->id;
+                $nestedData['name'] = $supplierRegister->name;
+                $nestedData['phone'] = $supplierRegister->phoneNumber;
+                $nestedData['user_id'] = $supplierRegister->user_id;
+                $nestedData['email'] = $supplierRegister->email;
+                $nestedData['created_at'] = $supplierRegister->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['detailRegistration'] = '<a target="_blank" href="' . route('viewDetailRegistration', $supplierRegister->id) . '">Xem Chi Tiết</a>';
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalRegistration),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
+    }
+    public function viewDetailRegistration($registration_id){
+        $supplierRegister = SupplierRegister::find($registration_id);
+        return $supplierRegister;
+    }
 }
