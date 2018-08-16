@@ -66,10 +66,10 @@
                             data:"status",
                             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                                 if(oData.status==2){
-                                    $(nTd).html("<a href='<?php echo 'a'?>'>Đúng</a>");
+                                    $(nTd).html("<a>Đúng</a>");
                                 }
                                 if(oData.status==3){
-                                    $(nTd).html("<a href='<?php echo 'a'?>'>Sai</a>");
+                                    $(nTd).html("<a>Sai</a>");
                                 }
                             },orderable:false
                         },
@@ -83,12 +83,7 @@
                             data:"reportTo_name", orderable:false
                         },
                         {
-                            data:"product_id",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                                if(oData.product_id==null){
-                                    $(nTd).html("<a href='<?php echo 'a'?>'></a>");
-                                }
-                            }, orderable:false
+                            data:"product_id", orderable:false
                         },
                         {
                             data: "created_at"

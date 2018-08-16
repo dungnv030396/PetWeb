@@ -11,7 +11,7 @@
                 <h2>Chi tiết báo cáo</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="{{route('moderator_manage_place')}}">Trang Chủ</a>
+                        <a href="{{route('admin_manage_place')}}">Trang Chủ</a>
                     </li>
                     <li>
                         <a>Quán lí báo cáo</a>
@@ -45,6 +45,8 @@
                                     <br>
                                     <h4></h4>
                                     <h4 >Người Báo Cáo: <span style="color: #00A8FF">{{$data['user']->name}}. ID: {{ $data['user']->id }}</span> </h4>
+                                    <h4>Email: <span style="color: #00A8FF">{{$data['user']->email}}</span></h4>
+                                    <h4>SDT: <span style="color: #00A8FF">{{$data['user']->phoneNumber}}</span></h4>
                                     <h4>Nội Dung Báo Cáo: <span style="color: #00A8FF;">{{ $data['report']->description }}</span></h4>
                                     <h4>Trạng Thái:
                                         @if($data['report']->status ==1)
@@ -62,7 +64,7 @@
                                     <h4>Sản Phẩm Bị Báo Cáo: <a target="_blank" href="{{route('productDetail',$data['report']->product_id)}} ">Link Sản Phẩm</a></h4>
                                         <hr>
                                     @endif
-                                    <h4>Nhà Cung Cấp Bị Báo Cáo: <a target="_blank" href="{{route('detailSupplier',$data['report']->user_id)}}">Link Nhà Cung Cấp</a></h4>
+                                    <h4>Nhà Cung Cấp Bị Báo Cáo: <a target="_blank" href="{{route('detailSupplier',$data['report']->reportTo_id)}}">Link Nhà Cung Cấp</a></h4>
                                     <div>
                                         <div class="btn-group">
                                             <button name="button" value="accept" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Chấp Nhận</button>

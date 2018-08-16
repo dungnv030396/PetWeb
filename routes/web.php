@@ -273,3 +273,7 @@ Route::get('admin/manage/processed-report-list',function (){
     return view('AdminView.processed_report_view',compact('menu'));
 })->name('getListsProcessedReport');
 Route::get('admin/manage/report-list/detail/{id}','ReportController@detailWaitingReport')->name('detailWaitingReport');
+Route::get('/admin/management/homepage',function (){
+    $menu = 'home';
+    return view('AdminView.home',compact('menu'));
+})->name('admin_manage_place');

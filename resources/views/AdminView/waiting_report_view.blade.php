@@ -67,7 +67,7 @@
                             data:"status",
                             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                                 if(oData.status==1){
-                                    $(nTd).html("<a href='<?php echo 'a'?>'>Chưa Xử Lý</a>");
+                                    $(nTd).html("<a>Chưa Xử Lý</a>");
                                 }
                             },orderable:false
                         },
@@ -78,12 +78,7 @@
                             data:"reportTo_name", orderable:false
                         },
                         {
-                            data:"product_id",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            if(oData.product_id==null){
-                                $(nTd).html("<a href='<?php echo 'a'?>'></a>");
-                            }
-                        }, orderable:false
+                            data:"product_id", orderable:false
                         },
                         {
                             data: "created_at"

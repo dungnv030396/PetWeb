@@ -55,7 +55,7 @@ class Report extends Model
         $report->user_id = Auth::user()->id;
         $report->reportTo_id = request('supplier_id');
         $report->product_id = request('product_id');
-        var_dump(request('product_id'));
+//        var_dump(request('product_id'));
 //        dd(request('product_id'));
         $report->description = $description;
         $report->save();

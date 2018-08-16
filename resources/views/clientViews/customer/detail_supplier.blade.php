@@ -10,6 +10,9 @@
     @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
         @include('sweet::alert')
     @endif
+    @if(!empty(\Illuminate\Support\Facades\Session::get('message2')))
+        @include('sweet::alert')
+    @endif
     <div class="container" style="margin-top: 30px">
         <div class="modal-content">
             <div class="modal-header">

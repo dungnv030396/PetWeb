@@ -15,6 +15,10 @@ class ReportController extends Controller
             alert()->error('Quý khách xin vui lòng đăng nhập trước khi báo cáo!');
             return redirect()->back()->with('message','false');
         }
+        if (request('id') == Auth::user()->id){
+            alert()->error('Quý khách không thể báo cáo chính mình!');
+            return redirect()->back()->with('message2','false');
+        }
             $report = new Report();
             $report->reportSupplier($this);
             return back()->with('reportSuccess','Báo cáo đã được gửi! Chúng tôi sẽ đánh giá và kiểm tra báo cáo của bạn');
@@ -25,6 +29,10 @@ class ReportController extends Controller
         if(!$user->isLogin()){
             alert()->error('Quý khách xin vui lòng đăng nhập trước khi báo cáo!');
             return redirect()->back()->with('messageReport','false');
+        }
+        if (request('supplier_id') == Auth::user()->id){
+            alert()->error('Quý khách không thể báo cáo chính sản phẩm của mình!');
+            return redirect()->back()->with('message2','false');
         }
         $report = new Report();
         $report->reportProduct($this);

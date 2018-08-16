@@ -28,6 +28,9 @@
     @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    @if(!empty(\Illuminate\Support\Facades\Session::get('message2')))
+        @include('sweet::alert')
+    @endif
     <div class="inner-header">
         <div class="container">
             <div class="pull-left">
