@@ -3,7 +3,7 @@
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    @if(!empty($message) && $message == 'true')
+    @if(!empty(\Illuminate\Support\Facades\Session::get('message')))
         @include('sweet::alert')
     @endif
     <div class="wrapper wrapper-content animated fadeInRight">

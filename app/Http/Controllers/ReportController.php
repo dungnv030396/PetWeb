@@ -52,6 +52,6 @@ class ReportController extends Controller
             $report->save();
         }
         alert()->success('Xử Lý Báo Cáo Thành Công!');
-        return redirect()->back()->with('message','true');
+        return redirect()->route('getListsReport')->with('message','true');
     }
 }

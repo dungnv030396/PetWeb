@@ -11,6 +11,10 @@
                 <section>
                     <br>
                     <h1 class="entry-title" style="color: #00A8FF"><span>Thông Tin Chi Tiết Phiếu Đăng Ký</span> </h1>
+                    @if($user_info->delete_flag == 1)
+                        <h5 class="entry-title" style="color: red">Rất tiếc!Phiếu đăng ký của bạn đã bị từ chối,Vui lòng kiểm tra lại thông tin đã cung cấp và trở về
+                                <a href="{{route('register.supplier')}}">trang đăng ký</a> cập nhật lại thông tin</h5>
+                    @endif
                     <hr>
                     <form class="form-horizontal" >
                         <div class="form-group">
@@ -130,7 +134,6 @@
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Ảnh Chứng Mình Thư: <span class="text-danger">*</span></label>
-
                             <div class="col-lg-8">
                                 <div style="width: 50%;height: 50%">
                                     <img src="storage/cmnd/{{$user_info->cmnd}}">

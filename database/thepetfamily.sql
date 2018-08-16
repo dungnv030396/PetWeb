@@ -702,6 +702,7 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `bank_branch` varchar(255) NOT NULL,
   `chandung` varchar(255) NOT NULL,
   `cmnd` varchar(255) NOT NULL,
+  `delete_flag` int(2) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

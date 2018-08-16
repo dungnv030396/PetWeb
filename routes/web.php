@@ -272,4 +272,5 @@ Route::get('admin/management/list-registration-form',function (){
     return view('AdminView.list_registration_form',compact('menu'));
 })->name('listRegistrationForm');
 Route::post('admin/manage/list-registration-form','DatatableController@getListRegistrations')->name('registrationDataProcessing');
-Route::get('admin/management/list-registration-form/detail/{id}','UsersController@viewDetailRegistration')->name('viewDetailRegistration');
+Route::get('admin/management/registration-form/detail/{id}','AdminController@viewDetailRegistration')->name('viewDetailRegistration');
+Route::post('admin/management/process-registration-form/{id}','AdminController@registrationProcess')->name('registrationProcessing');
