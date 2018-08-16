@@ -66,15 +66,6 @@
                         @endif
                     </ul>
                 </li>
-                <li class="{{($menu=='report')?'active':''}}">
-                    <a href="{{route('getListsReport')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Báo Cáo</span>
-                        <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="{{route('getListsReport')}}">Báo cáo chờ xử lý</a></li>
-                        <li><a href="{{route('getListsProcessedReport')}}">Báo cáo đã xử lý</a></li>
-                    </ul>
-
-                </li>
             </ul>
 
         </div>

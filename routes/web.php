@@ -177,17 +177,6 @@ Route::post('moderator/manage/waiting-report-list','DatatableController@getLists
 Route::post('moderator/manage/processed-report-list','DatatableController@getListsProcessedReport')->name('reportDataProcessed');
 
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');//example
-Route::get('moderator/manage/waiting-report-list',function (){
-    $menu = 'report';
-    return view('ModeratorView.waiting_report_view',compact('menu'));
-})->name('getListsReport');
-
-Route::get('moderator/manage/processed-report-list',function (){
-    $menu = 'report';
-    return view('ModeratorView.processed_report_view',compact('menu'));
-})->name('getListsProcessedReport');
-Route::get('moderator/manage/report-list/detail/{id}','ReportController@detailWaitingReport')->name('detailWaitingReport');
-
 
 Route::get('dang-nhap/moderator', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
@@ -274,3 +263,13 @@ Route::get('admin/management/list-registration-form',function (){
 Route::post('admin/manage/list-registration-form','DatatableController@getListRegistrations')->name('registrationDataProcessing');
 Route::get('admin/management/registration-form/detail/{id}','AdminController@viewDetailRegistration')->name('viewDetailRegistration');
 Route::post('admin/management/process-registration-form/{id}','AdminController@registrationProcess')->name('registrationProcessing');
+Route::get('admin/manage/waiting-report-list',function (){
+    $menu = 'report';
+    return view('AdminView.waiting_report_view',compact('menu'));
+})->name('getListsReport');
+
+Route::get('admin/manage/processed-report-list',function (){
+    $menu = 'report';
+    return view('AdminView.processed_report_view',compact('menu'));
+})->name('getListsProcessedReport');
+Route::get('admin/manage/report-list/detail/{id}','ReportController@detailWaitingReport')->name('detailWaitingReport');

@@ -71,15 +71,11 @@
                                                                            required value="{{$res->bank_branch}}" readonly></div>
                                         </div>
                                         <hr>
-                                        <div class="form-group"><label class="col-sm-2">Ảnh Chứng Minh Thư:</label>
-                                            <div class="col-sm-5">
-                                                <img src="storage/cmnd/{{$res->cmnd}}">
-                                            </div>
+                                        <div class="form-group"><label class="col-sm-2 control-label">Ảnh Chứng Minh Thư:</label>
+                                                <img class="col-sm-3" src="storage/cmnd/{{$res->cmnd}}">
                                         </div>
                                         <div class="form-group"><label class="col-sm-2">Ảnh Chân Dung:</label>
-                                            <div class="col-sm-5">
-                                                    <img src="storage/chandung/{{$res->chandung}}">
-                                            </div>
+                                                    <img class="col-sm-3" src="storage/chandung/{{$res->chandung}}">
                                         </div>
                                     </fieldset>
                                     <button style="float: right" class="btn btn-lg btn-danger" type="submit" name="button" value="cancel">
@@ -89,41 +85,6 @@
                                         Chấp Nhận
                                     </button>
                                 </form>
-                                <div class="form-group">
-
-                                    @if (session('errorNull'))
-                                        <div class="alert alert-danger">
-                                            <ul style="width: 50%;float: left">
-                                                {{ session('errorNull') }}
-                                            </ul>
-                                        </div>
-                                    @endif
-
-                                </div>
-                                <div class="form-group">
-
-                                    @if (session('errorFile'))
-                                        <div style="width: 50%;float: left" class="alert alert-danger">
-                                            <ul>
-                                                {{ session('errorFile') }}
-                                            </ul>
-                                        </div>
-                                    @endif
-
-                                </div>
-                                <div class="form-group">
-                                    @if (session('postProductSuccess'))
-                                        <div style="width: 50%;float: left" class="alert alert-success">
-                                            <ul>
-                                                {{ session('postProductSuccess') }}
-                                            </ul>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div style="width: 50%;float: left" class="form-group">
-                                    @include('layouts.errors')
-                                </div>
-
                             </div>
                         </div>
                     </div>

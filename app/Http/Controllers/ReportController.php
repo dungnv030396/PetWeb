@@ -36,7 +36,7 @@ class ReportController extends Controller
         $report_id = \request('id');
         $data = $report->detailWaitingReport($report_id);
         $menu = 'report';
-        return view('ModeratorView.detail_waiting_report',compact('menu','data'));
+        return view('AdminView.detail_waiting_report',compact('menu','data'));
     }
     public function reportProcess(){
         $report = Report::find(\request('id'));

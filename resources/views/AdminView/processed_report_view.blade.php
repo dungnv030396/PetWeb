@@ -1,4 +1,4 @@
-@extends('ModeratorView.master')
+@extends('AdminView.master')
 @section('contentManager')
     <link href="source/assets/manage/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
