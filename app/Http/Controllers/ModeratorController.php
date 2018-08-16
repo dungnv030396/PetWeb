@@ -16,7 +16,7 @@ class ModeratorController extends Controller
 
     public function loginModerator(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => [4,1],'delete_flag' => 0])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => 4,'delete_flag' => 0])) {
             $menu = 'home';
             return view('ModeratorView.home', compact('menu'));
         } else {

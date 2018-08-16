@@ -69,7 +69,7 @@ class Report extends Model
 //            2 => 'user_id',
 //            3 => 'admin_id',
 //            4 => 'reportTo_id',
-            5 => 'created_id'
+            5 => 'created_at'
         ];
         $totalReport = Report::count();
         if (empty($search)) {
@@ -107,7 +107,7 @@ class Report extends Model
                 $nestedData['product_id'] = $report->product_id;
 //                $nestedData['description'] = $report->description;
                 $nestedData['created_at'] = $report->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['detailReport'] = '<a target="_blank" href="' . route('detailWaitingReport', $report->id) . '">Xem Chi Tiết</a>';
+                $nestedData['detailReport'] = '<a href="' . route('detailWaitingReport', $report->id) . '">Xem Chi Tiết</a>';
                 $data[] = $nestedData;
             }
         }
@@ -141,7 +141,7 @@ class Report extends Model
 //            2 => 'user_id',
 //            3 => 'admin_id',
 //            4 => 'reportTo_id',
-            6 => 'created_id'
+            6 => 'created_at'
         ];
         $totalReport = Report::count();
         if (empty($search)) {
@@ -181,7 +181,7 @@ class Report extends Model
                 $nestedData['product_id'] = $report->product_id;
 //                $nestedData['description'] = $report->description;
                 $nestedData['created_at'] = $report->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
-                $nestedData['detailReport'] = '<a target="_blank" href="' . route('detailWaitingReport', $report->id) . '">Xem Chi Tiết</a>';
+                $nestedData['detailReport'] = '<a href="' . route('detailWaitingReport', $report->id) . '">Xem Chi Tiết</a>';
                 $data[] = $nestedData;
             }
         }

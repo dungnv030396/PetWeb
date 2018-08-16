@@ -65,8 +65,8 @@
                                     <h4>Nhà Cung Cấp Bị Báo Cáo: <a target="_blank" href="{{route('detailSupplier',$data['report']->user_id)}}">Link Nhà Cung Cấp</a></h4>
                                     <div>
                                         <div class="btn-group">
-                                            <button name="button" value="accept" class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i>Chấp Nhận</button>
-                                            <span style="margin-left: 10px"><button name="button" value="cancel" class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i>Từ Chối</button></span>
+                                            <button name="button" value="accept" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Chấp Nhận</button>
+                                            <span style="margin-left: 10px"><button name="button" value="cancel" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Từ Chối</button></span>
                                         </div>
                                     </div>
                                 </div>

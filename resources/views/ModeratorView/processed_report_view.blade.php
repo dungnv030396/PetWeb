@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Danh Sách Báo Cáo Chờ Xử Lý</h5>
+                        <h5>Danh Sách Báo Cáo Đã Xử Lý</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -91,7 +91,7 @@
                             }, orderable:false
                         },
                         {
-                            data: "created_at",orderable:false
+                            data: "created_at"
                         },
                         {
                             data: "detailReport",orderable: false

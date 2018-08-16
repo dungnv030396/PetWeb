@@ -248,3 +248,29 @@ Route::get('ban-giao/don-hang/{id}','ModeratorController@orderShip')->name('orde
 Route::get('kho/san-pham/{id}','ModeratorController@productToWarehouseView')->name('productToWarehouseView');
 Route::post('kho/san-pham','DatatableController@productToWarehouse')->name('productToWarehouse');
 Route::post('confirm/san-pham','ModeratorController@confirmProductToWarehouse')->name('confirmProductToWarehouse');
+
+//admin management
+
+Route::get('admin/management/homepage',function (){
+    $menu = 'home';
+    return view('AdminView.home',compact('menu'));
+})->name('admin_manage_place');
+Route::post('admin/manage/home','AdminController@loginAdmin')->name('loginAdmin');
+Route::get('dang-nhap/admin', function (){
+    if (\Illuminate\Support\Facades\Auth::check()){
+        \Illuminate\Support\Facades\Auth::logout();
+        return view('AdminView.login');
+    }
+    return view('AdminView.login');
+})->name('loginViewAdmin');
+Route::get('logout/admin','AdminController@destroy')->name('logoutAdmin');
+Route::get('admin/management/list-registration-form',function (){
+    if (!\Illuminate\Support\Facades\Auth::check()){
+        return view('AdminView.login');
+    }
+    $menu = 'supplier';
+    return view('AdminView.list_registration_form',compact('menu'));
+})->name('listRegistrationForm');
+Route::post('admin/manage/list-registration-form','DatatableController@getListRegistrations')->name('registrationDataProcessing');
+Route::get('admin/management/registration-form/detail/{id}','AdminController@viewDetailRegistration')->name('viewDetailRegistration');
+Route::post('admin/management/process-registration-form/{id}','AdminController@registrationProcess')->name('registrationProcessing');

@@ -82,6 +82,13 @@
 							@include('layouts.errors')
 
 						</div>
+						@if (session('errorMessage'))
+							<div class="alert alert-danger">
+								<ul>
+									{{ session('errorMessage') }}
+								</ul>
+							</div>
+						@endif
 					</div>
 					<div class="col-sm-6">
 						<div class="your-order">

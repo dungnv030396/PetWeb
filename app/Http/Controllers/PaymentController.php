@@ -18,9 +18,14 @@ class PaymentController extends Controller
     {
 
         $payment = new Payment();
-        $order = $payment->checkout($request, $this)->id; //order_id vừa add
-        $payment->sendMailSuplier($order);
-        return redirect(route('checkoutSucess', compact('order')));
+        $order = $payment->checkout($request, $this); //order_id vừa add
+        if ($order!=null){
+            $payment->sendMailSuplier($order->id);
+            return redirect(route('checkoutSucess', compact('order')));
+        }else{
+            return redirect()->route('viewCheckout')->with('errorMessage','Xin hãy nhập địa chỉ nhận hàng');
+        }
+
     }
 
     public function checkoutSucess(Request $request)
