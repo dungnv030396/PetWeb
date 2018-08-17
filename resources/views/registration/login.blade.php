@@ -1,6 +1,6 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="css/css-login.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
     <script>
         $(function () {
@@ -22,11 +22,11 @@
                     <form class="form-signin" method="POST" action="login">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <input type="text" class="form-control" name="emailid" id="emailid"
+                            <input type="text" class="form-control" name="emailid"
                                    placeholder="Địa Chỉ Email" required autofocus/>
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control"
+                            <input type="password" name="password"class="form-control"
                                    placeholder="Mật Khẩu" required/>
                         </div>
                         @if (session('emailNull'))

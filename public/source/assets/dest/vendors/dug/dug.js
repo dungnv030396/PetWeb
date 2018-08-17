@@ -11,7 +11,7 @@
 var dug = function( opts ){
 
 	if(this.constructor != dug ){
-		dug.instance = new dug( opts ).show();
+		// dug.instance = new dug( opts ).show();
 		return dug.instance;
 	}
 
