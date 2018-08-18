@@ -61,8 +61,12 @@
                     <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Danh Sách Người Dùng</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{route('getListUsersPage')}}">Đang hoạt động</a></li>
-                        <li><a href="{{route('getListBlockedUsersPage')}}">Đã bị khóa</a></li>
+                        <li><a href="{{route('getListCustomerPage')}}">Khách Hàng</a></li>
+                        <li><a href="{{route('getListCustomersBlockedPage')}}">Khách Hàng Bị Khóa</a></li>
+                        <li><a href="{{route('getListSupplierPage')}}">Nhà Cung Cấp</a></li>
+                        <li><a href="{{route('getListSupplierBlockedPage')}}">Nhà Cung Cấp Bị Khóa</a></li>
+                        <li><a href="{{route('getListModeratorsPage')}}">Quản Trị Viên</a></li>
+                        <li><a href="{{route('getListModeratorBlockedPage')}}">Quản Trị Viên Bị Khóa</a></li>
                     </ul>
                 </li>
             </ul>

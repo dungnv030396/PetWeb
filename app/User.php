@@ -242,24 +242,21 @@ class User extends Authenticatable
 
     public function getListUsersAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
     {
+        $id = request('id');
         $columns = array(
             0 => 'id',
             4 => 'created_at',
             5 => 'updated_at'
         );
         $totalData = User::where('delete_flag', 0)
-            ->where(function ($query) {
-                return $query->where('roleId', '=', 2)
-                    ->orwhere('roleId', '=', 3)
-                    ->orwhere('roleId', '=', 4);
+            ->where(function ($query) use ($id) {
+                return $query->where('roleId', '=', $id);
             })
             ->count();
         if (empty($search)) {
             $users = User::where('delete_flag', 0)
-                ->where(function ($query) {
-                    return $query->where('roleId', '=', 2)
-                        ->orwhere('roleId', '=', 3)
-                        ->orwhere('roleId', '=', 4);
+                ->where(function ($query) use ($id){
+                    return $query->where('roleId', '=', $id);
                 })
                 ->offset($start)
                 ->limit($length)
@@ -268,10 +265,8 @@ class User extends Authenticatable
             $totalFiltered = $totalData;
         } else {
             $users = User::where('delete_flag', '=', 0)
-                ->where(function ($query) {
-                    return $query->where('roleId', '=', 2)
-                        ->orwhere('roleId', '=', 3)
-                        ->orwhere('roleId', '=', 4);
+                ->where(function ($query) use ($id){
+                    return $query->where('roleId', '=', $id);
                 })
                 ->where(function ($query) use ($search) {
                     return $query->where('id', 'like', "%$search%")
@@ -314,24 +309,21 @@ class User extends Authenticatable
 
     public function getListUsersBlockedAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
     {
+        $id = request('id');
         $columns = array(
             0 => 'id',
             4 => 'created_at',
             5 => 'updated_at'
         );
         $totalData = User::where('delete_flag', '=', 1)
-            ->where(function ($query) {
-                return $query->where('roleId', '=', 2)
-                    ->orwhere('roleId', '=', 3)
-                    ->orwhere('roleId', '=', 4);
+            ->where(function ($query) use ($id){
+                return $query->where('roleId', '=', $id);
             })
             ->count();
         if (empty($search)) {
             $users = User::where('delete_flag', '=', 1)
-                ->where(function ($query) {
-                    return $query->where('roleId', '=', 2)
-                        ->orwhere('roleId', '=', 3)
-                        ->orwhere('roleId', '=', 4);
+                ->where(function ($query)use ($id) {
+                    return $query->where('roleId', '=', $id);
                 })
                 ->offset($start)
                 ->limit($length)
@@ -340,10 +332,8 @@ class User extends Authenticatable
             $totalFiltered = $totalData;
         } else {
             $users = User::where('delete_flag', '=', 1)
-                ->where(function ($query) {
-                    return $query->where('roleId', '=', 2)
-                        ->orwhere('roleId', '=', 3)
-                        ->orwhere('roleId', '=', 4);
+                ->where(function ($query)use ($id) {
+                    return $query->where('roleId', '=', $id);
                 })
                 ->where(function ($query) use ($search) {
                     return $query->where('id', 'like', "%$search%")

@@ -24,10 +24,10 @@
                                    id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>Mã Tài Khoản</th>
+                                    <th style="width:10px;">Mã Tài Khoản</th>
                                     <th>Họ và Tên</th>
                                     <th>Số Điện Thoại</th>
-                                    <th>Nhiệm Vụ</th>
+                                    <th>Email</th>
                                     <th>Thời Gian Tạo</th>
                                     <th>Thời Gian Cập Nhật</th>
                                     <th>Trạng Thái</th>
@@ -54,7 +54,7 @@
                 "stateSave": true,
                 "stateDuration": -1,
                 "ajax": {
-                    "url": "<?= route('getListUsers') ?>",
+                    "url": "<?= route('getListCustomers',['id' => 3]) ?>",
                     "dataType": "json",
                     "type": "POST",
                     "data": {"_token": "<?= csrf_token() ?>"}
@@ -74,18 +74,7 @@
                             data: "phone", orderable: false
                         },
                         {
-                            data: "status",
-                            "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                                if (oData.status == 2) {
-                                    $(nTd).html("<span class='text-success'><b>Nhà Cung Cấp</b></span>");
-                                }
-                                if (oData.status == 3) {
-                                    $(nTd).html("<span style='color: #1AB394' '><b>Khách Hàng</b></span>");
-                                }
-                                if (oData.status == 4) {
-                                    $(nTd).html("<span class='text-danger'><b>Quản Trị Viên</b></span>");
-                                }
-                            }, orderable: false
+                            data: "email", orderable: false
                         },
                         {
                             data: "created_at"

@@ -48,13 +48,14 @@
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             $('.dataTables-example').DataTable({
+
                 "processing": true,
                 "serverSide": true,
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
                 "ajax": {
-                    "url": "<?= route('getListUsersBlocked') ?>",
+                    "url": "<?= route('getListUsersBlocked',['id' => 4]) ?>",
                     "dataType": "json",
                     "type": "POST",
                     "data": {"_token": "<?= csrf_token() ?>"}

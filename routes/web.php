@@ -278,15 +278,33 @@ Route::get('/admin/management/homepage',function (){
     return view('AdminView.home',compact('menu'));
 })->name('admin_manage_place');
 
-Route::get('admin/manage/users-list',function (){
+Route::get('admin/manage/list-customers',function (){
     $menu = 'listusers';
-    return view('AdminView.list_users',compact('menu'));
-})->name('getListUsersPage');
-Route::post('admin/management/users-list','DatatableController@getListUsers')->name('getListUsers');
+    return view('AdminView.list_customers',compact('menu'));
+})->name('getListCustomerPage');
+Route::get('admin/manage/list-suppliers',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_suppliers',compact('menu'));
+})->name('getListSupplierPage');
+Route::get('admin/manage/list-moderators',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_moderators',compact('menu'));
+})->name('getListModeratorsPage');
+
+Route::get('admin/manage/list-customers-blocked',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_customers_blocked',compact('menu'));
+})->name('getListCustomersBlockedPage');
+Route::get('admin/manage/list-suppliers-blocked',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_suppliers_blocked',compact('menu'));
+})->name('getListSupplierBlockedPage');
+Route::get('admin/manage/list-moderators-blocked',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_moderators_blocked',compact('menu'));
+})->name('getListModeratorBlockedPage');
+
+Route::post('admin/management/list-customers','DatatableController@getListUsers')->name('getListCustomers');
 Route::post('admin/manage/users-list/block','AdminController@blockAccount')->name('blockAccountByAdmin');
-Route::get('admin/manage/blocked-users-list',function (){
-    $menu = 'listusers';
-    return view('AdminView.list_users_blocked',compact('menu'));
-})->name('getListBlockedUsersPage');
 Route::post('admin/management/blocked-users-list','DatatableController@getListUsersBlocked')->name('getListUsersBlocked');
 
