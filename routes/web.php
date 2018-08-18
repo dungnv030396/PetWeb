@@ -38,12 +38,12 @@ Route::get('chi-tiet-san-pham/{id}',[
     'uses'=>'PageController@getProductDetail'
 ]);
 //Supports
-Route::get('lien-he',[
+Route::get('contact',[
     'as'=>'lienhe',
     'uses'=>'PageController@getLienHe'
 ]);
 
-Route::get('gioi-thieu',[
+Route::get('introduce',[
     'as'=>'gioithieu',
     'uses'=>'PageController@getGioiThieu'
 ]);
@@ -75,9 +75,9 @@ Route::post('register', 'UsersController@store')->name('register');
 
 //register to Supplier
 
-Route::get('register.supplier','UsersController@registerSupplierPage')->name('register.supplier');
-Route::post('register.supplier', 'UsersController@registerSupplier')->name('registerToSupplier');
-Route::get('register.supplier.success/{id}','UsersController@registerSupplierSuccess')->name('registerSupplierSuccess');
+Route::get('register/supplier','UsersController@registerSupplierPage')->name('register.supplier');
+Route::post('register/supplier', 'UsersController@registerSupplier')->name('registerToSupplier');
+Route::get('register/supplier/success/{id}','UsersController@registerSupplierSuccess')->name('registerSupplierSuccess');
 
 
 //userProfile
@@ -113,9 +113,9 @@ Route::get('dat-hang','CartsController@getCheckout')->name('viewCheckout');
 Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
 
 //Supplier
-Route::get('listSupplier','SupplierController@listSupplier')->name('listSupplier');
+Route::get('list-supplier','SupplierController@listSupplier')->name('listSupplier');
 Route::post('searchSupplier','SupplierController@searchByName');
-Route::get('detailSupplier/{id}','SupplierController@detailSupplier')->name('detailSupplier');
+Route::get('detail-supplier/{id}','SupplierController@detailSupplier')->name('detailSupplier');
 
 //Forgot pass by email
 //Route::get('mail',function (){
