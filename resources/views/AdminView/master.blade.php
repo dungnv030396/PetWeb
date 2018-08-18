@@ -11,8 +11,11 @@
     <link href="source/assets/manage/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="source/assets/manage/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="source/assets/manage/css/animate.css" rel="stylesheet">
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -46,7 +49,7 @@
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('admin_manage_place')}}"><i
                                 class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
                 <li class="{{($menu=='report')?'active':''}}">
-                    <a href="{{route('getListsReport')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý Báo Cáo</span>
+                    <a href="{{route('getListsReport')}}"><i class="fa fa-flag"></i> <span class="nav-label">Quản lý Báo Cáo</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{route('getListsReport')}}">Báo cáo chờ xử lý</a></li>
@@ -54,8 +57,16 @@
                     </ul>
                 </li>
                 <li class="{{($menu=='supplier')?'active':''}}">
-                    <a href="{{route('listRegistrationForm')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Xét Duyệt Đơn</span>
+                    <a href="{{route('listRegistrationForm')}}"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Xét Duyệt Đơn</span></a>
+                </li>
+                <li class="{{($menu=='finance')?'active':''}}">
+                    <a href="#"><i class="fa fa-money"></i> <span class="nav-label">Quản lý tài chính</span>
                         <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{route('supplierFinanceView')}}">Thanh toán cho nhà cung cấp</a></li>
+                        <li><a href="{{route('webFinanceView')}}">Thống kê tài chính</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>
@@ -147,7 +158,6 @@
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.js"></script>
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.spline.js"></script>
-}
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.resize.js"></script>
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.pie.js"></script>
 <script src="source/assets/manage/js/plugins/peity/jquery.peity.min.js"></script>
@@ -159,6 +169,7 @@
 <script src="source/assets/manage/js/demo/sparkline-demo.js"></script>
 <script src="source/assets/manage/js/plugins/chartJs/Chart.min.js"></script>
 <script src="source/assets/manage/js/plugins/dataTables/datatables.min.js"></script>
+
 <script>
     $(document).ready(function () {
         setTimeout(function () {
@@ -215,6 +226,7 @@
                 tooltip: false
             }
         );
+
 
     });
 </script>

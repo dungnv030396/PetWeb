@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/testview', function () {
+    return view('test');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -277,3 +279,8 @@ Route::get('/admin/management/homepage',function (){
     $menu = 'home';
     return view('AdminView.home',compact('menu'));
 })->name('admin_manage_place');
+Route::get('/admin/management/payment-supplier','AdminController@supplier_financeView')->name('supplierFinanceView');
+
+Route::post('/admin/management/finance-data','DatatableController@supplier_financeDataAjax')->name('supplier_financeData');
+Route::post('thanh-toan/ma-don','AdminController@paymentForSupplierAjax')->name('paymentForSupplierAjax');
+Route::get('/admin/management/finance','AdminController@webFinanceView')->name('webFinanceView');

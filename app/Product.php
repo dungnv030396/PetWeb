@@ -175,15 +175,15 @@ class Product extends Model
     public function postProduct($th, $request)
     {
         $th->validate(\request(), [
-            'productname' => 'between:1,100',
+            'productname' => 'between:1,30',
             'soluong' => 'min:1|max:100000|numeric',
             'price' => 'min:0|max:1000000000|numeric',
             'discount' => 'min:0|max:100|numeric',
             'description' => 'between:1,1000'
         ], [
-            'productname.between' => 'Tên sản phẩm không vượt quá 100 kí tự',
+            'productname.between' => 'Tên sản phẩm không vượt quá 30 kí tự',
             'soluong.min' => 'Số lượng không ít hơn 1',
-            'soluong.max' => 'Số lượng không nhiều hơn 100 000',
+            'soluong.max' => 'Số lượng không nhiều hơn 100000',
             'soluong.numeric' => 'Số lượng phải là số',
             'price.min' => 'Giá không nhỏ hơn 0',
             'price.max' => 'Chúng tôi chưa hỗ trợ bán sản phẩm có giá quá 1 tỷ đồng',

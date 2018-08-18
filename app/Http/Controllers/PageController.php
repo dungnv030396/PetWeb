@@ -17,10 +17,38 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $totalData = OrderLine::whereHas('order', function ($query) {
+            $query->where('delete_flag', 0);
+        })->whereBetween('payment_date',['2018-08-21','2019-08-23'])->count();
+        var_dump($totalData);die;
+        $orderLines = OrderLine::whereHas('order', function ($query) {
+            $query->where('delete_flag', 0);
+        })
+            ->whereBetween('payment_date',['2018-8-21','2018-8-23'])
+            ->get();
 
-
+        $str = '08-06-2018';
+        $str = substr($str,-4).'-'.substr($str,0,1).substr($str,1,-5);
+        var_dump($str);die;
+        $endDate = new \DateTime('now');
+        var_dump((new \DateTime('now'))->modify('+7 hours')->format('m-d-Y'));die;
+        $orders = OrderLine::all();
+        foreach ($orders as $order){
+            $order->payment_date = Carbon::parse($order->created_at->modify('+7 days +7 hours')->format('Y-m-d H:i:s'));
+            $order->save();
+        }
+        var_dump('ok');die;
+        $order = OrderLine::orderBy('payment_date','desc')->first()->payment_date;
+        var_dump($order);die;
         $orderLines = OrderLine::find(23);
-        var_dump(Carbon::parse($orderLines->sent_at));die;
+        //var_dump($orderLines->sent_at);
+        //var_dump($orderLines->created_at);
+        //var_dump(Carbon::parse($orderLines->sent_at));
+        //$order->updated_at->modify('+7 days')->format('d/m/Y');
+        $time = Carbon::parse($orderLines->created_at->modify('+7 days')->format('Y-m-d H:i:s'));
+        $orderLines->payment_date = $time;
+        $orderLines->save();
+        die;
         var_dump($orderLines->id);var_dump($orderLines->sent_at);var_dump($orderLines->created_at);die;
     }
     public function getIndex()

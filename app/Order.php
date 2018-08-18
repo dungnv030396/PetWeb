@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -136,8 +137,14 @@ class Order extends Model
         $order->save();
         foreach ($order->orderLine as $orderLine){
             $orderLine->orderline_status_id = 5;
+            $orderLine->payment_date = Carbon::parse($order->updated_at->modify('+7 days +7 hours')->format('Y-m-d'));
             $orderLine->save();
         }
+        $store_benefit = new StoreBenefit();
+        $store_benefit->payment_id = $order->payment_id;
+        $store_benefit->amount = $order->payment->amount * 0.1;
+
+        $store_benefit->save();
     }
 
     public function orderAssignDelete($request)

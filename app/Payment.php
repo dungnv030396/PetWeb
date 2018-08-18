@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Mail;
 
 class Payment extends Model
 {
+    public function store_benefit(){
+        return $this->hasOne(StoreBenefit::class,'payment_id','id');
+    }
     //checkout
     public function checkout($request, $th)
     {
