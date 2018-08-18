@@ -34,10 +34,12 @@ class User extends Authenticatable
         return $this->belongsTo(Order::class, 'user_id', 'id');
     }
 
-    public function city(){
-        return $this->hasOne(City::class,'code','city_code');
+    public function city()
+    {
+        return $this->hasOne(City::class, 'code', 'city_code');
 
     }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -65,6 +67,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
+
     public function listSupplier()
     {
         $user = User::where('delete_flag', 0)
@@ -103,17 +106,18 @@ class User extends Authenticatable
             ]);
         $id = Auth::user()->id;
         $user = User::find($id);
-        $city_name = City::where('code',request('city'))->first()->name;
+        $city_name = City::where('code', request('city'))->first()->name;
         $user->name = request('mem_name');
         $user->email = request('emailid');
         $user->phoneNumber = request('phonenumber');
-        $user->address = request('address').','.$city_name;
+        $user->address = request('address') . ',' . $city_name;
         $user->gender = request('gender');
         $user->city_code = request('city');
         $user->save();
     }
 
-    public function updateUserBankInfo($th){
+    public function updateUserBankInfo($th)
+    {
         $th->validate(\request(), [
             'card_number' => 'numeric|digits_between:12,16'
         ],
@@ -123,10 +127,10 @@ class User extends Authenticatable
             ]);
         $id = Auth::user()->id;
         $user = User::find($id);
-        $user->bank_name = trim(request('bank_name'),' ');
-        $user->bank_username = trim(request('bank_username'),' ');
-        $user->card_number = trim(request('card_number'),' ');
-        $user->bank_branch = trim(request('bank_branch'),' ');
+        $user->bank_name = trim(request('bank_name'), ' ');
+        $user->bank_username = trim(request('bank_username'), ' ');
+        $user->card_number = trim(request('card_number'), ' ');
+        $user->bank_branch = trim(request('bank_branch'), ' ');
         $user->save();
     }
 
@@ -164,17 +168,17 @@ class User extends Authenticatable
                 'phonenumber.digits_between' => 'Số điện thoại phải có 10-15 chữ số!',
                 'phonenumber.numeric' => 'Số điện thoải không chưa kí tự khác chữ số!'
             ]);
-        $city_name = City::where('code',request('city'))->first()->name;
+        $city_name = City::where('code', request('city'))->first()->name;
         $user->name = request('mem_name');
         $user->email = request('emailid');
         $user->password = bcrypt(request('password'));
-        $user->phoneNumber = trim(request('phonenumber'),' ');
+        $user->phoneNumber = trim(request('phonenumber'), ' ');
         $user->gender = \request('gender');
-        $user->address = request('address').' ,'. $city_name;
+        $user->address = request('address') . ' ,' . $city_name;
         $user->avatar = 'user-default.png';
         $user->city_code = request('city');
         $user->save();
-        return back()->with('status','Chúc mừng bạn đã đăng ký tài khoản Thành Công');
+        return back()->with('status', 'Chúc mừng bạn đã đăng ký tài khoản Thành Công');
     }
 
     public function resetPass()
@@ -188,10 +192,10 @@ class User extends Authenticatable
             for ($i = 0; $i < 20; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
-            $data = array('name' => $user[0]->name, 'link' => route('changePassByMail',$randomString));
+            $data = array('name' => $user[0]->name, 'link' => route('changePassByMail', $randomString));
             $password_token = new PasswordToken();
             $password_token->user_id = $user[0]->id;
-            $password_token->token = bcrypt($randomString.''.'thepetteam');
+            $password_token->token = bcrypt($randomString . '' . 'thepetteam');
             $password_token->save();
 
 //            dd(bcrypt($randomString.''.'thepetteam'));
@@ -216,7 +220,7 @@ class User extends Authenticatable
 
     }
 
-    public function changePassByMail($th,$user_id)
+    public function changePassByMail($th, $user_id)
     {
         $user = User::find($user_id);
         $th->validate(\request(), [
@@ -229,11 +233,155 @@ class User extends Authenticatable
         $user->password = bcrypt(\request('password'));
         $user->save();
 //        $a = Order::where('payment_id',51)->delete();
-        $token = PasswordToken::where('user_id',$user_id)->first();
-        if ($token){
+        $token = PasswordToken::where('user_id', $user_id)->first();
+        if ($token) {
             $token->delete();
         }
         return $token;
+    }
+
+    public function getListUsersAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
+    {
+        $columns = array(
+            0 => 'id',
+            4 => 'created_at',
+            5 => 'updated_at'
+        );
+        $totalData = User::where('delete_flag', 0)
+            ->where(function ($query) {
+                return $query->where('roleId', '=', 2)
+                    ->orwhere('roleId', '=', 3)
+                    ->orwhere('roleId', '=', 4);
+            })
+            ->count();
+        if (empty($search)) {
+            $users = User::where('delete_flag', 0)
+                ->where(function ($query) {
+                    return $query->where('roleId', '=', 2)
+                        ->orwhere('roleId', '=', 3)
+                        ->orwhere('roleId', '=', 4);
+                })
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $users = User::where('delete_flag', '=', 0)
+                ->where(function ($query) {
+                    return $query->where('roleId', '=', 2)
+                        ->orwhere('roleId', '=', 3)
+                        ->orwhere('roleId', '=', 4);
+                })
+                ->where(function ($query) use ($search) {
+                    return $query->where('id', 'like', "%$search%")
+                        ->orwhere('name', 'like', "%$search%")
+                        ->orwhere('email', 'like', "%$search%");
+                })
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $users->count();
+        }
+        $data = array();
+        if ($users) {
+            foreach ($users as $user) {
+                $nestedData = array();
+                $nestedData['id'] = $user->id;
+                $nestedData['name'] = $user->name;
+                $nestedData['status'] = $user->roleId;
+                $nestedData['phone'] = $user->phoneNumber;
+                $nestedData['email'] = $user->email;
+                $nestedData['delete_flag'] = ($user->delete_flag == 0) ? 'Đang Hoạt Động' : 'Đã Bị Khóa';
+                $nestedData['created_at'] = $user->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $user->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
+    }
+
+    public function getListUsersBlockedAjax($start, $length, $search, $oderColunm, $oderSortType, $draw)
+    {
+        $columns = array(
+            0 => 'id',
+            4 => 'created_at',
+            5 => 'updated_at'
+        );
+        $totalData = User::where('delete_flag', '=', 1)
+            ->where(function ($query) {
+                return $query->where('roleId', '=', 2)
+                    ->orwhere('roleId', '=', 3)
+                    ->orwhere('roleId', '=', 4);
+            })
+            ->count();
+        if (empty($search)) {
+            $users = User::where('delete_flag', '=', 1)
+                ->where(function ($query) {
+                    return $query->where('roleId', '=', 2)
+                        ->orwhere('roleId', '=', 3)
+                        ->orwhere('roleId', '=', 4);
+                })
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $users = User::where('delete_flag', '=', 1)
+                ->where(function ($query) {
+                    return $query->where('roleId', '=', 2)
+                        ->orwhere('roleId', '=', 3)
+                        ->orwhere('roleId', '=', 4);
+                })
+                ->where(function ($query) use ($search) {
+                    return $query->where('id', 'like', "%$search%")
+                        ->orwhere('name', 'like', "%$search%")
+                        ->orwhere('email', 'like', "%$search%");
+                })
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $users->count();
+        }
+        $data = array();
+        if ($users) {
+            foreach ($users as $user) {
+                $nestedData = array();
+                $nestedData['id'] = $user->id;
+                $nestedData['name'] = $user->name;
+                $nestedData['status'] = $user->roleId;
+                $nestedData['phone'] = $user->phoneNumber;
+                $nestedData['email'] = $user->email;
+                $nestedData['delete_flag'] = ($user->delete_flag == 0) ? 'Đang Hoạt Động' : 'Đã Bị Khóa';
+                $nestedData['created_at'] = $user->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['updated_at'] = $user->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data
+        );
+        return $json_data;
     }
 
     public function isSupplier($user)

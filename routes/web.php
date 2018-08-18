@@ -277,3 +277,16 @@ Route::get('/admin/management/homepage',function (){
     $menu = 'home';
     return view('AdminView.home',compact('menu'));
 })->name('admin_manage_place');
+
+Route::get('admin/manage/users-list',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_users',compact('menu'));
+})->name('getListUsersPage');
+Route::post('admin/management/users-list','DatatableController@getListUsers')->name('getListUsers');
+Route::post('admin/manage/users-list/block','AdminController@blockAccount')->name('blockAccountByAdmin');
+Route::get('admin/manage/blocked-users-list',function (){
+    $menu = 'listusers';
+    return view('AdminView.list_users_blocked',compact('menu'));
+})->name('getListBlockedUsersPage');
+Route::post('admin/management/blocked-users-list','DatatableController@getListUsersBlocked')->name('getListUsersBlocked');
+

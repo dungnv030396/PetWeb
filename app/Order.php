@@ -92,7 +92,7 @@ class Order extends Model
                 $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['updated_at'] = $order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['orderDetail'] = '
-					<a href="' . route('orderDetail', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a>
+					<center><a href="' . route('blockAccount', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a></center>
 				';
                 $data[] = $nestedData;
             }

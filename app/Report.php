@@ -98,14 +98,9 @@ class Report extends Model
                 $nestedData = array();
                 $nestedData['id'] = $report->id;
                 $nestedData['status'] = $report->status;
-//                $nestedData['admin_id'] = $report->admin_id;
-//                $nestedData['admin_name'] = User::find($report->admin_id)->name;
-//                $nestedData['user_id'] = $report->user_id;
                 $nestedData['user_name'] = User::find($report->user_id)->name;
-//                $nestedData['reportTo_id'] = $report->reportTo_id;
                 $nestedData['reportTo_name'] = User::find($report->reportTo_id)->name;
                 $nestedData['product_id'] = $report->product_id;
-//                $nestedData['description'] = $report->description;
                 $nestedData['created_at'] = $report->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['detailReport'] = '<a href="' . route('detailWaitingReport', $report->id) . '">Xem Chi Tiết</a>';
                 $data[] = $nestedData;

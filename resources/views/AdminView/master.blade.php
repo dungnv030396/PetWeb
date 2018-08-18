@@ -56,6 +56,15 @@
                 <li class="{{($menu=='supplier')?'active':''}}">
                     <a href="{{route('listRegistrationForm')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Xét Duyệt Đơn</span>
                         <span class="fa arrow"></span></a>
+                </li>
+                <li class="{{($menu=='listusers')?'active':''}}">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Danh Sách Người Dùng</span>
+                        <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{route('getListUsersPage')}}">Đang hoạt động</a></li>
+                        <li><a href="{{route('getListBlockedUsersPage')}}">Đã bị khóa</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>

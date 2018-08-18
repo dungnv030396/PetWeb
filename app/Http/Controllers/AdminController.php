@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\SupplierRegister;
+use Laravel\Socialite\One\User;
 
 class AdminController extends Controller
 {
@@ -42,5 +43,22 @@ class AdminController extends Controller
             alert()->error('Hủy Đơn Thành Công');
             return \redirect()->route('listRegistrationForm')->with('cancel','false');
         }
+    }
+    public function blockAccount(Request $request){
+        $error = '';
+        $success_output = '';
+        try {
+            $user = User::find($request->id);
+            $user->delete_flag = 1;
+            $user->save();
+            $success_output = 'success';
+        } catch (\Exception $e) {
+            $error = 'error';
+        }
+        $output = array(
+            'error' => $error,
+            'success' => $success_output
+        );
+        echo json_encode($output);
     }
 }
