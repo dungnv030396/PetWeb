@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\SupplierRegister;
 use Carbon\Carbon;
+use Laravel\Socialite\One\User;
 
 class AdminController extends Controller
 {
@@ -101,5 +102,22 @@ class AdminController extends Controller
         $endDate = Carbon::parse(OrderLine::orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
         $status = OrderlinepaymentStatus::all();
         return view('AdminView.supplier_finance', compact('menu','startDate','endDate','status'));
+    }
+    public function blockAccount(Request $request){
+        $error = '';
+        $success_output = '';
+        try {
+            $user = User::find($request->id);
+            $user->delete_flag = 1;
+            $user->save();
+            $success_output = 'success';
+        } catch (\Exception $e) {
+            $error = 'error';
+        }
+        $output = array(
+            'error' => $error,
+            'success' => $success_output
+        );
+        echo json_encode($output);
     }
 }

@@ -49,8 +49,8 @@
                                             <div class="single-item-caption">
                                                 <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
                                                     {{ csrf_field() }}
-                                                    <input type="hidden" value="{{$product->id}}" name="id" id="id" />
-                                                    <input type="hidden" value="1" name="quantity" id="quantity" />
+                                                    <input type="hidden" value="{{$product->id}}" name="id" />
+                                                    <input type="hidden" value="1" name="quantity" />
                                                 </form>
                                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
                                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
@@ -102,10 +102,10 @@
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
-                                                <form method="POST" id="addToCart{{$product->id}}" action="{{route('themgiohang')}}" >
+                                                <form method="POST" action="{{route('themgiohang')}}" >
                                                         {{ csrf_field() }}
-                                                    <input type="hidden" value="{{$product->id}}" name="id" id="id" />
-                                                    <input type="hidden" value="1" name="quantity" id="quantity" />
+                                                    <input type="hidden" value="{{$product->id}}" name="id" />
+                                                    <input type="hidden" value="1" name="quantity" />
                                                 </form>
                                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart{{$product->id}}').submit();"><i
                                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
