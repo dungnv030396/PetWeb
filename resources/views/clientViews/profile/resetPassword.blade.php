@@ -19,7 +19,7 @@
                             <p>Bạn có thể khôi phục mật khẩu ở đây.</p>
                             <div class="panel-body">
 
-                                <form id="register-form" role="form" autocomplete="off" class="form" method="post" action="resetPassword">
+                                <form id="register-form" role="form" autocomplete="off" class="form" method="post" action="{{route('resetPassword')}}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group">

@@ -25,7 +25,7 @@ class SupplierController extends Controller
     public function searchByName(){
         $user = new User();
         $listSupplier = $user->searchByName();
-        return view('suppliers.list_supplier',compact('listSupplier'));
+        return view('clientViews.customer.list_supplier',compact('listSupplier'));
     }
     public function detailSupplier(){
         $id = \request('id');

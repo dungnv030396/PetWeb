@@ -42,7 +42,7 @@
                             Đăng Nhập
                         </button>
                     </form>
-                    <a class="forgotLnk" href="{{Route('resetPassword')}}">Quên mật khẩu</a>
+                    <a class="forgotLnk" href="{{Route('resetPasswordPage')}}">Quên mật khẩu</a>
                     <div class="or-box">
                         <span class="or">Hoặc</span>
                         <div class="row">

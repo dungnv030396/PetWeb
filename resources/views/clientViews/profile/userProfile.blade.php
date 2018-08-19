@@ -16,7 +16,7 @@
             <!-- left column -->
 
             {{--@foreach($user as $item)--}}
-            <form method="POST" action="updateAvatar" enctype="multipart/form-data">
+            <form method="POST" action="{{route('updateAvatar')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
@@ -64,7 +64,7 @@
                     tới người dùng.
                 </div>
                 <h3>Thông Tin Người Dùng</h3>
-                <form class="form-horizontal" role="form" method="POST" action="updateInfo">
+                <form class="form-horizontal" role="form" method="POST" action="{{route('updateInfo')}}">
 
                     {{ csrf_field() }}
 
@@ -250,7 +250,7 @@
 
                 <hr>
 
-                <form class="form-horizontal" role="form" method="POST" action="updatePass">
+                <form class="form-horizontal" role="form" method="POST" action="{{route('updatePass')}}">
 
                     {{ csrf_field() }}
 

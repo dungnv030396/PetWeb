@@ -21,7 +21,7 @@
                     @endif
                 </div>
                 <hr>
-                <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="register" >
+                <form class="form-horizontal" method="POST" name="signup" id="signup" enctype="multipart/form-data" action="{{route('register')}}" >
                     {{ csrf_field() }}
 
                     <div class="form-group">

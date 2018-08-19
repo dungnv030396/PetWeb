@@ -16,21 +16,21 @@
 @if(count($errors))
     <script>
         $(function () {
-            $("#dropdown").addClass("open");
+            $("#dropdownlist").addClass("open");
         })
     </script>
 @endif
-@if(!empty(Session::get('reportSuccess')))
+@if(!empty(\Illuminate\Support\Facades\Session::get('reportSupplierSuccess')))
     <script>
         $(function () {
-            $("#dropdown").addClass("open");
+            $("#dropdownlist").addClass("open");
         })
     </script>
 @endif
 <div class="input-group" id="adv-search">
     <div class="input-group-btn">
         <div class="btn-group" role="group">
-            <div id="dropdown" class="dropdown dropdown-lg">
+            <div id="dropdownlist" class="dropdown dropdown-lg">
                 <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
                         aria-expanded="false"><span class="glyphicon glyphicon-circle-arrow-down"></span> Báo Cáo
                 </button>
@@ -63,10 +63,10 @@
                             <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>
                                 Gửi Báo Cáo
                             </button>
-                        @if (session('reportSuccess'))
+                        @if (session('reportSupplierSuccess'))
                             <div class="alert alert-success">
                                 <ul>
-                                    {{ session('reportSuccess') }}
+                                    {{ session('reportSupplierSuccess') }}
                                 </ul>
                             </div>
                         @endif
