@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderLine;
 use App\Catalog;
+use App\Payment;
 use App\Slide;
 use App\Product;
+use App\StoreBenefit;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Http\Request;
@@ -17,6 +19,20 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+
+        $totalData = Order::where('status_id', 5)->where('delete_flag', 0)->get();
+        foreach ($totalData as $order){
+            if($order->payment->id != 18){
+                $store = new StoreBenefit();
+                $store->payment_id = $order->payment->id;
+                $store->amount = ($order->payment->amount) * 0.1;
+                $store->save();
+            }
+        }
+        var_dump('ok');die;
+
+
+        var_dump($orders);die;
         $totalData = OrderLine::whereHas('order', function ($query) {
             $query->where('delete_flag', 0);
         })->whereBetween('payment_date',['2018-08-21','2019-08-23'])->count();

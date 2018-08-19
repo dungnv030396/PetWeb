@@ -33,13 +33,15 @@ class Order extends Model
         return $this->hasOne(User::class, 'id', 'moderator_id');
     }
 
-    public function city(){
-        return $this->hasOne(City::class,'code','city_code');
+    public function city()
+    {
+        return $this->hasOne(City::class, 'code', 'city_code');
 
     }
 
-    public function warehouse(){
-        return $this->hasOne(Warehouse::class,'id','warehouse_id');
+    public function warehouse()
+    {
+        return $this->hasOne(Warehouse::class, 'id', 'warehouse_id');
 
     }
 
@@ -60,15 +62,15 @@ class Order extends Model
             $totalFiltered = $totalData;
         } else {
             $orders = Order::whereHas('user', function ($query) use ($search) {
-                    $query->where('name', 'like', "%$search%");
-                })
+                $query->where('name', 'like', "%$search%");
+            })
                 ->orwhereHas('moderator', function ($query) use ($search) {
                     $query->where('name', 'like', "%$search%");
                 })
                 ->orwhereHas('status', function ($query) use ($search) {
                     $query->where('stt', 'like', "%$search%");
                 })
-                ->where('delete_flag','=', 0)
+                ->where('delete_flag', '=', 0)
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
@@ -122,7 +124,7 @@ class Order extends Model
         $order = $this->getOrderByID($request->id);
         $moderator = $uObj->getCurrentUser();
         $order->moderator_id = $moderator->id;
-        if($order->status_id == 1){
+        if ($order->status_id == 1) {
             $order->status_id = 2;
         }
         $order->save();
@@ -131,11 +133,14 @@ class Order extends Model
     public function orderSuccess($request)
     {
         $order = $this->getOrderByID($request->id);
-        if($order->status_id == 4){
+        if ($order->status_id == 4) {
             $order->status_id = 5;
+
         }
         $order->save();
-        foreach ($order->orderLine as $orderLine){
+        $order->completed_at = Carbon::parse($order->updated_at->modify('+7 days +7 hours')->format('Y-m-d H:i:s'));
+        $order->save();
+        foreach ($order->orderLine as $orderLine) {
             $orderLine->orderline_status_id = 5;
             $orderLine->payment_date = Carbon::parse($order->updated_at->modify('+7 days +7 hours')->format('Y-m-d'));
             $orderLine->save();
@@ -143,7 +148,6 @@ class Order extends Model
         $store_benefit = new StoreBenefit();
         $store_benefit->payment_id = $order->payment_id;
         $store_benefit->amount = $order->payment->amount * 0.1;
-
         $store_benefit->save();
     }
 
@@ -162,11 +166,12 @@ class Order extends Model
         $order->save();
     }
 
-    public function orderShip($request){
+    public function orderShip($request)
+    {
         $order = $this->getOrderByID($request->id);
         $order->status_id = 4;
         $order->save();
-        foreach ($order->orderLine as $orderLine){
+        foreach ($order->orderLine as $orderLine) {
             $orderLine->orderline_status_id = 4;
             $orderLine->save();
         }
@@ -208,7 +213,7 @@ class Order extends Model
         $orders = Order::whereHas('status', function ($query) use ($value) {
             $query->where('stt', 'like', "%$value%");
         })
-            ->orwhere('created_at','like',"%$value%")
+            ->orwhere('created_at', 'like', "%$value%")
             ->where('user_id', Auth::user()->id)
             ->latest()->paginate(10);
         $number = Order::where('user_id', Auth::user()->id)->count();
@@ -236,19 +241,20 @@ class Order extends Model
         }
     }
 
-    public function getOrdersWarehouseAjax($start, $length, $search, $oderColunm, $oderSortType, $draw, $warehouse_id){
+    public function getOrdersWarehouseAjax($start, $length, $search, $oderColunm, $oderSortType, $draw, $warehouse_id)
+    {
         $columns = array(
             0 => 'id',
             4 => 'created_at'
         );
         // $page = floor($start / $length) + 1;
-        $totalData = Order::where('delete_flag', 0)->whereHas('warehouse',function ($query) use ($warehouse_id){
-            $query->where('id',$warehouse_id);
+        $totalData = Order::where('delete_flag', 0)->whereHas('warehouse', function ($query) use ($warehouse_id) {
+            $query->where('id', $warehouse_id);
         })->count();
         if (empty($search)) {
-            $orders = Order::whereHas('warehouse',function ($query) use ($warehouse_id){
-                    $query->where('id',$warehouse_id);
-                })
+            $orders = Order::whereHas('warehouse', function ($query) use ($warehouse_id) {
+                $query->where('id', $warehouse_id);
+            })
                 ->where('delete_flag', 0)
                 ->offset($start)
                 ->limit($length)
@@ -257,8 +263,8 @@ class Order extends Model
             $totalFiltered = $totalData;
         } else {
             $orders = Order::whereHas('moderator', function ($query) use ($search) {
-                    $query->where('name', 'like', "%$search%");
-                })
+                $query->where('name', 'like', "%$search%");
+            })
                 ->orwhereHas('user', function ($query) use ($search) {
                     $query->where('name', 'like', "%$search%");
                 })
@@ -266,8 +272,8 @@ class Order extends Model
                     $query->where('stt', 'like', "%$search%");
                 })
                 ->orWhere('id', 'like', "%$search%")
-                ->whereHas('warehouse',function ($query) use ($warehouse_id){
-                    $query->where('id',$warehouse_id);
+                ->whereHas('warehouse', function ($query) use ($warehouse_id) {
+                    $query->where('id', $warehouse_id);
                 })
                 ->where('delete_flag', 0)
                 ->offset($start)
@@ -308,6 +314,108 @@ class Order extends Model
             "recordsFiltered" => intval($totalFiltered),
             // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data" => $data
+        );
+        return $json_data;
+    }
+
+    public function getStore_financeAjax($start, $length, $search, $oderColunm, $oderSortType, $draw, $startDate, $endDate, $moderator_id)
+    {
+        $columns = array(
+            0 => 'id',
+            4 => 'created_at',
+            5 => 'completed_at'
+        );
+        $startDate = substr($startDate, -4) . '-' . substr($startDate, 0, 1) . substr($startDate, 1, -5) . ' 00:00:00';
+        $endDate = substr($endDate, -4) . '-' . substr($endDate, 0, 1) . substr($endDate, 1, -5) . ' 23:59:59';
+        $totalAmount = 0;
+        $totalBenefit = 0;
+        if ($moderator_id == 0) {
+            $totalData = Order::where('status_id', 5)->where('delete_flag', 0)
+                ->whereBetween('completed_at', [$startDate, $endDate])->count();
+            if (empty($search)) {
+                $orders = Order::where('status_id', 5)->where('delete_flag', 0)
+                    ->whereBetween('completed_at', [$startDate, $endDate])
+                    ->offset($start)
+                    ->limit($length)
+                    ->orderBy($columns[$oderColunm], $oderSortType)
+                    ->get();
+                $totalFiltered = $totalData;
+            } else {
+                $orders = Order::where('status_id', 5)
+                    ->where('delete_flag', 0)
+                    ->whereBetween('completed_at', [$startDate, $endDate])
+                    ->where('id', 'like', "%$search%")
+                    ->offset($start)
+                    ->limit($length)
+                    ->orderBy($columns[$oderColunm], $oderSortType)
+                    ->get();
+                $totalFiltered = $orders->count();
+            }
+        } else {
+            $totalData = Order::where('status_id', 5)->where('delete_flag', 0)
+                ->whereHas('moderator', function ($query) use ($moderator_id) {
+                    $query->where('id', $moderator_id)->where('delete_flag', 0);
+                })
+                ->whereBetween('completed_at', [$startDate, $endDate])->count();
+            if (empty($search)) {
+                $orders = Order::where('status_id', 5)->where('delete_flag', 0)
+                    ->whereHas('moderator', function ($query) use ($moderator_id) {
+                        $query->where('id', $moderator_id)->where('delete_flag', 0);
+                    })
+                    ->whereBetween('completed_at', [$startDate, $endDate])
+                    ->offset($start)
+                    ->limit($length)
+                    ->orderBy($columns[$oderColunm], $oderSortType)
+                    ->get();
+                $totalFiltered = $totalData;
+            } else {
+                $orders = Order::where('status_id', 5)
+                    ->where('delete_flag', 0)
+                    ->whereHas('moderator', function ($query) use ($moderator_id) {
+                        $query->where('id', $moderator_id)->where('delete_flag', 0);
+                    })
+                    ->whereBetween('completed_at', [$startDate, $endDate])
+                    ->where('id', 'like', "%$search%")
+                    ->offset($start)
+                    ->limit($length)
+                    ->orderBy($columns[$oderColunm], $oderSortType)
+                    ->get();
+                $totalFiltered = $orders->count();
+            }
+        }
+
+        $data = array();
+        if ($orders) {
+            foreach ($orders as $order) {
+                $nestedData = array();
+                $nestedData['order_id'] = $order->id;
+                $nestedData['moderator_id'] = $order->moderator->id;
+                $nestedData['moderator_name'] = $order->moderator->name;
+                $nestedData['moderator_phoneNumber'] = $order->moderator->phoneNumber;
+                $nestedData['moderator_address'] = $order->moderator->address;
+                $nestedData['moderator_email'] = $order->moderator->email;
+                $nestedData['amount'] = number_format($order->payment->amount);
+                $nestedData['store_benefit'] = number_format($order->payment->store_benefit->amount);
+                $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
+                $nestedData['completed_at'] = Carbon::parse($order->completed_at)->format('H:i:s d/m/Y');
+                $totalAmount += $order->payment->amount;
+                $totalBenefit += $order->payment->store_benefit->amount;
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data,
+            //tổng doanh thu
+            "totalAmount" => number_format($totalAmount),
+            //tổng lợi nhuận
+            "totalBenefit" => number_format($totalBenefit)
         );
         return $json_data;
     }

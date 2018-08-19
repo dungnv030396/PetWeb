@@ -310,4 +310,28 @@ class DatatableController extends Controller
         echo json_encode($output);
     }
 
+    public function store_financeDataAjax(Request $request){
+        $ordereObj = new Order();
+        $start = $request->input('start') ?: 0;
+        $length = $request->input('length') ?: 10;
+        $search = $request->input('search.value') ?: "";
+        $oderColunm = $request->input('order.0.column') ?: 0;
+        $oderSortType = $request->input('order.0.dir') ?: 'desc';
+        $draw = $request->draw ?: 0;
+        $startDate = $request->input('startDate')?:(new \DateTime('now'))->modify('+7 hours')->format('m-d-Y');
+        $endDate = $request->input('endDate')?:(new \DateTime('now'))->modify('+7 hours')->format('m-d-Y');
+        $moderator_id = $request->input('moderator_id') ?: 0;
+        try{
+            $output = $ordereObj->getStore_financeAjax($start,$length,$search,$oderColunm,$oderSortType,$draw,$startDate,$endDate,$moderator_id);
+        }catch(\Exception $ex){
+            $output = array(
+                "draw"            => intval(0),
+                "recordsTotal"    => intval(0),
+                "recordsFiltered" => intval(0),
+                "data"            => array($start.",".$length.",".$search.",".$oderColunm.",".$oderSortType.",".$draw),
+            );
+        }
+        echo json_encode($output);
+    }
+
 }

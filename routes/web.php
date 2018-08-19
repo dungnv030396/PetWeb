@@ -316,3 +316,7 @@ Route::post('admin/management/list-customers','DatatableController@getListUsers'
 Route::post('admin/manage/users-list/block','AdminController@blockAccount')->name('blockAccountByAdmin');
 Route::post('admin/management/blocked-users-list','DatatableController@getListUsersBlocked')->name('getListUsersBlocked');
 
+Route::post('/admin/management/store-finance-data','DatatableController@store_financeDataAjax')->name('store_financeData');
+
+
+

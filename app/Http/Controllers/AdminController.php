@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Order;
 use App\OrderLine;
 use App\OrderlinepaymentStatus;
-use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\SupplierRegister;
 use Carbon\Carbon;
-use Laravel\Socialite\One\User;
+//use Laravel\Socialite\One\User;
 
 class AdminController extends Controller
 {
@@ -97,12 +97,13 @@ class AdminController extends Controller
 
     public function webFinanceView(Request $request)
     {
+        $moderators = User::where([['roleId','=',4],['delete_flag','=',0]])->get();
         $menu = 'finance';
-        $startDate = Carbon::parse(OrderLine::orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
-        $endDate = Carbon::parse(OrderLine::orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
-        $status = OrderlinepaymentStatus::all();
-        return view('AdminView.supplier_finance', compact('menu','startDate','endDate','status'));
+        $startDate = Carbon::parse(Order::where('status_id',5)->orderBy('completed_at','asc')->first()->completed_at)->format('m-d-Y');
+        $endDate = Carbon::parse(Order::where('status_id',5)->orderBy('completed_at','desc')->first()->completed_at)->format('m-d-Y');
+        return view('AdminView.store_finance', compact('menu','startDate','endDate','moderators'));
     }
+
     public function blockAccount(Request $request){
         $error = '';
         $success_output = '';
