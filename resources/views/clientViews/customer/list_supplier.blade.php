@@ -2,7 +2,6 @@
 @section('content')
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-
     <div class="container">
         <h2 style="color: #f90"> Danh Sách Nhà Cung Cấp</h2>
         <br>
