@@ -2,12 +2,11 @@
 @section('content')
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-
     <div class="container">
         <h2 style="color: #f90"> Danh Sách Nhà Cung Cấp</h2>
         <br>
         <div><h4>Tìm thấy <a style="color: #f90">{{ $listSupplier['number'] }}</a> Nhà Cung Cấp</h4>
-            <form method="POST" action="searchSupplier">
+            <form method="POST" action="{{route('searchSupplier')}}">
                 {{ csrf_field() }}
                 <span class="search-supplier"><input class="form-control form-control-lg form-control-borderless"
                                                      name="name" type="search" placeholder="Tìm Kiếm Tên Nhà Cung Cấp"></span>

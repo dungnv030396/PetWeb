@@ -62,7 +62,7 @@ class LoginController extends Controller
         $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
         if($findUserSocialite){
             Auth::login($findUserSocialite);
-            return redirect(route('trangchu'))->with('facebook');
+            return back()->with('facebook');
         }else{
             $user = new User();
             $first_name = $userSocialite->user['first_name'];
@@ -110,7 +110,7 @@ class LoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            return redirect(route('trangchu'))->with('google');
+            return back()->with('google');
         }
     }
 

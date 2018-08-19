@@ -73,7 +73,7 @@ Route::get('recruitment',function (){
 //    return view('registration.register');
 //})->name('registerPage');
 Route::get('register','UsersController@registerView')->name('registerPage');
-Route::post('register', 'UsersController@store')->name('register');
+Route::post('register-success', 'UsersController@store')->name('register');
 
 //register to Supplier
 
@@ -84,9 +84,9 @@ Route::get('register/supplier/success/{id}','UsersController@registerSupplierSuc
 
 //userProfile
 Route::get('userProfile/{id}','UsersController@show');
-Route::post('updateInfo', 'UserProfileController@updateProfile');
-Route::post('updatePass', 'UserProfileController@updatePassword');
-Route::post('updateAvatar', 'UserProfileController@updateAvatar');
+Route::post('update-information', 'UserProfileController@updateProfile')->name('updateInfo');
+Route::post('update-password', 'UserProfileController@updatePassword')->name('updatePass');
+Route::post('update-avatar', 'UserProfileController@updateAvatar')->name('updateAvatar');
 
 //login && logout
 Route::post('login', 'LoginController@login')->name('login');
@@ -115,9 +115,9 @@ Route::get('dat-hang','CartsController@getCheckout')->name('viewCheckout');
 Route::post('thanh-toan', 'PaymentController@checkout')->name('checkout');
 
 //Supplier
-Route::get('list-supplier','SupplierController@listSupplier')->name('listSupplier');
-Route::post('searchSupplier','SupplierController@searchByName');
-Route::get('detail-supplier/{id}','SupplierController@detailSupplier')->name('detailSupplier');
+Route::get('list-suppliers','SupplierController@listSupplier')->name('listSupplier');
+Route::post('search-suppliers','SupplierController@searchByName')->name('searchSupplier');
+Route::get('detail-suppliers/{id}','SupplierController@detailSupplier')->name('detailSupplier');
 
 //Forgot pass by email
 //Route::get('mail',function (){
@@ -125,10 +125,10 @@ Route::get('detail-supplier/{id}','SupplierController@detailSupplier')->name('de
 //});
 
 //Reset Pasword
-Route::post('resetPassword','MailController@resetPassword');
-Route::get('resetPassword',function (){
+Route::post('reset-password','MailController@resetPassword')->name('resetPassword');
+Route::get('reset-password-page',function (){
     return view('clientViews.profile.resetPassword');
-})->name('resetPassword');
+})->name('resetPasswordPage');
 Route::post('changePassByEmail/{user_id}','MailController@changePassword')->name('changePassChecked');
 
 Route::get('changePassByMail/{token}','MailController@checkUrl')->name('changePassByMail');
@@ -155,7 +155,7 @@ Route::post('them-binh-luan-ajax','CommentController@addSingleCommentAjax')->nam
 
 //Report
 
-Route::post('reportSupplier/{id}','ReportController@reportSupplier')->name('reportSupplier');
+Route::post('report-supplier/{id}','ReportController@reportSupplier')->name('reportSupplier');
 Route::post('reportProduct/{supplier_id}/{product_id}','ReportController@reportProduct')->name('reportProduct');
 Route::post('moderator/manage/report-process/{id}','ReportController@reportProcess')->name('reportProcess');
 //Add Reply comment

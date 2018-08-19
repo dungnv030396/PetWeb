@@ -195,7 +195,6 @@ class SupplierRegister extends Model
             $supplierRegisters = SupplierRegister::where('name', 'like', "%$search%")
                 ->orwhere('email', 'like', "%$search%")
                 ->orwhere('user_id', 'like', "%$search%")
-                ->orWhere('updated_at', 'like', "%$search%")
                 ->where('delete_flag', 0)
                 ->offset($start)
                 ->limit($length)

@@ -210,13 +210,41 @@ class Order extends Model
     public function searchOrdersHistory()
     {
         $value = request('name');
-        $orders = Order::whereHas('status', function ($query) use ($value) {
-            $query->where('stt', 'like', "%$value%");
-        })
-            ->orwhere('created_at', 'like', "%$value%")
-            ->where('user_id', Auth::user()->id)
-            ->latest()->paginate(10);
-        $number = Order::where('user_id', Auth::user()->id)->count();
+        if (empty($value)) {
+            $orders = Order::whereHas('status', function ($query) use ($value) {
+                $query->where('stt', 'like', "%$value%");
+            })
+//            ->orwhere(function ($query) use ($value) {
+//                return $query->where('created_at','like', "%$value%");
+//            })
+                ->where('id', 'like', "%$value%")
+                ->where('user_id', Auth::user()->id)
+                ->latest()->paginate(10);
+            $number = Order::whereHas('status', function ($query) use ($value) {
+                $query->where('stt', 'like', "%$value%");
+            })
+//                ->orwhere('id', 'like', "%$value%")
+                ->where('user_id', Auth::user()->id)
+                ->count();
+        } else {
+            $orders = Order::whereHas('status', function ($query) use ($value) {
+                $query->where('stt', 'like', "%$value%");
+            })
+//            ->orwhere(function ($query) use ($value) {
+//                return $query->where('created_at','like', "%$value%");
+//            })
+                ->where('id', 'like', "%$value%")
+                ->where('user_id', Auth::user()->id)
+                ->latest()->paginate(10);
+            $number = Order::whereHas('status', function ($query) use ($value) {
+                $query->where('stt', 'like', "%$value%");
+            })
+                ->where('id', 'like', "%$value%")
+                ->where('user_id', Auth::user()->id)
+                ->count();
+        }
+
+
         if ($number != 0) {
             foreach ($orders as $order) {
                 $nestedData = array();
