@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Danh Sách Người Sử Dụng Đang Hoạt Động</h5>
+                        <h5 class="text-info">Danh Sách Nhà Cung Cấp Đang Hoạt Động</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -24,14 +24,14 @@
                                    id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th style="width:10px;">Mã Tài Khoản</th>
+                                    <th data-priority="1">Mã</th>
                                     <th>Họ và Tên</th>
                                     <th>Số Điện Thoại</th>
-                                    <th>Email</th>
+                                    <th data-priority="3">Email</th>
                                     <th>Thời Gian Tạo</th>
                                     <th>Thời Gian Cập Nhật</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Hành động</th>
+                                    <th data-priority="4">Trạng Thái</th>
+                                    <th data-priority="2">Hành động</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -53,6 +53,7 @@
                 "responsive": true,
                 "stateSave": true,
                 "stateDuration": -1,
+                "order": [[0, 'desc']],
                 "ajax": {
                     "url": "<?= route('getListCustomers',['id' => 2]) ?>",
                     "dataType": "json",
@@ -68,13 +69,13 @@
                             }
                         },
                         {
-                            data: "name", orderable: false
+                            data: "name"
                         },
                         {
-                            data: "phone", orderable: false
+                            data: "phone"
                         },
                         {
-                            data: "email", orderable: false
+                            data: "email"
                         },
                         {
                             data: "created_at"
@@ -92,21 +93,47 @@
                         {
                             data: "id",
                             "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-//                                $(nTd).html("<span type='text' onclick='getConfirmation("+ oData.id+")'><center><a class='text-danger' href=''><b>Khóa</b></a></center></span>");
-                                $(nTd).html("<center><a type='button' href='' id='" + oData.id + "'class='btn btn-primary' onclick='getConfirmation(this.id)'>Khóa</a></center>");
+                                $(nTd).html("<center><a type='button' href='' name='"+oData.email+"' id='" + oData.id + "'class='btn btn-primary' onclick='getConfirmation(this.id,this.name)'>Khóa</a></center>");
                             },
                             orderable: false
                         }
 
-                    ]
+                    ],
+                columnDefs: [
+                    {className: 'control'},
+                    {orderable: false},
+                    {responsivePriority: 1, targets: 0},
+                    {responsivePriority: 2, targets: -1},
+                    {responsivePriority: 3, targets: 3},
+                    {responsivePriority: 4, targets: 6},
+                ],
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
             });
         });
 
-        function getConfirmation(id) {
+        function getConfirmation(id,email) {
             event.preventDefault(); // prevent form submit
             swal({
                 title: "Xác Nhận Khóa Tài Khoản?",
-                text: "Bạn có muốn khóa tài khoản số: " + id + "!",
+                text: "Bạn có muốn khóa tài khoản: " + email + "!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -129,8 +156,8 @@
                                 swal('Cancelled', "Đã có lỗi xảy ra!", "error");
                             }
                             else {
-                                swal("Thành Công", "Đã khóa tài khoản số: " + id, "success");
-                                $('.dataTables-productOfSp').DataTable().ajax.reload();
+                                swal("Thành Công", "Đã khóa tài khoản: " + email, "success");
+                                $('.dataTables-example').DataTable().ajax.reload();
                             }
                         }
                     })

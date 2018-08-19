@@ -245,32 +245,26 @@ class User extends Authenticatable
         $id = request('id');
         $columns = array(
             0 => 'id',
+            1 => 'name',
+            2 => 'phoneNumber',
+            3 => 'email',
             4 => 'created_at',
             5 => 'updated_at'
         );
-        $totalData = User::where('delete_flag', 0)
-            ->where(function ($query) use ($id) {
-                return $query->where('roleId', '=', $id);
-            })
-            ->count();
+        $totalData = User::where([['delete_flag','=', 0],['roleId','=',$id]])->count();
         if (empty($search)) {
-            $users = User::where('delete_flag', 0)
-                ->where(function ($query) use ($id){
-                    return $query->where('roleId', '=', $id);
-                })
+            $users = User::where([['delete_flag','=', 0],['roleId','=',$id]])
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $users = User::where('delete_flag', '=', 0)
-                ->where(function ($query) use ($id){
-                    return $query->where('roleId', '=', $id);
-                })
+            $users = User::where([['delete_flag','=', 0],['roleId','=',$id]])
                 ->where(function ($query) use ($search) {
                     return $query->where('id', 'like', "%$search%")
                         ->orwhere('name', 'like', "%$search%")
+                        ->orwhere('phoneNumber', 'like', "%$search%")
                         ->orwhere('email', 'like', "%$search%");
                 })
                 ->offset($start)
@@ -312,32 +306,26 @@ class User extends Authenticatable
         $id = request('id');
         $columns = array(
             0 => 'id',
+            1 => 'name',
+            2 => 'phoneNumber',
+            3 => 'email',
             4 => 'created_at',
             5 => 'updated_at'
         );
-        $totalData = User::where('delete_flag', '=', 1)
-            ->where(function ($query) use ($id){
-                return $query->where('roleId', '=', $id);
-            })
-            ->count();
+        $totalData = User::where([['delete_flag','=', 1],['roleId','=',$id]])->count();
         if (empty($search)) {
-            $users = User::where('delete_flag', '=', 1)
-                ->where(function ($query)use ($id) {
-                    return $query->where('roleId', '=', $id);
-                })
+            $users = User::where([['delete_flag','=', 1],['roleId','=',$id]])
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
             $totalFiltered = $totalData;
         } else {
-            $users = User::where('delete_flag', '=', 1)
-                ->where(function ($query)use ($id) {
-                    return $query->where('roleId', '=', $id);
-                })
+            $users = User::where([['delete_flag','=', 1],['roleId','=',$id]])
                 ->where(function ($query) use ($search) {
                     return $query->where('id', 'like', "%$search%")
                         ->orwhere('name', 'like', "%$search%")
+                        ->orwhere('phoneNumber', 'like', "%$search%")
                         ->orwhere('email', 'like', "%$search%");
                 })
                 ->offset($start)
@@ -387,6 +375,14 @@ class User extends Authenticatable
     public function isAdmin($user)
     {
         return ($user->roleId == 1);
+    }
+
+    public function block_unblock_sendMail($data,$email){
+        Mail::send('AdminView.emails.block_unblock_mail', $data, function ($message) use ($email) {
+            $message->to($email)
+                ->subject('The Pet Family - Thông Báo');
+            $message->from('thepetfamilyteam@gmail.com');
+        });
     }
 
 }

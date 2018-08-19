@@ -20,6 +20,8 @@ class PageController extends Controller
 
     public  function test(Request $request){
 
+        $orderObj = Order::where([['id','=',49],['status_id','!=',5]])->first();
+        var_dump($orderObj);die;
         $totalData = Order::where('status_id', 5)->where('delete_flag', 0)->get();
         foreach ($totalData as $order){
             if($order->payment->id != 18){
