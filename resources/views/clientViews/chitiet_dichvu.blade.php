@@ -154,7 +154,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="row">{{$same_products->appends(['p3' => $same_products->currentPage()])->links()}}</div>
+                        <div>{{$same_products->appends(['p3' => $same_products->currentPage()])->links()}}</div>
                     </div> <!-- .beta-products-list -->
                 </div>
                 <div class="widget">

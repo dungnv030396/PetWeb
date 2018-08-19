@@ -115,6 +115,27 @@ class Product extends Model
         return $listProduct;
     }
 
+    public function getProductsAll($number_record)
+    {
+        $cate = new Category();
+        $cata = Catalog::find(1);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        $idCategoryArray = array();
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $cata = Catalog::find(2);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $listProduct = Product::where([
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0]
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record, ['*'], 'p1');
+        return $listProduct;
+    }
+
     public function getNewProducts($number_record)
     {
         $listProduct = Product::where([

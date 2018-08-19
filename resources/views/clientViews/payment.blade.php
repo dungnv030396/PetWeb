@@ -9,15 +9,9 @@
         <article class="card">
             <div class="card-body p-5">
                 <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
                             <i class="fa fa-credit-card"></i> Credit Card</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                            <i class="fab fa-paypal"></i> Paypal</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                            <i class="fa fa-university"></i> Bank Transfer</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -64,30 +58,6 @@
                                 </div>
                             </div> <!-- row.// -->
                         </form>
-                    </div> <!-- tab-pane.// -->
-                    <div class="tab-pane fade" id="nav-tab-paypal">
-                        <p>Paypal là cách dễ nhất để thanh toán trực tuyến</p>
-                        <p>
-                            <button type="button" class="btn btn-primary"><i class="fab fa-paypal"></i> Log in my Paypal
-                            </button>
-                        </p>
-                        <p><strong>Note:</strong>Chắc chắn rằng bạn có tài khoản paypal và sử dụng thành thạo</p>
-                    </div>
-                    <div class="tab-pane fade" id="nav-tab-bank">
-                        <p>Thông tin tài khoản ngân hàng</p>
-                        <dl class="param">
-                            <dt>Ngân hàng:</dt>
-                            <dd> Vietcombank</dd>
-                        </dl>
-                        <dl class="param">
-                            <dt>Số tài khoản:</dt>
-                            <dd> 12345678912345</dd>
-                        </dl>
-                        <dl class="param">
-                            <dt>Chủ tài khoản:</dt>
-                            <dd> Công ty The Pet Family</dd>
-                        </dl>
-                        <p><strong>Note:</strong> Khi chuyển khoản vui lòng kiểm tra kĩ thông tin tài khoản kèm nội dung: TPF-Thanh toán cho 'email'.</p>
                     </div> <!-- tab-pane.// -->
                 </div> <!-- tab-content .// -->
 
