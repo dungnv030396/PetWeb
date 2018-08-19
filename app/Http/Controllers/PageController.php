@@ -73,7 +73,7 @@ class PageController extends Controller
     {
         $product = new Product();
         $slide = Slide::all();
-        $pet_products = $product->getProductsByCatalogID(1,8);
+        $pet_products = $product->getProductsAll(8);
         $sale_products = $product->getSaleProducts(8);
         return view('clientViews.trangchu', compact('slide', 'pet_products', 'sale_products'));
     }
