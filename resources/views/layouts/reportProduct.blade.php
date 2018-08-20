@@ -15,9 +15,7 @@
 </script>
 @if(count($errors))
     <script>
-        $(function () {
-            $("#dropdown").addClass("open");
-        })
+etp
     </script>
 @endif
 @if(!empty(Session::get('reportSuccess')))
