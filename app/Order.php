@@ -49,6 +49,7 @@ class Order extends Model
     {
         $columns = array(
             0 => 'id',
+            4 => 'created_at'
         );
         // $page = floor($start / $length) + 1;
         $totalData = Order::where('delete_flag', 0)->count();
