@@ -49,10 +49,9 @@ class Order extends Model
     {
         $columns = array(
             0 => 'id',
-            4 => 'created_at'
         );
         // $page = floor($start / $length) + 1;
-        $totalData = Order::count();
+        $totalData = Order::where('delete_flag', 0)->count();
         if (empty($search)) {
             $orders = Order::where('delete_flag', 0)
                 ->offset($start)
@@ -95,7 +94,7 @@ class Order extends Model
                 $nestedData['created_at'] = $order->created_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['updated_at'] = $order->updated_at->modify('+7 hours')->format('H:i:s d/m/Y');
                 $nestedData['orderDetail'] = '
-					<center><a href="' . route('blockAccount', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a></center>
+					<center><a href="' . route('orderDetail', $order->id) . '">' . '<b>Chi tiết đơn hàng</b>' . '</a></center>
 				';
                 $data[] = $nestedData;
             }
