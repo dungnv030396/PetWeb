@@ -40,7 +40,7 @@ Route::get('contact',[
     'as'=>'lienhe',
     'uses'=>'PageController@getLienHe'
 ]);
-
+Route::post('send-contact-success','ContactController@create')->name('sendContact');
 Route::get('introduce',[
     'as'=>'gioithieu',
     'uses'=>'PageController@getGioiThieu'
