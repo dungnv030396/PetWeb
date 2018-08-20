@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\OrderlinepaymentStatus;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -164,7 +165,11 @@ class OrderLine extends Model
         $startDate = substr($startDate, -4) . '-' . substr($startDate, 0, 1) . substr($startDate, 1, -5);
         $endDate = substr($endDate, -4) . '-' . substr($endDate, 0, 1) . substr($endDate, 1, -5);
         if ($status_id == 0) {
-            $status_id = [1, 2, 3];
+            $status_id = array();
+            $statues = OrderlinepaymentStatus::all('id');
+            foreach($statues as $sta){
+                $status_id[] = $sta->id;
+            }
         }else{
             $status_id = [$status_id];
         }
@@ -234,6 +239,100 @@ class OrderLine extends Model
             "recordsFiltered" => intval($totalFiltered),
             // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data" => $data
+        );
+        return $json_data;
+    }
+
+    //at supplier management view
+    public function getSupplier_financeDataAjax($start, $length, $search, $oderColunm, $oderSortType, $draw, $startDate, $endDate, $status_id)
+    {
+        $columns = array(
+            0 => 'id',
+            5 => 'payment_date'
+        );
+        $startDate = substr($startDate, -4) . '-' . substr($startDate, 0, 1) . substr($startDate, 1, -5);
+        $endDate = substr($endDate, -4) . '-' . substr($endDate, 0, 1) . substr($endDate, 1, -5);
+        if ($status_id == 0) {
+            $status_id = array();
+            $statues = OrderlinepaymentStatus::all('id');
+            foreach($statues as $sta){
+                $status_id[] = $sta->id;
+            }
+        }else{
+            $status_id = [$status_id];
+        }
+        $totalAmount = 0;
+        $totalReceive = 0;
+        $totalData = OrderLine::whereIn('finance_status', $status_id)
+            ->whereHas('order', function ($query) {
+                $query->where('delete_flag', 0);
+            })->whereBetween('payment_date', [$startDate, $endDate])->count();
+        if (empty($search)) {
+            $orderLines = OrderLine::whereIn('finance_status', $status_id)
+                ->whereHas('order', function ($query) {
+                    $query->where('delete_flag', 0);
+                })
+                ->whereBetween('payment_date', [$startDate, $endDate])
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $totalData;
+        } else {
+            $orderLines = OrderLine::whereIn('finance_status', $status_id)
+                ->whereHas('order', function ($query) use ($search) {
+                    $query->where('delete_flag', 0);
+                    $query->where('id', 'like', "%$search%");
+                })
+                ->whereBetween('payment_date', [$startDate, $endDate])
+                ->offset($start)
+                ->limit($length)
+                ->orderBy($columns[$oderColunm], $oderSortType)
+                ->get();
+            $totalFiltered = $orderLines->count();
+        }
+        $data = array();
+        if ($orderLines) {
+            foreach ($orderLines as $orderLine) {
+                $nestedData = array();
+                $nestedData['order_code'] = $orderLine->order->id . '-' . $orderLine->id;
+                $nestedData['orderLine_id'] = $orderLine->id;
+                $nestedData['bank'] = '';
+                if($orderLine->product->user->card_number){
+                    $nestedData['bank'] = $orderLine->product->user->bank_name.', chi nhánh '.$orderLine->product->user->bank_branch;
+                }
+                $nestedData['card_number'] = $orderLine->product->user->card_number;
+                $nestedData['payment_status_name'] = $orderLine->payment_status->name;
+                $nestedData['payment_status'] = $orderLine->finance_status;
+                if ($orderLine->payment_date) {
+                    $nestedData['payment_date'] = Carbon::parse($orderLine->payment_date)->format('d/m/Y');
+
+                } else {
+                    $nestedData['payment_date'] = '';
+                }
+                $nestedData['amount'] = number_format($orderLine->amount - ($orderLine->amount * 0.1));
+                $nestedData['product_id'] = $orderLine->product->id;
+                $nestedData['product_name'] = $orderLine->product->name;
+                $nestedData['discount'] = $orderLine->product->discount;
+                $nestedData['price'] = number_format($orderLine->product->price);
+                $nestedData['salePrice'] = number_format($orderLine->product->price - (($orderLine->product->price * $orderLine->product->discount) / 100));
+                $nestedData['quantity'] = $orderLine->quantity;
+                $nestedData['amountLine'] = number_format($orderLine->amount);
+                $totalAmount += $orderLine->amount;
+                $totalReceive += $orderLine->amount - ($orderLine->amount * 0.1);
+                $data[] = $nestedData;
+            }
+        }
+        $json_data = array(
+            "draw" => intval($draw),
+            // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData),
+            // total number of records
+            "recordsFiltered" => intval($totalFiltered),
+            // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data,
+            "totalAmount" => $totalAmount,
+            "totalReceive" => $totalReceive
         );
         return $json_data;
     }

@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/testview', function () {
-    return view('test');
-});
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -319,5 +315,8 @@ Route::post('admin/management/blocked-users-list','DatatableController@getListUs
 Route::post('admin/management/store-finance-data','DatatableController@store_financeDataAjax')->name('store_financeData');
 Route::post('admin/manage/users-list/unblock','AdminController@unblockAccount')->name('unblockAccountByAdmin');
 
+//at supplier manage
+Route::get('supplier/management/finance','SupplierController@supplier_financeView')->name('supplier_financeView');
+Route::post('supplier/management/finance-data','DatatableController@getSupplier_financeDataAjax')->name('atSupplierView_financeData');
 
 
