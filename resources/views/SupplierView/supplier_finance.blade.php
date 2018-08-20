@@ -59,6 +59,12 @@
                                 </thead>
                             </table>
                         </div>
+                        <div class="space-30"></div>
+                        <div>
+                            <label class="text-info" style="font-size: larger">Tổng tiền hàng trước thu phí:</label><label style="font-size: larger"><span id="loadAmount"></span></label>
+                            <br>
+                            <label class="text-info" style="font-size: larger">Tổng tiền hàng nhận về:</label><label style="font-size: larger"><span id="loadReceive"></span></label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,6 +163,10 @@
                     {responsivePriority: 3, targets: 5},
                     {responsivePriority: 4, targets: 3},
                 ],
+                "drawCallback": function( data ) {
+                    $("#loadAmount").html("&nbsp;"+data.json.totalAmount+"đ");
+                    $("#loadReceive").html("&nbsp;"+data.json.totalReceive+"đ");
+                },
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     {extend: 'copy'},

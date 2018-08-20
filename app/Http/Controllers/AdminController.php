@@ -61,8 +61,13 @@ class AdminController extends Controller
     public function supplier_financeView(Request $request)
     {
         $menu = 'finance';
-        $startDate = Carbon::parse(OrderLine::orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
-        $endDate = Carbon::parse(OrderLine::orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
+        try{
+            $startDate = Carbon::parse(OrderLine::orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
+            $endDate = Carbon::parse(OrderLine::orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
+        }catch (\Exception $e){
+            $startDate = Carbon::parse(Carbon::now())->modify('+7 hours')->format('m-d-Y');
+            $endDate = $startDate;
+        }
         $status = OrderlinepaymentStatus::all();
         return view('AdminView.supplier_finance', compact('menu','startDate','endDate','status'));
     }
@@ -101,8 +106,13 @@ class AdminController extends Controller
     {
         $moderators = User::where([['roleId','=',4],['delete_flag','=',0]])->get();
         $menu = 'finance';
-        $startDate = Carbon::parse(Order::where('status_id',5)->orderBy('completed_at','asc')->first()->completed_at)->format('m-d-Y');
-        $endDate = Carbon::parse(Order::where('status_id',5)->orderBy('completed_at','desc')->first()->completed_at)->format('m-d-Y');
+        try {
+            $startDate = Carbon::parse(Order::where('status_id', 5)->orderBy('completed_at', 'asc')->first()->completed_at)->format('m-d-Y');
+            $endDate = Carbon::parse(Order::where('status_id', 5)->orderBy('completed_at', 'desc')->first()->completed_at)->format('m-d-Y');
+        }catch (\Exception $e){
+            $startDate = Carbon::parse(Carbon::now())->modify('+7 hours')->format('m-d-Y');
+            $endDate = $startDate;
+        }
         return view('AdminView.store_finance', compact('menu','startDate','endDate','moderators'));
     }
 
