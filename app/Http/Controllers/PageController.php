@@ -17,17 +17,22 @@ use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use function Sodium\add;
+use App\Cart;
 
 class PageController extends Controller
 {
 
     public  function test(Request $request){
-        $statues = OrderlinepaymentStatus::all('id');
-        $a = array();
-        foreach ($statues as $s){
-            $a[] = $s->id;
-        }
-        var_dump($a);
+        $oldcart = Session('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldcart);
+        $product_id = 12;
+        $quantity = 3-1;
+        $product = new Product();
+        $pro = $product->getProductById($product_id);
+        $cart->add($pro, $quantity);
+        $request->session()->put('cart', $cart);
+        $amount = number_format($cart->totalPrice);
+        var_dump($amount);
         die;
 
     }

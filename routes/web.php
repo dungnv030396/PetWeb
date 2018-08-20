@@ -319,4 +319,5 @@ Route::post('admin/manage/users-list/unblock','AdminController@unblockAccount')-
 Route::get('supplier/management/finance','SupplierController@supplier_financeView')->name('supplier_financeView');
 Route::post('supplier/management/finance-data','DatatableController@getSupplier_financeDataAjax')->name('atSupplierView_financeData');
 
-
+//tinh tong tien dat hang ajax
+Route::post('data-load/amount','CartsController@loadAmountAjax')->name('loadAmount');

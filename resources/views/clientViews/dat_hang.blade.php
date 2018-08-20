@@ -93,7 +93,7 @@
 					<div class="col-sm-6">
 						<div class="your-order">
 							<div class="your-order-head"><h5>Đơn hàng của bạn</h5></div>
-							<div class="your-order-body" style="padding: 0px 10px">
+							<div class="your-order-body" style="padding: 0px 10px" id="loadDataAmount">
 								<div class="your-order-item">
 									<div>
 									<!--  one item	 -->
@@ -110,9 +110,13 @@
 															{{number_format($product['item']->price)}}đ
 														@endif
 													</span>
+													<br>
 													<span class="color-gray your-order-info">Số lượng:
-														<input class="qty-input1" id="quantity" name="quantity{{$product['item']->id}}" type="number" value="{{$product['quantity']}}" max="{{$product['item']->quantity}}" min="1"/>
+														<input class="form-block" id="{{$product['item']->id}}" name="quantity{{$product['item']->id}}" type="number" value="{{$product['quantity']}}" max="{{$product['item']->quantity}}" min="1"
+														onchange="innerHtmlAjaxData(this)"
+														/>
 													</span>
+													<br>
 													<span class="color-gray your-order-info">Tổng: {{number_format($product['amountOfLine'])}}đ</span>
 												</div>
 											</div>
@@ -160,4 +164,21 @@
 			</form>
 		</div> <!-- #content -->
 	</div> <!-- .container -->
+	<script src="source/assets/manage/js/jquery-2.1.1.js"></script>
+	<script type="text/javascript" language="javascript" >
+        function innerHtmlAjaxData(ob){
+            $.ajax({
+                "type": "POST",
+                "url": "{{route('loadAmount')}}",
+                "data": {
+                    _token: "{{csrf_token()}}",
+                    quantity: ob.value,
+					product_id: ob.id
+                },
+                success: function(data) {
+                    $("#loadDataAmount").html(data);
+                }
+            });
+        }
+	</script>
 	@endsection
