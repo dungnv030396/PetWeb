@@ -26,8 +26,10 @@
 					<div class="col-sm-3">
 						<ul class="aside-menu">
 							@foreach($catalogs as $catalog)
-								<li><a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>null])}}">{{$catalog->name}}</a>
-									<ul>
+								<li><a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>null])}}"><b style="font-size: medium">{{$catalog->name}}</b></a><span style="font-size: medium">({{$catalog->categories->count()}})</span>&nbsp;
+									<a onclick="displayHide(this,'hide{{$catalog->id}}','ulDisplay{{$catalog->id}}')" name="display{{$catalog->id}}"><span class="glyphicon glyphicon-plus" id="display{{$catalog->id}}"></span></a>
+									<a onclick="displayDisplay(this,'display{{$catalog->id}}','ulDisplay{{$catalog->id}}')" name="hide{{$catalog->id}}"><span class="glyphicon glyphicon-minus" id="hide{{$catalog->id}}" style="display: none"></span></a>
+									<ul id="ulDisplay{{$catalog->id}}" style="display: none">
 										@foreach($catalog->categories as $category)
 											<li><a href="{{route('sanphamtheoloai',['cata_id'=>$catalog->id,'cate_id'=>$category->id])}}">{{$category->name}} </a></li>
 										@endforeach
@@ -162,3 +164,15 @@
 @endsection
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" language="javascript">
+    function displayHide(d,hide,ul){
+        document.getElementById(d.name).style.display = 'none';
+	    document.getElementById(hide).style.display = 'inline';
+	    document.getElementById(ul).style.display = 'block'
+	}
+    function displayDisplay(d,display,ul){
+        document.getElementById(d.name).style.display = 'none';
+        document.getElementById(display).style.display = 'inline';
+        document.getElementById(ul).style.display = 'none'
+    }
+</script>

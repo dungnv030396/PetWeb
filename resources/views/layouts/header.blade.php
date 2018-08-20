@@ -60,11 +60,10 @@
                     <div class="cart">
                         @if(Session::has('cart'))
                             <div class="beta-select"><i class="fa fa-shopping-cart"></i>
-                                Giỏ hàng(
                                 @if(Session::has('cart'))
-                                    {{Session('cart')->totalQuantity}}
+                                    Giỏ hàng({{Session('cart')->totalQuantity}})
                                 @else
-                                    0)
+                                    Giỏ hàng(0)
                                 @endif
                                 <i class="fa fa-chevron-down"></i></div>
                             <div class="beta-dropdown cart-body">
