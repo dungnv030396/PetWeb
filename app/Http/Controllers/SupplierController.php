@@ -13,6 +13,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use App\OrderlinepaymentStatus;
 
 class SupplierController extends Controller
 {
@@ -111,6 +113,19 @@ class SupplierController extends Controller
             'success' => $success_output
         );
         echo json_encode($output);
+    }
+
+    public function supplier_financeView(Request $request)
+    {
+        $menu = 'finance';
+        $startDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
+            $query->where('user_id',Auth::user()->id);
+        })->orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
+        $endDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
+            $query->where('user_id',Auth::user()->id);
+        })->orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
+        $status = OrderlinepaymentStatus::all();
+        return view('SupplierView.supplier_finance', compact('menu','startDate','endDate','status'));
     }
 
 }

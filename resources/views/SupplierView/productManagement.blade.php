@@ -13,6 +13,7 @@
     <link href="source/assets/manage/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="source/assets/manage/css/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="source/assets/manage/css/animate.css" rel="stylesheet">
     <link href="source/assets/manage/css/style.css" rel="stylesheet">
 </head>
@@ -44,6 +45,9 @@
                         <li><a href="{{route('productManagement')}}">Danh Sách Sản Phẩm</a></li>
                         <li><a href="{{route('order_product')}}">Sẩn phẩm cần giao</a></li>
                     </ul>
+                </li>
+                <li class="{{($menu=='finance')?'active':''}}">
+                    <a href="{{route('supplier_financeView')}}"><i class="fa fa-money"></i> <span class="nav-label">Quản lý tài chính</span></a>
                 </li>
             </ul>
 

@@ -28,7 +28,7 @@
                     <div class="space-5"></div>
                     <div class="row">
                         <button class="btn btn-sm btn-primary" type="submit"><strong>Cập nhật</strong></button>
-                        <button class="btn btn-sm btn-primary" type="submit"><strong>Hủy</strong></button>
+                        <button class="btn btn-sm btn-primary" data-dismiss="modal"><strong>Hủy</strong></button>
                     </div>
                 </form>
             </div>

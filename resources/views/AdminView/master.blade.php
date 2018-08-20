@@ -47,7 +47,28 @@
                     </div>
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('admin_manage_place')}}"><i
-                                class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a></li>
+                                class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a>
+                </li>
+                <li class="{{($menu=='listusers')?'active':''}}">
+                    <a href=""><i class="fa fa-group"></i> <span class="nav-label">Danh Sách Người Dùng</span>
+                        <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{route('getListCustomerPage')}}">Khách Hàng</a></li>
+                        <li><a href="{{route('getListCustomersBlockedPage')}}">Khách Hàng Bị Khóa</a></li>
+                        <li><a href="{{route('getListSupplierPage')}}">Nhà Cung Cấp</a></li>
+                        <li><a href="{{route('getListSupplierBlockedPage')}}">Nhà Cung Cấp Bị Khóa</a></li>
+                        <li><a href="{{route('getListModeratorsPage')}}">Quản Trị Viên</a></li>
+                        <li><a href="{{route('getListModeratorBlockedPage')}}">Quản Trị Viên Bị Khóa</a></li>
+                    </ul>
+                </li>
+                <li class="{{($menu=='finance')?'active':''}}">
+                    <a href="#"><i class="fa fa-money"></i> <span class="nav-label">Quản lý tài chính</span>
+                        <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{route('supplierFinanceView')}}">Thanh toán cho nhà cung cấp</a></li>
+                        <li><a href="{{route('webFinanceView')}}">Thống kê tài chính</a></li>
+                    </ul>
+                </li>
                 <li class="{{($menu=='report')?'active':''}}">
                     <a href="{{route('getListsReport')}}"><i class="fa fa-flag"></i> <span class="nav-label">Quản lý Báo Cáo</span>
                         <span class="fa arrow"></span></a>
@@ -58,26 +79,6 @@
                 </li>
                 <li class="{{($menu=='supplier')?'active':''}}">
                     <a href="{{route('listRegistrationForm')}}"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Xét Duyệt Đơn</span></a>
-                </li>
-                <li class="{{($menu=='finance')?'active':''}}">
-                    <a href="#"><i class="fa fa-money"></i> <span class="nav-label">Quản lý tài chính</span>
-                        <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="{{route('supplierFinanceView')}}">Thanh toán cho nhà cung cấp</a></li>
-                        <li><a href="{{route('webFinanceView')}}">Thống kê tài chính</a></li>
-                    </ul>
-                </li>
-                <li class="{{($menu=='listusers')?'active':''}}">
-                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Danh Sách Người Dùng</span>
-                        <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="{{route('getListCustomerPage')}}">Khách Hàng</a></li>
-                        <li><a href="{{route('getListCustomersBlockedPage')}}">Khách Hàng Bị Khóa</a></li>
-                        <li><a href="{{route('getListSupplierPage')}}">Nhà Cung Cấp</a></li>
-                        <li><a href="{{route('getListSupplierBlockedPage')}}">Nhà Cung Cấp Bị Khóa</a></li>
-                        <li><a href="{{route('getListModeratorsPage')}}">Quản Trị Viên</a></li>
-                        <li><a href="{{route('getListModeratorBlockedPage')}}">Quản Trị Viên Bị Khóa</a></li>
-                    </ul>
                 </li>
             </ul>
 
