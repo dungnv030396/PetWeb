@@ -118,12 +118,17 @@ class SupplierController extends Controller
     public function supplier_financeView(Request $request)
     {
         $menu = 'finance';
-        $startDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
-            $query->where('user_id',Auth::user()->id);
-        })->orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
-        $endDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
-            $query->where('user_id',Auth::user()->id);
-        })->orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
+        try{
+            $startDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            })->orderBy('payment_date','asc')->first()->payment_date)->format('m-d-Y');
+            $endDate = Carbon::parse(OrderLine::whereHas('product',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            })->orderBy('payment_date','desc')->first()->payment_date)->format('m-d-Y');
+        }catch (\Exception $e){
+            $startDate = Carbon::parse(Carbon::now())->modify('+7 hours')->format('m-d-Y');
+            $endDate = $startDate;
+        }
         $status = OrderlinepaymentStatus::all();
         return view('SupplierView.supplier_finance', compact('menu','startDate','endDate','status'));
     }

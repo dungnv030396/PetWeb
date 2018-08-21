@@ -331,8 +331,8 @@ class OrderLine extends Model
             "recordsFiltered" => intval($totalFiltered),
             // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data" => $data,
-            "totalAmount" => $totalAmount,
-            "totalReceive" => $totalReceive
+            "totalAmount" => number_format($totalAmount),
+            "totalReceive" => number_format($totalReceive),
         );
         return $json_data;
     }

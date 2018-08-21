@@ -23,6 +23,11 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $date = new \DateTime('now');
+        $mytime = Carbon::now();
+        var_dump(Carbon::parse($mytime)->modify('+7 hours')->format('m-d-Y'));die;
+        $str = Carbon::parse($date['date'])->modify('+7 hours')->format('m-d-Y');
+        var_dump($str);die;
         $oldcart = Session('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldcart);
         $product_id = 12;

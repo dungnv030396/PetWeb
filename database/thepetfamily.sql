@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2018 at 11:58 AM
+-- Generation Time: Aug 20, 2018 at 06:54 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -67,17 +67,17 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `catalog_id`, `created_at`, `updated_at`) VALUES
-(1, 'chó', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(2, 'mèo', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(3, 'chim', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(4, 'thức ăn', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(5, 'đồ chơi', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(6, 'quần áo', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(7, 'làm đẹp', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(8, 'trông giữ', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(9, 'chữa trị', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(10, 'đồ dùng', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
-(11, 'Chim', 1, '2018-08-09 17:02:15', '2018-08-09 17:02:15');
+(1, 'Chó', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(2, 'Mèo', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(3, 'Chim', 1, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(4, 'Thức ăn', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(5, 'Đồ chơi', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(6, 'Quần áo', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(7, 'Làm đẹp', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(8, 'Trông giữ', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(9, 'Chữa trị', 3, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(10, 'Đồ dùng', 2, '2018-08-10 00:00:45', '2018-08-10 00:00:45'),
+(11, 'Bò sát', 1, '2018-08-09 17:02:15', '2018-08-09 17:02:15');
 
 -- --------------------------------------------------------
 
@@ -181,36 +181,23 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `comments`
+-- Table structure for table `contacts`
 --
 
-INSERT INTO `comments` (`id`, `user_id`, `product_id`, `media_link`, `description`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 5, 13, NULL, 'good', 0, '2018-08-01 11:21:17', '2018-08-01 11:21:17'),
-(2, 5, 2, NULL, 'good product :v', 0, '2018-08-01 11:22:27', '2018-08-01 11:22:27'),
-(3, 5, 2, 'https://www.youtube.com/embed/owWLZq3y2-4', 'nice', 0, '2018-08-01 11:23:41', '2018-08-01 11:23:41'),
-(4, 5, 2, NULL, '1', 0, '2018-08-01 12:19:21', '2018-08-01 12:19:21'),
-(5, 5, 2, NULL, '2', 0, '2018-08-01 12:19:29', '2018-08-01 12:19:29'),
-(6, 5, 2, NULL, '3', 0, '2018-08-01 12:19:37', '2018-08-01 12:19:37'),
-(7, 5, 2, NULL, '5', 0, '2018-08-01 12:19:48', '2018-08-01 12:19:48'),
-(8, 5, 2, NULL, 'sd', 0, '2018-08-01 13:14:27', '2018-08-01 13:14:27'),
-(9, 5, 2, 'https://www.youtube.com/embed/owWLZq3y2-4', 'like that', 0, '2018-08-01 13:34:46', '2018-08-01 13:34:46'),
-(10, 5, 2, 'sdsa', 'dsa', 0, '2018-08-01 13:42:32', '2018-08-01 13:42:32'),
-(11, 5, 2, NULL, 'dsadasds', 0, '2018-08-04 14:33:00', '2018-08-04 14:33:00'),
-(12, 5, 2, NULL, 'dsdsda', 0, '2018-08-04 14:33:22', '2018-08-04 14:33:22'),
-(13, 5, 2, NULL, 's111111', 0, '2018-08-04 14:40:57', '2018-08-04 14:40:57'),
-(14, 5, 2, NULL, 's111111', 0, '2018-08-04 14:40:58', '2018-08-04 14:40:58'),
-(15, 5, 2, NULL, 's111111', 0, '2018-08-04 14:40:58', '2018-08-04 14:40:58'),
-(16, 5, 2, NULL, 's111111', 0, '2018-08-04 14:40:58', '2018-08-04 14:40:58'),
-(17, 5, 2, NULL, 's111111', 0, '2018-08-04 14:40:58', '2018-08-04 14:40:58'),
-(18, 5, 2, NULL, 'fsdf', 0, '2018-08-04 15:08:28', '2018-08-04 15:08:28'),
-(19, 5, 2, NULL, 'dsads', 0, '2018-08-04 15:09:50', '2018-08-04 15:09:50'),
-(20, 5, 2, NULL, 'tesst', 0, '2018-08-04 15:12:50', '2018-08-04 15:12:50'),
-(21, 5, 2, NULL, 'dsads', 0, '2018-08-04 15:15:09', '2018-08-04 15:15:09'),
-(22, 5, 2, NULL, '1234355', 0, '2018-08-04 15:15:51', '2018-08-04 15:15:51'),
-(23, 5, 2, NULL, 'đasadsdas', 0, '2018-08-05 11:56:14', '2018-08-05 11:56:14'),
-(24, 5, 2, NULL, 'đá', 0, '2018-08-05 12:12:10', '2018-08-05 12:12:10'),
-(25, 5, 18, NULL, 'dsad', 0, '2018-08-10 15:53:01', '2018-08-10 15:53:01');
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -231,8 +218,7 @@ CREATE TABLE IF NOT EXISTS `orderlinepayment_statuses` (
 
 INSERT INTO `orderlinepayment_statuses` (`id`, `name`) VALUES
 (1, 'Chưa thanh toán'),
-(2, 'Đã thanh toán'),
-(3, 'Quá hạn thanh toán');
+(2, 'Đã thanh toán');
 
 -- --------------------------------------------------------
 
@@ -252,11 +238,11 @@ CREATE TABLE IF NOT EXISTS `orderline_statuses` (
 --
 
 INSERT INTO `orderline_statuses` (`id`, `stt`) VALUES
-(1, 'đang xử lý'),
-(2, 'đang vận chuyển'),
-(3, 'đã vào kho'),
-(4, 'đang ship'),
-(5, 'hoàn thành');
+(1, 'Đang xử lý'),
+(2, 'Đang vận chuyển'),
+(3, 'Đã vào kho'),
+(4, 'Đang giao hàng'),
+(5, 'Đã hoàn thành');
 
 -- --------------------------------------------------------
 
@@ -280,53 +266,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `completed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `status_id`, `finance_status`, `address`, `city_code`, `warehouse_id`, `moderator_id`, `user_id`, `payment_id`, `delete_flag`, `created_at`, `updated_at`, `completed_at`) VALUES
-(9, 2, 1, 'HCM', 0, 1, 5, 5, 15, 0, '2018-08-04 13:28:56', '2018-08-10 13:06:47', NULL),
-(10, 2, 1, 'HCM', 0, 1, 5, 5, 16, 1, '2018-08-04 13:30:12', '2018-08-10 12:53:59', NULL),
-(11, 2, 1, 'HCM11111111', 0, 1, 5, 5, 17, 0, '2018-08-04 13:42:37', '2018-08-10 12:53:17', NULL),
-(12, 5, 1, 'Hà Nội', 0, 1, 5, 5, 18, 0, '2018-08-06 15:44:49', '2018-08-19 07:05:46', '2018-08-18 14:05:12'),
-(13, 2, 1, 'dsadsadsad', 0, 1, 5, 5, 19, 0, '2018-08-06 15:45:18', '2018-08-10 13:10:08', NULL),
-(14, 2, 1, 'dsadsadsad', 0, 1, 5, 5, 20, 0, '2018-08-06 15:45:59', '2018-08-10 13:51:04', NULL),
-(15, 2, 1, 'HCM', 0, 1, 5, 5, 21, 0, '2018-08-06 15:46:28', '2018-08-14 10:11:32', NULL),
-(16, 1, 1, 'dsadsadsad', 0, 1, NULL, 5, 22, 0, '2018-08-09 11:28:56', '2018-08-09 11:28:56', NULL),
-(17, 1, 1, 'sads', 0, 1, NULL, 5, 23, 0, '2018-08-09 11:30:15', '2018-08-09 11:30:15', NULL),
-(18, 1, 1, 'dsadsadsad', 0, 1, NULL, 5, 24, 0, '2018-08-09 11:34:21', '2018-08-09 11:34:21', NULL),
-(19, 1, 1, 'dsadsadsad', 0, 1, NULL, 5, 25, 0, '2018-08-09 11:35:48', '2018-08-09 11:35:48', NULL),
-(20, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 26, 0, '2018-08-09 11:37:02', '2018-08-09 11:37:02', NULL),
-(21, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 27, 0, '2018-08-09 11:38:22', '2018-08-09 11:38:22', NULL),
-(22, 1, 1, 'dsad', 0, 1, NULL, 5, 28, 0, '2018-08-09 11:38:52', '2018-08-09 11:38:52', NULL),
-(23, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 29, 0, '2018-08-09 11:39:15', '2018-08-09 11:39:15', NULL),
-(24, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 30, 0, '2018-08-09 11:48:02', '2018-08-09 11:48:02', NULL),
-(25, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 31, 0, '2018-08-09 11:49:43', '2018-08-09 11:49:43', NULL),
-(26, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 32, 0, '2018-08-09 11:51:30', '2018-08-09 11:51:30', NULL),
-(27, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 33, 0, '2018-08-09 11:52:57', '2018-08-09 11:52:57', NULL),
-(28, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 34, 0, '2018-08-09 11:53:41', '2018-08-09 11:53:41', NULL),
-(29, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 35, 0, '2018-08-09 11:54:41', '2018-08-09 11:54:41', NULL),
-(30, 1, 1, 'HCM11111111', 0, 1, NULL, 5, 36, 0, '2018-08-09 11:55:37', '2018-08-09 11:55:37', NULL),
-(31, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 37, 0, '2018-08-09 11:57:54', '2018-08-09 11:57:54', NULL),
-(32, 1, 1, 'đường Đình Thôn, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội', 0, 1, NULL, 5, 38, 0, '2018-08-09 12:48:27', '2018-08-09 12:48:27', NULL),
-(33, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 39, 0, '2018-08-09 13:05:57', '2018-08-09 13:05:57', NULL),
-(34, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 40, 0, '2018-08-09 13:07:04', '2018-08-09 13:07:04', NULL),
-(35, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 41, 0, '2018-08-09 13:11:06', '2018-08-09 13:11:06', NULL),
-(36, 1, 1, 'Hà Nội', 0, 1, NULL, 5, 42, 1, '2018-08-09 13:12:06', '2018-08-09 13:12:06', NULL),
-(37, 5, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc', 1, 1, 5, 10, 43, 0, '2018-08-13 09:20:09', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(38, 5, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên', 1, 1, 5, 10, 44, 0, '2018-08-13 09:21:11', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(39, 5, 1, 'cho nay,Thành phố Hà Nội', 1, 1, 5, 10, 45, 0, '2018-08-13 09:22:18', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(40, 5, 1, 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên,Tỉnh Quảng Ninh', 22, 1, 5, 10, 46, 0, '2018-08-13 09:24:43', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(41, 5, 1, 'dấd,Tỉnh Đắk Lắk', 66, 2, 5, 7, 47, 0, '2018-08-13 14:56:39', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(42, 5, 1, 'số 117,Tỉnh Bà Rịa - Vũng Tàu', 77, 3, 5, 7, 48, 0, '2018-08-13 15:03:39', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(43, 5, 1, 'Hà Nội,Tỉnh Hà Giang,Tỉnh Bà Rịa - Vũng Tàu', 77, 3, 5, 7, 49, 0, '2018-08-13 15:09:35', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(44, 2, 1, 'dsadasds,Tỉnh Hà Giang', 2, 1, 5, 7, 50, 1, '2018-08-13 15:14:01', '2018-08-14 10:07:01', NULL),
-(47, 2, 1, 'Hà Nội,Tỉnh Hà Giang,Tỉnh Bà Rịa - Vũng Tàu', 2, 1, 5, 7, 53, 1, '2018-08-13 15:22:23', '2018-08-14 12:24:24', NULL),
-(48, 5, 1, 'Hà Nội,Tỉnh Hà Giang,Tỉnh Bà Rịa - Vũng Tàu', 2, 1, 5, 7, 54, 0, '2018-08-13 15:23:38', '2018-08-19 07:05:46', '2018-08-19 14:05:12'),
-(49, 4, 1, 'Hà Nội', 1, 1, 5, 1, 55, 1, '2018-08-13 18:58:57', '2018-08-14 10:12:33', NULL),
-(50, 5, 1, 'Hà Nội,Tỉnh Hà Giang,Tỉnh Bà Rịa - Vũng Tàu', 2, 1, 10, 7, 56, 0, '2018-08-14 15:30:21', '2018-08-19 07:05:46', '2018-08-19 14:05:12');
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -350,77 +290,7 @@ CREATE TABLE IF NOT EXISTS `order_lines` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `order_lines`
---
-
-INSERT INTO `order_lines` (`id`, `order_id`, `city_code`, `warehouse_id`, `product_id`, `quantity`, `amount`, `orderline_status_id`, `finance_status`, `sent_at`, `payment_date`, `created_at`, `updated_at`) VALUES
-(8, 5, 1, 1, 2, 1, 6800000, 1, 1, NULL, '2018-08-06', '2018-07-29 17:29:46', '2018-08-18 16:00:23'),
-(9, 5, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-06', '2018-07-29 17:29:46', '2018-08-18 16:00:23'),
-(10, 6, 1, 1, 10, 1, 11347500, 1, 1, NULL, '2018-08-06', '2018-07-29 17:44:14', '2018-08-18 16:00:23'),
-(11, 6, 1, 1, 6, 1, 3815000, 1, 1, NULL, '2018-08-06', '2018-07-29 17:44:14', '2018-08-18 16:00:23'),
-(12, 7, 1, 1, 2, 1, 6800000, 1, 1, NULL, '2018-08-06', '2018-07-29 18:09:16', '2018-08-18 16:00:23'),
-(13, 8, 1, 1, 2, 1, 6800000, 1, 1, NULL, '2018-08-06', '2018-07-29 18:24:24', '2018-08-18 16:00:23'),
-(14, 9, 1, 1, 2, 1, 6800000, 4, 1, NULL, NULL, '2018-08-04 13:28:56', '2018-08-18 16:00:23'),
-(15, 10, 1, 1, 2, 1, 6800000, 3, 1, NULL, '2018-08-11', '2018-08-04 13:30:12', '2018-08-18 16:00:23'),
-(16, 11, 1, 2, 3, 1, 10000000, 1, 1, NULL, '2018-08-11', '2018-08-04 13:42:37', '2018-08-18 16:00:23'),
-(17, 12, 1, 1, 7, 1, 2550000, 5, 1, NULL, '2018-08-26', '2018-08-06 15:44:49', '2018-08-18 20:07:20'),
-(18, 13, 1, 1, 7, 1, 2550000, 2, 1, NULL, '2018-08-13', '2018-08-06 15:45:18', '2018-08-18 16:00:23'),
-(19, 14, 1, 1, 7, 1, 2550000, 2, 1, NULL, '2018-08-13', '2018-08-06 15:45:59', '2018-08-18 16:00:23'),
-(20, 15, 1, 1, 7, 4, 10200000, 2, 1, NULL, '2018-08-13', '2018-08-06 15:46:28', '2018-08-18 16:00:23'),
-(21, 16, 1, 1, 10, 1, 11347500, 2, 1, NULL, '2018-08-16', '2018-08-09 11:28:56', '2018-08-18 16:00:23'),
-(22, 17, 1, 1, 7, 1, 2550000, 2, 1, '2018-08-16 12:54:54', '2018-08-16', '2018-08-09 11:30:15', '2018-08-18 16:00:23'),
-(23, 17, 1, 1, 1, 1, 10350000, 2, 1, '2018-08-16 12:40:48', '2018-08-16', '2018-08-09 11:30:15', '2018-08-18 16:00:23'),
-(24, 18, 1, 1, 1, 1, 10350000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:34:21', '2018-08-18 16:00:23'),
-(25, 18, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:34:21', '2018-08-18 16:00:23'),
-(26, 19, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:35:48', '2018-08-18 16:00:23'),
-(27, 19, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:35:48', '2018-08-18 16:00:23'),
-(28, 20, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:37:02', '2018-08-18 16:00:23'),
-(29, 20, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:37:02', '2018-08-18 16:00:23'),
-(30, 21, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:38:22', '2018-08-18 16:00:23'),
-(31, 21, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:38:22', '2018-08-18 16:00:23'),
-(32, 22, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:38:52', '2018-08-18 16:00:23'),
-(33, 22, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:38:52', '2018-08-18 16:00:23'),
-(34, 23, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:39:15', '2018-08-18 16:00:23'),
-(35, 23, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:39:15', '2018-08-18 16:00:23'),
-(36, 24, 1, 1, 3, 2, 20000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:48:02', '2018-08-18 16:00:23'),
-(37, 24, 1, 1, 7, 2, 5100000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:48:02', '2018-08-18 16:00:23'),
-(38, 25, 1, 1, 3, 2, 20000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:49:43', '2018-08-18 16:00:23'),
-(39, 26, 1, 1, 3, 1, 10000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:51:30', '2018-08-18 16:00:23'),
-(40, 27, 1, 1, 4, 1, 4000000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:52:57', '2018-08-18 16:00:23'),
-(41, 28, 1, 1, 7, 2, 5100000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:53:41', '2018-08-18 16:00:23'),
-(42, 29, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:54:41', '2018-08-18 16:00:23'),
-(43, 30, 1, 1, 7, 2, 5100000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:55:37', '2018-08-18 16:00:23'),
-(44, 31, 1, 1, 7, 2, 5100000, 1, 1, NULL, '2018-08-16', '2018-08-09 11:57:54', '2018-08-18 16:00:23'),
-(45, 32, 1, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-16', '2018-08-09 12:48:27', '2018-08-18 16:00:23'),
-(46, 32, 1, 1, 8, 1, 13350000, 2, 1, NULL, '2018-08-16', '2018-08-09 12:48:27', '2018-08-18 16:00:23'),
-(47, 33, 1, 1, 1, 1, 10350000, 2, 1, NULL, '2018-08-16', '2018-08-09 13:05:57', '2018-08-18 16:00:23'),
-(48, 34, 1, 1, 7, 1, 2550000, 2, 1, NULL, '2018-08-16', '2018-08-09 13:07:04', '2018-08-18 16:00:23'),
-(49, 35, 1, 1, 7, 1, 2550000, 2, 1, NULL, '2018-08-16', '2018-08-09 13:11:06', '2018-08-18 16:00:23'),
-(50, 36, 1, 1, 7, 1, 2550000, 2, 1, '2018-08-16 13:00:36', '2018-08-16', '2018-08-09 13:12:06', '2018-08-18 16:00:23'),
-(51, 37, 26, 1, 7, 2, 5100000, 5, 1, '2018-08-18 16:49:08', '2018-08-25', '2018-08-13 09:20:09', '2018-08-18 16:50:05'),
-(52, 38, 19, 1, 7, 3, 7650000, 5, 1, NULL, '2018-08-20', '2018-08-13 09:21:11', '2018-08-18 16:00:23'),
-(53, 39, 1, 1, 7, 1, 2550000, 3, 1, NULL, '2018-08-20', '2018-08-13 09:22:18', '2018-08-18 16:00:23'),
-(54, 40, 22, 1, 7, 1, 2550000, 4, 1, NULL, '2018-08-20', '2018-08-13 09:24:43', '2018-08-18 16:00:23'),
-(55, 41, 66, 1, 7, 2, 5100000, 4, 1, NULL, '2018-08-20', '2018-08-13 14:56:39', '2018-08-18 16:00:23'),
-(56, 42, 77, 3, 7, 3, 7650000, 4, 1, NULL, '2018-08-20', '2018-08-13 15:03:39', '2018-08-18 16:00:23'),
-(57, 42, 77, 3, 16, 1, 500000, 4, 2, '2018-08-13 15:03:39', '2018-08-20', '2018-08-13 15:03:39', '2018-08-18 16:00:23'),
-(58, 43, 77, 3, 7, 2, 5100000, 5, 2, NULL, '2018-08-20', '2018-08-13 15:09:35', '2018-08-18 17:50:09'),
-(59, 44, 2, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:14:01', '2018-08-18 16:00:23'),
-(60, 45, 2, 1, 7, 3, 7650000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:16:12', '2018-08-18 16:00:23'),
-(61, 45, 2, 1, 15, 1, 450000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:16:12', '2018-08-18 16:00:23'),
-(62, 45, 2, 1, 2, 1, 6800000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:16:12', '2018-08-18 16:00:23'),
-(63, 46, 2, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:20:11', '2018-08-18 16:00:23'),
-(64, 47, 2, 1, 7, 1, 2550000, 1, 1, NULL, '2018-08-20', '2018-08-13 15:22:23', '2018-08-18 16:00:23'),
-(65, 48, 2, 1, 17, 1, 50000, 5, 1, NULL, '2018-08-20', '2018-08-13 15:23:38', '2018-08-18 16:00:23'),
-(66, 48, 2, 1, 16, 1, 500000, 5, 1, NULL, '2018-08-20', '2018-08-13 15:23:38', '2018-08-18 16:00:23'),
-(67, 48, 2, 1, 15, 1, 450000, 5, 1, NULL, '2018-08-20', '2018-08-13 15:23:38', '2018-08-18 16:00:23'),
-(68, 48, 2, 1, 14, 1, 500000, 5, 1, NULL, '2018-08-20', '2018-08-13 15:23:38', '2018-08-18 16:00:23'),
-(69, 48, 2, 1, 7, 1, 2550000, 5, 2, NULL, '2018-08-20', '2018-08-13 15:23:38', '2018-08-18 17:53:29'),
-(70, 49, 1, 1, 7, 1, 2550000, 3, 1, NULL, '2018-08-21', '2018-08-13 18:58:57', '2018-08-18 16:00:23'),
-(71, 50, 2, 1, 7, 2, 5100000, 5, 1, NULL, '2018-08-21', '2018-08-14 15:30:21', '2018-08-18 16:00:23');
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -471,59 +341,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `status`, `amount`, `payment`, `payment_info`, `security`, `user_message`, `created_at`, `updated_at`) VALUES
-(11, 1, 16800000, NULL, NULL, NULL, NULL, '2018-07-29 17:29:46', '2018-07-29 17:29:46'),
-(12, 1, 15162500, NULL, NULL, NULL, NULL, '2018-07-29 17:44:14', '2018-07-29 17:44:14'),
-(13, 1, 6800000, NULL, NULL, NULL, NULL, '2018-07-29 18:09:16', '2018-07-29 18:09:16'),
-(14, 1, 6800000, NULL, NULL, NULL, NULL, '2018-07-29 18:24:24', '2018-07-29 18:24:24'),
-(15, 1, 6800000, NULL, NULL, NULL, NULL, '2018-08-04 13:28:56', '2018-08-04 13:28:56'),
-(16, 1, 6800000, NULL, NULL, NULL, NULL, '2018-08-04 13:30:12', '2018-08-04 13:30:12'),
-(17, 1, 10000000, NULL, NULL, NULL, NULL, '2018-08-04 13:42:37', '2018-08-04 13:42:37'),
-(18, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:44:49', '2018-08-06 15:44:49'),
-(19, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:45:18', '2018-08-06 15:45:18'),
-(20, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-06 15:45:59', '2018-08-06 15:45:59'),
-(21, 1, 10200000, NULL, NULL, NULL, NULL, '2018-08-06 15:46:28', '2018-08-06 15:46:28'),
-(22, 1, 11347500, NULL, NULL, NULL, NULL, '2018-08-09 11:28:56', '2018-08-09 11:28:56'),
-(23, 1, 12900000, NULL, NULL, NULL, NULL, '2018-08-09 11:30:15', '2018-08-09 11:30:15'),
-(24, 1, 12900000, NULL, NULL, NULL, NULL, '2018-08-09 11:34:21', '2018-08-09 11:34:21'),
-(25, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:35:48', '2018-08-09 11:35:48'),
-(26, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:37:02', '2018-08-09 11:37:02'),
-(27, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:38:22', '2018-08-09 11:38:22'),
-(28, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:38:52', '2018-08-09 11:38:52'),
-(29, 1, 12550000, NULL, NULL, NULL, NULL, '2018-08-09 11:39:15', '2018-08-09 11:39:15'),
-(30, 1, 15100000, NULL, NULL, NULL, NULL, '2018-08-09 11:48:02', '2018-08-09 11:48:02'),
-(31, 1, 20000000, NULL, NULL, NULL, NULL, '2018-08-09 11:49:43', '2018-08-09 11:49:43'),
-(32, 1, 10000000, NULL, NULL, NULL, NULL, '2018-08-09 11:51:30', '2018-08-09 11:51:30'),
-(33, 1, 4000000, NULL, NULL, NULL, NULL, '2018-08-09 11:52:57', '2018-08-09 11:52:57'),
-(34, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:53:41', '2018-08-09 11:53:41'),
-(35, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 11:54:41', '2018-08-09 11:54:41'),
-(36, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:55:37', '2018-08-09 11:55:37'),
-(37, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-09 11:57:54', '2018-08-09 11:57:54'),
-(38, 1, 28650000, NULL, NULL, NULL, 'Ship cho 4-5 ngày', '2018-08-09 12:48:27', '2018-08-09 12:48:27'),
-(39, 1, 10350000, NULL, NULL, NULL, NULL, '2018-08-09 13:05:57', '2018-08-09 13:05:57'),
-(40, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:07:04', '2018-08-09 13:07:04'),
-(41, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:11:06', '2018-08-09 13:11:06'),
-(42, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-09 13:12:06', '2018-08-09 13:12:06'),
-(43, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-13 09:20:09', '2018-08-13 09:20:09'),
-(44, 1, 7650000, NULL, NULL, NULL, NULL, '2018-08-13 09:21:11', '2018-08-13 09:21:11'),
-(45, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 09:22:18', '2018-08-13 09:22:18'),
-(46, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 09:24:43', '2018-08-13 09:24:43'),
-(47, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-13 14:56:39', '2018-08-13 14:56:39'),
-(48, 1, 8150000, NULL, NULL, NULL, NULL, '2018-08-13 15:03:39', '2018-08-13 15:03:39'),
-(49, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-13 15:09:35', '2018-08-13 15:09:35'),
-(50, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 15:14:01', '2018-08-13 15:14:01'),
-(51, 1, 14900000, NULL, NULL, NULL, NULL, '2018-08-13 15:16:12', '2018-08-13 15:16:12'),
-(52, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 15:20:11', '2018-08-13 15:20:11'),
-(53, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 15:22:23', '2018-08-13 15:22:23'),
-(54, 1, 4050000, NULL, NULL, NULL, NULL, '2018-08-13 15:23:38', '2018-08-13 15:23:38'),
-(55, 1, 2550000, NULL, NULL, NULL, NULL, '2018-08-13 18:58:57', '2018-08-13 18:58:57'),
-(56, 1, 5100000, NULL, NULL, NULL, NULL, '2018-08-14 15:30:21', '2018-08-14 15:30:21');
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -546,31 +364,88 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quantity`, `discount`, `image_link`, `description`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Chó Husky', 11500000, 2, 99, 'husky.jpg', 'Chó Husky(chó tuyết kéo xe) có xuất xứ từ Siberia – Nga, rất giống cho sói. Được con người lai tạo lần đầu tiên để kéo xe tuyết chở hàng hóa khắp Siberia. Thân hình những chú chó Husky cân đối, dáng vẻ dũng mãnh và đặc biệt cực kỳ dẻo dai. Bộ lông của chúng rất dày có 2 lớp giúp giữ ấm cơ thể rất tốt, nhưng cũng chính lớp lông này khiến chúng khó thích nghi khi được nuôi trong thời tiết nắng nóng.', 0, '2018-07-17 17:11:28', '2018-08-16 16:23:22'),
+(1, 1, 1, 'Chó Husky', 11500000, 2, 99, 'husky.jpg', 'Chó Husky(chó tuyết kéo xe) có xuất xứ từ Siberia – Nga, rất giống cho sói. Được con người lai tạo lần đầu tiên để kéo xe tuyết chở hàng hóa khắp Siberia. Thân hình những chú chó Husky cân đối, dáng vẻ dũng mãnh và đặc biệt cực kỳ dẻo dai. Bộ lông của chúng rất dày có 2 lớp giúp giữ ấm cơ thể rất tốt, nhưng cũng chính lớp lông này khiến chúng khó thích nghi khi được nuôi trong thời tiết nắng nóng.', 1, '2018-07-17 17:11:28', '2018-08-18 15:51:39'),
 (2, 1, 1, 'Chó Samoyed – Chó tuyết kéo xe', 8000000, 0, 15, 'Samoyed.jpg', 'Chó Samoyed có xuất xứ từ vùng núi Taiga, Tây Bắc Siberia – Nga. Cũng giống như Husky chúng cũng có cơ thể mạnh mẽ, dẻo dai, lớp lông dày có thể kéo xe tuyết trong thời gian dài. Chó Samoyed có địa vị rất cao trong xã hội người Samoyede giúp họ vận chuyển lương thực, săn bắt thú rừng và bảo vệ khỏi kẻ thù.', 1, '2018-07-17 17:24:52', '2018-08-13 15:59:49'),
 (3, 2, 1, 'Chó Alaska (Alaska Malamute)', 10000000, 0, 0, 'Alaska.jpg', 'Chó Alaska cũng là một giống chó xứ lạnh giống Husky và Samoyed được thuần hóa bởi bộ tộc Mahlemute. Khi mới bắt đầu thuần hóa, chó Alaska cũng chỉ có kích thước ngang với Husky nhưng được người Eskimo lai tao để có được những chú chó Alaska to khỏe, dẻo dai và chịu được thời tiết khắc nghiệt hơn.', 0, '2018-07-17 17:24:52', '2018-08-09 11:51:30'),
 (4, 1, 1, 'Chó Becgie – Chó chăn cừu', 4000000, 1, 10, 'Becgie.jpg', 'Chó Becgie được người Đức lai tạo lần đầu năm 1899, chủ yếu dùng để chăn cừu. Nhưng với sự thông minh vượt bậc, trung thành, nhanh nhẹn chúng nhanh chóng được huấn luyện để phục vụ trong ngành cảnh sát và quân đội. Theo thống kê, chó Becgie là giống chó phục vụ nhiều nhất trong lực lượng cảnh sát các nước trên thế giới.', 0, '2018-07-17 17:24:52', '2018-08-15 09:24:20'),
-(5, 1, 1, 'Chó Golden(Golden Retriever)', 6000000, 0, 0, 'Golden.jpg', 'Đây là giống cho có nguồn gốc từ nước Anh, được lai tạo qua nhiều giống chó khác nhau. Nhưng chúng vẫn có bản năng săn mồi rất mạnh, khả năng đánh hơi tìm dấu vết hoàn hảo nên chúng cũng được cảnh sát các nước huấn luyện để dò tìm ma túy và các chất nổ.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
-(6, 1, 1, 'Chó săn Poodle', 5450000, 0, 30, 'Poodle.jpg', 'Poodle là giống chó có xuất xứ từ Pháp, có khả năng bơi lội rất giỏi nên từ xưa chúng thường được người dân bản xứ dùng để săn vịt trời. Đặc điểm của chúng là có bộ lông xoăn tít, giữ ấm rất tốt.', 0, '2018-07-17 17:24:52', '2018-07-29 17:44:14'),
-(7, 1, 1, 'Chó Labrador', 3000000, 6399949, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-14 15:30:21'),
-(8, 1, 1, 'Chó Dorberman', 13350000, 0, 0, 'Dorberman.jpg', 'Chó Dorberman được nhà lai tạo người Đức Louis Dorberman nhân giống thành công năm 1890 bởi ít nhất 4 giống chó. Tỉ lệ kết hợp giữa 4 giống chó với nhau gần như đã bị thất lạc.\r\nChó Dorberman rất dũng mãnh, cơ bắt, cổ cao, ta dụng chân dài và nhanh nhẹn. Một chú Dorberman trưởng thành nặng từ 30-45kg tùy theo giới tính đực cái, bản tính Dorberman khá hung giữ, rất cảnh giác với người lạ nhưng trung thành với chủ nên thường được các gia đình nuôi làm chó giữ nhà.', 0, '2018-07-17 17:24:52', '2018-08-09 12:48:27'),
+(5, 1, 1, 'Chó Golden(Golden Retriever)', 6000000, 0, 0, 'Golden.jpg', 'Đây là giống cho có nguồn gốc từ nước Anh, được lai tạo qua nhiều giống chó khác nhau. Nhưng chúng vẫn có bản năng săn mồi rất mạnh, khả năng đánh hơi tìm dấu vết hoàn hảo nên chúng cũng được cảnh sát các nước huấn luyện để dò tìm ma túy và các chất nổ.', 1, '2018-07-17 17:24:52', '2018-08-18 16:02:58'),
+(6, 1, 1, 'Chó săn Poodle', 5450000, 0, 30, 'Poodle.jpg', 'Poodle là giống chó có xuất xứ từ Pháp, có khả năng bơi lội rất giỏi nên từ xưa chúng thường được người dân bản xứ dùng để săn vịt trời. Đặc điểm của chúng là có bộ lông xoăn tít, giữ ấm rất tốt.', 1, '2018-07-17 17:24:52', '2018-08-18 16:02:53'),
+(7, 1, 1, 'Chó Labrador', 10000000, 6, 15, 'Labrador.jpg', 'Labrador là giống chó được coi là phổ biến nhất tại Mỹ, thường được các dân nuôi chó chuyên nghiệp huấn luyện để tha mồi trong các cuộc đi săn. Chó Labrador rất thông minh, có thể giúp con người làm được rất nhiều việc nên chúng thường được coi là một thành viên trong gia đình. ', 0, '2018-07-17 17:24:52', '2018-08-18 16:04:42'),
+(8, 1, 1, 'Chó Dorberman', 13350000, 0, 0, 'Dorberman.jpg', 'Chó Dorberman được nhà lai tạo người Đức Louis Dorberman nhân giống thành công năm 1890 bởi ít nhất 4 giống chó. Tỉ lệ kết hợp giữa 4 giống chó với nhau gần như đã bị thất lạc.\r\nChó Dorberman rất dũng mãnh, cơ bắt, cổ cao, ta dụng chân dài và nhanh nhẹn. Một chú Dorberman trưởng thành nặng từ 30-45kg tùy theo giới tính đực cái, bản tính Dorberman khá hung giữ, rất cảnh giác với người lạ nhưng trung thành với chủ nên thường được các gia đình nuôi làm chó giữ nhà.', 1, '2018-07-17 17:24:52', '2018-08-18 16:02:48'),
 (9, 1, 1, 'Chó Pitbull', 15000000, 1, 10, 'Pitbull.jpg', 'Chó Pitbull có nguồn gốc từ Anh, ban đầu có kích thước khá nhỏ bé, nhưng để phục vụ một thể thao “chọi chó” nhiều người tại Mỹ đã lai tạo chúng trở nên to lớn và hung dữ hơn. Và cái tên Pitbull cũng được bắt nguồn từ môn thể thao này. Vào đầu thế kỷ 20 do luật cấm những trò giải trí như “chọi chó” ra đời nên Pitbull được lai tạo cho trở nên hiền lành và dùng để nuôi trong nhà.', 0, '2018-07-17 17:24:52', '2018-07-17 17:24:52'),
-(10, 1, 2, 'Mèo A', 13350000, 0, 15, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-08-09 11:28:56'),
-(11, 1, 4, 'cám sinh học', 100000, 2, 13, 'husky.jpg', '', 0, '2018-07-19 16:43:29', '2018-08-16 10:23:13'),
-(12, 1, 10, 'Bát đôi cấp nước tự động', 30000, 10, 0, 'batdoi.jpg', 'Bát ăn uống nước cấp nước tự động gắn chai nước ngọt (bát không bao gồm chai) \r\n- Sản phẩm được làm từ chất liệu nhựa cao cấp không gây hại, không làm ảnh hưởng đến chất lượng thức ăn, màu sắc bất mắt giúp thú cưng ăn ngon mệng hơn\r\n+ Sản phẩm xứng đáng là sự lựa chọn lý tưởng của bạn dành cho thú cưng.\r\n+ Bề mặt trơn láng, dễ dàng chùi rửa sạch sẽ sau khi sử dụng.\r\n+ Được thiết kế dựa trên tiêu chuẩn chất lượng của Châu Âu.\r\nBát ăn và uống nước cho chó mèo, chất liệu tốt, bền, đẹp, không độc hại, không kích ứng với da\r\n+ Bát sẽ thoải mái khi đi vắng mà không sợ cún bị khát nước.\r\n- Kích thước bát ( Không kèm bình nước) : 27x16x6cm\r\n>>> Bình nước là bình nước khoáng hoặc nước ngọt, bình, chai nào cũng có thể lắp vừa\r\n- Trọng lượng: 100', 0, '2018-07-22 22:48:22', '2018-07-22 22:48:22'),
-(13, 1, 10, 'Bát đôi kèm lõi inox ', 99000, 54, 0, 'batan.jpg', 'Bát đôi kèm lõi inox cao cấp dành cho chó mèo - CutePets\r\n\r\n- Chất liệu: Nhựa PP không ôi nhiễm môi trường, lõi inox không gỉ\r\n\r\n- Màu sắc:hồng, xanh da trời, vàng màu xanh lá cây\r\n\r\n- Kích Thước bên ngoài:chiều dài = 32cm, chiều rộng = 16 cm, chiều cao = 6.5 cm;\r\n\r\n- Bát bên trong Đường Kính Miệng:14 cm.\r\n\r\n- Sử dụng:Pet (Chó & Mèo) trong Thực Phẩm & Bát Nước tính năng:\r\n\r\n1. chất liệu Inox chất lượng cao không gỉ làm cho các bát Độ Bền Cao hơn\r\n\r\n2. Vỏ làm từ nhựa PP Nhựa an toàn và không độc hại\r\n\r\n3. Tháo lắp một cách dễ dàng và dễ làm sạch', 0, '2018-07-22 22:48:22', '2018-07-22 22:48:22'),
-(14, 5, 1, 'Chó ngu', 1000000, 999, 50, '1533821041.petshop.png', 'không', 0, '2018-08-09 13:24:01', '2018-08-13 15:23:38'),
-(15, 5, 2, 'Chó ngu 1', 1000000, 98, 55, '1533833893.banner.png', 'ok', 0, '2018-08-09 16:58:13', '2018-08-13 15:23:38'),
-(16, 5, 11, 'Chó ngu 2', 1000000, 998, 50, '1533834135.Screenshot.png', 'ok', 0, '2018-08-09 17:02:15', '2018-08-13 15:23:38'),
-(17, 5, 1, 'Chó ngu 1', 50000, 999, 0, '1533834982.banner.png', 'dsds', 0, '2018-08-09 17:16:22', '2018-08-13 15:23:38'),
-(18, 7, 8, 'Chó ngu 1', 1000000, 1, 0, '1533915744.batan.jpg', 'dsd', 0, '2018-08-10 15:42:24', '2018-08-10 15:42:24');
+(10, 1, 2, 'Mèo giống chó', 13350000, 0, 15, 'husky.jpg', '', 1, '2018-07-19 16:43:29', '2018-08-18 15:59:06'),
+(11, 1, 4, 'Cám sinh học', 100000, 2, 13, 'husky.jpg', '', 1, '2018-07-19 16:43:29', '2018-08-18 15:58:52'),
+(12, 1, 10, 'Bát đôi cấp nước tự động', 50000, 10, 10, 'batdoi.jpg', 'Bát ăn uống nước cấp nước tự động gắn chai nước ngọt (bát không bao gồm chai) \r\n- Sản phẩm được làm từ chất liệu nhựa cao cấp không gây hại, không làm ảnh hưởng đến chất lượng thức ăn, màu sắc bất mắt giúp thú cưng ăn ngon mệng hơn\r\n+ Sản phẩm xứng đáng là sự lựa chọn lý tưởng của bạn dành cho thú cưng.\r\n+ Bề mặt trơn láng, dễ dàng chùi rửa sạch sẽ sau khi sử dụng.\r\n+ Được thiết kế dựa trên tiêu chuẩn chất lượng của Châu Âu.\r\nBát ăn và uống nước cho chó mèo, chất liệu tốt, bền, đẹp, không độc hại, không kích ứng với da\r\n+ Bát sẽ thoải mái khi đi vắng mà không sợ cún bị khát nước.\r\n- Kích thước bát ( Không kèm bình nước) : 27x16x6cm\r\n>>> Bình nước là bình nước khoáng hoặc nước ngọt, bình, chai nào cũng có thể lắp vừa\r\n- Trọng lượng: 100', 0, '2018-07-22 22:48:22', '2018-08-18 15:58:39'),
+(13, 1, 10, 'Bát đôi kèm lõi inox', 150000, 54, 10, 'batan.jpg', 'Bát đôi kèm lõi inox cao cấp dành cho chó mèo - CutePets\r\n\r\n- Chất liệu: Nhựa PP không ôi nhiễm môi trường, lõi inox không gỉ\r\n\r\n- Màu sắc:hồng, xanh da trời, vàng màu xanh lá cây\r\n\r\n- Kích Thước bên ngoài:chiều dài = 32cm, chiều rộng = 16 cm, chiều cao = 6.5 cm;\r\n\r\n- Bát bên trong Đường Kính Miệng:14 cm.\r\n\r\n- Sử dụng:Pet (Chó & Mèo) trong Thực Phẩm & Bát Nước tính năng:\r\n\r\n1. chất liệu Inox chất lượng cao không gỉ làm cho các bát Độ Bền Cao hơn\r\n\r\n2. Vỏ làm từ nhựa PP Nhựa an toàn và không độc hại\r\n\r\n3. Tháo lắp một cách dễ dàng và dễ làm sạch', 0, '2018-07-22 22:48:22', '2018-08-18 15:58:02'),
+(20, 1, 1, 'Chó Husky Baby', 6000000, 3, 0, '1534607774.20476389_1203977863081143_1925437180399203974_n.jpg', 'Chó husky baby  nâu đỏ 2 tháng tuổi,bố mẹ thuần chủng,mắt 2 màu cực hiếm,đã tiêm phòng và tẩy giun đầy đủ.Sức khỏe tốt,ăn tốt và rất nghịch ngợm', 0, '2018-08-18 15:56:15', '2018-08-18 15:56:15'),
+(21, 1, 1, 'Chó Bull Pháp (Bò Sữa)', 18000000, 2, 0, '1534608529.ban-cho-bull-phap-moon-dog-shop.png', 'Các bé Bull Pháp “mặt xệ và bụng phệ” của The Pet Family sẵn sàng về nhà mới ngay trong tháng này. Tất cả các bé đều được sinh tại các trại thành viên của Thú Kiểng, có xác nhận nguồn gốc, chủ sở hữu và microchip. Tất cả các bé đều được tiêm vaccine đầy đủ, bảo hành 15 ngày với mọi loại bệnh tật sau khi về nhà mới', 1, '2018-08-18 16:08:49', '2018-08-18 16:19:25'),
+(22, 1, 1, 'Chó Bull Pháp(Trắng)', 16000000, 1, 5, '1534608622.1.jpg', 'Giống chó Bull Pháp (chó Bulldog Pháp hay French Bulldog) là một giống chó nhỏ, thông minh, nhanh nhẹn và được coi là quý hiếm. Chúng bắt nguồn từ giống Bulldog Anh nổi tiếng. Bull Pháp là một giống chó còn khá mới, lịch sử của chúng chỉ mới bắt đầu từ nửa cuối thế kỉ 19, khi những người Anh di cư sang pháp để tìm kiếm một cuộc sống tốt hơn. Họ đã mang theo Bulldog Anh và lai tạo với giống chó Terrier Pháp (chó sục Pháp) để cho ra đời chú chó Bull Pháp đầu tiên vào năm 1860.', 1, '2018-08-18 16:10:22', '2018-08-18 16:11:02'),
+(23, 1, 1, 'Chó Bull Pháp Baby', 17500000, 1, 5, '1534608733.cach-nuoi-cho-bull-1.jpg', 'Giống chó Bull Pháp (chó Bulldog Pháp hay French Bulldog) là một giống chó nhỏ, thông minh, nhanh nhẹn và được coi là quý hiếm. Chúng bắt nguồn từ giống Bulldog Anh nổi tiếng. Bull Pháp là một giống chó còn khá mới, lịch sử của chúng chỉ mới bắt đầu từ nửa cuối thế kỉ 19, khi những người Anh di cư sang pháp để tìm kiếm một cuộc sống tốt hơn. Họ đã mang theo Bulldog Anh và lai tạo với giống chó Terrier Pháp (chó sục Pháp) để cho ra đời chú chó Bull Pháp đầu tiên vào năm 1860.', 0, '2018-08-18 16:12:13', '2018-08-18 16:12:13'),
+(24, 1, 1, 'Chó Tiny Poodle', 8500000, 2, 0, '1534608906.Nguon-goc-Tiny-Poodle.jpg', 'Tiny Poodle là chú chó nhỏ xíu dễ thương, và cũng đang trở thành trào lưu thú cưng của nhiều người đam mê chó cảnh. Cùng với thân hinh nhỏ nhắn, và sự thông minh của mình, Tiny Poodle đã khiến không ít người phải thổn thức.', 0, '2018-08-18 16:15:06', '2018-08-18 16:18:44'),
+(25, 1, 1, 'Chó Toy Poodle', 7000000, 3, 0, '1534609112.hinh-anh-cho-toy-poodle-07.jpg', 'Các bé Poodle trắng tuyết, nâu đỏ và socola rất ngoan ngoãn đáng yêu sinh tại The Pet Family cần tìm chủ yêu thương. Các bé đã được tiêm phòng + tẩy đầy đủ, sức khỏe rất tốt, ăn uống khỏe, sẵn sàng về nhà mới trong tháng này. The Pet Family bảo hành sức khỏe toàn diện với tất cả các bệnh 15 ngày (có hỗ trợ chi phí khám chữa bệnh sau bảo hành). Tất cả các bé Poodle cũng có đầy đủ giấy chứng nhận nguồn gốc, chủ sở hữu và microchip.', 0, '2018-08-18 16:18:32', '2018-08-18 16:18:32'),
+(26, 1, 1, 'Chó Bull Pháp (Bò Sữa)', 18000000, 2, 10, '1534609217.ban-cho-bull-phap-moon-dog-shop.png', 'Các bé Bull Pháp “mặt xệ và bụng phệ” của The Pet Family sẵn sàng về nhà mới ngay trong tháng này. Tất cả các bé đều được sinh tại các trại thành viên của The Pet Family, có xác nhận nguồn gốc, chủ sở hữu và microchip. Tất cả các bé đều được tiêm vaccine đầy đủ, bảo hành 15 ngày với mọi loại bệnh tật sau khi về nhà mới', 0, '2018-08-18 16:20:17', '2018-08-18 16:20:17'),
+(27, 1, 1, 'Chó Phốc Sóc(Trắng)', 12000000, 1, 0, '1534609392.cho-phoc-soc-bao-nhieu-tien.jpg', 'Chó phốc sóc, hay còn được gọi là Pomeranian (Pom) là giống chó rất nổi tiếng trên thế giới. Kể từ khi xuất hiện, đầu thế kỷ 15, giống chó này đã làm điên đảo giới quý tộc châu Âu.', 0, '2018-08-18 16:23:12', '2018-08-18 16:23:12'),
+(28, 1, 1, 'Chó Alaska(Xám Trắng)', 11500000, 2, 5, '1534609508.16999146_231433697322089_481855061068265220_n.jpg', 'Alaska là một trong những giống chó có hình dáng to lớn nhưng tính tình lại hiền lành, thân thiện nên được người nuôi cũng như cộng đồng những người yêu thú cưng cực ưa chuộng.', 0, '2018-08-18 16:25:08', '2018-08-18 16:25:08'),
+(29, 1, 1, 'Chó Pug Baby', 9000000, 4, 10, '1534609641.images.jpg', 'Chó Pug, hay còn có tên gọi thân thiện khác được nhiều người đặt cho chúng đó là chó mặt xệ. Với khuôn mặt ngộ nghĩnh và dâm đãng, những chú chó Pug đã lấy được tình yêu của rất nhiều gia đình.', 1, '2018-08-18 16:27:21', '2018-08-18 16:42:26'),
+(30, 1, 1, 'Chó Corgi', 25000000, 2, 5, '1534609786.Dac-diem-cho-corgi.jpg', 'Chó Corgi có ngoại hình nhỏ bé và rất ngộ nghĩnh, đáng yêu. Chúng cũng rất năng động và thông minh nên được rất nhiều người ưa thích và mong muốn sở hữu một bé.', 0, '2018-08-18 16:29:46', '2018-08-18 16:29:46'),
+(31, 1, 2, 'Mèo Ba Tư Lông Dài', 5000000, 1, 0, '1534609962.tải xuống.jpg', 'Mèo Ba Tư hay còn gọi là mèo Ba Tư mặt tịt là một giống mèo có nguồn gốc từ Ba Tư.Giống mèo này có vẻ như không thích hợp lắm với những người chủ nhân ưa sạch sẽ vì chúng rụng lông rất nhiều. Tuy nhiên, nhờ có bản tính mềm mại, dễ chịu và ôn hòa, giống mèo Ba Tư vẫn tiếp tục được xếp vào những con vật được yêu thích nhất trong gia đình. Chúng rất thông minh, thân thiện và quyến luyến với chủ.', 0, '2018-08-18 16:32:42', '2018-08-18 16:44:31'),
+(32, 1, 2, 'Mèo Anh Lông Ngắn', 5000000, 2, 10, '1534610122.tải xuống (1).jpg', 'Giống mèo Anh lông ngắn (hay còn gọi là mèo Aln) đang rất được ưa chuộng ở Việt Nam trong vài năm trở lại đây, vì thân hình mập mạp đáng yêu, tính lười và không kén ăn, lại không tốn nhiều công chăm sóc nên rất dễ nuôi, thích hợp cả với những người bận rộn.', 1, '2018-08-18 16:35:22', '2018-08-18 16:40:51'),
+(33, 1, 2, 'Mèo Anh Lông Dài', 4000000, 1, 5, '1534610252.tải xuống.jpg', 'Mèo Anh lông dài, hay còn được gọi là Mèo Ald, là giống mèo có nguồn gốc từ Anh Quốc, hậu duệ của mèo Anh lông ngắn và mèo Ba Tư truyền thống. Mặc dù xuất xứ từ Anh nhưng nó lại không phổ biến tại Anh và cũng không được Hiệp hội mèo Anh (GCCF – Governing Council of the Cat Fancy) công nhận là một giống mèo độc lập, mà chỉ là một nhánh của mèo Anh lông ngắn. Tuy nhiên, giống mèo này lại được nhiều tổ chức lớn khác công nhận, trong đó có cả TICA (Hiệp hội mèo Quốc tế). Tuy không phổ biến tại Anh nhưng giống mèo Anh lông dài hiện đang rất yêu thích tại Mỹ và phần lớn châu Âu.', 1, '2018-08-18 16:37:32', '2018-08-18 16:38:23'),
+(34, 1, 2, 'Mèo Anh Lông Dài', 4000000, 1, 5, '1534610293.huong-dan-cham-soc-meo-Anh-long-dai-2.jpg', 'Mèo Anh lông dài, hay còn được gọi là Mèo Ald, là giống mèo có nguồn gốc từ Anh Quốc, hậu duệ của mèo Anh lông ngắn và mèo Ba Tư truyền thống. Mặc dù xuất xứ từ Anh nhưng nó lại không phổ biến tại Anh và cũng không được Hiệp hội mèo Anh (GCCF – Governing Council of the Cat Fancy) công nhận là một giống mèo độc lập, mà chỉ là một nhánh của mèo Anh lông ngắn. Tuy nhiên, giống mèo này lại được nhiều tổ chức lớn khác công nhận, trong đó có cả TICA (Hiệp hội mèo Quốc tế). Tuy không phổ biến tại Anh nhưng giống mèo Anh lông dài hiện đang rất yêu thích tại Mỹ và phần lớn châu Âu.', 0, '2018-08-18 16:38:13', '2018-08-18 16:38:13'),
+(35, 1, 2, 'Mèo Anh Lông Ngắn', 5000000, 1, 10, '1534610473.images (1).jpg', 'Giống mèo Anh lông ngắn (hay còn gọi là mèo Aln) đang rất được ưa chuộng ở Việt Nam trong vài năm trở lại đây, vì thân hình mập mạp đáng yêu, tính lười và không kén ăn, lại không tốn nhiều công chăm sóc nên rất dễ nuôi, thích hợp cả với những người bận rộn.', 0, '2018-08-18 16:41:13', '2018-08-18 16:41:13'),
+(36, 1, 1, 'Chó Pug Baby', 9000000, 2, 5, '1534610574.pug_puppy.jpg', 'Chó Pug, hay còn có tên gọi thân thiện khác được nhiều người đặt cho chúng đó là chó mặt xệ. Với khuôn mặt ngộ nghĩnh và dâm đãng, những chú chó Pug đã lấy được tình yêu của rất nhiều gia đình.', 0, '2018-08-18 16:42:54', '2018-08-18 16:42:54'),
+(37, 1, 2, 'Mèo tai cụp Scotland', 8000000, 1, 15, '1534610844.tải xuống (1).jpg', 'Tiếp tục là một giống mèo nữa đặc biệt nhờ đôi tai. Scottish Folds có đôi tai cụp về phía trước cùng khuôn mặt tròn, chiếc mũi khá ngắn và đôi mắt to ngây thơ khiến cho tổng thể khuôn mặt của mèo tai cụp thật là tròn trịa như một trái bóng rất ngộ nghĩnh đáng yêu.', 0, '2018-08-18 16:47:24', '2018-08-18 16:47:24'),
+(38, 1, 2, 'Mèo nhân sư không lông - Sphy', 20000000, 2, 0, '1534610970.meo-khong-long-sphynx-cpq.vn-1492763816944.jpg', 'Mèo Sphynx là một giống mèo đột biến tự nhiên, không qua cấy ghép. Nguồn gốc của chúng từ một chú mèo sinh ra bị đột biến xấu xí, không lông, da trắng bệch vào năm 1966. Sau đó nó được nhân giống với mèo mẹ và sinh ra thêm nhiều chú mèo không lông khác. Từ khi được công nhận là một giống mèo chính thức vào năm 2005, Sphynx đã đoạt danh hiệu giống mèo \"Kinh dị nhất thế giới\".\r\n\r\nĐiều đặc biệt là những chú Sphynx có khuôn mặt rất giống những bức tượng nhân sư trong các lăng mộ cổ ở Ai Cập nên được đặt tên là Sphynx - tên tượng nhân sư Ai Cập. Ngoài ra, chúng còn được mệnh danh là mèo xấu nhất thế giới bởi khuôn mặt nhăn nheo xấu xí có vẻ già nua, cau có và cơ thể \"chảy xệ\", không lông.', 0, '2018-08-18 16:49:30', '2018-08-18 16:49:30'),
+(39, 1, 2, 'Mèo Xiêm - Siamese', 2000000, 3, 0, '1534611060.giá-mua-bán-mèo-xiêm-2.jpg', 'Là một trong những nòi mèo đầu tiên của mèo lông ngắn phương Đông được công nhận. Nguồn gốc của mèo Xiêm cho đến nay vẫn chưa được rõ ràng, nhưng Thái Lan được tin rằng là nơi xuất xứ của giống mèo độc đáo này.Mèo Xiêm có đặc điểm là mắt xanh dương, với khuôn mặt đen và màu lông tro phổ biến. Mèo Xiêm hiện đại thân dài và gầy hơn so với giống mèo Xiêm truyền thống - khá mũm mĩm và béo tròn.', 0, '2018-08-18 16:51:00', '2018-08-18 16:51:00'),
+(40, 1, 2, 'Mèo Munchkin', 10000000, 1, 5, '1534611180.munchkin-cat-8.jpg', 'èo Munchkin (hay còn được gọi là Mèo Weirner, Mèo Corgi) là một trong những giống mèo dễ thương nhất có nguồn gốc từ Hoa Kỳ. Cái tên Munchkin ngày nay rất nổi tiếng với nhiều người yêu mèo trên toàn Thế giới bởi chúng rất đáng yêu, ngộ nghĩnh, dễ tính và quấn quýt với chủ. Với chân ngắn, mình dài, thân hình mũm mĩm đáng yêu, mèo Munchkin còn được gọi là Corgi trong thế giới mèo.', 0, '2018-08-18 16:53:00', '2018-08-18 16:53:00'),
+(41, 2, 4, 'Thức ăn chó trưởng thành', 200000, 30, 10, '1534611422.1852_8801007285719-280x315.jpg', 'O’Fresh – O’Nature là thương hiệu thức ăn cao cấp siêu sạch cho chó mèo của tập đoàn CJ (Hàn Quốc) danh tiếng. Các sản phẩm O’fresh- O’Nature đều đáp ứng các tiêu chuẩn quốc tế cao nhất về thức ăn, thực phẩm cho chó mèo.\r\n\r\nNguyên liệu chính: Gạo bột gia cầm bột thịt mỡ gà hạt lanh bột nguyên trứng beet pulp các loại vitamin (A B1 B2 B12 Niacin D3 E K Biotin Folic acid) các loại khoáng chất ( Fe Zn Mn Se I Cu) cây hương thảo chất chống oxy hóa choline muối posstasium Chloride.\r\n\r\nTrong trường hợp mèo thừa cân hãy tham khảo tư vấn của bác sỹ thú y và cho ăn lượng thức ăn phù hợp. Luôn chú ý để chó lúc nào cũng được uống nước sạch.', 0, '2018-08-18 16:57:02', '2018-08-18 17:00:43'),
+(42, 2, 4, 'Hộp thức ăn cao cấp 900g', 210000, 25, 0, '1534611484.1811096_L-280x315.jpg', 'O’Fresh – O’Nature là thương hiệu thức ăn cao cấp siêu sạch cho chó mèo của tập đoàn CJ (Hàn Quốc) danh tiếng. Các sản phẩm O’fresh- O’Nature đều đáp ứng các tiêu chuẩn quốc tế cao nhất về thức ăn, thực phẩm cho chó mèo.\r\n\r\nNguyên liệu chính: Bột cá hồi thủy phân, bột thịt gà thủy phân, bột thịt gà, bột khoai lang, mỡ gà, bột trứng, hạt lanh, dầu cá,  Beet pulp, Inulin, Vitamin( A, B1, B2, Pyridoxine, B12, Folic acid, Niacin, Pantothenic acid, Biotin, D3), khoáng chất( Organic Cu, Organic Zn, Fe, Mn, Se, Calcium idoate), chiết xuất cây Yucca, hương liệu tự nhiên, muối tinh, Choline chloride, Taurine, Potassium chloride, chất chống oxy hóa.\r\n*Nguyên liệu sử dụng trên đây tỉ lệ pha trộn có thể thay đổi tùy thuộc vào tình hình sản xuất.', 0, '2018-08-18 16:58:04', '2018-08-18 17:00:55'),
+(43, 2, 4, 'Pate Cho Mèo Các Vị Cá Biển 85', 20000, 10, 0, '1534611545.20140923063919-280x315.jpg', 'WHISKAS gói làm từ cá thực sự. Nhẹ nhàng nấu chín để hoàn thiện và cung cấp sự thoải mái trong một bữa ăn. Nấu chín bằng hơi nước và được bao bọc trong giấy nhôm để bảo quản độ tươi, hương vị và hương vị phong phú trong mỗi bữa ăn con mèo của bạn. Gói WHISKAS cũng cung cấp đầy đủ dinh dưỡng Thành phần: cá biển, gel ejen, dầu đậu nành, các loại vitamin và khoáng chất', 0, '2018-08-18 16:59:05', '2018-08-18 16:59:05'),
+(44, 2, 4, 'Thức ăn chó O’fresh vị gà 1.3k', 200000, 5, 5, '1534611594.1849_8801007272016-280x315.jpg', 'O’Fresh – O’Nature là thương hiệu thức ăn cao cấp siêu sạch cho chó mèo của tập đoàn CJ (Hàn Quốc) danh tiếng. Các sản phẩm O’fresh- O’Nature đều đáp ứng các tiêu chuẩn quốc tế cao nhất về thức ăn, thực phẩm cho chó mèo.\r\n\r\nNguyên liệu chính: Gạo bột gia cầm bột thịt mỡ gà hạt lanh bột nguyên trứng beet pulp các loại vitamin (A B1 B2 B12 Niacin D3 E K Biotin Folic acid) các loại khoáng chất ( Fe Zn Mn Se I Cu) cây hương thảo chất chống oxy hóa choline muối posstasium Chloride.\r\n\r\nTrong trường hợp mèo thừa cân hãy tham khảo tư vấn của bác sỹ thú y và cho ăn lượng thức ăn phù hợp. Luôn chú ý để chó lúc nào cũng được uống nước sạch.', 0, '2018-08-18 16:59:54', '2018-08-18 16:59:54'),
+(45, 2, 4, 'Thức ăn chó con', 180000, 21, 0, '1534611797.2371_home-dog-junior-1-5kg-petcity-280x315.jpg', 'Thức ăn cho chó Home Dog Junior túi 1.5kg\r\n\r\nĐối tượng sử dụng: (Thức ăn dành cho chó đến 12 tháng tuổi)\r\n\r\nThức ăn cho chó Home Dog Junior giúp tăng cường hệ miễn dịch, sử dụng gạo không có chất phụ gia có khả năng tiêu hóa giúp làm giảm dị ứng, giảm mùi hôi của phân.', 0, '2018-08-18 17:03:17', '2018-08-18 17:03:17'),
+(46, 2, 4, 'Bate Monge Pork 100gr', 40000, 13, 0, '1534611932.1841950_L-480x540.png', 'Pate Monge cho chó là sản phẩm của Monge, Ý. Đây là dòng pate rất được ưa chuộng tại các nước Châu Âu với hương vị thơm ngon từ những loại thịt đặc trưng như thịt gà, thịt gà tây, cá ngừ… Pate Monge Cho Chó còn là sản phẩm an toàn đạt chất lượng vì không có chứa gluten, chất gây dị ứng ở cả động vật và người.\r\nPate Monge Fresh kích thích khả năng ăn uống của chó, giúp chó bạn tăng cân, nuôi dưỡng bộ lông và da dẻ hồng hào. Ngoài ra, Monge tập trung đưa ra những sản phẩm không chứa đường, gluten giúp hạn chế các ảnh hưởng tiêu cực đến sức khoẻ của chó như dị ứng, mẩn ngứa, khó tiêu, bệnh tiểu đường…', 0, '2018-08-18 17:05:32', '2018-08-18 17:05:32'),
+(47, 2, 4, 'Thức ăn Iskhan Performance', 240000, 6, 0, '1534612046.2351_iskhanperformancepetcity-280x315.jpg', 'Là dòng sản phẩm thức ăn hạt dành cho thú cưng mới với công thức vượt trội không chứa ngũ cốc, không chứa chất bảo quản, không có sản phẩm làm thay đổi gen từ thương hiệu Iskhan Hàn Quốc.\r\n\r\nHạt Iskhan Performance Cho Chó Lớn Túi 1.3Kg được chọn lừa từ những nguyên liệu đặc biệt giúp cơ, khớp, xương của các chú chó được bảo vệ và tăng cường mạnh mẽ, giúp da và lông bóng khỏe mượt mà.', 0, '2018-08-18 17:07:26', '2018-08-18 17:07:26'),
+(48, 2, 10, 'Ổ đệm nằm cho chó mèo', 150000, 6, 0, '1534612210.IMG_0758-480x540.jpg', 'Sản phẩm có nhiều size để phù hợp với từng bé . Giá từ 150.000 đến 600.000 tùy size và tùy mẫu\r\n\r\nSize XS : 150k\r\n\r\nSize S : 200 – 250k\r\n\r\nSize M : 250 – 300k\r\n\r\nSize L : 300 – 350k\r\n\r\nSize XL : 400 – 450k\r\n\r\nSize XXL : 500 – 600k\r\n\r\nChất liệu bông mềm bên trong , vải nỉ bên ngoài , được may hết sức tỉ mỉ và đẹp mắt với nhiều mẫu mã cũng như kiểu dáng xinh xắn\r\n\r\nĐệm nằm tạo cảm giác ấm áp và dễ chịu cho cún mèo cưng , nhất là trong mùa đông lạnh\r\n\r\nSản phẩm dễ dàng giặt sạch , có thể cho vào máy giặt hoặc giặt tay đều được , không lo bị ám mùi hôi', 0, '2018-08-18 17:10:10', '2018-08-18 17:10:10'),
+(49, 2, 10, 'Đệm mỏng cho chó mèo', 150000, 7, 0, '1534612282.IMG_0593-280x315.jpg', 'Chất liệu bông mềm bên trong , vải nỉ bên ngoài , được may hết sức tỉ mỉ và đẹp mắt với nhiều mẫu mã cũng như kiểu dáng xinh xắn\r\n\r\nĐệm nằm tạo cảm giác ấm áp và dễ chịu cho cún mèo cưng , nhất là trong mùa đông lạnh\r\n\r\nSản phẩm dễ dàng giặt sạch , có thể cho vào máy giặt hoặc giặt tay đều được , không lo bị ám mùi hôi', 0, '2018-08-18 17:11:22', '2018-08-18 17:11:22'),
+(50, 2, 10, 'Ổ đệm nằm cho mèo', 150000, 12, 0, '1534612320.IMG_0582-280x315.jpg', 'Chất liệu bông mềm bên trong , vải nỉ bên ngoài , được may hết sức tỉ mỉ và đẹp mắt với nhiều mẫu mã cũng như kiểu dáng xinh xắn\r\n\r\nĐệm nằm tạo cảm giác ấm áp và dễ chịu cho cún mèo cưng , nhất là trong mùa đông lạnh\r\n\r\nSản phẩm dễ dàng giặt sạch , có thể cho vào máy giặt hoặc giặt tay đều được , không lo bị ám mùi hôi', 0, '2018-08-18 17:12:00', '2018-08-18 17:12:00'),
+(51, 2, 10, 'Địu chó mèo', 200000, 4, 0, '1534612423.IMG_0752-280x315.jpg', 'Địu chó mèo,dành cho chó mèo nhỏ từ 3-6 kg.', 0, '2018-08-18 17:13:43', '2018-08-18 17:13:43'),
+(52, 2, 6, 'Áo Superman', 60000, 14, 0, '1534612538.ao-ba-lo-cho-cho-1.jpg', 'Các mẫu quần áo mùa hè dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:15:38', '2018-08-18 17:15:38'),
+(53, 2, 6, 'Áo mũ kẻ caro', 120000, 8, 0, '1534612615.6541efb53510bd69dfcb6cfba046fe97.jpg', 'Các mẫu quần áo mùa hè dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:16:55', '2018-08-18 17:16:55'),
+(54, 2, 6, 'Áo bọ rùa', 200000, 18, 0, '1534612668.bo-quan-ao-petstyle-ong-canh-cam-5-min.jpg', 'Các mẫu quần áo mùa đông dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:17:48', '2018-08-18 17:17:48'),
+(55, 2, 6, 'Áo vịt có mũ', 90000, 10, 0, '1534612754.1660_ao_thu_hinh_con_vit_tong_hop__49191_zoom.PNG', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:19:14', '2018-08-18 17:19:14'),
+(56, 2, 6, 'Bộ chú hề', 250000, 4, 5, '1534612782.dogloveit-halloween-clown-costumes-soft-dog-clothes-for-007.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:19:42', '2018-08-18 17:19:42'),
+(57, 2, 6, 'Áo thủy thủ', 80000, 6, 0, '1534612814.images.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:20:14', '2018-08-18 17:20:14'),
+(58, 2, 6, 'Áo mũ Totoro', 160000, 7, 0, '1534612928.images (3).jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:22:08', '2018-08-18 17:22:08'),
+(59, 2, 6, 'Bộ Cướp Biển', 250000, 3, 0, '1534612964.Funny-Halloween-pet-cat-dog-Pirate-costume-cosplay-clothes-with-dog-Skull-hat-dog-puppy-party.jpg_640x640.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:22:44', '2018-08-18 17:23:02'),
+(60, 2, 6, 'Bộ Quàng Thượng', 290000, 1, 0, '1534613022.3967455554_518795706.400x400.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:23:42', '2018-08-18 17:24:00'),
+(61, 2, 6, 'Bộ Bạch Tuyết', 160000, 13, 0, '1534613071.Clothes-for-dogs-Pet-Dog-Dress-for-Chihuahua-Yorkies-Classic-Princess-Lace-Wedding-Dresses-Clothing-for.jpg_640x640.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:24:31', '2018-08-18 17:24:31'),
+(62, 2, 6, 'Áo Pikachu', 200000, 25, 0, '1534613100.3366845273_181355791.jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:25:00', '2018-08-18 17:25:09'),
+(63, 2, 6, 'Áo Panda đỏ', 130000, 8, 0, '1534613144.images (2).jpg', 'Các mẫu quần áo  dành cho các bé có cân nặng từ 3 đến 6 kg\r\n\r\nRất nhiều mẫu mã đa dạng và đẹp mắt , phù hợp với tất cả các dòng chó', 0, '2018-08-18 17:25:44', '2018-08-18 17:25:44'),
+(64, 2, 5, 'Gà cao su', 60000, 15, 0, '1534613335.shrilling-chicken.jpg', 'Đồ chơi dành cho chó mèo', 0, '2018-08-18 17:28:55', '2018-08-18 17:28:55'),
+(65, 2, 5, 'Quả cầu cao su', 80000, 12, 0, '1534613391.tải xuống (2).jpg', 'Đồ chơi dành cho chó mèo.', 0, '2018-08-18 17:29:51', '2018-08-18 17:29:51'),
+(66, 2, 5, 'Chuột len', 40000, 14, 0, '1534613431.images (4).jpg', 'Đồ chơi dành cho chó mèo.', 0, '2018-08-18 17:30:31', '2018-08-18 17:30:31'),
+(67, 2, 5, 'Bộ xương đồ chơi', 60000, 32, 0, '1534613471.do-choi-thu-cung-600x450.jpg', 'Đồ chơi dành cho chó mèo.', 0, '2018-08-18 17:31:11', '2018-08-18 17:31:11'),
+(68, 2, 11, 'Blue Iguana - Rồng Nam Mỹ', 3500000, 2, 0, '1534613679.1499177674_hqdefault.jpg_crop278x278.jpg', 'Rồng Nam Mỹ Blue iguana ngoại nhập .Là lọai động vật cảnh quý hiếm,dễ nuôi, ăn hoàn toàn rau củ quả, tuổi thọ cao từ 20-30 năm trong môi trường nuôi. Kích cỡ từ 1m6-1m8, có chỉ số IQ cao.', 0, '2018-08-18 17:34:39', '2018-08-18 17:34:39'),
+(69, 2, 11, 'Rùa sao Ấn Độ', 2500000, 3, 0, '1534613743.rua-sao-an-do-1493977958.jpg_crop278x278.jpg', 'Rùa sao Ấn Độ có đặc điểm dễ nuôi, ít bệnh tật, bề ngoài bắt mắt.Giá cả cũng khá mềm hơn so với các loại rùa sống trên cạn khác như Radiated, Sulcata, Red Foot,....', 0, '2018-08-18 17:35:43', '2018-08-18 17:35:43'),
+(70, 2, 11, 'Rùa Da Báo - Leopard tortoise', 2500000, 4, 0, '1534613861.rua-canh-leopard-tortoise-1493977970.jpg_crop278x278.jpg', 'Rùa Da Báo - Leopard tortoise có tên thường gọi là Leopard tortoise, tên khoa học là Stigmochelys pardalis.\r\n\r\nSize: Chiều dài cơ thể của con trưởng thành trung bình là 46cm và nặng 18kg, khi lớn hết cỡ mai của chúng sẽ đạt tới 61cm,', 0, '2018-08-18 17:37:41', '2018-08-18 17:37:41'),
+(71, 2, 11, 'Hognose Snake - Rắn mũi hếch', 3000000, 6, 0, '1534613956.1517400902_048c74776df48d621d77f26529df9a82.jpg_crop278x278.jpg', 'Rắn mũi hếch từ lâu đã được con người thuần hóa làm thú cưng, với đặc tính hiền lành dễ thương và khuôn mặt ngốc nghếch, chúng nhanh chóng chiếm được tình cảm sâu sắc của con người, từ đó hàng loạt các màu', 0, '2018-08-18 17:39:16', '2018-08-18 17:39:16'),
+(72, 2, 11, 'Rắn ngô - Corn Snake', 800000, 12, 0, '1534614000.ran-ngo-amel-corn-snake-1493977814_2.jpg_crop278x278.jpg', 'Rắn ngô Corn Snake là loài loài bò sát cảnh hiền lành, dễ thuần phục, không độc. Có nhiều màu sắc đẹp.', 0, '2018-08-18 17:40:00', '2018-08-18 17:40:00'),
+(73, 2, 11, 'Rắn sữa - Milk Snake', 250000, 5, 10, '1534614051.tải xuống (3).jpg', 'Rắn cảnh milk snake là một loài bò sát cảnh đang được rất nhiều bạn trẻ tìm nuôi, màu sắc đẹp và không độc hại, dễ chăm sóc, đễ thuần hóa', 0, '2018-08-18 17:40:51', '2018-08-18 17:40:51'),
+(74, 2, 11, 'Ếch Pacman', 300000, 4, 5, '1534614129.11188235_904190309640283_1467709934941534535_n__65866.1433449772.1280.1280.jpg', 'Những chú Pacman với thân hình hết sức ngộ nghĩnh cùng màu sắc sặc sỡ sống động như 1 nhân vật hoạt họa với cái đầu chỉ bằng 1/2 cơ thể,chiếc mồm rộng đến cuối xương hàm và 1 thân hình tròn xoe,béo hú đã giúp chúng ngày càng được nuôi phổ biến như 1 thú cưng tại các gia đình ở Mỹ và châu âu .', 0, '2018-08-18 17:42:09', '2018-08-18 17:42:09'),
+(75, 2, 11, 'Leopard Gecko', 800000, 10, 0, '1534614210.leopard-gecko-1493977837.jpg_crop278x278.jpg', 'Thằn lằn da báo Size baby', 1, '2018-08-18 17:43:30', '2018-08-18 17:43:38'),
+(76, 2, 11, 'Thằn lằn da báo', 800000, 12, 10, '1534614277.tải xuống (4).jpg', 'Thằn lằn da báo Size baby', 0, '2018-08-18 17:44:37', '2018-08-18 17:44:37'),
+(77, 2, 11, 'Trăn cây Green Tree Python', 3500000, 2, 0, '1534614345.tran-cay-green-tree-python-1493977966.jpg_crop278x278.jpg', 'Trăn cây xanh được biết đến như 1 trong số các ngôi sao trong giới bò sát cảnh, nói về ngoại hình, chúng có một vẻ đẹp khó cưỡng lại, với màu sắc thay đổi theo từng thời điểm của sự phát triển, từ nhỏ tới lớn, màu sắc được chuyển đổi từ vàng hoặc nâu đỏ, nâu đen. Khi bạn được sở hữu một chú Trăn Cây Xanh, điều đó đồng nghĩa với việc đã được tiếp cận với 1 trong số các loài trăn thú vị nhất thế giới, kích thước khá nhỏ gọn, màu sắc đẹp, cơ thể với những đường cong tuyệt mỹ đem lại cho người nhìn cảm giác cuốn hút khó tả…', 0, '2018-08-18 17:45:45', '2018-08-18 17:45:45'),
+(78, 2, 11, 'Nhện chân trắng', 350000, 5, 0, '1534614445.nhen-chan-trang-white-knee-tarantula-1493977957.jpg_crop278x278.jpg', 'Nhện chân trằng - White knee tarantula , đặc điểm dễ nuôi, màu sắc đẹp- là một ttrong ba loài nhện lớn nhanh nhất thế giới', 0, '2018-08-18 17:47:25', '2018-08-18 17:47:25'),
+(79, 2, 7, 'Spa Grooming', 300000, 99, 0, '1534614588.tam-say-thu-cung.jpg', 'Spa Grooming là dịch vụ chăm sóc sắc đẹp thú cưng cực kỳ nổi tiếng. Nó làm cho thú của bạn trở nên đẹp hơn, thoải mái và khỏe mạnh hơn.', 0, '2018-08-18 17:49:48', '2018-08-18 17:49:48'),
+(80, 2, 8, 'Trông giữ thú cưng', 150000, 99, 0, '1534614752.khach-san-cho-meo-1.jpg', 'Dịch Vụ Trông giữ thú cưng', 0, '2018-08-18 17:52:32', '2018-08-18 17:52:32'),
+(81, 2, 9, 'Tiêm chủng tại nhà', 200000, 99, 0, '1534614853.tiêm-vaxin-cho-chó.jpg', 'Dịch vụ tiêm phòng cho thú nuôi tại nhà', 0, '2018-08-18 17:54:13', '2018-08-18 17:54:13');
 
 -- --------------------------------------------------------
 
@@ -590,15 +465,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `reports`
---
-
-INSERT INTO `reports` (`id`, `status`, `admin_id`, `user_id`, `reportTo_id`, `product_id`, `description`, `created_at`, `updated_at`) VALUES
-(1, 3, 5, 5, 5, 16, 'Sản Phẩm này sử dụng hình ảnh không thực tế', '2018-08-14 16:02:54', '2018-08-14 16:04:39'),
-(2, 2, 5, 5, 1, NULL, 'Nhà cung câp này mạo danh bạn hoặc một người bạn quen', '2018-08-15 06:15:06', '2018-08-15 06:15:26');
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -621,8 +488,7 @@ CREATE TABLE IF NOT EXISTS `slides` (
 INSERT INTO `slides` (`id`, `link`, `image`) VALUES
 (1, '', 'banner1.jpg'),
 (2, '', 'banner2.jpg'),
-(3, '', 'banner3.jpg'),
-(4, '', 'banner4.jpg');
+(3, '', 'banner3.jpg');
 
 -- --------------------------------------------------------
 
@@ -644,9 +510,9 @@ CREATE TABLE IF NOT EXISTS `statuses` (
 INSERT INTO `statuses` (`id`, `stt`) VALUES
 (1, 'Chưa xử lý'),
 (2, 'Đang xử lý'),
-(3, 'đủ hàng'),
-(4, 'đang giao hàng'),
-(5, 'hoàn thành');
+(3, 'Đủ hàng'),
+(4, 'Đang giao hàng'),
+(5, 'Đã hoàn thành');
 
 -- --------------------------------------------------------
 
@@ -661,31 +527,6 @@ CREATE TABLE IF NOT EXISTS `store_benefits` (
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `store_benefits`
---
-
-INSERT INTO `store_benefits` (`id`, `payment_id`, `amount`) VALUES
-(1, 18, 255000),
-(2, 43, 510000),
-(3, 44, 765000),
-(4, 45, 255000),
-(5, 46, 255000),
-(6, 47, 510000),
-(7, 48, 815000),
-(8, 49, 510000),
-(9, 54, 405000),
-(10, 56, 510000),
-(11, 43, 510000),
-(12, 44, 765000),
-(13, 45, 255000),
-(14, 46, 255000),
-(15, 47, 510000),
-(16, 48, 815000),
-(17, 49, 510000),
-(18, 54, 405000),
-(19, 56, 510000);
 
 -- --------------------------------------------------------
 
@@ -704,17 +545,6 @@ CREATE TABLE IF NOT EXISTS `sub_comments` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sub_comments`
---
-
-INSERT INTO `sub_comments` (`id`, `comment_id`, `user_id`, `media_link`, `description`, `created_at`, `updated_at`) VALUES
-(1, 10, 5, NULL, 'alo alo', '2018-08-02 14:46:25', '2018-08-02 14:46:25'),
-(2, 10, 5, NULL, 'nice job', '2018-08-02 14:57:01', '2018-08-02 14:57:01'),
-(3, 13, 5, NULL, 'dsadsad', '2018-08-05 11:58:21', '2018-08-05 11:58:21'),
-(4, 13, 5, NULL, 'dá', '2018-08-05 11:58:33', '2018-08-05 11:58:33'),
-(5, 23, 5, NULL, 'dsdas', '2018-08-05 11:59:17', '2018-08-05 11:59:17');
 
 -- --------------------------------------------------------
 
@@ -766,14 +596,6 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `supplier_registers`
---
-
-INSERT INTO `supplier_registers` (`id`, `user_id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `chandung`, `cmnd`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 10, 'Kazaki Kazua', 1, 'test@gmail.com', '$2y$10$XSQn8R3a7wak3yncO1O93ORAPQ1c.VaJMDCH2ZCoQmIhGQ7ArgfvS', NULL, '01697161671', 'dsadsadsad,Tỉnh Quảng Ninh', 22, '34324324343234', 'hiep@gmai.com', 'aaaaaa', 'aaaaaaaaa', '1534150431.banner.png', '1534150432.petshop.png', 0, '2018-08-13 08:51:59', '2018-08-13 08:53:52'),
-(2, 11, 'Nguyễn Hiệp', 1, 'test1@gmail.com', '$2y$10$aboEQIhPw8Ekk3RIE3d7MuGryEoPyYeoXbC9o9Vqdrk7YfgmCE.xu', NULL, '01697161671', 'dsadsadsaddsd,Thành phố Hà Nội', 1, '32432432434234', 'hiep@gmai.com', 'aaaaaa', 'aaaaaaaaa', '1534191580.petshop.png', '1534191580.Login_Register.PNG', 0, '2018-08-13 20:19:40', '2018-08-13 20:19:40');
-
 -- --------------------------------------------------------
 
 --
@@ -801,23 +623,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', 'CeMp5YPUUIbcBlRwwkoOhprPWbUoOeC0SHDmvCQ8wIqyBrQ6Q71auVAFiXsF', '01697161671', 'đình thôn mỹ đình 1 Nam Từ Liêm, Hà Nội', 1, '12345678909876', 'Nguyễn Hữu Hiệp', 'Vietcombank', 'Mỹ Đình 1', 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-07-30 19:14:50'),
-(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Hà Nội', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$r0ld8F2dm3blCo5AMZqjNuGAkyVga2f5WzzMzPZ2gdM6lDfSv.47e', 'thyfS8JaByvf9HVBEyDG8rDRVB9GMsDCpmAL2DQXk1AwKHuIe0lLoWE6g3WQ', '01697161671', 'đường đình thôn mỹ đình 1', 1, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-13 08:21:49'),
-(6, 'macro x xx x', 0, 'a.renji95@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'HASASHA', 1, NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 0, '2018-07-24 10:40:29', '2018-08-05 17:02:56'),
-(7, 'Kazaki', 1, 'hie11p@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'aynRe5yeuXIibfmBOOjlKjzumNkdrxUBAawWrtqrmFCIGmLD97tjrwniYLxN', '01697161671', 'Hà Nội,Tỉnh Hà Giang,Tỉnh Bà Rịa - Vũng Tàu', 2, '4342342344234', 'dsadsada', 'đasd', 'aaaaaaaaa', 2, '1534145265.banner.png', 0, '2018-08-07 15:58:05', '2018-08-13 15:09:35'),
-(8, 'Kakalot', 1, 'sfkfjkdsj@gmail.com', '$2y$10$VdcQG06XdIi/jnNiGkmBW.Hm4zHAUTvT9uR165sgBHv87/hQhnlvC', NULL, '01697161671', 'dsadsadsaddsad ,19}', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 06:56:34', '2018-08-13 06:56:34'),
-(9, 'Kakalot 12', 1, 'dsadsa@gmail.com', '$2y$10$2nev7GkVlilp/tQZbwkyouzLzaSjts3CaS.6fkkbjaCzVKIXpSuCG', NULL, '01697161671', 'dsadsadsadadsdsaad ,Tỉnh Lạng Sơn', 20, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 07:07:00', '2018-08-13 07:07:00'),
-(10, 'Kazaki Kazua', 1, 'test@gmail.com', '$2y$10$UfSYM85mVUutCcAvckhNreEIjlLjzya55ewEzILcoIL3DeppPuZpy', NULL, '01697161671', 'dsadsadsad ,Tỉnh Vĩnh Phúc,Tỉnh Thái Nguyên,Tỉnh Quảng Ninh', 26, NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-13 08:18:03', '2018-08-13 09:24:43'),
-(11, 'Nguyễn Hiệp', 1, 'test1@gmail.com', '$2y$10$a583RvxOf765uPlVTlYyr.mTHCB2L/5al2SfHmp1SNBD2bFkHF5PC', '4PJ8Rf01vMlThL6igsdZo2xIant3hDkQg4bKXdbtJlesDYCXzQOVHljGg26j', '01697161671', 'dsadsadsaddsd ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-13 20:16:15', '2018-08-13 20:16:15'),
-(12, 'Kazakidsad', 1, 'hiepnh.game@gmail.com', '$2y$10$sE702gop0tfjMGq6Ku5T/.e/42DOjqyLTZVXU9U6IcOmoDLFNBl6.', NULL, '01697161671', 'dsadsadsad ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-14 07:57:16', '2018-08-14 07:58:24');
+(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', 'i4YjmbXpcPXGAuwnr55FHR1EHp6BEqMJEMM2VC9Zhq8fJCvIcxGOfA8nYvpB', '01697161671', 'đình thôn mỹ đình 1 Nam Từ Liêm, Hà Nội', 1, '12345678909876', 'Nguyễn Hữu Hiệp', 'Vietcombank', 'Mỹ Đình 1', 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-08-19 12:22:14'),
+(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Từ Liêm', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$r0ld8F2dm3blCo5AMZqjNuGAkyVga2f5WzzMzPZ2gdM6lDfSv.47e', 'VQjgFFbftLFvuAJCtlcYOAPrAssZNhKXw6tzw0L1Xb2EVvPZpTPXN4OHHcx4', '01697161671', 'đường đình thôn mỹ đình 1', 1, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-19 12:25:36'),
+(6, 'Monkey D. Luffy', 0, 'ludeptrai@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'Cầu Giấy', 1, NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 1, '2018-07-24 10:40:29', '2018-08-19 12:28:57'),
+(7, 'Hashimoto Kanna', 1, 'voanhhiep@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'aynRe5yeuXIibfmBOOjlKjzumNkdrxUBAawWrtqrmFCIGmLD97tjrwniYLxN', '01697161671', 'Mỹ Đình 1', 2, '4342342344234', 'dsadsada', 'đasd', 'aaaaaaaaa', 2, '1534145265.banner.png', 0, '2018-08-07 15:58:05', '2018-08-19 11:24:37'),
+(8, 'Portgas D. Ace', 1, 'portgas@gmail.com', '$2y$10$VdcQG06XdIi/jnNiGkmBW.Hm4zHAUTvT9uR165sgBHv87/hQhnlvC', NULL, '01697161671', 'dsadsadsaddsad ,19}', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 1, '2018-08-13 06:56:34', '2018-08-19 12:45:09'),
+(9, 'Kakalot', 1, 'kakalot@gmail.com', '$2y$10$2nev7GkVlilp/tQZbwkyouzLzaSjts3CaS.6fkkbjaCzVKIXpSuCG', NULL, '01697161671', 'Mỹ Đình 3 ,Tỉnh Lạng Sơn', 20, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 07:07:00', '2018-08-19 12:27:24'),
+(10, 'Kazaki Kazua', 1, 'kazaki_jp@gmail.com', '$2y$10$UfSYM85mVUutCcAvckhNreEIjlLjzya55ewEzILcoIL3DeppPuZpy', NULL, '01697161671', 'Mỹ Đình 2,Tỉnh Quảng Ninh', 26, NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-13 08:18:03', '2018-08-13 09:24:43'),
+(11, 'Sabo', 1, 'emanhace@gmail.com', '$2y$10$a583RvxOf765uPlVTlYyr.mTHCB2L/5al2SfHmp1SNBD2bFkHF5PC', 'bGOLEJHvs7BGjme5iCBE4uvUuEBOSGTGfjNBwK6OAXfmnJiN9BF65dN7UcgF', '01697161671', 'Mỹ Đình ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-13 20:16:15', '2018-08-13 20:16:15'),
+(12, 'Minamoto Monogatari', 1, 'chac_ai_do_se_hieu@gmail.com', '$2y$10$sE702gop0tfjMGq6Ku5T/.e/42DOjqyLTZVXU9U6IcOmoDLFNBl6.', NULL, '01697161671', 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-14 07:57:16', '2018-08-19 12:27:32'),
+(13, 'SYSTEM ADMIN', 1, 'tpfteam1111@gmail.com', '$2y$10$zdfWD3jNhulLxXzHeOfBsuF1c8.m655GPr08voqJ5Ui9yPdJVybva', NULL, '01697161671', 'Khu công nghệ cao Hòa Lạc, Thạch Thất ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-20 16:53:47', '2018-08-20 16:53:47');
 
 -- --------------------------------------------------------
 
@@ -861,27 +684,11 @@ CREATE TABLE IF NOT EXISTS `warehouses` (
 --
 
 INSERT INTO `warehouses` (`id`, `name`, `address`) VALUES
-(1, 'Kho HN', 'Hà Nội'),
-(2, 'Kho Đà Nẵng', 'Đà Nẵng'),
-(3, 'Kho HCM', 'Tp Hồ Chí Minh');
+(1, 'Kho Hà Nội', 'Khu công nghệ cao Hòa Lạc, Thạch Thất, Hà Nội'),
+(2, 'Kho Đà Nẵng', 'Nguyễn Văn Linh, An Hải Trung, Hải Châu, Đà Nẵng'),
+(3, 'Kho Sài Gòn', 'Công xã Paris, Bến Nghé, Quận 1, Quận 1 Hồ Chí Minh');
 COMMIT;
 
-CREATE TABLE `contacts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `contacts`
---
-ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
