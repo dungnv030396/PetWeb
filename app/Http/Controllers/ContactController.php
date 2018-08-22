@@ -10,7 +10,7 @@ class ContactController extends Controller
 //    protected $fillable = ['body'];//
     public function create(){
         $contact = new Contact();
-        $res = $contact->createContact($this);
+        $res = $contact->creavteContact($this);
 //        dd($res);
         if(!$res){
             alert()->success('Đã gửi thư thành công!');

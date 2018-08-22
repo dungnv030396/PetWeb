@@ -31,9 +31,7 @@ class UsersController extends Controller
         if ($res['error']) {
             return back()->with($res['code'], $res['message']);
         } else {
-//            dd($res['user']->user_id);
                 return redirect(route('registerSupplierSuccess',$res['user']->user_id));
-//            return back()->with('postProductSuccess', 'Gửi đơn đăng ký thành công');
         }
     }
     public function registerSupplierPage(){

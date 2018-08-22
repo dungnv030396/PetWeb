@@ -65,9 +65,7 @@ Route::get('recruitment',function (){
     return view('clientViews.supports.recruitment');
 })->name('recruitment');
 //Register
-//Route::get('register', function () {
-//    return view('registration.register');
-//})->name('registerPage');
+
 Route::get('register','UsersController@registerView')->name('registerPage');
 Route::post('register-success', 'UsersController@store')->name('register');
 
@@ -176,7 +174,7 @@ Route::post('moderator/manage/processed-report-list','DatatableController@getLis
 
 Route::post('data/orders','DatatableController@getOrders')->name('orderDataProcessing');//example
 
-Route::get('dang-nhap/moderator', function (){
+Route::get('login/moderator', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
         \Illuminate\Support\Facades\Auth::logout();
         return view('ModeratorView.login');
@@ -243,7 +241,7 @@ Route::get('admin/management/homepage',function (){
     return view('AdminView.home',compact('menu'));
 })->name('admin_manage_place');
 Route::post('admin/manage/home','AdminController@loginAdmin')->name('loginAdmin');
-Route::get('dang-nhap/admin', function (){
+Route::get('login/admin', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
         \Illuminate\Support\Facades\Auth::logout();
         return view('AdminView.login');
@@ -321,3 +319,6 @@ Route::post('supplier/management/finance-data','DatatableController@getSupplier_
 
 //tinh tong tien dat hang ajax
 Route::post('data-load/amount','CartsController@loadAmountAjax')->name('loadAmount');
+
+Route::post('search-product','ProductController@searchProductByName')->name('searchProductByName');
+Route::get('search-product','ProductController@searchProductByName');

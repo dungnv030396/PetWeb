@@ -79,5 +79,9 @@ class ProductController extends Controller
         );
         echo json_encode($output);
     }
-
+    public function searchProductByName(){
+        $product = new Product();
+        $products = $product->searchProductByName(8);
+        return view('clientViews.search-products-by-name',compact('products'));
+    }
 }

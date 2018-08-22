@@ -440,6 +440,26 @@ class Product extends Model
         );
         return $json_data;
     }
-
+    public function searchProductByName($number_record){
+        $search = \request('value');
+        $cate = new Category();
+        $cata = Catalog::find(1);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        $idCategoryArray = array();
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $cata = Catalog::find(2);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $listProduct = Product::where([
+            ['name','like', "%$search%"],
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0]
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record);
+        return $listProduct;
+    }
 }
 
