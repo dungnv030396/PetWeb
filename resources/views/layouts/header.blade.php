@@ -53,7 +53,12 @@
                 <div class="beta-comp">
                     <form method="POST" id="searchform" action="{{route('searchProductByName')}}">
                         {{ csrf_field() }}
-                        <input type="text" value="{{ old('value') }}" name="value" placeholder="Nhập từ khóa..." required/>
+                        @if(!empty($products['search']))
+                            <input type="text" value="{{ $products['search'] }}" name="value"
+                                   placeholder="Nhập từ khóa..." required/>
+                        @else
+                            <input type="text" name="value" placeholder="Nhập từ khóa..." required/>
+                        @endif
                         <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                     </form>
                 </div>

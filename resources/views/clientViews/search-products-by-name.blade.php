@@ -14,12 +14,12 @@
                         <div class="beta-products-list" id="tag_container">
                             <h2 style="color: #f90">Trang chủ</h2>
                             <div class="beta-products-details">
-                                <h4 class="pull-left">Tìm thấy <a style="color: #f90"> {{$products->total()}} </a>sản
+                                <h4 class="pull-left">Tìm thấy <a style="color: #f90"> {{$products['list']->total()}} </a>sản
                                     phẩm</h4>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
-                                @foreach($products as $product)
+                                @foreach($products['list'] as $product)
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             @if($product->discount != 0)
@@ -66,7 +66,7 @@
                             @endforeach
                             <!-- end -->
                             </div>
-                            <div>{{ $products->appends(request()->input())->links() }}</div>
+                            <div>{{ $products['list']->appends(request()->input())->links() }}</div>
                         </div>
                     </div>
                 </div>

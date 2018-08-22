@@ -371,7 +371,7 @@ class Product extends Model
         } else {
             $orderLines = OrderLine::whereHas('product', function ($query) {
                 $query->where('user_id', Auth::user()->id);
-                })
+            })
                 ->whereHas('order', function ($query) use ($search) {
                     $query->where('delete_flag', 0);
                     $query->where('id', 'like', "%$search%");
@@ -383,7 +383,7 @@ class Product extends Model
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
-            if($orderLines->count() == 0){
+            if ($orderLines->count() == 0) {
                 $orderLines = OrderLine::whereHas('product', function ($query) {
                     $query->where('user_id', Auth::user()->id);
                 })
@@ -440,7 +440,9 @@ class Product extends Model
         );
         return $json_data;
     }
-    public function searchProductByName($number_record){
+
+    public function searchProductByName($number_record)
+    {
         $search = \request('value');
         $cate = new Category();
         $cata = Catalog::find(1);
@@ -455,11 +457,14 @@ class Product extends Model
             $idCategoryArray[] = $category->id;
         }
         $listProduct = Product::where([
-            ['name','like', "%$search%"],
+            ['name', 'LIKE', "%$search%"],
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0]
         ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record);
-        return $listProduct;
+        return [
+            'list' => $listProduct,
+            'search' => $search,
+        ];
     }
 }
 

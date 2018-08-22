@@ -23,6 +23,9 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        for($i = 3; $i <10;$i++){
+
+        }
         $date = new \DateTime('now');
         $mytime = Carbon::now();
         var_dump(Carbon::parse($mytime)->modify('+7 hours')->format('m-d-Y'));die;
