@@ -51,7 +51,7 @@ class UserProfileController extends Controller
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-            $allowedfileExtension = ['pdf', 'jpg', 'png','PNG','JPG','PDF'];
+            $allowedfileExtension = ['jpg', 'png','PNG','JPG'];
 //            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
             if (in_array($fileExtension, $allowedfileExtension)) {
                 $filenameFinal = time().'.'.$filename;
@@ -62,7 +62,7 @@ class UserProfileController extends Controller
                 $avatar->storeAs('public/avatar', $filenameFinal);
                 return back()->with('statusUpdateAvatar', 'Cập nhật ảnh đại diện thành công');
             } else {
-                return back()->with('errorFile','Chỉ chấp nhận file ảnh, xin mời chọn lại');
+                return back()->with('errorFile','Chỉ chấp nhận file png và jpd, xin mời chọn lại');
             }
         }else{
             return back()->with('errorNull','xin mời chọn ảnh');

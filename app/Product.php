@@ -229,7 +229,7 @@ class Product extends Model
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-            $allowedfileExtension = ['pdf', 'jpg', 'png', 'PNG', 'JPG', 'PDF'];
+            $allowedfileExtension = ['jpg', 'png', 'PNG', 'JPG'];
 
 //            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
             if (in_array($fileExtension, $allowedfileExtension)) {
@@ -253,7 +253,7 @@ class Product extends Model
                 return [
                     'error' => true,
                     'code' => 'errorFile',
-                    'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    'message' => 'Chỉ chấp nhận file png và jpd, xin mời chọn lại'
                 ];
             }
         } else {
