@@ -29,18 +29,9 @@
                                  height="80px"/>
                              </span>
                         @if(\Illuminate\Support\Facades\Auth::check())
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                             class="font-bold">{{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b
-                                            class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{{ route('logoutAdmin') }}">Logout</a></li>
-                            </ul>
+                             </span> <span class="text-muted text-xs block">ADMIN</span> </span>
                         @endif
                     </div>
                     <div class="logo-element">
@@ -51,7 +42,7 @@
                                 class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a>
                 </li>
                 <li class="{{($menu=='listusers')?'active':''}}">
-                    <a href=""><i class="fa fa-group"></i> <span class="nav-label">Danh Sách Người Dùng</span>
+                    <a href=""><i class="fa fa-group"></i> <span class="nav-label">Quản Lý Tài Khoản</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{route('getListCustomerPage')}}">Khách Hàng</a></li>
