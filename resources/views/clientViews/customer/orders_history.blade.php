@@ -19,7 +19,7 @@
                 <form method="POST" action="{{route('searchOrderHistosry',\Illuminate\Support\Facades\Auth::user()->id)}}">
                     {{ csrf_field() }}
                     <span class="search-supplier"><input class="form-control form-control-lg form-control-borderless"
-                                             value="" name="name" type="search" placeholder="Tìm kiếm Trạng Thái và Mã đơn hàng"></span>
+                                              name="name" type="search" placeholder="Tìm kiếm Trạng Thái và Mã đơn hàng"></span>
                     <button class="button-search-supplier btn btn-success " type="submit">Tìm Kiếm</button>
                 </form>
                 <br>

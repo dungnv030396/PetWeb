@@ -51,8 +51,14 @@
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>
                 <div class="beta-comp">
-                    <form role="search" method="get" id="searchform" action="/">
-                        <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..."/>
+                    <form method="POST" id="searchform" action="{{route('searchProductByName')}}">
+                        {{ csrf_field() }}
+                        @if(!empty($products['search']))
+                            <input type="text" value="{{ $products['search'] }}" name="value"
+                                   placeholder="Nhập từ khóa..." required/>
+                        @else
+                            <input type="text" name="value" placeholder="Nhập từ khóa..." required/>
+                        @endif
                         <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                     </form>
                 </div>

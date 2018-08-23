@@ -229,7 +229,7 @@ class Product extends Model
             $avatar = $request->file('avatar');
             $fileExtension = $avatar->GetClientOriginalExtension();
             $filename = $avatar->getClientOriginalName();
-            $allowedfileExtension = ['pdf', 'jpg', 'png', 'PNG', 'JPG', 'PDF'];
+            $allowedfileExtension = ['jpg', 'png', 'PNG', 'JPG'];
 
 //            $followExtensions = ['jpg', 'PNG', 'JPEG', 'GIF', 'TIFF'];
             if (in_array($fileExtension, $allowedfileExtension)) {
@@ -253,7 +253,7 @@ class Product extends Model
                 return [
                     'error' => true,
                     'code' => 'errorFile',
-                    'message' => 'Chỉ chấp nhận file ảnh, xin mời chọn lại'
+                    'message' => 'Chỉ chấp nhận file png và jpd, xin mời chọn lại'
                 ];
             }
         } else {
@@ -371,7 +371,7 @@ class Product extends Model
         } else {
             $orderLines = OrderLine::whereHas('product', function ($query) {
                 $query->where('user_id', Auth::user()->id);
-                })
+            })
                 ->whereHas('order', function ($query) use ($search) {
                     $query->where('delete_flag', 0);
                     $query->where('id', 'like', "%$search%");
@@ -383,7 +383,7 @@ class Product extends Model
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
                 ->get();
-            if($orderLines->count() == 0){
+            if ($orderLines->count() == 0) {
                 $orderLines = OrderLine::whereHas('product', function ($query) {
                     $query->where('user_id', Auth::user()->id);
                 })
@@ -441,5 +441,30 @@ class Product extends Model
         return $json_data;
     }
 
+    public function searchProductByName($number_record)
+    {
+        $search = \request('value');
+        $cate = new Category();
+        $cata = Catalog::find(1);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        $idCategoryArray = array();
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $cata = Catalog::find(2);
+        $categories = $cate->getCategoriesInOneCatalog($cata);
+        foreach ($categories as $category) {
+            $idCategoryArray[] = $category->id;
+        }
+        $listProduct = Product::where([
+            ['name', 'LIKE', "%$search%"],
+            ['delete_flag', '=', '0'],
+            ['quantity', '>', 0]
+        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record);
+        return [
+            'list' => $listProduct,
+            'search' => $search,
+        ];
+    }
 }
 
