@@ -145,7 +145,7 @@
 <script src="source/assets/manage/js/plugins/pace/pace.min.js"></script>
 <script src="source/assets/manage/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="source/assets/manage/js/plugins/gritter/jquery.gritter.min.js"></script>
-<script src="source/assets/manage/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+{{--<script src="source/assets/manage/js/plugins/sparkline/jquery.sparkline.min.js"></script>--}}
 <script src="source/assets/manage/js/demo/sparkline-demo.js"></script>
 <script src="source/assets/manage/js/plugins/chartJs/Chart.min.js"></script>
 <script src="source/assets/manage/js/plugins/dataTables/datatables.min.js"></script>

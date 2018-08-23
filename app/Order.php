@@ -138,7 +138,7 @@ class Order extends Model
 
         }
         $order->save();
-        $order->completed_at = Carbon::parse($order->updated_at->modify('+7 days +7 hours')->format('Y-m-d H:i:s'));
+        $order->completed_at = Carbon::parse($order->updated_at->modify('+7 hours')->format('Y-m-d H:i:s'));
         $order->save();
         foreach ($order->orderLine as $orderLine) {
             $orderLine->orderline_status_id = 5;
@@ -447,4 +447,461 @@ class Order extends Model
         );
         return $json_data;
     }
+
+    public function getOrdersDataMonth()
+    {
+        $number_ordersCurrentMonth = 0;
+        $month = date('m');
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('d');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= date('t'); $i++) {
+                    $day = Carbon::parse($order[0]->created_at)->format('d');
+                    if ($i == $day) {
+                        $number = $order->count();
+                        $number_ordersCurrentMonth += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => $number,
+                        ];
+                    } else {
+                        $day = $i;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= date('t'); $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $month,
+                    'day' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $ordersLastMonth = 0;
+        if ((int)$month == 1) {
+            $month = 12;
+            $year = (int)$year - 1;
+            $ordersLastMonth = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->count();
+        } else {
+            $month = (int)$month - 1;
+            $ordersLastMonth = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->count();
+        }
+        $data['month_number'] = number_format($number_ordersCurrentMonth);
+        $data['last_month_number'] = $ordersLastMonth;
+        if ($ordersLastMonth == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_ordersCurrentMonth / $ordersLastMonth * 100, 2);
+        }
+        return $data;
+    }
+
+    public function getOrdersDataYear()
+    {
+        $number_ordersCurrentYear = 0;
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= 12; $i++) {
+                    $month = Carbon::parse($order[0]->created_at)->format('m');
+                    if ($i == $month) {
+                        $number = $order->count();
+                        $number_ordersCurrentYear += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'number' => $number,
+                        ];
+                    } else {
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => $i,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= 12; $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $ordersLastYear = 0;
+        $year = (int)$year - 1;
+        $ordersLastYear = Order::whereRaw('YEAR(created_at) = ?', $year)->where('delete_flag', 0)->count();
+        $data['year_number'] = number_format($number_ordersCurrentYear);
+        $data['last_year_number'] = $ordersLastYear;
+        if ($ordersLastYear == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_ordersCurrentYear / $ordersLastYear * 100, 2);
+        }
+        return $data;
+    }
+
+    public function getOrdersDataAnnual()
+    {
+        $number_orders = 0;
+        $orders = Order::where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('Y');
+        });
+        $data = array();
+        $i = 1;
+        if ($orders) {
+            foreach ($orders as $order) {
+                $year = Carbon::parse($order[0]->created_at)->format('Y');
+                $number = $order->count();
+                $number_orders += $number;
+                $data[$i] = [
+                    'year' => (int)$year,
+                    'number' => $number,
+                ];
+                $i++;
+            }
+        }
+        $data['year_record'] = $orders->count();
+        $data['year_number'] = number_format($number_orders);
+        return $data;
+    }
+
+    public function getFinanceDataMonth()
+    {
+        $number_FinanceCurrentMonth = 0;
+        $month = date('m');
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->whereRaw('MONTH(completed_at) = ?', $month)->where('delete_flag', 0)->orderBy('completed_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->completed_at)->format('d');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= date('t'); $i++) {
+                    $day = Carbon::parse($order[0]->completed_at)->format('d');
+                    if ($i == $day) {
+                        $number = 0;
+                        foreach ($order as $orderP) {
+                            $number += $orderP->payment->amount;
+                        }
+                        $number_FinanceCurrentMonth += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => $number
+                        ];
+                    } else {
+                        $day = $i;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= date('t'); $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $month,
+                    'day' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $financeLastMonth = 0;
+        if ((int)$month == 1) {
+            $month = 12;
+            $year = (int)$year - 1;
+        } else {
+            $month = (int)$month - 1;
+        }
+        $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->whereRaw('MONTH(completed_at) = ?', $month)->where('delete_flag', 0)->orderBy('completed_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->completed_at)->format('d');
+        });
+        if ($orders) {
+            foreach ($orders as $order) {
+                foreach ($order as $orderP) {
+                    $financeLastMonth += $orderP->payment->amount;
+                }
+            }
+        }
+        $data['month_number'] = number_format($number_FinanceCurrentMonth);
+        $data['last_month_number'] = $financeLastMonth;
+        if ($financeLastMonth == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_FinanceCurrentMonth / $financeLastMonth * 100, 2);
+        }
+        return $data;
+    }
+
+    public function getFinanceDataAnnual()
+    {
+        $number_FinanceCurrentYear = 0;
+        $orders = Order::where('delete_flag', 0)->orderBy('completed_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->completed_at)->format('Y');
+        });
+        $data = array();
+        $i = 1;
+        if ($orders) {
+            foreach ($orders as $order) {
+                $year = Carbon::parse($order[0]->completed_at)->format('Y');
+                $number = 0;
+                foreach ($order as $orderP) {
+                    $number += $orderP->payment->amount;
+                }
+                $number_FinanceCurrentYear += $number;
+                $data[$i] = [
+                    'year' => (int)$year,
+                    'number' => $number,
+                ];
+                $i++;
+            }
+        }
+        $data['year_record'] = $orders->count();
+        $data['year_number'] = number_format($number_FinanceCurrentYear);
+        return $data;
+    }
+
+    public function getFinanceDataYear()
+    {
+        $number_FinanceCurrentYear = 0;
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->orderBy('completed_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
+            return Carbon::parse($date->completed_at)->format('m');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= 12; $i++) {
+                    $month = Carbon::parse($order[0]->completed_at)->format('m');
+                    if ($i == $month) {
+                        $number = 0;
+                        foreach ($order as $orderP) {
+                            $number += $orderP->payment->amount;
+                        }
+                        $number_FinanceCurrentYear += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'number' => $number
+                        ];
+                    } else {
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => $i,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= 12; $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $financeLastYear = 0;
+        $year = (int)$year - 1;
+        $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->orderBy('completed_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
+            return Carbon::parse($date->completed_at)->format('m');
+        });
+        if ($orders) {
+            foreach ($orders as $order) {
+                foreach ($order as $orderP) {
+                    $financeLastYear += $orderP->payment->amount;
+                }
+            }
+        }
+        $data['year_number'] = number_format($number_FinanceCurrentYear);
+        $data['last_year_number'] = $financeLastYear;
+        if ($financeLastYear == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_FinanceCurrentYear / $financeLastYear * 100, 2);
+        }
+        return $data;
+    }
+
+    public function getEstimateFinanceDataMonth()
+    {
+        $number_FinanceCurrentMonth = 0;
+        $month = date('m');
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('d');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= date('t'); $i++) {
+                    $day = Carbon::parse($order[0]->created_at)->format('d');
+                    if ($i == $day) {
+                        $number = 0;
+                        foreach ($order as $orderP) {
+                            $number += $orderP->payment->amount;
+                        }
+                        $number_FinanceCurrentMonth += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => $number
+                        ];
+                    } else {
+                        $day = $i;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'day' => (int)$day,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= date('t'); $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $month,
+                    'day' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $financeLastMonth = 0;
+        if ((int)$month == 1) {
+            $month = 12;
+            $year = (int)$year - 1;
+        } else {
+            $month = (int)$month - 1;
+        }
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('d');
+        });
+        if ($orders) {
+            foreach ($orders as $order) {
+                foreach ($order as $orderP) {
+                    $financeLastMonth += $orderP->payment->amount;
+                }
+            }
+        }
+        $data['month_number'] = number_format($number_FinanceCurrentMonth);
+        $data['last_month_number'] = $financeLastMonth;
+        if ($financeLastMonth == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_FinanceCurrentMonth / $financeLastMonth * 100, 2);
+        }
+        return $data;
+    }
+
+    public function getEstimateFinanceDataYear()
+    {
+        $number_FinanceCurrentYear = 0;
+        $year = date('Y');
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->orderBy('created_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });
+        $data = array();
+        if ($orders) {
+            $j = 1;
+            foreach ($orders as $order) {
+                for ($i = $j; $i <= 12; $i++) {
+                    $month = Carbon::parse($order[0]->created_at)->format('m');
+                    if ($i == $month) {
+                        $number = 0;
+                        foreach ($order as $orderP) {
+                            $number += $orderP->payment->amount;
+                        }
+                        $number_FinanceCurrentYear += $number;
+                        $j = $i + 1;
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => (int)$month,
+                            'number' => $number
+                        ];
+                    } else {
+                        $data[$i] = [
+                            'year' => (int)$year,
+                            'month' => $i,
+                            'number' => 0
+                        ];
+                    }
+                }
+            }
+        } else {
+            $year = date('Y');
+            for ($i = 1; $i <= 12; $i++) {
+                $data[$i] = [
+                    'year' => $year,
+                    'month' => $i,
+                    'number' => 0
+                ];
+            }
+        }
+        $financeLastYear = 0;
+        $year = (int)$year - 1;
+        $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->orderBy('created_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('m');
+        });
+        if ($orders) {
+            foreach ($orders as $order) {
+                foreach ($order as $orderP) {
+                    $financeLastYear += $orderP->payment->amount;
+                }
+            }
+        }
+        $data['year_number'] = number_format($number_FinanceCurrentYear);
+        $data['last_year_number'] = $financeLastYear;
+        if ($financeLastYear == 0) {
+            $data['percent'] = 100;
+        } else {
+            $data['percent'] = round($number_FinanceCurrentYear / $financeLastYear * 100, 2);
+        }
+        return $data;
+    }
+
 }

@@ -110,9 +110,9 @@
                         data: "orderLine_id",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                             if(oData.status_id == 1){
-                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sendFunction(this.id,this.name)'>Sent</a></center>");
+                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sendFunction(this.id,this.name)'>Gửi</a></center>");
                             }else{
-                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sentFunction(this.id,this.name)'>Sent</a></center>");
+                                $(nTd).html("<center><a class='btn btn-primary' herf='' id='" + oData.orderLine_id + "' name='"+ oData.order_code +"' onclick='sentFunction(this.id,this.name)'>Gửi</a></center>");
                             }
 
                         }, orderable: false

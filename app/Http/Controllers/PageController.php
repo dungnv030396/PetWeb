@@ -23,8 +23,41 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $ordersLastMonth = Order::whereRaw('YEAR(created_at) = ?', 2018)->whereRaw('MONTH(created_at) = ?', 8)->count();
+        var_dump($ordersLastMonth);die;
+        $month = date('m');
+        $orders = Order::whereRaw('MONTH(created_at) = ?',$month)->orderBy('created_at','asc')->get()->groupBy(function ($date){
+            return Carbon::parse($date->created_at)->format('d');
+        });
+        if($orders){
+            $data = array();
+            for($i = 1; $i <= date('t'); $i++){
+                foreach ($orders as $order) {
+                    $year = Carbon::parse($order[0]->created_at)->format('Y');
+                    $day = Carbon::parse($order[0]->created_at)->format('d');
+                    if($i == $day){
+                        $number = $order->count();
+                    }else{
+                        $number = 0;
+                        $day = $i;
+                    }
+                    $data[$i] = [
+                        'year'=>$year,
+                        'month'=>$month,
+                        'day'=>$day,
+                        'number'=>$number
+                    ];
+                    break;
+                }
+            }
+
+        }
+        var_dump($data);
+        die;
+        $totalIncome = StoreBenefit::all()->sum('amount');
+        var_dump($totalIncome);die;
         $date = new \DateTime('now');
-        $mytime = Carbon::now();
+
         var_dump(Carbon::parse($mytime)->modify('+7 hours')->format('m-d-Y'));die;
         $str = Carbon::parse($date['date'])->modify('+7 hours')->format('m-d-Y');
         var_dump($str);die;
