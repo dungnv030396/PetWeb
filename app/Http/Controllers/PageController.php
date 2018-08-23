@@ -46,6 +46,11 @@ class PageController extends Controller
     }
     public function getIndex()
     {
+        if (Auth::check()){
+            if (Auth::user()->roleId == 1 OR Auth::user()->roleId==4){
+                Auth::logout();
+            }
+        }
         $product = new Product();
         $slide = Slide::all();
         $pet_products = $product->getProductsAll(8);
