@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\StoreBenefit;
 use App\User;
 use App\Order;
 use App\OrderLine;
 use App\OrderlinepaymentStatus;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\SupplierRegister;
@@ -20,14 +22,78 @@ class AdminController extends Controller
     public function loginAdmin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'roleId' => 1, 'delete_flag' => 0])) {
-            $menu = 'home';
-            return view('AdminView.home', compact('menu'));
+            return \redirect()->route('admin_manage_place');
         } else {
             return Redirect::back()->with([
                 'message' => 'Email hoặc mật khẩu không chính xác hoặc đã bị khóa',
             ]);
         }
         return back();
+    }
+
+    public function home(){
+        $menu = 'home';
+        $totalIncome = StoreBenefit::all()->sum('amount') * 10;
+        $totalBenefit = $totalIncome * 0.1;
+        $totalUsersActive = User::whereIn('roleId',[2,3])->where('delete_flag',0)->count();
+        $totalUsers = User::whereIn('roleId',[2,3])->count();
+        $totalOrdersActive = Order::where('delete_flag',0)->count();
+        $totalOrders = Order::all()->count();
+        $headerData = [
+            $totalIncome,$totalBenefit,$totalOrdersActive,$totalOrders,$totalUsersActive,$totalUsers
+        ];
+        return view('AdminView.home',compact('menu','headerData'));
+    }
+
+    public function loadDataFinanceDaysAjax(Request $request)
+    {
+        try {
+            $data = array();
+            $orderObj = new Order();
+            $dataOrder = $orderObj->getOrdersDataMonth();
+            $dataIncomeReal = $orderObj->getFinanceDataMonth();
+            $dataIncomeEstimate = $orderObj->getEstimateFinanceDataMonth();
+            $data['days'] = (int) date('t');
+            $data['orders'] = $dataOrder;
+            $data['realIncome'] = $dataIncomeReal;
+            $data['estimateIncome'] = $dataIncomeEstimate;
+        } catch (\Exception $e) {
+            return \redirect()->back();
+        }
+        return $data;
+    }
+
+    public function loadDataFinanceMonthsAjax(Request $request)
+    {
+        try {
+            $data = array();
+            $orderObj = new Order();
+            $dataOrder = $orderObj->getOrdersDataYear();
+            $dataIncomeReal = $orderObj->getFinanceDataYear();
+            $dataIncomeEstimate = $orderObj->getEstimateFinanceDataYear();
+            $data['days'] = (int) date('t');
+            $data['orders'] = $dataOrder;
+            $data['realIncome'] = $dataIncomeReal;
+            $data['estimateIncome'] = $dataIncomeEstimate;
+        } catch (\Exception $e) {
+            return \redirect()->back();
+        }
+        return $data;
+    }
+
+    public function loadDataFinanceYearsAjax(Request $request)
+    {
+        try {
+            $data = array();
+            $orderObj = new Order();
+            $dataOrder = $orderObj->getOrdersDataAnnual();
+            $dataIncomeReal = $orderObj->getFinanceDataAnnual();
+            $data['orders'] = $dataOrder;
+            $data['realIncome'] = $dataIncomeReal;
+        } catch (\Exception $e) {
+            return \redirect()->back();
+        }
+        return $data;
     }
 
     public function destroy()

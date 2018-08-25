@@ -34,8 +34,8 @@
 						</div>
 						<div class="form-block">
 							<label><b>Giới tính</b></label>
-							<input id="gender" type="radio" class="input-radio" name="gender" value="1" {{ ($currentUser->gender == 1) ? 'checked' : '' }} style="width: 10%"><span style="margin-right: 10%">Nam</span>
-							<input id="gender" type="radio" class="input-radio" name="gender" value="0"  {{ ($currentUser->gender == 1) ? '' : 'checked' }} style="width: 10%"><span>Nữ</span>
+							<input type="radio" class="input-radio" name="gender" value="1" {{ ($currentUser->gender == 1) ? 'checked' : '' }} style="width: 10%"><span style="margin-right: 10%">Nam</span>
+							<input type="radio" class="input-radio" name="gender" value="0"  {{ ($currentUser->gender == 1) ? '' : 'checked' }} style="width: 10%"><span>Nữ</span>
 										
 						</div>
 

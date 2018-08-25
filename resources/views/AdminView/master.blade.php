@@ -8,7 +8,7 @@
     <base href="{{asset('')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <link href="source/assets/manage/css/bootstrap.min.css" rel="stylesheet">
-    <link href="source/assets/manage/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="source/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="source/assets/manage/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="source/assets/manage/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
@@ -25,32 +25,24 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="source/assets/manage/img/profile_small.jpg"/>
+                            <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                                 height="80px"/>
                              </span>
                         @if(\Illuminate\Support\Facades\Auth::check())
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                             class="font-bold">{{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b
-                                            class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{{ route('logoutAdmin') }}">Logout</a></li>
-                            </ul>
+                             </span> <span class="text-muted text-xs block">ADMIN</span> </span>
                         @endif
                     </div>
                     <div class="logo-element">
-                        IN+
+                        TPF+
                     </div>
                 </li>
                 <li class="{{($menu=='home')?'active':''}}"><a href="{{route('admin_manage_place')}}"><i
                                 class="fa fa-home"></i> <span class="nav-label">Trang chủ</span></a>
                 </li>
                 <li class="{{($menu=='listusers')?'active':''}}">
-                    <a href=""><i class="fa fa-group"></i> <span class="nav-label">Danh Sách Người Dùng</span>
+                    <a href=""><i class="fa fa-group"></i> <span class="nav-label">Quản Lý Tài Khoản</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{route('getListCustomerPage')}}">Khách Hàng</a></li>
@@ -89,69 +81,16 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="{{redirect()->back()}}"><i class="fa fa-bars"></i>
                     </a>
-                    <form role="search" class="navbar-form-custom" action="search_results.html">
-                        <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control"
-                                   name="top-search" id="top-search">
-                        </div>
-                    </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Chào Mừng Đến Trang Quản Lí Của Quản Trị Viên.</span>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="mailbox.html">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="profile.html">
-                                    <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                        <span class="pull-right text-muted small">12 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="grid_options.html">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="notifications.html">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+                        <span class="m-r-sm text-muted welcome-message">Chào Mừng Đến Trang Quản Lí Của Admin.</span>
                     </li>
                     <li>
                         <a href="{{ route('logoutAdmin') }}">
                             <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
-                    <li>
-                        <a class="right-sidebar-toggle">
-                            <i class="fa fa-tasks"></i>
                         </a>
                     </li>
                 </ul>
@@ -173,6 +112,8 @@
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.spline.js"></script>
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.resize.js"></script>
 <script src="source/assets/manage/js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="source/assets/manage/js/plugins/flot/jquery.flot.symbol.js"></script>
+<script src="source/assets/manage/js/plugins/flot/jquery.flot.time.js"></script>
 <script src="source/assets/manage/js/plugins/peity/jquery.peity.min.js"></script>
 <script src="source/assets/manage/js/demo/peity-demo.js"></script>
 <script src="source/assets/manage/js/plugins/pace/pace.min.js"></script>
@@ -192,53 +133,121 @@
                 showMethod: 'slideDown',
                 timeOut: 4000
             };
-            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+            toastr.success('The Pet Family Company', 'Quản lý của admin!');
 
         }, 1300);
 
+        // var data2 = [
+        //     [gd(2012, 1, 1), 20], [gd(2012, 1, 2), 20], [gd(2012, 1, 3), 4], [gd(2012, 1, 4), 8],
+        //     [gd(2012, 1, 5), 9], [gd(2012, 1, 6), 7], [gd(2012, 1, 7), 5], [gd(2012, 1, 8), 4],
+        //     [gd(2012, 1, 9), 7], [gd(2012, 1, 10), 8], [gd(2012, 1, 11), 9], [gd(2012, 1, 12), 6],
+        //     [gd(2012, 1, 13), 4], [gd(2012, 1, 14), 5], [gd(2012, 1, 15), 11], [gd(2012, 1, 16), 8],
+        //     [gd(2012, 1, 17), 8], [gd(2012, 1, 18), 11], [gd(2012, 1, 19), 11], [gd(2012, 1, 20), 6],
+        //     [gd(2012, 1, 21), 6], [gd(2012, 1, 22), 8], [gd(2012, 1, 23), 11], [gd(2012, 1, 24), 13],
+        //     [gd(2012, 1, 25), 7], [gd(2012, 1, 26), 9], [gd(2012, 1, 27), 9], [gd(2012, 1, 28), 8],
+        //     [gd(2012, 1, 29), 5], [gd(2012, 1, 30), 8], [gd(2012, 1, 31), 25]
+        // ];
+        //
+        // var data3 = [
+        //     [gd(2012, 1, 1), 800], [gd(2012, 1, 2), 500], [gd(2012, 1, 3), 600], [gd(2012, 1, 4), 700],
+        //     [gd(2012, 1, 5), 500], [gd(2012, 1, 6), 456], [gd(2012, 1, 7), 800], [gd(2012, 1, 8), 589],
+        //     [gd(2012, 1, 9), 467], [gd(2012, 1, 10), 876], [gd(2012, 1, 11), 689], [gd(2012, 1, 12), 700],
+        //     [gd(2012, 1, 13), 500], [gd(2012, 1, 14), 600], [gd(2012, 1, 15), 700], [gd(2012, 1, 16), 786],
+        //     [gd(2012, 1, 17), 345], [gd(2012, 1, 18), 888], [gd(2012, 1, 19), 888], [gd(2012, 1, 20), 888],
+        //     [gd(2012, 1, 21), 987], [gd(2012, 1, 22), 444], [gd(2012, 1, 23), 999], [gd(2012, 1, 24), 567],
+        //     [gd(2012, 1, 25), 786], [gd(2012, 1, 26), 666], [gd(2012, 1, 27), 888], [gd(2012, 1, 28), 900],
+        //     [gd(2012, 1, 29), 178], [gd(2012, 1, 30), 555], [gd(2012, 1, 31), 993]
+        // ];
+        //
+        //
+        // var dataset = [
+        //     {
+        //         label: "Số lượng đơn hàng",
+        //         data: data3,
+        //         color: "#1ab394",
+        //         bars: {
+        //             show: true,
+        //             align: "center",
+        //             barWidth: 24 * 60 * 60 * 600,
+        //             lineWidth:0
+        //         }
+        //
+        //     }, {
+        //         label: "Doanh thu",
+        //         data: data2,
+        //         yaxis: 2,
+        //         color: "#1C84C6",
+        //         lines: {
+        //             lineWidth:1,
+        //             show: true,
+        //             fill: true,
+        //             fillColor: {
+        //                 colors: [{
+        //                     opacity: 0.2
+        //                 }, {
+        //                     opacity: 0.4
+        //                 }]
+        //             }
+        //         },
+        //         splines: {
+        //             show: false,
+        //             tension: 0.6,
+        //             lineWidth: 1,
+        //             fill: 0.1
+        //         },
+        //     }
+        // ];
+        //
+        //
+        // var options = {
+        //     xaxis: {
+        //         mode: "time",
+        //         tickSize: [3, "day"],
+        //         tickLength: 0,
+        //         axisLabel: "Date",
+        //         axisLabelUseCanvas: true,
+        //         axisLabelFontSizePixels: 12,
+        //         axisLabelFontFamily: 'Arial',
+        //         axisLabelPadding: 10,
+        //         color: "#d5d5d5"
+        //     },
+        //     yaxes: [{
+        //         position: "left",
+        //         max: 1070,
+        //         color: "#d5d5d5",
+        //         axisLabelUseCanvas: true,
+        //         axisLabelFontSizePixels: 12,
+        //         axisLabelFontFamily: 'Arial',
+        //         axisLabelPadding: 3
+        //     }, {
+        //         position: "right",
+        //         clolor: "#d5d5d5",
+        //         axisLabelUseCanvas: true,
+        //         axisLabelFontSizePixels: 12,
+        //         axisLabelFontFamily: ' Arial',
+        //         axisLabelPadding: 67
+        //     }
+        //     ],
+        //     legend: {
+        //         noColumns: 1,
+        //         labelBoxBorderColor: "#000000",
+        //         position: "nw"
+        //     },
+        //     grid: {
+        //         hoverable: false,
+        //         borderWidth: 0
+        //     }
+        // };
+        //
+        // function gd(year, month, day) {
+        //     return new Date(year, month - 1, day).getTime();
+        // }
+        //
+        // var previousPoint = null, previousLabel = null;
+        //
+        // $.plot($("#flot-dashboard-chart"), dataset, options);
 
-        var data1 = [
-            [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
-        ];
-        var data2 = [
-            [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
-        ];
-        $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-                data1, data2
-            ],
-            {
-                series: {
-                    lines: {
-                        show: false,
-                        fill: true
-                    },
-                    splines: {
-                        show: true,
-                        tension: 0.4,
-                        lineWidth: 1,
-                        fill: 0.4
-                    },
-                    points: {
-                        radius: 0,
-                        show: true
-                    },
-                    shadowSize: 2
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true,
-                    tickColor: "#d5d5d5",
-                    borderWidth: 1,
-                    color: '#d5d5d5'
-                },
-                colors: ["#1ab394", "#1C84C6"],
-                xaxis: {},
-                yaxis: {
-                    ticks: 4
-                },
-                tooltip: false
-            }
-        );
+
 
 
     });

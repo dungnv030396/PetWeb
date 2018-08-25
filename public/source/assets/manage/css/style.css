@@ -7503,6 +7503,7 @@ body.rtls.top-navigation .footer.fixed {
   top: 90px;
   right: 0;
   overflow: hidden;
+  display: none;
 }
 .theme-config-box {
   margin-right: -220px;

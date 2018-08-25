@@ -23,26 +23,6 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
-        for($i = 3; $i <10;$i++){
-
-        }
-        $date = new \DateTime('now');
-        $mytime = Carbon::now();
-        var_dump(Carbon::parse($mytime)->modify('+7 hours')->format('m-d-Y'));die;
-        $str = Carbon::parse($date['date'])->modify('+7 hours')->format('m-d-Y');
-        var_dump($str);die;
-        $oldcart = Session('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldcart);
-        $product_id = 12;
-        $quantity = 3-1;
-        $product = new Product();
-        $pro = $product->getProductById($product_id);
-        $cart->add($pro, $quantity);
-        $request->session()->put('cart', $cart);
-        $amount = number_format($cart->totalPrice);
-        var_dump($amount);
-        die;
-
     }
     public function getIndex()
     {

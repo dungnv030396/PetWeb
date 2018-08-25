@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2018 at 06:54 PM
+-- Generation Time: Aug 23, 2018 at 04:34 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `orderlinepayment_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orderlinepayment_statuses`
@@ -266,7 +266,19 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `completed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `status_id`, `finance_status`, `address`, `city_code`, `warehouse_id`, `moderator_id`, `user_id`, `payment_id`, `delete_flag`, `created_at`, `updated_at`, `completed_at`) VALUES
+(1, 5, 2, 'đường đình thôn mỹ đình 1', 1, 1, 5, 5, 1, 0, '2018-08-23 13:28:27', '2018-08-22 13:37:34', '2018-08-29 20:34:15'),
+(2, 5, 2, 'đường đình thôn mỹ đình 1', 1, 1, 5, 5, 2, 0, '2018-08-22 13:29:49', '2018-08-22 13:34:38', '2018-08-29 20:34:00'),
+(3, 4, 1, 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, 1, 5, 12, 3, 0, '2017-07-22 17:13:24', '2018-08-22 17:15:26', NULL),
+(4, 1, 1, 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, 1, NULL, 12, 4, 0, '2016-08-23 13:53:58', '2018-08-23 13:53:58', NULL),
+(5, 1, 1, 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, 1, NULL, 12, 5, 0, '2015-08-23 13:54:18', '2018-08-23 13:54:18', NULL),
+(6, 1, 1, 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, 1, NULL, 12, 6, 0, '2015-08-23 13:54:35', '2018-08-23 13:54:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -290,7 +302,19 @@ CREATE TABLE IF NOT EXISTS `order_lines` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order_lines`
+--
+
+INSERT INTO `order_lines` (`id`, `order_id`, `city_code`, `warehouse_id`, `product_id`, `quantity`, `amount`, `orderline_status_id`, `finance_status`, `sent_at`, `payment_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 77, 1, 3500000, 5, 2, '2018-08-22 13:32:47', '2018-08-29', '2018-08-22 13:28:27', '2018-08-22 13:37:34'),
+(2, 2, 1, 1, 74, 2, 570000, 5, 2, '2018-08-22 13:32:53', '2018-08-29', '2018-08-22 13:29:49', '2018-08-22 13:34:38'),
+(3, 3, 1, 1, 78, 2, 700000, 5, 1, '2018-08-22 17:14:33', '2018-08-30', '2018-08-22 17:13:24', '2018-08-22 17:15:26'),
+(4, 4, 1, 1, 76, 1, 720000, 1, 1, NULL, NULL, '2018-08-23 13:53:58', '2018-08-23 13:53:58'),
+(5, 5, 1, 1, 77, 1, 3500000, 1, 1, NULL, NULL, '2018-08-23 13:54:18', '2018-08-23 13:54:18'),
+(6, 6, 1, 1, 70, 1, 2500000, 1, 1, NULL, NULL, '2018-08-23 13:54:35', '2018-08-23 13:54:35');
 
 -- --------------------------------------------------------
 
@@ -341,7 +365,19 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `status`, `amount`, `payment`, `payment_info`, `security`, `user_message`, `created_at`, `updated_at`) VALUES
+(1, 1, 3500000, NULL, NULL, NULL, NULL, '2018-08-22 13:28:27', '2018-08-22 13:28:27'),
+(2, 1, 570000, NULL, NULL, NULL, NULL, '2018-08-22 13:29:49', '2018-08-22 13:29:49'),
+(3, 1, 700000, NULL, NULL, NULL, NULL, '2017-07-22 17:13:24', '2018-08-22 17:13:24'),
+(4, 1, 720000, NULL, NULL, NULL, NULL, '2016-08-23 13:53:58', '2018-08-23 13:53:58'),
+(5, 1, 3500000, NULL, NULL, NULL, NULL, '2015-08-23 13:54:18', '2018-08-23 13:54:18'),
+(6, 1, 2500000, NULL, NULL, NULL, NULL, '2015-08-23 13:54:35', '2018-08-23 13:54:35');
 
 -- --------------------------------------------------------
 
@@ -434,15 +470,15 @@ INSERT INTO `products` (`id`, `user_id`, `category_id`, `name`, `price`, `quanti
 (67, 2, 5, 'Bộ xương đồ chơi', 60000, 32, 0, '1534613471.do-choi-thu-cung-600x450.jpg', 'Đồ chơi dành cho chó mèo.', 0, '2018-08-18 17:31:11', '2018-08-18 17:31:11'),
 (68, 2, 11, 'Blue Iguana - Rồng Nam Mỹ', 3500000, 2, 0, '1534613679.1499177674_hqdefault.jpg_crop278x278.jpg', 'Rồng Nam Mỹ Blue iguana ngoại nhập .Là lọai động vật cảnh quý hiếm,dễ nuôi, ăn hoàn toàn rau củ quả, tuổi thọ cao từ 20-30 năm trong môi trường nuôi. Kích cỡ từ 1m6-1m8, có chỉ số IQ cao.', 0, '2018-08-18 17:34:39', '2018-08-18 17:34:39'),
 (69, 2, 11, 'Rùa sao Ấn Độ', 2500000, 3, 0, '1534613743.rua-sao-an-do-1493977958.jpg_crop278x278.jpg', 'Rùa sao Ấn Độ có đặc điểm dễ nuôi, ít bệnh tật, bề ngoài bắt mắt.Giá cả cũng khá mềm hơn so với các loại rùa sống trên cạn khác như Radiated, Sulcata, Red Foot,....', 0, '2018-08-18 17:35:43', '2018-08-18 17:35:43'),
-(70, 2, 11, 'Rùa Da Báo - Leopard tortoise', 2500000, 4, 0, '1534613861.rua-canh-leopard-tortoise-1493977970.jpg_crop278x278.jpg', 'Rùa Da Báo - Leopard tortoise có tên thường gọi là Leopard tortoise, tên khoa học là Stigmochelys pardalis.\r\n\r\nSize: Chiều dài cơ thể của con trưởng thành trung bình là 46cm và nặng 18kg, khi lớn hết cỡ mai của chúng sẽ đạt tới 61cm,', 0, '2018-08-18 17:37:41', '2018-08-18 17:37:41'),
+(70, 2, 11, 'Rùa Da Báo - Leopard tortoise', 2500000, 3, 0, '1534613861.rua-canh-leopard-tortoise-1493977970.jpg_crop278x278.jpg', 'Rùa Da Báo - Leopard tortoise có tên thường gọi là Leopard tortoise, tên khoa học là Stigmochelys pardalis.\r\n\r\nSize: Chiều dài cơ thể của con trưởng thành trung bình là 46cm và nặng 18kg, khi lớn hết cỡ mai của chúng sẽ đạt tới 61cm,', 0, '2018-08-18 17:37:41', '2018-08-23 13:54:35'),
 (71, 2, 11, 'Hognose Snake - Rắn mũi hếch', 3000000, 6, 0, '1534613956.1517400902_048c74776df48d621d77f26529df9a82.jpg_crop278x278.jpg', 'Rắn mũi hếch từ lâu đã được con người thuần hóa làm thú cưng, với đặc tính hiền lành dễ thương và khuôn mặt ngốc nghếch, chúng nhanh chóng chiếm được tình cảm sâu sắc của con người, từ đó hàng loạt các màu', 0, '2018-08-18 17:39:16', '2018-08-18 17:39:16'),
 (72, 2, 11, 'Rắn ngô - Corn Snake', 800000, 12, 0, '1534614000.ran-ngo-amel-corn-snake-1493977814_2.jpg_crop278x278.jpg', 'Rắn ngô Corn Snake là loài loài bò sát cảnh hiền lành, dễ thuần phục, không độc. Có nhiều màu sắc đẹp.', 0, '2018-08-18 17:40:00', '2018-08-18 17:40:00'),
 (73, 2, 11, 'Rắn sữa - Milk Snake', 250000, 5, 10, '1534614051.tải xuống (3).jpg', 'Rắn cảnh milk snake là một loài bò sát cảnh đang được rất nhiều bạn trẻ tìm nuôi, màu sắc đẹp và không độc hại, dễ chăm sóc, đễ thuần hóa', 0, '2018-08-18 17:40:51', '2018-08-18 17:40:51'),
-(74, 2, 11, 'Ếch Pacman', 300000, 4, 5, '1534614129.11188235_904190309640283_1467709934941534535_n__65866.1433449772.1280.1280.jpg', 'Những chú Pacman với thân hình hết sức ngộ nghĩnh cùng màu sắc sặc sỡ sống động như 1 nhân vật hoạt họa với cái đầu chỉ bằng 1/2 cơ thể,chiếc mồm rộng đến cuối xương hàm và 1 thân hình tròn xoe,béo hú đã giúp chúng ngày càng được nuôi phổ biến như 1 thú cưng tại các gia đình ở Mỹ và châu âu .', 0, '2018-08-18 17:42:09', '2018-08-18 17:42:09'),
+(74, 2, 11, 'Ếch Pacman', 300000, 2, 5, '1534614129.11188235_904190309640283_1467709934941534535_n__65866.1433449772.1280.1280.jpg', 'Những chú Pacman với thân hình hết sức ngộ nghĩnh cùng màu sắc sặc sỡ sống động như 1 nhân vật hoạt họa với cái đầu chỉ bằng 1/2 cơ thể,chiếc mồm rộng đến cuối xương hàm và 1 thân hình tròn xoe,béo hú đã giúp chúng ngày càng được nuôi phổ biến như 1 thú cưng tại các gia đình ở Mỹ và châu âu .', 0, '2018-08-18 17:42:09', '2018-08-22 13:29:49'),
 (75, 2, 11, 'Leopard Gecko', 800000, 10, 0, '1534614210.leopard-gecko-1493977837.jpg_crop278x278.jpg', 'Thằn lằn da báo Size baby', 1, '2018-08-18 17:43:30', '2018-08-18 17:43:38'),
-(76, 2, 11, 'Thằn lằn da báo', 800000, 12, 10, '1534614277.tải xuống (4).jpg', 'Thằn lằn da báo Size baby', 0, '2018-08-18 17:44:37', '2018-08-18 17:44:37'),
-(77, 2, 11, 'Trăn cây Green Tree Python', 3500000, 2, 0, '1534614345.tran-cay-green-tree-python-1493977966.jpg_crop278x278.jpg', 'Trăn cây xanh được biết đến như 1 trong số các ngôi sao trong giới bò sát cảnh, nói về ngoại hình, chúng có một vẻ đẹp khó cưỡng lại, với màu sắc thay đổi theo từng thời điểm của sự phát triển, từ nhỏ tới lớn, màu sắc được chuyển đổi từ vàng hoặc nâu đỏ, nâu đen. Khi bạn được sở hữu một chú Trăn Cây Xanh, điều đó đồng nghĩa với việc đã được tiếp cận với 1 trong số các loài trăn thú vị nhất thế giới, kích thước khá nhỏ gọn, màu sắc đẹp, cơ thể với những đường cong tuyệt mỹ đem lại cho người nhìn cảm giác cuốn hút khó tả…', 0, '2018-08-18 17:45:45', '2018-08-18 17:45:45'),
-(78, 2, 11, 'Nhện chân trắng', 350000, 5, 0, '1534614445.nhen-chan-trang-white-knee-tarantula-1493977957.jpg_crop278x278.jpg', 'Nhện chân trằng - White knee tarantula , đặc điểm dễ nuôi, màu sắc đẹp- là một ttrong ba loài nhện lớn nhanh nhất thế giới', 0, '2018-08-18 17:47:25', '2018-08-18 17:47:25'),
+(76, 2, 11, 'Thằn lằn da báo', 800000, 11, 10, '1534614277.tải xuống (4).jpg', 'Thằn lằn da báo Size baby', 0, '2018-08-18 17:44:37', '2018-08-23 13:53:58'),
+(77, 2, 11, 'Trăn cây Green Tree Python', 3500000, 0, 0, '1534614345.tran-cay-green-tree-python-1493977966.jpg_crop278x278.jpg', 'Trăn cây xanh được biết đến như 1 trong số các ngôi sao trong giới bò sát cảnh, nói về ngoại hình, chúng có một vẻ đẹp khó cưỡng lại, với màu sắc thay đổi theo từng thời điểm của sự phát triển, từ nhỏ tới lớn, màu sắc được chuyển đổi từ vàng hoặc nâu đỏ, nâu đen. Khi bạn được sở hữu một chú Trăn Cây Xanh, điều đó đồng nghĩa với việc đã được tiếp cận với 1 trong số các loài trăn thú vị nhất thế giới, kích thước khá nhỏ gọn, màu sắc đẹp, cơ thể với những đường cong tuyệt mỹ đem lại cho người nhìn cảm giác cuốn hút khó tả…', 0, '2018-08-18 17:45:45', '2018-08-23 13:54:18'),
+(78, 2, 11, 'Nhện chân trắng', 350000, 3, 0, '1534614445.nhen-chan-trang-white-knee-tarantula-1493977957.jpg_crop278x278.jpg', 'Nhện chân trằng - White knee tarantula , đặc điểm dễ nuôi, màu sắc đẹp- là một ttrong ba loài nhện lớn nhanh nhất thế giới', 0, '2018-08-18 17:47:25', '2018-08-22 17:13:24'),
 (79, 2, 7, 'Spa Grooming', 300000, 99, 0, '1534614588.tam-say-thu-cung.jpg', 'Spa Grooming là dịch vụ chăm sóc sắc đẹp thú cưng cực kỳ nổi tiếng. Nó làm cho thú của bạn trở nên đẹp hơn, thoải mái và khỏe mạnh hơn.', 0, '2018-08-18 17:49:48', '2018-08-18 17:49:48'),
 (80, 2, 8, 'Trông giữ thú cưng', 150000, 99, 0, '1534614752.khach-san-cho-meo-1.jpg', 'Dịch Vụ Trông giữ thú cưng', 0, '2018-08-18 17:52:32', '2018-08-18 17:52:32'),
 (81, 2, 9, 'Tiêm chủng tại nhà', 200000, 99, 0, '1534614853.tiêm-vaxin-cho-chó.jpg', 'Dịch vụ tiêm phòng cho thú nuôi tại nhà', 0, '2018-08-18 17:54:13', '2018-08-18 17:54:13');
@@ -465,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -479,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `slides` (
   `link` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `slides`
@@ -526,7 +562,16 @@ CREATE TABLE IF NOT EXISTS `store_benefits` (
   `payment_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `store_benefits`
+--
+
+INSERT INTO `store_benefits` (`id`, `payment_id`, `amount`) VALUES
+(1, 2, 57000),
+(2, 1, 350000),
+(3, 3, 70000);
 
 -- --------------------------------------------------------
 
@@ -541,26 +586,6 @@ CREATE TABLE IF NOT EXISTS `sub_comments` (
   `user_id` int(11) NOT NULL,
   `media_link` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `supplier_outfits`
---
-
-DROP TABLE IF EXISTS `supplier_outfits`;
-CREATE TABLE IF NOT EXISTS `supplier_outfits` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` int(4) NOT NULL DEFAULT '1',
-  `payment_id` int(11) NOT NULL,
-  `supplier_id` int(11) NOT NULL,
-  `amount_for_suplier` int(11) NOT NULL,
-  `payment_time` datetime DEFAULT NULL,
-  `admin_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -594,7 +619,7 @@ CREATE TABLE IF NOT EXISTS `supplier_registers` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -630,17 +655,17 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_token`, `phoneNumber`, `address`, `city_code`, `card_number`, `bank_username`, `bank_name`, `bank_branch`, `roleId`, `avatar`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', 'i4YjmbXpcPXGAuwnr55FHR1EHp6BEqMJEMM2VC9Zhq8fJCvIcxGOfA8nYvpB', '01697161671', 'đình thôn mỹ đình 1 Nam Từ Liêm, Hà Nội', 1, '12345678909876', 'Nguyễn Hữu Hiệp', 'Vietcombank', 'Mỹ Đình 1', 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-08-19 12:22:14'),
-(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', '53G6dxfoXxYeBJEwAE4nbTKjeKXvqzX6ptRtU2MkvK66htGHFabWgyUoW6nu', '01697161671', 'Từ Liêm', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
-(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$r0ld8F2dm3blCo5AMZqjNuGAkyVga2f5WzzMzPZ2gdM6lDfSv.47e', 'VQjgFFbftLFvuAJCtlcYOAPrAssZNhKXw6tzw0L1Xb2EVvPZpTPXN4OHHcx4', '01697161671', 'đường đình thôn mỹ đình 1', 1, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-19 12:25:36'),
+(1, 'Hyuga_', 1, 'hiepnhse03561@fpt.edu.vn', '$2y$10$GOScVmqbLAei2QnKkH.Ob.3yjO8aIyo9zMC2jlpvVrcZxNt1WCu1K', 'rwpp6ijGgvews3NsvoeTZlwLGifcmbFrPjGW5OYQy1fmLfFb9R64v0DkmqCc', '01697161671', 'đình thôn mỹ đình 1 Nam Từ Liêm, Hà Nội', 1, '12345678909876', 'Nguyễn Hữu Hiệp', 'Vietcombank', 'Mỹ Đình 1', 2, '1532978090.petshop.png', 0, '2018-07-19 21:26:11', '2018-08-19 12:22:14'),
+(2, 'Nguyễn Hiệp', 0, 'hiepnhse03562@fpt.edu.vn', '$2y$10$F7GXS8erW99OtdQR2b0EXON1JI4zShQ1X4Hz0QytIe0tAQeO7XG0m', 'Cn1ktZLTAR3TSzeLxSrB1aaqBOEgU9mhsFY4cLiGCjc8St2OmbONueNXuSjV', '01697161671', 'Từ Liêm', 1, NULL, NULL, NULL, NULL, 2, 'user-default.png', 0, '2018-07-19 17:12:00', '2018-07-19 17:12:00'),
+(5, 'Nguyễn Hữu Hiệp', 0, 'acquy_tokyo_95@yahoo.com.vn', '$2y$10$r0ld8F2dm3blCo5AMZqjNuGAkyVga2f5WzzMzPZ2gdM6lDfSv.47e', 'LQ9RzjErPEhpuI22HukSFSZ61pOb0PKcb7VvSPOhOUWvhhndffaNRUlzfiix', '01697161671', 'đường đình thôn mỹ đình 1', 1, NULL, NULL, NULL, NULL, 4, '1532627521.petshop.png', 0, '2018-07-24 10:19:05', '2018-08-19 12:25:36'),
 (6, 'Monkey D. Luffy', 0, 'ludeptrai@gmail.com', '$2y$10$pfSJ.rrRGdPNO2vPmGoEQuMdKE73lDQTCjt8C0Kr3C0NcUjuWZyES', 'FRJpgXINCHNNAxxxU7oDFYJyCxdsuKM28OFCWFEIhxehGO06p8XVVMtvI7qT', NULL, 'Cầu Giấy', 1, NULL, NULL, NULL, NULL, 3, 'https://lh6.googleusercontent.com/-DRHnTWdkkCI/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o--PHL9DAzQiKqagKotFAjEXeDUw/mo/photo.jpg?sz=50', 1, '2018-07-24 10:40:29', '2018-08-19 12:28:57'),
 (7, 'Hashimoto Kanna', 1, 'voanhhiep@gmai.com', '$2y$10$qexDKUrcOCoOOBLrcDBbHeXn2UpiFM0wAe/9.6gP0mh98jz2OQJru', 'aynRe5yeuXIibfmBOOjlKjzumNkdrxUBAawWrtqrmFCIGmLD97tjrwniYLxN', '01697161671', 'Mỹ Đình 1', 2, '4342342344234', 'dsadsada', 'đasd', 'aaaaaaaaa', 2, '1534145265.banner.png', 0, '2018-08-07 15:58:05', '2018-08-19 11:24:37'),
 (8, 'Portgas D. Ace', 1, 'portgas@gmail.com', '$2y$10$VdcQG06XdIi/jnNiGkmBW.Hm4zHAUTvT9uR165sgBHv87/hQhnlvC', NULL, '01697161671', 'dsadsadsaddsad ,19}', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 1, '2018-08-13 06:56:34', '2018-08-19 12:45:09'),
 (9, 'Kakalot', 1, 'kakalot@gmail.com', '$2y$10$2nev7GkVlilp/tQZbwkyouzLzaSjts3CaS.6fkkbjaCzVKIXpSuCG', NULL, '01697161671', 'Mỹ Đình 3 ,Tỉnh Lạng Sơn', 20, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-13 07:07:00', '2018-08-19 12:27:24'),
 (10, 'Kazaki Kazua', 1, 'kazaki_jp@gmail.com', '$2y$10$UfSYM85mVUutCcAvckhNreEIjlLjzya55ewEzILcoIL3DeppPuZpy', NULL, '01697161671', 'Mỹ Đình 2,Tỉnh Quảng Ninh', 26, NULL, NULL, NULL, NULL, 4, 'user-default.png', 0, '2018-08-13 08:18:03', '2018-08-13 09:24:43'),
 (11, 'Sabo', 1, 'emanhace@gmail.com', '$2y$10$a583RvxOf765uPlVTlYyr.mTHCB2L/5al2SfHmp1SNBD2bFkHF5PC', 'bGOLEJHvs7BGjme5iCBE4uvUuEBOSGTGfjNBwK6OAXfmnJiN9BF65dN7UcgF', '01697161671', 'Mỹ Đình ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-13 20:16:15', '2018-08-13 20:16:15'),
-(12, 'Minamoto Monogatari', 1, 'chac_ai_do_se_hieu@gmail.com', '$2y$10$sE702gop0tfjMGq6Ku5T/.e/42DOjqyLTZVXU9U6IcOmoDLFNBl6.', NULL, '01697161671', 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-14 07:57:16', '2018-08-19 12:27:32'),
-(13, 'SYSTEM ADMIN', 1, 'tpfteam1111@gmail.com', '$2y$10$zdfWD3jNhulLxXzHeOfBsuF1c8.m655GPr08voqJ5Ui9yPdJVybva', NULL, '01697161671', 'Khu công nghệ cao Hòa Lạc, Thạch Thất ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-20 16:53:47', '2018-08-20 16:53:47');
+(12, 'Minamoto Monogatari', 1, 'chac_ai_do_se_hieu@gmail.com', '$2y$10$sE702gop0tfjMGq6Ku5T/.e/42DOjqyLTZVXU9U6IcOmoDLFNBl6.', 'CBiMgCFRwAKL1aHnWsdMEsVWwJAIr0kLXlm0xwHxaG9vZaCrirhi0copCCur', '01697161671', 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-14 07:57:16', '2018-08-19 12:27:32'),
+(13, 'SYSTEM ADMIN', 1, 'tpfteam1111@gmail.com', '$2y$10$zdfWD3jNhulLxXzHeOfBsuF1c8.m655GPr08voqJ5Ui9yPdJVybva', 'HNcKIMeIItGINUh3lFwVhjoKzhcT0A43Gm90zDZFHFrIcKvwkxXHMobsRIYq', '01697161671', 'Khu công nghệ cao Hòa Lạc, Thạch Thất ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-20 16:53:47', '2018-08-20 16:53:47');
 
 -- --------------------------------------------------------
 

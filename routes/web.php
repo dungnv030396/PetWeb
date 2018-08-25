@@ -236,10 +236,8 @@ Route::post('confirm/san-pham','ModeratorController@confirmProductToWarehouse')-
 
 //admin management
 
-Route::get('admin/management/homepage',function (){
-    $menu = 'home';
-    return view('AdminView.home',compact('menu'));
-})->name('admin_manage_place');
+Route::get('admin/management/homepage','AdminController@home')->name('admin_manage_place');
+
 Route::post('admin/manage/home','AdminController@loginAdmin')->name('loginAdmin');
 Route::get('login/admin', function (){
     if (\Illuminate\Support\Facades\Auth::check()){
@@ -269,10 +267,6 @@ Route::get('admin/manage/processed-report-list',function (){
     return view('AdminView.processed_report_view',compact('menu'));
 })->name('getListsProcessedReport');
 Route::get('admin/manage/report-list/detail/{id}','ReportController@detailWaitingReport')->name('detailWaitingReport');
-Route::get('/admin/management/homepage',function (){
-    $menu = 'home';
-    return view('AdminView.home',compact('menu'));
-})->name('admin_manage_place');
 
 Route::get('/admin/management/payment-supplier','AdminController@supplier_financeView')->name('supplierFinanceView');
 
@@ -319,6 +313,10 @@ Route::post('supplier/management/finance-data','DatatableController@getSupplier_
 
 //tinh tong tien dat hang ajax
 Route::post('data-load/amount','CartsController@loadAmountAjax')->name('loadAmount');
+//chart
+Route::post('data-load/finance_days','AdminController@loadDataFinanceDaysAjax')->name('loadDataFinanceDays');
+Route::post('data-load/finance_months','AdminController@loadDataFinanceMonthsAjax')->name('loadDataFinanceMonths');
+Route::post('data-load/finance_years','AdminController@loadDataFinanceYearsAjax')->name('loadDataFinanceYears');
 
 Route::post('search-product','ProductController@searchProductByName')->name('searchProductByName');
 Route::get('search-product','ProductController@searchProductByName');
