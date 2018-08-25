@@ -322,3 +322,5 @@ Route::post('data-load/amount','CartsController@loadAmountAjax')->name('loadAmou
 
 Route::post('search-product','ProductController@searchProductByName')->name('searchProductByName');
 Route::get('search-product','ProductController@searchProductByName');
+
+Route::get('paypal','PayPalTestController@index');
