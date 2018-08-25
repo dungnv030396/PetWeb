@@ -25,8 +25,13 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                            @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
+                            <img alt="image" class="img-circle" src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
                                  height="80px"/>
+                                @else
+                                <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                                     height="80px"/>
+                                @endif
                              </span>
                         @if(\Illuminate\Support\Facades\Auth::check())
                             <span class="clear"> <span class="block m-t-xs"> <strong

@@ -18,3 +18,5 @@ chạy command:
     'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 ]
 php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvider
+
+composer require paypal/rest-api-sdk-php//install paypal API

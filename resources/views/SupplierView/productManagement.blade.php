@@ -25,8 +25,13 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                             @if(\Illuminate\Support\Facades\Auth::check())
-                            <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                                @if(str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'https://graph.facebook.com') OR str_contains(\Illuminate\Support\Facades\Auth::user()->avatar,'googleusercontent.com'))
+                                <img alt="image" class="img-circle" src="{{\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
                                  height="80px"/>
+                                @else
+                                    <img alt="image" class="img-circle" src="{{'storage/avatar/'.\Illuminate\Support\Facades\Auth::user()->avatar }}" width="80px"
+                                         height="80px"/>
+                                @endif
                              </span>
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{\Illuminate\Support\Facades\Auth::user()->name}}</strong>
                              </span> <span class="text-muted text-xs block">Nhà cung cấp</span> </span>

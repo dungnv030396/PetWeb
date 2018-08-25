@@ -13,7 +13,7 @@ class PayPalTestController extends Controller
 
     public function __construct(PayPalSvc $paypalSvc)
     {
-        parent::__construct();
+//        parent::__construct();
 
         $this->paypalSvc = $paypalSvc;
     }
