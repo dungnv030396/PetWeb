@@ -23,6 +23,57 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
+        $order = Order::find(1);
+        $datetime = Carbon::create(2018,2,15);
+        $order->created_at = $datetime;
+        $order->save();
+
+//        for ($i = 1; $i <= 1000; $i++){
+//            $order = new Order();
+//            $payment = new Payment();
+//            $line = new OrderLine();
+//            if($i%2 == 0){
+//                $address = 'Mỹ Đình, Thành phố Hà Nội';
+//                $city_code = 1;
+//                $warehouse_id = 1;
+//                $user_id = 14;
+//                $pamount = 3500000;
+//                $product_id = 77;
+//                $quantity = 1;
+//            }else if($i%3 == 0){
+//                $address = 'Hội An, Thành phố Đà Nẵng';
+//                $city_code = 48;
+//                $warehouse_id = 2;
+//                $user_id = 8;
+//                $pamount = 2500000;
+//                $product_id = 70;
+//                $quantity = 1;
+//            }else{
+//                $address = 'Chợ Bến Thành, Thành Phố Hồ Chí Minh';
+//                $city_code = 79;
+//                $warehouse_id = 3;
+//                $user_id = 9;
+//                $pamount = 2500000;
+//                $product_id = 70;
+//                $quantity = 1;
+//            }
+//            $payment->amount = $pamount;
+//            $payment->save();
+//            $order->payment_id = $payment->id;
+//            $order->address = $address;
+//            $order->city_code = $city_code;
+//            $order->warehouse_id = $warehouse_id;
+//            $order->user_id = $user_id;
+//            $order->save();
+//            $line->order_id = $order->id;
+//            $line->city_code = $city_code;
+//            $line->warehouse_id = $warehouse_id;
+//            $line->product_id = $product_id;
+//            $line->quantity = $quantity;
+//            $line->amount = $pamount;
+//            $line->save();
+//        }
+        var_dump('ok');die;
     }
     public function getIndex()
     {
