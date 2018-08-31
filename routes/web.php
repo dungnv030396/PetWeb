@@ -320,4 +320,3 @@ Route::post('data-load/finance_years','AdminController@loadDataFinanceYearsAjax'
 
 Route::post('search-product','ProductController@searchProductByName')->name('searchProductByName');
 Route::get('search-product','ProductController@searchProductByName');
-
