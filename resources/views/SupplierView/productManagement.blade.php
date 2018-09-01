@@ -67,7 +67,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Chào Mới Tới Trang Quản Lí Của Nhà Cung Cấp.</span>
+                        <span class="m-r-sm text-muted welcome-message" style="color: #F90">Chào Mới Tới Trang Quản Lí Của Nhà Cung Cấp.</span>
                     </li>
                     <li>
                         <a href="{{ route('trangchu') }}">

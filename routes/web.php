@@ -160,7 +160,7 @@ Route::post('Tra-loi-binh-luan','CommentController@addReplyComment')->name('addR
 
 // supplier management
 Route::get('supplier/manage/supplier-product-list',function (){
-    $menu = 'product';
+    $menu = 'home';
     return view('SupplierView.posted_product_view',compact('menu'));
 })->name('productManagement');
 Route::post('data/supplier-post-products','DatatableController@getSupplierPosts')->name('dataSupplierPostProducts');

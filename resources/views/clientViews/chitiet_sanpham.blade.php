@@ -97,6 +97,7 @@
 
                                 <a class="add-to-cart pull-left" onclick="document.getElementById('addToCart').submit();"><i
                                             class="fa fa-shopping-cart"></i><span>Thêm giỏ hàng</span></a>
+                                {{--<a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span> Share FB</a>--}}
                                 {{--report--}}
                                 {{--<div style="border: solid; width: 10vw;height: 3vw;margin-top: 3vw">--}}
 
