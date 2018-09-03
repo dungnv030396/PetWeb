@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Report;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
+use Illuminate\Support\Facades\Mail;
+
 
 class ReportController extends Controller
 {
@@ -48,15 +51,54 @@ class ReportController extends Controller
     }
     public function reportProcess(){
         $report = Report::find(\request('id'));
+        $user_reported = User::find(request('reportTo_id'));
+        $user = User::find($report->user_id);
+        $email = $user_reported->email;
+        $email_report = $user->email;
         $button_value = \request('button');
 //        $button_cancel = \request('cancel');
         if($button_value=='accept'){
             $report->admin_id = Auth::user()->id;
             $report->status = 2;
+            try{
+                $data = array('name' => $user_reported->name,'des' => $report->description,'product_id'=>$report->product_id);
+                Mail::send('clientViews.emails.notifi_report', $data, function ($message) use ($email){
+                    $message->to($email)
+                        ->subject('The Pet Family - Báo Cáo');
+                    $message->from('thepetfamilyteam@gmail.com');
+                });
+                $data2 = array('name' => $user->name,
+                    'des' => $report->description,
+                    'product_id'=>$report->product_id,
+                    'reportTo_name' => $user_reported->name
+                );
+                Mail::send('clientViews.emails.notifi_to_reporter_suc', $data2, function ($message) use ($email_report){
+                    $message->to($email_report)
+                        ->subject('The Pet Family - Báo Cáo');
+                    $message->from('thepetfamilyteam@gmail.com');
+                });
+
+            }catch (Exception $e){
+                return back()->with('sentMailFail');
+            }
             $report->save();
         }else{
             $report->admin_id = Auth::user()->id;
             $report->status = 3;
+            try{
+                $data = array('name' => $user->name,
+                    'des' => $report->description,
+                    'product_id'=>$report->product_id,
+                    'reportTo_name' => $user_reported->name
+                );
+                Mail::send('clientViews.emails.notifi_to_reporter_fail', $data, function ($message) use ($email_report){
+                    $message->to($email_report)
+                        ->subject('The Pet Family - Báo Cáo');
+                    $message->from('thepetfamilyteam@gmail.com');
+                });
+            }catch (Exception $e){
+                return back()->with('sentMailFail');
+            }
             $report->save();
         }
         alert()->success('Xử Lý Báo Cáo Thành Công!');

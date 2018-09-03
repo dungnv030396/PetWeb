@@ -65,6 +65,7 @@
                                         <hr>
                                     @endif
                                     <h4>Nhà Cung Cấp Bị Báo Cáo: <a target="_blank" href="{{route('detailSupplier',$data['report']->reportTo_id)}}">Link Nhà Cung Cấp</a></h4>
+                                    <input type="hidden"  name="reportTo_id" value="{{ $data['report']->reportTo_id }}">
                                     <div>
                                         <div class="btn-group">
                                             <button name="button" value="accept" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Chấp Nhận</button>
