@@ -147,21 +147,16 @@ class SupplierProductPageTest extends TestCase
         $this->call('GET', 'logout/moderator');
     }
     public function test_DetailTable_div()
-    {   
-         $this->get('/index');
-        $response = $this->call('POST', '/login', [
-        'emailid' => 'hiepnhse03561@fpt.edu.vn',
-        'password' => '123456',
-        '_token' => csrf_token()
-    ]);
+    {
+        $this->get('/dang-nhap/moderator');
+        $response = $this->call('POST', '/moderator/manage/order-list', [
+            'email' => 'dungnqse04355@fpt.edu.vn',
+            'password' => '123456',
+            '_token' => csrf_token()
+        ]);
         $this->followRedirects($response);
-        $response = $this->call('POST', 'loginToManagement', [
-        'emailid' => 'hiepnhse03561@fpt.edu.vn',
-        'password' => '123456',
-        '_token' => csrf_token()
-    ]);
-        $this->followRedirects($response)->assertSee('Tên sản phẩm')->assertSee('Mã')->assertSee('Loại');
-        $this->call('GET', '/index');
+        $this->get('don-hang/kho/1')->assertSee('print');
+        $this->call('GET', 'logout/moderator');
     }
      
 }    

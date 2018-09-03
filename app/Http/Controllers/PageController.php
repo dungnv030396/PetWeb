@@ -23,36 +23,37 @@ class PageController extends Controller
 {
 
     public  function test(Request $request){
-        $start = 0;
-        $end = 150;
-        $orders = Order::offset($start)
-            ->limit($end)->get();
-        $payments = Payment::offset($start)
-            ->limit($end)->get();
-        $lines = OrderLine::offset($start)
-                ->limit($end)->get();
-        foreach ($orders as $order){
-            $day = rand(1,30);
-            $datetime = Carbon::create(2017,11,$day);
-            $d = $datetime->modify('+1 days');
-            $order->status_id = 5;
-            $order->completed_at = $d;
-            $order->created_at = $datetime;
-            var_dump($datetime->modify('+1 days'));var_dump($datetime);die;
-            $order->save();
-        }
-        die;
-        foreach ($payments as $payment){
-            $payment->created_at = $datetime;
-            $payment->save();
-        }
-        foreach ($lines as $line){
-            $line->sent_at = $datetime;
-            $line->payment_date = $datetime->modify('+7 days')->format('Y-m-d');
-            $line->created_at = $datetime;
-            $line->save();
-        }
-        var_dump('good1');die;
+//        $start = 0;
+//        $end = 150;
+//        $orders = Order::offset($start)
+//            ->limit($end)->get();
+//        $payments = Payment::offset($start)
+//            ->limit($end)->get();
+//        $lines = OrderLine::offset($start)
+//                ->limit($end)->get();
+//        foreach ($orders as $order){
+//            $day = rand(1,30);
+//            $datetime = Carbon::create(2017,11,$day);
+//            $d = $datetime->modify('+1 days');
+//            $order->status_id = 5;
+//            $order->completed_at = $d;
+//            $order->created_at = $datetime;
+//            var_dump($datetime->modify('+1 days'));var_dump($datetime);die;
+//            $order->save();
+//        }
+//        die;
+//        foreach ($payments as $payment){
+//            $payment->created_at = $datetime;
+//            $payment->save();
+//        }
+//        foreach ($lines as $line){
+//            $line->sent_at = $datetime;
+//            $line->payment_date = $datetime->modify('+7 days')->format('Y-m-d');
+//            $line->created_at = $datetime;
+//            $line->save();
+//        }
+        $password = str_random(6);
+        var_dump($password);die;
 
 
 //        for ($i = 1; $i <= 1000; $i++){
