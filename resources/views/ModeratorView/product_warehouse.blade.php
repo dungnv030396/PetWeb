@@ -176,16 +176,16 @@
                             },
                             success: function (data) {
                                 if (data.error.length > 0) {
-                                    swal('Cancelled', "Đã có lỗi xảy ra!", "error");
+                                    swal('Hủy', "Đã có lỗi xảy ra!", "error");
                                 }
                                 else {
-                                    swal("Success", "Bạn đã xác nhận chuyển mã đơn hàng " + name, "success");
+                                    swal("Thành Công", "Bạn đã xác nhận chuyển mã đơn hàng " + name, "thành công");
                                     $('.dataTables-productWarehouse').DataTable().ajax.reload();
                                 }
                             }
                         })
                     } else {
-                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        swal("Đã Hủy", "Your imaginary file is safe :)", "error");
                     }
                 });
         }
@@ -194,10 +194,10 @@
             event.preventDefault(); // prevent form submit
             swal({
                 title: "Sản phẩm " + name + " chưa được phía nhà cung cấp xác nhận đã xuất kho!",
-                text: "Bấm 'Yes, got it!' để quay lại!",
+                text: "Bấm 'Đã Hiểu!' để quay lại!",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, got it!",
+                confirmButtonText: "Đã Hiểu!",
                 closeOnConfirm: true,
             });
         }
@@ -205,10 +205,10 @@
             event.preventDefault(); // prevent form submit
             swal({
                 title: "Sản phẩm " + name + " đã được xác nhận trong kho trước đó!",
-                text: "Bấm 'Yes, got it!' để quay lại!",
+                text: "Bấm 'Đã Hiểu!' để quay lại!",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, got it!",
+                confirmButtonText: "Đã Hiểu!",
                 closeOnConfirm: true,
             });
         }
@@ -216,10 +216,10 @@
             event.preventDefault(); // prevent form submit
             swal({
                 title: "Sản phẩm " + name + " đang được ship!",
-                text: "Bấm 'Yes, got it!' để quay lại!",
+                text: "Bấm 'Đã Hiểu!' để quay lại!",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, got it!",
+                confirmButtonText: "Đã Hiểu!",
                 closeOnConfirm: true,
             });
         }

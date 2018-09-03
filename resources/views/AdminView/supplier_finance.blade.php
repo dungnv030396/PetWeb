@@ -229,16 +229,16 @@
                             },
                             success: function (data) {
                                 if (data.error.length > 0) {
-                                    swal('Cancelled', "Đã có lỗi xảy ra!", "error");
+                                    swal('Hủy', "Đã có lỗi xảy ra!", "error");
                                 }
                                 else {
-                                    swal("Success", "Bạn đã xác nhận chuyển mã đơn hàng " + name, "success");
+                                    swal("Thành Công", "Bạn đã xác nhận chuyển mã đơn hàng " + name, "thành công");
                                     $('.dataTables-supplier-finance').DataTable().ajax.reload();
                                 }
                             }
                         })
                     } else {
-                        swal("Cancelled", "Việc chuyển tiền bị hủy bỏ", "error");
+                        swal("Đã Hủy", "Việc chuyển tiền bị hủy bỏ", "error");
                     }
                 });
         }
