@@ -61,12 +61,14 @@ class ReportController extends Controller
             $report->admin_id = Auth::user()->id;
             $report->status = 2;
             try{
+                //send mail to supplier
                 $data = array('name' => $user_reported->name,'des' => $report->description,'product_id'=>$report->product_id);
                 Mail::send('clientViews.emails.notifi_report', $data, function ($message) use ($email){
                     $message->to($email)
                         ->subject('The Pet Family - Báo Cáo');
                     $message->from('thepetfamilyteam@gmail.com');
                 });
+                //send mail to user_reporter success
                 $data2 = array('name' => $user->name,
                     'des' => $report->description,
                     'product_id'=>$report->product_id,
@@ -85,6 +87,7 @@ class ReportController extends Controller
         }else{
             $report->admin_id = Auth::user()->id;
             $report->status = 3;
+            //send mail to user_reporter fail
             try{
                 $data = array('name' => $user->name,
                     'des' => $report->description,
