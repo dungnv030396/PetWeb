@@ -66,21 +66,16 @@ class LoginController extends Controller
             $first_name = $userSocialite->user['first_name'];
             $last_name = $userSocialite->user['last_name'];
             $user->name = $first_name .' '. $last_name;
-//            $user->gender = $userSocialite->user['gender'];
             $user->email = $userSocialite->email;
             $user->avatar = $userSocialite->avatar;
-            $user->password = bcrypt('123456');
+            $password = str_random(6);
+            $user->password = bcrypt($password);
+//            $user->password = bcrypt('123456');
             $user->save();
             Auth::login($user);
             return back()->with('facebook');
         }
     }
-//    public function logoutFacebook()
-//    {
-//        Auth::logout();
-//
-//        return redirect(route('trangchu'));
-//    }
 
     public function redirectToProviderGM()
     {
@@ -90,19 +85,18 @@ class LoginController extends Controller
     public function handleProviderCallbackGM()
     {
         $userSocialite = Socialite::driver('google')->stateless()->user();
-
-
         $findUserSocialite = User::where('email',$userSocialite->email)->first();
         if($findUserSocialite){
             Auth::login($findUserSocialite);
-            return redirect(route('trangchu'))->with('google');
-
+            return redirect(route('trangchu'));
         }else{
             $user = new User();
             $user->name = $userSocialite->name;
             $user->email = $userSocialite->email;
             $user->avatar = $userSocialite->avatar;
-            $user->password = bcrypt('123456');
+            $password = str_random(6);
+            $user->password = bcrypt($password);
+//            $user->password = bcrypt('123456');
             $user->save();
             Auth::login($user);
             return redirect(route('trangchu'))->with('google');

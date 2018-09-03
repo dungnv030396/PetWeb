@@ -19,4 +19,6 @@ chạy command:
 ]
 php artisan vendor:publish --provider=Yajra\DataTables\DataTablesServiceProvider
 
+./vendor/bin/phpunit //run unit test
+
 composer require paypal/rest-api-sdk-php//install paypal API

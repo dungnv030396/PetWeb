@@ -666,6 +666,8 @@ INSERT INTO `users` (`id`, `name`, `gender`, `email`, `password`, `remember_toke
 (11, 'Sabo', 1, 'emanhace@gmail.com', '$2y$10$a583RvxOf765uPlVTlYyr.mTHCB2L/5al2SfHmp1SNBD2bFkHF5PC', 'bGOLEJHvs7BGjme5iCBE4uvUuEBOSGTGfjNBwK6OAXfmnJiN9BF65dN7UcgF', '01697161671', 'Mỹ Đình ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-13 20:16:15', '2018-08-13 20:16:15'),
 (12, 'Minamoto Monogatari', 1, 'chac_ai_do_se_hieu@gmail.com', '$2y$10$sE702gop0tfjMGq6Ku5T/.e/42DOjqyLTZVXU9U6IcOmoDLFNBl6.', 'CBiMgCFRwAKL1aHnWsdMEsVWwJAIr0kLXlm0xwHxaG9vZaCrirhi0copCCur', '01697161671', 'Mỹ Đình 4 ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 3, 'user-default.png', 0, '2018-08-14 07:57:16', '2018-08-19 12:27:32'),
 (13, 'SYSTEM ADMIN', 1, 'tpfteam1111@gmail.com', '$2y$10$zdfWD3jNhulLxXzHeOfBsuF1c8.m655GPr08voqJ5Ui9yPdJVybva', 'HNcKIMeIItGINUh3lFwVhjoKzhcT0A43Gm90zDZFHFrIcKvwkxXHMobsRIYq', '01697161671', 'Khu công nghệ cao Hòa Lạc, Thạch Thất ,Thành phố Hà Nội', 1, NULL, NULL, NULL, NULL, 1, 'user-default.png', 0, '2018-08-20 16:53:47', '2018-08-20 16:53:47');
+(14, 'Dũng Nguyễn', 1, 'dungnv030396@gmail.com', '$2y$10$GPTDkiMbUlXuyWMAoFW2TOhNSnxgGJ09kUeAbsNGp9Ce1VLEz2kEi', 'null', '0964133843', 'Cầu giấy,Hà Nội', 1, '00450505502', 'Nguyễn Văn Dũng', 'TP Bank', 'Hà Nội', 2, 'https://graph.facebook.com/v3.0/1315040541959937/picture?type=normal', 0, '2018-08-20 16:53:47', '2018-08-20 16:53:47');
+
 
 -- --------------------------------------------------------
 
