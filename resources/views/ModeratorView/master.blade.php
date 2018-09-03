@@ -120,7 +120,7 @@
                 showMethod: 'slideDown',
                 timeOut: 4000
             };
-            toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+            toastr.success('The Pet Family', 'Welcome to The Pet Family');
 
         }, 1300);
 

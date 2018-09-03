@@ -5,6 +5,7 @@ namespace App;
 use App\OrderlinepaymentStatus;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class OrderLine extends Model
 {
@@ -266,13 +267,19 @@ class OrderLine extends Model
         $totalData = OrderLine::whereIn('finance_status', $status_id)
             ->whereHas('order', function ($query) {
                 $query->where('delete_flag', 0);
-            })->whereBetween('payment_date', [$startDate, $endDate])->count();
+            })->whereBetween('payment_date', [$startDate, $endDate])
+            ->whereHas('product',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            })->count();
         if (empty($search)) {
             $orderLines = OrderLine::whereIn('finance_status', $status_id)
                 ->whereHas('order', function ($query) {
                     $query->where('delete_flag', 0);
                 })
                 ->whereBetween('payment_date', [$startDate, $endDate])
+                ->whereHas('product',function ($query){
+                    $query->where('user_id',Auth::user()->id);
+                })
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)
@@ -285,6 +292,9 @@ class OrderLine extends Model
                     $query->where('id', 'like', "%$search%");
                 })
                 ->whereBetween('payment_date', [$startDate, $endDate])
+                ->whereHas('product',function ($query){
+                    $query->where('user_id',Auth::user()->id);
+                })
                 ->offset($start)
                 ->limit($length)
                 ->orderBy($columns[$oderColunm], $oderSortType)

@@ -321,3 +321,5 @@ Route::post('data-load/finance_years','AdminController@loadDataFinanceYearsAjax'
 Route::post('search-product','ProductController@searchProductByName')->name('searchProductByName');
 Route::get('search-product','ProductController@searchProductByName');
 
+Route::post('san-pham-theo-loai','PageController@getProductsByType')->name('sanphamtheoloaiSapxep');
+

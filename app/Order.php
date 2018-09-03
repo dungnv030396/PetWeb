@@ -443,7 +443,7 @@ class Order extends Model
             return Carbon::parse($date->created_at)->format('d');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= date('t'); $i++) {
@@ -507,7 +507,7 @@ class Order extends Model
             return Carbon::parse($date->created_at)->format('m');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= 12; $i++) {
@@ -561,7 +561,7 @@ class Order extends Model
         });
         $data = array();
         $i = 1;
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 $year = Carbon::parse($order[0]->created_at)->format('Y');
                 $number = $order->count();
@@ -587,7 +587,7 @@ class Order extends Model
             return Carbon::parse($date->completed_at)->format('d');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= date('t'); $i++) {
@@ -620,7 +620,7 @@ class Order extends Model
             $year = date('Y');
             for ($i = 1; $i <= date('t'); $i++) {
                 $data[$i] = [
-                    'year' => $year,
+                    'year' => 2018,
                     'month' => $month,
                     'day' => $i,
                     'number' => 0
@@ -637,7 +637,7 @@ class Order extends Model
         $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->whereRaw('MONTH(completed_at) = ?', $month)->where('delete_flag', 0)->orderBy('completed_at', 'asc')->get()->groupBy(function ($date) {
             return Carbon::parse($date->completed_at)->format('d');
         });
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 foreach ($order as $orderP) {
                     $financeLastMonth += $orderP->payment->amount;
@@ -662,7 +662,7 @@ class Order extends Model
         });
         $data = array();
         $i = 1;
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 $year = Carbon::parse($order[0]->completed_at)->format('Y');
                 $number = 0;
@@ -690,7 +690,7 @@ class Order extends Model
             return Carbon::parse($date->completed_at)->format('m');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= 12; $i++) {
@@ -731,7 +731,7 @@ class Order extends Model
         $orders = Order::whereRaw('YEAR(completed_at) = ?', $year)->orderBy('completed_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
             return Carbon::parse($date->completed_at)->format('m');
         });
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 foreach ($order as $orderP) {
                     $financeLastYear += $orderP->payment->amount;
@@ -757,7 +757,7 @@ class Order extends Model
             return Carbon::parse($date->created_at)->format('d');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= date('t'); $i++) {
@@ -807,7 +807,7 @@ class Order extends Model
         $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->whereRaw('MONTH(created_at) = ?', $month)->where('delete_flag', 0)->orderBy('created_at', 'asc')->get()->groupBy(function ($date) {
             return Carbon::parse($date->created_at)->format('d');
         });
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 foreach ($order as $orderP) {
                     $financeLastMonth += $orderP->payment->amount;
@@ -832,7 +832,7 @@ class Order extends Model
             return Carbon::parse($date->created_at)->format('m');
         });
         $data = array();
-        if ($orders) {
+        if ($orders->count() > 0) {
             $j = 1;
             foreach ($orders as $order) {
                 for ($i = $j; $i <= 12; $i++) {
@@ -873,7 +873,7 @@ class Order extends Model
         $orders = Order::whereRaw('YEAR(created_at) = ?', $year)->orderBy('created_at', 'asc')->where('delete_flag', 0)->get()->groupBy(function ($date) {
             return Carbon::parse($date->created_at)->format('m');
         });
-        if ($orders) {
+        if ($orders->count() > 0) {
             foreach ($orders as $order) {
                 foreach ($order as $orderP) {
                     $financeLastYear += $orderP->payment->amount;

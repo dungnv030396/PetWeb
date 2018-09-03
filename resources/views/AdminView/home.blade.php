@@ -358,6 +358,7 @@
                     _token: "{{csrf_token()}}"
                 },
                 success: function (data) {
+                    console.log(data);
                     var orders = [];
                     for ( i = 1; i <= data['days']; i++){
                          orders[i-1] = [gd(data['orders'][i]['year'], data['orders'][i]['month'], data['orders'][i]['day']), data['orders'][i]['number']];

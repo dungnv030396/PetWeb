@@ -54,8 +54,15 @@ class Product extends Model
     	return $this->hasMany('App\BillDetail','id_product','id');
     }*/
 
-    public function getProductsByType($catalog_id, $category_id, $number_record)
+    public function getProductsByType($catalog_id, $category_id, $number_record,$selected)
     {
+        if($selected == 1){
+            $sort = ['created_at','desc'];
+        }elseif ($selected == 2){
+            $sort = ['price','asc'];
+        }else{
+            $sort = ['price','desc'];
+        }
         if (is_null($catalog_id)) {
             return redirect()->back();
         } else {
@@ -63,14 +70,14 @@ class Product extends Model
             $catalog = Catalog::find($catalog_id);
             $link .= $catalog->name;
             if (is_null($category_id)) {
-                $products = $this->getProductsByCatalogID2($catalog_id, $number_record, ['*'], 'p4');
+                $products = $this->getProductsByCatalogID2($catalog_id, $number_record, ['*'], 'p4',$sort);
                 return ['products' => $products,
                     'link' => $link
                 ];
             } else {
                 $category = Category::find($category_id);
                 $link .= " / " . $category->name;
-                $products = $this->getProductsByCategoryId2($category_id, $number_record, ['*'], 'p4');
+                $products = $this->getProductsByCategoryId2($category_id, $number_record, ['*'], 'p4',$sort);
                 return ['products' => $products,
                     'link' => $link
                 ];
@@ -78,12 +85,12 @@ class Product extends Model
         }
     }
 
-    public function getProductsByCategoryId2($id, $number_record, $s1, $s2)
+    public function getProductsByCategoryId2($id, $number_record, $s1, $s2,$sort)
     {
-        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->latest()->paginate($number_record, $s1, $s2);
+        return Product::where([['category_id', '=', $id], ['delete_flag', '=', 0], ['quantity', '>', 0]])->orderBy($sort[0],$sort[1])->paginate($number_record, $s1, $s2);
     }
 
-    public function getProductsByCatalogID2($catalog_id, $number_record, $s1, $s2)
+    public function getProductsByCatalogID2($catalog_id, $number_record, $s1, $s2,$sort)
     {
         $cate = new Category();
         $cata = Catalog::find($catalog_id);
@@ -95,7 +102,7 @@ class Product extends Model
         $listProduct = Product::where([
             ['delete_flag', '=', '0'],
             ['quantity', '>', 0]
-        ])->whereIn('category_id', $idCategoryArray)->latest()->paginate($number_record, $s1, $s2);
+        ])->whereIn('category_id', $idCategoryArray)->orderBy($sort[0],$sort[1])->paginate($number_record, $s1, $s2);
         return $listProduct;
     }
 

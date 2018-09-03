@@ -38,6 +38,19 @@
 								</li>
 
 							@endforeach
+								<li><b style="font-size: medium">Dịch vụ theo
+										<form action="{{route('sanphamtheoloaiSapxep')}}" method="POST">
+											{{csrf_field()}}
+											<select class="form-control" name="select_sort" onchange="submit()">
+												<option value="1" {{$selected == 1?'selected':''}}>Ngày đăng</option>
+												<option value="2" {{$selected == 2?'selected':''}}>Giá tăng dần</option>
+												<option value="3" {{$selected == 3?'selected':''}}>Giá giảm dần</option>
+											</select>
+											<input type="hidden" name="cata_id" value="{{$cata_id}}">
+											<input type="hidden" name="cate_id" value="{{$cate_id}}">
+										</form>
+									</b>
+								</li>
 
 
 						</ul>

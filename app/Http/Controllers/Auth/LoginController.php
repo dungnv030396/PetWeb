@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 class LoginController extends Controller
@@ -59,7 +57,7 @@ class LoginController extends Controller
         if($userSocialite->email ==null){
             return back()->withErrors('emailNull','Tài Khoản Facebook chưa liên kết email!');
         }
-        $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
+        $findUserSocialite = User::where('email',$userSocialite->email)->first();
         if($findUserSocialite){
             Auth::login($findUserSocialite);
             return back()->with('facebook');
@@ -73,7 +71,6 @@ class LoginController extends Controller
             $user->avatar = $userSocialite->avatar;
             $user->password = bcrypt('123456');
             $user->save();
-
             Auth::login($user);
             return back()->with('facebook');
         }
@@ -95,9 +92,8 @@ class LoginController extends Controller
         $userSocialite = Socialite::driver('google')->stateless()->user();
 
 
-        $findUserSocialite = User::all()->where('email',$userSocialite->email)->first();
+        $findUserSocialite = User::where('email',$userSocialite->email)->first();
         if($findUserSocialite){
-
             Auth::login($findUserSocialite);
             return redirect(route('trangchu'))->with('google');
 
@@ -108,9 +104,8 @@ class LoginController extends Controller
             $user->avatar = $userSocialite->avatar;
             $user->password = bcrypt('123456');
             $user->save();
-
             Auth::login($user);
-            return back()->with('google');
+            return redirect(route('trangchu'))->with('google');
         }
     }
 
